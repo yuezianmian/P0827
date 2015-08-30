@@ -1,0 +1,345 @@
+[2015-08-30 16:49:02] /p/admin/index.php?act=login&op=login ( act=login&op=login ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_admin_log' doesn't exist
+INSERT  INTO `sysc_admin_log` (content,admin_name,createtime,admin_id,ip,url) VALUES ('','admin','1440924541','1','','login&login')
+[2015-08-30 16:49:03] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` LIMIT 1  
+[2015-08-30 16:49:03] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( member_time >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_pd_cash' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_pd_cash` WHERE ( pdc_payment_state = '0' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_joinin' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_joinin` WHERE ( joinin_state IN ('10','11') ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_bind_class' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_bind_class` WHERE ( state = '0' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_reopen' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_reopen` WHERE ( re_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1440924543' AND '1441788543' ) ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1' AND '1440924543' ) ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_addtime >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_verify = '10' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_inform' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_inform` WHERE ( inform_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_brand' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_brand` WHERE ( brand_apply = '0' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order` LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '1' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:04] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '2' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_refund' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_refund` WHERE ( admin_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '10' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '40' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_groupbuy' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_groupbuy` WHERE ( state = '10' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_points_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_points_order` WHERE ( point_orderstate IN ('11','20') ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_mall_consult' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_mall_consult` WHERE ( is_reply = '0' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_delivery_point' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_delivery_point` WHERE ( dlyp_state = '10' ) LIMIT 1  
+[2015-08-30 16:49:05] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_circle' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_circle` WHERE ( circle_status = '2' ) LIMIT 1  
+[2015-08-30 16:49:41] /p/admin/index.php?act=predeposit&op=pd_cash_list ( act=predeposit&op=pd_cash_list ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_pd_cash' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_pd_cash` ORDER BY pdc_payment_state asc,pdc_id asc LIMIT 1  
+[2015-08-30 16:49:41] /p/admin/index.php?act=predeposit&op=pd_cash_list ( act=predeposit&op=pd_cash_list ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_pd_cash' doesn't exist
+SELECT * FROM `sysc_pd_cash` ORDER BY pdc_payment_state asc,pdc_id asc LIMIT 0,20  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( member_time >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_pd_cash' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_pd_cash` WHERE ( pdc_payment_state = '0' ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_joinin' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_joinin` WHERE ( joinin_state IN ('10','11') ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_bind_class' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_bind_class` WHERE ( state = '0' ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_reopen' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_reopen` WHERE ( re_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1440924595' AND '1441788595' ) ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1' AND '1440924595' ) ) LIMIT 1  
+[2015-08-30 16:49:55] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_addtime >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_verify = '10' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_inform' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_inform` WHERE ( inform_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_brand' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_brand` WHERE ( brand_apply = '0' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order` LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '1' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '2' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_refund' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_refund` WHERE ( admin_state = '1' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '10' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '40' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_groupbuy' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_groupbuy` WHERE ( state = '10' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_points_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_points_order` WHERE ( point_orderstate IN ('11','20') ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:49:56] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:49:57] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_mall_consult' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_mall_consult` WHERE ( is_reply = '0' ) LIMIT 1  
+[2015-08-30 16:49:57] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_delivery_point' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_delivery_point` WHERE ( dlyp_state = '10' ) LIMIT 1  
+[2015-08-30 16:49:57] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_circle' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_circle` WHERE ( circle_status = '2' ) LIMIT 1  
+[2015-08-30 16:49:57] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) LIMIT 1  
+[2015-08-30 16:49:57] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT * FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) ORDER BY member_id desc LIMIT 0,10  
+[2015-08-30 16:50:10] /p/admin/index.php?act=goods_class&op=goods_class ( act=goods_class&op=goods_class ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_class' doesn't exist
+SELECT * FROM `sysc_goods_class` ORDER BY gc_parent_id asc,gc_sort asc,gc_id asc 
+[2015-08-30 16:50:11] /p/admin/index.php?act=store&op=store ( act=store&op=store ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( is_own_shop = '0' ) ORDER BY store_id desc LIMIT 1  
+[2015-08-30 16:50:11] /p/admin/index.php?act=store&op=store ( act=store&op=store ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT * FROM `sysc_store` WHERE ( is_own_shop = '0' ) ORDER BY store_id desc LIMIT 0,10  
+[2015-08-30 16:50:11] /p/admin/index.php?act=store&op=store ( act=store&op=store ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_grade' doesn't exist
+SELECT * FROM `sysc_store_grade` as `store_grade`   order by sg_id
+[2015-08-30 16:50:11] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) LIMIT 1  
+[2015-08-30 16:50:11] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT * FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) ORDER BY member_id desc LIMIT 0,10  
+[2015-08-30 16:50:12] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) LIMIT 1  
+[2015-08-30 16:50:12] /p/admin/index.php?act=member&op=member ( act=member&op=member ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT * FROM `sysc_member` WHERE ( (member_exppoints >= '0') AND (member_exppoints < '500')  ) ORDER BY member_id desc LIMIT 0,10  
+[2015-08-30 16:50:12] /p/admin/index.php?act=order&op=index ( act=order&op=index ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order` LIMIT 1  
+[2015-08-30 16:50:12] /p/admin/index.php?act=order&op=index ( act=order&op=index ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order' doesn't exist
+SELECT * FROM `sysc_order` ORDER BY order_id desc LIMIT 0,30  
+[2015-08-30 16:50:12] /p/admin/index.php?act=order&op=index ( act=order&op=index ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_payment' doesn't exist
+SELECT * FROM `sysc_payment` WHERE ( payment_state = '1' ) LIMIT 1000  
+[2015-08-30 16:50:13] /p/admin/index.php?act=article_class&op=article_class ( act=article_class&op=article_class ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_article_class' doesn't exist
+SELECT * FROM `sysc_article_class` as `article_class`   order by ac_parent_id asc,ac_sort asc,ac_id asc
+[2015-08-30 16:50:13] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_stat_order' doesn't exist
+SELECT  COUNT(*) as ordernum, SUM(order_amount) as orderamount, COUNT(DISTINCT buyer_id) as ordermembernum, AVG(order_amount) as orderavg  FROM `sysc_stat_order` WHERE ( order_isvalid = '1' ) AND (  (order_add_time BETWEEN '1440777600' AND '1440863999' ) ) LIMIT 1  
+[2015-08-30 16:50:13] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_stat_ordergoods' doesn't exist
+SELECT  SUM(goods_num) as ordergoodsnum,AVG(goods_pay_price/goods_num) as priceavg  FROM `sysc_stat_ordergoods` WHERE ( order_isvalid = '1' ) AND (  (order_add_time BETWEEN '1440777600' AND '1440863999' ) ) LIMIT 1  
+[2015-08-30 16:50:13] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT  COUNT(*) as newmember  FROM `sysc_member` WHERE (  (member_time BETWEEN '1440777600' AND '1440863999' ) ) LIMIT 1  
+[2015-08-30 16:50:13] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT  COUNT(*) as membernum  FROM `sysc_member` LIMIT 1  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT  COUNT(*) as newstore  FROM `sysc_store` WHERE (  (store_time BETWEEN '1440777600' AND '1440863999' ) ) LIMIT 1  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT  COUNT(*) as storenum  FROM `sysc_store` LIMIT 1  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods' doesn't exist
+SELECT COUNT(*) as goodsnum, SUM(IF(goods_addtime>=1440777600 and goods_addtime<=1440863999,1,0)) as newgoods FROM `sysc_goods` WHERE ( is_virtual = '0' ) LIMIT 1000  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_stat_order' doesn't exist
+SELECT  SUM(order_amount) as orderamount,DAY(FROM_UNIXTIME(order_add_time)) as dayval,HOUR(FROM_UNIXTIME(order_add_time)) as hourval  FROM `sysc_stat_order` WHERE ( order_isvalid = '1' ) AND (  (order_add_time BETWEEN '1440691200' AND '1440863999' ) ) GROUP BY dayval,hourval LIMIT 1000  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_stat_order' doesn't exist
+SELECT  SUM(order_amount) as orderamount, store_id, store_name  FROM `sysc_stat_order` WHERE ( order_isvalid = '1' ) AND (  (order_add_time BETWEEN '1440259200' AND '1440863999' ) ) GROUP BY store_id ORDER BY orderamount desc LIMIT 1000  
+[2015-08-30 16:50:14] /p/admin/index.php?act=stat_general&op=general ( act=stat_general&op=general ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_stat_ordergoods' doesn't exist
+SELECT  sum(goods_num) as ordergoodsnum, goods_id, goods_name  FROM `sysc_stat_ordergoods` WHERE ( order_isvalid = '1' ) AND (  (order_add_time BETWEEN '1440259200' AND '1440863999' ) ) GROUP BY goods_id ORDER BY ordergoodsnum desc LIMIT 30  
+[2015-08-30 16:50:14] /p/admin/index.php?act=mb_special&op=index_edit ( act=mb_special&op=index_edit ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_mb_special_item' doesn't exist
+SELECT * FROM `sysc_mb_special_item` WHERE ( special_id = '0' ) ORDER BY item_sort asc LIMIT 1000  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_member' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_member` WHERE ( member_time >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_pd_cash' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_pd_cash` WHERE ( pdc_payment_state = '0' ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_joinin' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_joinin` WHERE ( joinin_state IN ('10','11') ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_bind_class' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_bind_class` WHERE ( state = '0' ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store_reopen' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store_reopen` WHERE ( re_state = '1' ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1440924622' AND '1441788622' ) ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_store' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_store` WHERE ( store_state = '1' ) AND (  (store_end_time BETWEEN '1' AND '1440924622' ) ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_addtime >= '1440259200' ) LIMIT 1  
+[2015-08-30 16:50:23] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_goods_common' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_goods_common` WHERE ( goods_verify = '10' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_inform' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_inform` WHERE ( inform_state = '1' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_brand' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_brand` WHERE ( brand_apply = '0' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order` LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '1' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_refund_return' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_refund_return` WHERE ( refund_type = '2' ) AND ( refund_state = '2' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_refund' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_refund` WHERE ( admin_state = '1' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '10' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_complain' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_complain` WHERE ( complain_state = '40' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_groupbuy' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_groupbuy` WHERE ( state = '10' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_points_order' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_points_order` WHERE ( point_orderstate IN ('11','20') ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '2' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_vr_order_bill' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_vr_order_bill` WHERE ( ob_state = '3' ) LIMIT 1  
+[2015-08-30 16:50:24] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_mall_consult' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_mall_consult` WHERE ( is_reply = '0' ) LIMIT 1  
+[2015-08-30 16:50:25] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_delivery_point' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_delivery_point` WHERE ( dlyp_state = '10' ) LIMIT 1  
+[2015-08-30 16:50:25] /p/admin/index.php?act=dashboard&op=statistics ( act=dashboard&op=statistics ) 
+ERR: Db Error: Table 'bdm175223116_db.sysc_circle' doesn't exist
+SELECT COUNT(*) AS nc_count FROM `sysc_circle` WHERE ( circle_status = '2' ) LIMIT 1  
