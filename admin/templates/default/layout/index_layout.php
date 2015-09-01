@@ -239,7 +239,6 @@ function addFavorite(url, title) {
               <li class="adminid" title="<?php echo $lang['nc_hello'];?>:<?php echo $output['admin_info']['name'];?>"><?php echo $lang['nc_hello'];?>&nbsp;:&nbsp;<strong><?php echo $output['admin_info']['name'];?></strong></li>
               <li><a href="index.php?act=index&op=modifypw" target="workspace" ><span><?php echo $lang['nc_modifypw']; ?></span></a></li>
               <li><a href="index.php?act=index&op=logout" title="<?php echo $lang['nc_logout'];?>"><span><?php echo $lang['nc_logout'];?></span></a></li>
-              <li><a href="<?php echo SHOP_SITE_URL;?>" target="_blank" title="<?php echo $lang['nc_homepage'];?>"><span><?php echo $lang['nc_homepage'];?></span></a></li>
             </ul>
           </div>
           <!-- End of Top navigation -->

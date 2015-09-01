@@ -11,9 +11,7 @@ defined('InShopNC') or exit('Access Invalid!');
 class adminControl extends SystemControl{
 	private $links = array(
 		array('url'=>'act=admin&op=admin','lang'=>'limit_admin'),
-		array('url'=>'act=admin&op=admin_add','lang'=>'admin_add_limit_admin'),
-		array('url'=>'act=admin&op=gadmin','lang'=>'limit_gadmin'),
-		array('url'=>'act=admin&op=gadmin_add','lang'=>'admin_add_limit_gadmin'),
+		array('url'=>'act=admin&op=admin_add','lang'=>'admin_add_limit_admin')
 	);
 	public function __construct(){
 		parent::__construct();
@@ -43,7 +41,7 @@ class adminControl extends SystemControl{
 				showMessage(L('nc_common_del_succ'));
 			}
 		}
-		$admin_list = $model->table('admin,gadmin')->join('left join')->on('gadmin.gid=admin.admin_gid')->page(10)->select();
+		$admin_list = $model->table('admin')->order('admin_id asc')->page(10)->select();
 
 		Tpl::output('admin_list',$admin_list);
 		Tpl::output('page',$model->showpage());

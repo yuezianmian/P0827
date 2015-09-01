@@ -36,16 +36,7 @@
         <tr>
           <td colspan="2" class="required"><label class="validation" for="gadmin_name"><?php echo $lang['gadmin_name'];?>:</label></td>
         </tr>
-        <tr class="noborder">
-          <td class="vatop rowform">
-          <select name="gid">
-          <?php foreach((array)$output['gadmin'] as $v){?>
-          <option value="<?php echo $v['gid'];?>"><?php echo $v['gname'];?></option>
-          <?php }?>
-          </select>
-          </td>
-          <td class="vatop tips"><?php echo $lang['admin_add_gid_tip'];?></td>
-        </tr>
+
       </tbody>
       <tfoot>
         <tr class="tfoot">
@@ -92,10 +83,7 @@ $(document).ready(function(){
             admin_rpassword : {
                 required : true,
                 equalTo  : '#admin_password'
-            },
-            gid : {
-                required : true
-            }        
+            }
         },
         messages : {
             admin_name : {
@@ -112,9 +100,6 @@ $(document).ready(function(){
             admin_rpassword : {
                 required : '<?php echo $lang['admin_add_password_null'];?>',
                 equalTo  : '<?php echo $lang['admin_edit_repeat_error'];?>'
-            },
-            gid : {
-                required : '<?php echo $lang['admin_add_gid_null'];?>',
             }
         }
 	});
