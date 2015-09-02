@@ -36,7 +36,7 @@
   'live_pic4' => '',
   'login_pic' => 'a:4:{i:0;s:5:"1.jpg";i:1;s:5:"2.jpg";i:2;s:5:"3.jpg";i:3;s:5:"4.jpg";}',
   'malbum_max_sum' => '200',
-  'md5_key' => '96bc2efcc445f0a3af1a7949f458719c',
+  'md5_key' => '96bc2efcc445f0a3a1c23949f458719c',
   'member_logo' => '04913356718194282.jpg',
   'pointprod_isuse' => '1',
   'pointshop_isuse' => '1',

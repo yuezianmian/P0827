@@ -22,8 +22,6 @@ define('InShopNC',true);
 define('StartTime',microtime(true));
 define('TIMESTAMP',time());
 define('DIR_SHOP','shop');
-define('DIR_CMS','cms');
-define('DIR_CIRCLE','circle');
 define('DIR_MICROSHOP','microshop');
 define('DIR_ADMIN','admin');
 define('DIR_API','api');
@@ -121,7 +119,11 @@ define('ORDER_DEL_STATE_DELETE', 1);
 define('ORDER_DEL_STATE_DROP', 2);
 //订单结束后可评论时间，15天，60*60*24*15
 define('ORDER_EVALUATE_TIME', 1296000);
-/**  团购订单状态 */
-define('OFFLINE_ORDER_CANCEL_TIME', 3);//单位为天
-//define('TXGOODS_CLASS_NAME','提现商品');//提现商品所属分类名称
-define('TX_STORE_NAME','虚拟城');//提现商品所属店铺名称
+
+/** app接口返回code */
+//成功
+define('SUCCESS', 200);
+//失败
+define('FAILED', 0);
+//不合法的请求
+define('ILLEGAL_REQUEST', 1);

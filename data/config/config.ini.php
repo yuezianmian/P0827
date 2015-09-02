@@ -2,17 +2,9 @@
 // defined('InShopNC') or exit('Access Invalid!');
 
 $config = array();
-$config['shop_site_url'] 		= 'http://www.tianyoumall.com/shop';
-$config['cms_site_url'] 		= 'http://www.tianyoumall.com/cms';
-$config['microshop_site_url'] 	= 'http://www.tianyoumall.com/microshop';
-$config['circle_site_url'] 		= 'http://www.tianyoumall.com/circle';
-$config['admin_site_url'] 		= 'http://www.tianyoumall.com/admin';
-$config['mobile_site_url'] 		= 'http://www.tianyoumall.com/mobile';
-$config['wap_site_url'] 		= 'http://www.tianyoumall.com/wap';
-$config['chat_site_url'] 		= 'http://www.tianyoumall.com/chat';
-$config['node_site_url'] 		= 'http://182.92.174.223:8090';
-$config['upload_site_url']		= 'http://www.tianyoumall.com/data/upload';
-$config['resource_site_url']	= 'http://www.tianyoumall.com/data/resource';
+$config['upload_site_url']		= 'http://localhost/p/data/upload';
+$config['resource_site_url']	= 'http://localhost/p/data/resource';
+$config['admin_site_url'] 		= 'http://localhost/p/admin';
 $config['version'] 		= '201411158256';
 $config['setup_date'] 	= '2015-06-15 11:08:46';
 $config['gip'] 			= 0;
@@ -55,5 +47,4 @@ $config['queue']['open'] = false;
 $config['queue']['host'] = '127.0.0.1';
 $config['queue']['port'] = 6379;
 $config['cache_open'] = false;
-$config['delivery_site_url']    = 'http://www.tianyoumall.com/delivery';
 return $config;

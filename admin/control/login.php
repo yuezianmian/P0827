@@ -49,7 +49,7 @@ class LoginControl extends SystemControl {
 					'admin_login_time'=>TIMESTAMP
 					);
 					$model_admin->updateAdmin($update_info);
-					$this->log(L('nc_login'),1);
+//					$this->log(L('nc_login'),1);
 					process::clear('admin');
 					@header('Location: index.php');exit;
 				}else {
