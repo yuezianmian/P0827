@@ -50,7 +50,7 @@ class Control{
 			//取得token内容，解密，和系统匹配
 			$user = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
 			if (!empty($user) && !empty($user['name'] && !empty($user['id']))){
-				$this -> $token = $this->generateToken($user);
+				$this -> token = $this->generateToken($user);
 			}
 		}
 	}
@@ -62,7 +62,7 @@ class Control{
 	 * @return string 的返回结果
 	 */
 	protected final function generateToken($user){
-		$this -> $token = encrypt(serialize($user),MD5_KEY);
+		$this -> token = encrypt(serialize($user),MD5_KEY);
 	}
 }
 
