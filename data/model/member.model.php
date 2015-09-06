@@ -73,202 +73,36 @@ class memberModel extends Model {
         return $update;
     }
 
-    /**
-     * 登录时创建会话SESSION
-     *
-     * @param array $member_info 会员信息
-     */
-    public function createSession($member_info = array(),$reg = false) {
-        if (empty($member_info) || !is_array($member_info)) return ;
 
-		$_SESSION['is_login']	= '1';
-		$_SESSION['member_id']	= $member_info['member_id'];
-		$_SESSION['member_name']= $member_info['member_name'];
-		$_SESSION['member_email']= $member_info['member_email'];
-		$_SESSION['is_buy']		= isset($member_info['is_buy']) ? $member_info['is_buy'] : 1;
-		$_SESSION['avatar'] 	= $member_info['member_avatar'];
-
-		$seller_info = Model('seller')->getSellerInfo(array('member_id'=>$_SESSION['member_id']));
-		$_SESSION['store_id'] = $seller_info['store_id'];
-
-		if (trim($member_info['member_qqopenid'])){
-			$_SESSION['openid']		= $member_info['member_qqopenid'];
-		}
-		if (trim($member_info['member_sinaopenid'])){
-			$_SESSION['slast_key']['uid'] = $member_info['member_sinaopenid'];
-		}
-
-		if (!$reg) {
-		    //添加会员积分
-		    $this->addPoint($member_info);
-		    //添加会员经验值
-		    $this->addExppoint($member_info);		    
-		}
-
-		if(!empty($member_info['member_login_time'])) {
-            $update_info	= array(
-                'member_login_num'=> ($member_info['member_login_num']+1),
-                'member_login_time'=> TIMESTAMP,
-                'member_old_login_time'=> $member_info['member_login_time'],
-                'member_login_ip'=> getIp(),
-                'member_old_login_ip'=> $member_info['member_login_ip']
-            );
-            $this->editMember(array('member_id'=>$member_info['member_id']),$update_info);
-		}
-		setNcCookie('cart_goods_num','',-3600);
-
-    }
-
-	/**
-	 * 获取会员信息
-	 *
-	 * @param	array $param 会员条件
-	 * @param	string $field 显示字段
-	 * @return	array 数组格式的返回结果
-	 */
-	public function infoMember($param, $field='*') {
-		if (empty($param)) return false;
-
-		//得到条件语句
-		$condition_str	= $this->getCondition($param);
-		$param	= array();
-		$param['table']	= 'member';
-		$param['where']	= $condition_str;
-		$param['field']	= $field;
-		$param['limit'] = 1;
-		$member_list	= Db::select($param);
-		$member_info	= $member_list[0];
-		if (intval($member_info['store_id']) > 0){
-	      $param	= array();
-	      $param['table']	= 'store';
-	      $param['field']	= 'store_id';
-	      $param['value']	= $member_info['store_id'];
-	      $field	= 'store_id,store_name,grade_id';
-	      $store_info	= Db::getRow($param,$field);
-	      if (!empty($store_info) && is_array($store_info)){
-		      $member_info['store_name']	= $store_info['store_name'];
-		      $member_info['grade_id']	= $store_info['grade_id'];
-	      }
-		}
-		return $member_info;
-	}
 
     /**
      * 注册
      */
     public function register($register_info) {
-		// 注册验证
-		$obj_validate = new Validate();
-		$obj_validate->validateparam = array(
-		array("input"=>$register_info["username"],		"require"=>"true",		"message"=>'用户名不能为空'),
-		array("input"=>$register_info["password"],		"require"=>"true",		"message"=>'密码不能为空'),
-		array("input"=>$register_info["password_confirm"],"require"=>"true",	"validator"=>"Compare","operator"=>"==","to"=>$register_info["password"],"message"=>'密码与确认密码不相同'),
-		array("input"=>$register_info["email"],			"require"=>"true",		"validator"=>"email", "message"=>'电子邮件格式不正确'),
-		);
-		$error = $obj_validate->validate();
-		if ($error != ''){
-            return array('error' => $error);
+        // 验证用户手机号是否重复
+		$check_member_mobile	= $this->getMemberInfo(array('member_mobile'=>$register_info['member_mobile']));
+		if(is_array($check_member_mobile) and count($check_member_mobile) > 0) {
+           echoJson(FAILED, "该手机号已存在");
 		}
 
-        // 验证用户名是否重复
-		$check_member_name	= $this->getMemberInfo(array('member_name'=>$register_info['username']));
-		if(is_array($check_member_name) and count($check_member_name) > 0) {
-            return array('error' => '用户名已存在');
+		// 校验其所属的代理商编号是否存在，如果不存在则值为空
+		$check_parent_code	= $this->getMemberInfo(array('member_code'=>$register_info['parent_code']));
+		if(!is_array($check_parent_code) ||  count($check_parent_code) < 1) {
+			$register_info['parent_code'] = "";
 		}
 
-        // 验证邮箱是否重复
-		$check_member_email	= $this->getMemberInfo(array('member_email'=>$register_info['email']));
-		if(is_array($check_member_email) and count($check_member_email)>0) {
-            return array('error' => '邮箱已存在');
-		}
 		// 会员添加
 		$member_info	= array();
-		$member_info['member_name']		= $register_info['username'];
-		$member_info['member_passwd']	= $register_info['password'];
-		$member_info['member_passwd']= $register_info['password'];
-		$member_info['member_email']= $register_info['email'];
-       
-		if($register_info['user_identity'] != null && $register_info['user_verifycode'] != null){
-			//$member_info['user_truename']= $register_info['user_truename'];
-			$member_info['user_identity']= $register_info['user_identity'];
-			$member_info['user_verifycode']= $register_info['user_verifycode'];
-			//验证注册输入信息是否与积分系统一致
-			$isPointSystemMember = $this->isPointSystemMember($member_info);
-			if(!$isPointSystemMember){
-				return array('error' => '与积分系统的会员信息不一致，请重新输入');
-			}
-		}
-        
+//		$member_info['member_name']		= $register_info['member_name'];
+		$member_info['member_mobile'] = $register_info['member_mobile'];
+		$member_info['member_passwd'] = $register_info['member_passwd'];
+		$member_info['parent_code'] = $register_info['parent_code'];
+		$member_info['member_type'] = "2";
+		$member_info['member_state'] = "1";
+
 		$insert_id	= $this->addMember($member_info);
-		if($insert_id) {
-		    //添加会员积分
-			if (C('points_isuse')){
-				Model('points')->savePointsLog('regist',array('pl_memberid'=>$insert_id,'pl_membername'=>$register_info['username']),false);
-			}
+		return $insert_id;
 
-            // 添加默认相册
-            $insert['ac_name']      = '买家秀';
-            $insert['member_id']    = $insert_id;
-            $insert['ac_des']       = '买家秀默认相册';
-            $insert['ac_sort']      = 1;
-            $insert['is_default']   = 1;
-            $insert['upload_time']  = TIMESTAMP;
-            $this->table('sns_albumclass')->insert($insert);
-
-            $member_info['member_id'] = $insert_id;
-            $member_info['is_buy'] = 1;
-
-            return $member_info;
-		} else {
-            return array('error' => '注册失败');
-		}
-
-    }
-
-    /**
-     * 验证注册输入信息是否与积分系统一致
-     *
-     */
-    public function isPointSystemMember($member_info) {
-//        $user_no = $member_info['user_no'];
-//        $user_type = $member_info['user_type'];
-        $user_truename = urlencode($member_info['user_truename']);
-        $user_identity = $member_info['user_identity'];
-        $user_verifycode = $member_info['user_verifycode'];
-        $url = "www.tjsyds.com/lx-api/checkRegistUser-13800.asp?"
-            ."user_identity=$user_identity&user_verifycode=$user_verifycode";
-//        echo $url;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-//        echo "13800返回结果：".$response;
-        curl_close($ch);
-        $json = json_decode($response);
-        $code = $json -> code;
-        if($code == "200"){
-            return true;
-        }
-
-       /* $url = "www.tgsyds.com/lx-api/checkRegistUser-3800.asp?"
-            ."user_identity=$user_identity&user_verifycode=$user_verifycode";
-        echo $url;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-//        echo "3800返回结果：".$response;
-        curl_close($ch);
-        $json = json_decode($response);
-        $code = $json -> code;
-        if($code == "200"){
-            return true;
-        }*/
-        return false;
     }
 
 	/**
@@ -286,27 +120,14 @@ class memberModel extends Model {
 		    $member_info	= array();
 		    $member_info['member_id']			= $param['member_id'];
 		    $member_info['member_name']			= $param['member_name'];
-//            $member_info['member_no']           = $param['user_no'];
-//            $member_info['member_type']         = $param['user_type'];
-            $member_info['member_truename']     = $param['user_truename'];
-            $member_info['member_identity']     = $param['user_identity'];
-			$member_info['member_verifycode']   = $param['user_verifycode'];
 		    $member_info['member_passwd']		= md5(trim($param['member_passwd']));
-		    $member_info['member_email']		= $param['member_email'];
-		    $member_info['member_time']			= TIMESTAMP;
-		    $member_info['member_login_time'] 	= TIMESTAMP;
-		    $member_info['member_old_login_time'] = TIMESTAMP;
-		    $member_info['member_login_ip']		= getIp();
-		    $member_info['member_old_login_ip']	= $member_info['member_login_ip'];
+		    $member_info['member_mobile']		= $param['member_mobile'];
+		    $member_info['member_state']		= $param['member_state'];
+		    $member_info['member_type']		    = $param['member_type'];
+		    $member_info['parent_code']		    = $param['parent_code'];
+		    $member_info['member_code']		    = $param['member_code'];
+		    $member_info['create_time']			= TIMESTAMP;
 
-//		    $member_info['member_truename']		= $param['member_truename'];
-		    $member_info['member_qq']			= $param['member_qq'];
-		    $member_info['member_sex']			= $param['member_sex'];
-		    $member_info['member_avatar']		= $param['member_avatar'];
-		    $member_info['member_qqopenid']		= $param['member_qqopenid'];
-		    $member_info['member_qqinfo']		= $param['member_qqinfo'];
-		    $member_info['member_sinaopenid']	= $param['member_sinaopenid'];
-		    $member_info['member_sinainfo']	= $param['member_sinainfo'];
 		    $insert_id	= $this->table('member')->insert($member_info);
 		    if (!$insert_id) {
 		        throw new Exception();

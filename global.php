@@ -125,7 +125,9 @@ define('ORDER_EVALUATE_TIME', 1296000);
 define('SUCCESS', 200);
 //失败
 define('FAILED', 0);
+//未登录
+define('NOT_LOGIN', 1);
 //不合法的请求
-define('ILLEGAL_REQUEST', 1);
+define('ILLEGAL_REQUEST', 2);
 //app用户会话时长
 define('APP_SESSION_TIMEOUT', 1000*60*60*12);

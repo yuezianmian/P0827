@@ -64,17 +64,6 @@ class Control{
 	protected final function generateToken($user){
 		$this -> $token = encrypt(serialize($user),MD5_KEY);
 	}
-
-	/**
-	 * 系统后台 会员登录后 将会员验证内容写入对应cookie中
-	 *
-	 * @param string $name 用户名
-	 * @param int $id 用户ID
-	 * @return bool 布尔类型的返回结果
-	 */
-	protected final function systemSetKey($user){
-		setNcCookie('sys_key',encrypt(serialize($user),MD5_KEY),3600,'',null);
-	}
 }
 
 
@@ -88,11 +77,6 @@ class BaseMemberControl extends Control {
 		//会员验证
 		$this->checkLogin();
 
-		//获得会员信息
-		$this->member_info = $this->getMemberInfo(true);
-
-
-
 	}
 
 	/**
@@ -100,31 +84,15 @@ class BaseMemberControl extends Control {
 	 *
 	 */
 	protected function checkLogin(){
-		//取得cookie内容，解密，和系统匹配
-		$user = unserialize(decrypt(cookie('sys_key'),MD5_KEY));
-		if (!key_exists('gid',(array)$user) || !isset($user['sp']) || (empty($user['name']) || empty($user['id']))){
-			@header('Location: index.php?act=login&op=login');exit;
-		}else {
-			$this->systemSetKey($user);
+		if(empty($_GET['token'])){
+			echoJson(NOT_LOGIN, "token值为空");
 		}
-		return $user;
-	}
+		//取得token内容，解密，和系统匹配
+		$user = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
+		if (empty($user) || !empty($user['name'] || !empty($user['id']))){
+			echoJson(NOT_LOGIN, "token值不正确");
+		}
 
-	/**
-	 * 输出会员等级
-	 * @param bool $is_return 是否返回会员信息，返回为true，输出会员信息为false
-	 */
-	protected function getMemberInfo(){
-		$member_info = array();
-		//会员详情
-		if($_SESSION['member_id']) {
-			$model_member = Model('member');
-			$member_info = $model_member->getMemberInfoByID($_SESSION['member_id']);
-		}
-		if ($is_return == true){//返回会员信息
-			return $member_info;
-		} else {//输出会员信息
-			Tpl::output('member_info',$member_info);
-		}
+		return $user;
 	}
 }
