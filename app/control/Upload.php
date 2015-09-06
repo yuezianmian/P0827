@@ -16,7 +16,7 @@ class UploadControl extends BaseMemberControl {
 		$param = array();
 		$param["path"] = "user";
 		$param["base64_image_content"] =  $_POST["base64_image_content"];
-		uploadOp($param);
+		$this->uploadOp($param);
 	}
 
 	public function uploadShopImg(){
@@ -26,7 +26,7 @@ class UploadControl extends BaseMemberControl {
 		$param = array();
 		$param["path"] = "shop";
 		$param["base64_image_content"] =  $_POST["base64_image_content"];
-		uploadOp($param);
+		$this->uploadOp($param);
 	}
 
 
