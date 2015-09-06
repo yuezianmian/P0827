@@ -127,3 +127,5 @@ define('SUCCESS', 200);
 define('FAILED', 0);
 //不合法的请求
 define('ILLEGAL_REQUEST', 1);
+//app用户会话时长
+define('APP_SESSION_TIMEOUT', 1000*60*60*12);

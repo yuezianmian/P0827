@@ -2297,8 +2297,12 @@ function callback($state = true, $msg = '', $data = array()) {
     return array('state' => $state, 'msg' => $msg, 'data' => $data);
 }
 
-function echoJson($code = 200, $msg = '', $data = array()){
-	$result = array('code' => $code, 'msg' => $msg, 'data' => $data);
+function echoJson($code = 200, $msg = '', $data = array(), $token = null){
+	if(isset($token)){
+		$result = array('code' => $code, 'msg' => $msg, 'data' => $data, 'token' => $token);
+	}else{
+		$result = array('code' => $code, 'msg' => $msg, 'data' => $data);
+	}
 	echo json_encode($result);
 	exit;
 }

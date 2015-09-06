@@ -8,7 +8,7 @@
 
 defined('InShopNC') or exit('Access Invalid!');
 class Control{
-	protected $token = array();   // 会员信息
+	protected $token;   // 会员信息
 	protected function __construct(){
 		//校验请求是否合法
 		if(!$this->checkIsLegalRequest()){
@@ -16,15 +16,7 @@ class Control{
 		}
 		//刷新token
 		$this->refreshToken();
-		/**
-		 * 验证用户是否登录
-		 * $admin_info 管理员资料 name id
-		 */
-		$this->admin_info = $this->checkToken();
-		if ($this->admin_info['id'] != 1){
-			// 验证权限
-			$this->checkPermission();
-		}
+
 		//转码  防止GBK下用ajax调用时传汉字数据出现乱码
 		if (($_GET['branch']!='' || $_GET['op']=='ajax') && strtoupper(CHARSET) == 'GBK'){
 			$_GET = Language::getGBK($_GET);
@@ -56,12 +48,21 @@ class Control{
 	protected final function refreshToken(){
 		if(!empty($_GET['token'])){
 			//取得token内容，解密，和系统匹配
-			$user = unserialize(decrypt($_GET['token'], MD5_KEY));
-			if (!key_exists('gid',(array)$user) || !isset($user['sp']) || (empty($user['name']) || empty($user['id']))){
-				@header('Location: index.php?act=login&op=login');exit;
+			$user = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
+			if (!empty($user) && !empty($user['name'] && !empty($user['id']))){
+				$this -> $token = $this->generateToken($user);
 			}
-			return $user;
 		}
+	}
+
+	/**
+	 * 生成token
+	 *
+	 * @param
+	 * @return string 的返回结果
+	 */
+	protected final function generateToken($user){
+		$this -> $token = encrypt(serialize($user),MD5_KEY);
 	}
 
 	/**
