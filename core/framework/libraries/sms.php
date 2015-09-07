@@ -15,7 +15,7 @@ class Sms {
      * @param unknown $content 短信内容
      */
     public function send($mobile,$content) {
-        return $this->_sendWX(($mobile,$content);
+        return $this->_sendWX($mobile,$content);
     }
 
     /**
@@ -24,7 +24,21 @@ class Sms {
      * @param unknown $content 短信内容
      */
     private function _sendWX($mobile,$content) {
+        $url = C("sms.wxurl");
+        $account = C("sms.wxaccount");
+        $password = C("sms.wxpassword");
+        $smsurl = $url."&account=".$account."&password=".$password."&mobile=".$mobile."&content=".$content;
 
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $smsurl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+//        echo $systype."系统积分接口返回结果：".$response;
+        curl_close($ch);
+        $xml_array=simplexml_load_string($response);
+        return (array)$xml_array;
     }
 
     /**
