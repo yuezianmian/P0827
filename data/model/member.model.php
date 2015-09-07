@@ -97,8 +97,8 @@ class memberModel extends Model {
 		$member_info['member_mobile'] = $register_info['member_mobile'];
 		$member_info['member_passwd'] = $register_info['member_passwd'];
 		$member_info['parent_code'] = $register_info['parent_code'];
-		$member_info['member_type'] = "2";
-		$member_info['member_state'] = "1";
+		$member_info['member_type'] = MEMBER_TYPE_STORE;
+		$member_info['member_state'] = MEMBER_STATE_NOCHECK;
 
 		$insert_id	= $this->addMember($member_info);
 		return $insert_id;

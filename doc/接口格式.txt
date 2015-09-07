@@ -1,0 +1,31 @@
+接口格式：
+url: http://ip:port/app/index.php?act=&op=&timestamp=&sign=&token=
+return：json
+{"code":处理结果code,"msg":"处理接口描述","data":json数据,"token":用户会话标识}
+
+url说明：
+	act、op参数描述调用的接口,必填
+	timestamp 当前时间秒数（不是毫秒数，从1970年1月1日算起），10位，必填
+	sign 方法签名（防盗链），根据timestamp的值与密匙进行md5加密所得,其值=md5(md5_key+timestamp)，密匙md5_key=96bc2efcc445f0a3a1c23949f458719c，必填
+	token 用户会话标识，非必填，需要用户登录才可以进行的操作均需传入此值
+
+return说明：
+	code:返回结果code
+		200 ：成功
+		0 ： 失败 
+		1 ：未登录，token传入的值不正确，或会话超时
+		2 ： 非法的请求 ，即sign值不正确
+	msg:处理结果描述
+	data：返回的数据，json格式
+	token：最新用户会话标识，用户登录后每次与服务端交互都会刷新token,app取到该值后下次调用服务端接口需传入最新的token
+
+1.注册：
+url: http://ip:port/app/index.php?act=login&op=regist&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
+method: post
+params:
+	member_mobile 手机号
+	member_passwd 密码
+	parent_code   代理商编码
+	verify_code   短信验证码
+return：
+   {"code":200,"msg":"注册成功","data":{"member_id":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}

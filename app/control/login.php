@@ -14,7 +14,7 @@ class LoginControl extends Control {
 		$obj_validate = new Validate();
 		$obj_validate->validateparam = array(
 			array("input"=>$_POST["member_mobile"],		"require"=>"true", "message"=>"手机号不能为空"),
-			array("input"=>$_POST["member_passwd"],		"require"=>"true", "message"=>"手机号不能为空"),
+			array("input"=>$_POST["member_passwd"],		"require"=>"true", "message"=>"密码不能为空"),
 		);
 		$error = $obj_validate->validate();
 		if ($error != ''){
@@ -27,7 +27,8 @@ class LoginControl extends Control {
 		$register_info['parent_code'] = $_POST['parent_code'];
 		$insert_id = $model_member->register($register_info);
 		if($insert_id) {
-			echoJson(SUCCESS, "注册成功", array('member_id'=>$insert_id));
+			$token = encrypt(serialize(array('mobile'=>$_POST['member_mobile'], 'id'=>$insert_id,'type'=>MEMBER_TYPE_STORE)),MD5_KEY);
+			echoJson(SUCCESS, "注册成功", array('member_id'=>$insert_id), $token);
 		} else {
 			echoJson(FAILED, "注册失败");
 		}

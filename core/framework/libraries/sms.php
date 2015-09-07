@@ -15,7 +15,16 @@ class Sms {
      * @param unknown $content 短信内容
      */
     public function send($mobile,$content) {
-        return $this->_sendEmay($mobile,$content);
+        return $this->_sendWX(($mobile,$content);
+    }
+
+    /**
+     * 维信短信发送接口
+     * @param unknown $mobile 手机号
+     * @param unknown $content 短信内容
+     */
+    private function _sendWX($mobile,$content) {
+
     }
 
     /**

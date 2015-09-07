@@ -131,3 +131,15 @@ define('NOT_LOGIN', 1);
 define('ILLEGAL_REQUEST', 2);
 //app用户会话时长
 define('APP_SESSION_TIMEOUT', 1000*60*60*12);
+
+/** 会员类型 */
+//会员类型-代理商
+define('MEMBER_TYPE_AGENT', 1);
+//会员类型-店铺
+define('MEMBER_TYPE_STORE', 2);
+
+/** 会员状态 */
+//会员状态-待审核
+define('MEMBER_STATE_NOCHECK', 1);
+//会员状态-正常
+define('MEMBER_STATE_NORMAL', 2);

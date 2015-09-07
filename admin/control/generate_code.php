@@ -34,7 +34,7 @@ class adminControl extends SystemControl{
 		$param["dir"] = $dir;
 		require_once(BASE_RESOURCE_PATH.DS.'phpqrcode'.DS.'index.php');
 		for($i=0; $i < $number; $i++){
-			generate_code($param);
+			$this->_generateCode($param);
 		}
 		require_once(BASE_CORE_PATH.'/framework/libraries/phpzip.php');
 		//压缩并下载
@@ -47,7 +47,7 @@ class adminControl extends SystemControl{
 		$fileUtil -> unlinkDir($dir);
 	}
 
-	private function generate_code($param){
+	private function _generateCode($param){
 		$uid = uniqid(mt_rand(), true);
 		$data = encrypt(serialize(array('id'=>$param['product_id'], 'uid'=>$param['dir'])),MD5_KEY);
 		$img_name = $uid.".png";
