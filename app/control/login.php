@@ -33,11 +33,25 @@ class LoginControl extends Control {
 		}
 	}
 
+	public function loginOp(){
+		$array	= array();
+		$array['member_mobile']	= $_POST['member_mobile'];
+		$array['member_passwd']	= md5(trim($_POST['member_passwd']));
+		$model_member = Model('member');
+		$member_info = $model_member->getMemberInfo($array);
+		if(is_array($member_info) and !empty($member_info)) {
+			$token = encrypt(serialize(array('mobile'=>$member_info['member_mobile'], 'id'=>$member_info['member_id'],'type'=>$member_info['member_type'])),MD5_KEY);
+			echoJson(SUCCESS, "登录成功", $member_info, $token);
+		}else{
+			echoJson(FAILED, "登录失败");
+		}
+	}
+
 	public function checkMobileOp(){
 		if (empty($_GET['member_mobile'])){
 			echoJson(FAILED, "手机号为空");
 		}
-		$model_member	= Model('member');
+		$model_member = Model('member');
 		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile'=>$_GET['member_mobile']));
 		if(is_array($check_member_mobile) and count($check_member_mobile) > 0) {
 			echoJson(SUCCESS, "该手机号已存在", array('isExist'=>"1"));
@@ -47,16 +61,4 @@ class LoginControl extends Control {
 	}
 
 
-	public function loginOp(){
-		$array	= array();
-		$array['member_mobile']	= $_POST['member_mobile'];
-		$array['member_passwd']	= md5(trim($_POST['member_passwd']));
-		$model_member = Model('member');
-		$member_info = $model_member->getMemberInfo($array);
-		if(is_array($member_info) and !empty($member_info)) {
-			echoJson(SUCCESS, "登录成功", $member_info);
-		}else{
-			echoJson(FAILED, "登录失败");
-		}
-	}
 }

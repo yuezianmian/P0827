@@ -75,7 +75,9 @@ class BaseMemberControl extends Control {
 		parent::__construct();
 
 		//会员验证
-		$this->checkLogin();
+		$user = $this->checkLogin();
+
+		$this->member_info = $this->getMemberInfo($user['id']);
 
 	}
 
@@ -89,10 +91,21 @@ class BaseMemberControl extends Control {
 		}
 		//取得token内容，解密，和系统匹配
 		$user = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
-		if (empty($user) || !empty($user['name'] || !empty($user['id']))){
+		if (empty($user) || !empty($user['mobile'] || !empty($user['id']) || !empty($user['type']))){
 			echoJson(NOT_LOGIN, "token值不正确");
 		}
 
 		return $user;
+	}
+
+	/**
+	 * 后去会员信息
+	 * @param bool $is_return 是否返回会员信息，返回为true，输出会员信息为false
+	 */
+	protected function getMemberInfo($member_id){
+		$member_info = array();
+		$model_member = Model('member');
+		$member_info = $model_member->getMemberInfoByID($member_id);
+		return $member_info;
 	}
 }
