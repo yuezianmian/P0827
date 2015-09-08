@@ -43,7 +43,7 @@ return：
 
   token :提交注册时url需带上该参数才可校验短信验证码
 
-4.注册：
+4.注册
 url: http://ip:port/app/index.php?act=login&op=regist&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
 method: post
 params:
@@ -55,3 +55,19 @@ return：
    {"code":200,"msg":"注册成功","data":{"member_id":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
    code：10  -短信验证码不正确
    code：11  -短信验证码超时，重新获取短信验证码
+
+5.登录
+url: http://ip:port/app/index.php?act=login&op=login&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
+method: post
+params:
+	member_mobile 手机号
+	member_passwd 密码
+return：
+   {"code":200,"msg":"登录成功","data":{"member_id":1,"member_mobile":"18911112222","member_avatar":"/upload/img/user/11.jpg","member_points":10,"member_state":1,"member_type":2,"member_code":,"parent_code":"13131","create_time":1441618373},"token":"xxI2Wx3x07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88xxE9XqIRWDJ7EfuLAMTm"}
+   member_avatar:头像路径，可为空
+   member_points:会员积分，不可为空
+   member_state:会员状态，1为待审核 2为正常（审核通过），不可为空
+   member_type:会员类型 1为代理商 2为店面，不可为空
+   member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
+   parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
+   create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
