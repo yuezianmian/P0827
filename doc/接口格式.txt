@@ -19,13 +19,39 @@ return说明：
 	data：返回的数据，json格式
 	token：最新用户会话标识，用户登录后每次与服务端交互都会刷新token,app取到该值后下次调用服务端接口需传入最新的token
 
-1.注册：
-url: http://ip:port/app/index.php?act=login&op=regist&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
+1.校验手机号：
+url: http://ip:port/app/index.php?act=login&op=check_mobile&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
+method: get
+return：
+   {"code":200,"msg":"该手机号不存在","data":{"isExist":"0"}}
+
+   isExist ： 0 - 手机号不存在，可以注册； 1 - 手机号已存在，不可注册
+
+2.校验代理商编号是否存在：
+  url: http://ip:port/app/index.php?act=login&op=check_parentcode&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&parent_code=13421
+  method: get
+  return：
+     {"code":200,"msg":"存在该代理商","data":{"isExist":"1"}}
+
+     isExist ： 0 - 不存在该代理商，请确认代理商编码； 1 - 存在该代理商
+
+3.发送注册短信验证码
+  url: http://ip:port/app/index.php?act=login&op=regist_sendcode&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
+  method: get
+  return：
+     {"code":200,"msg":"发送短信验证码成功","data":{},"token":"xxuI121232a1312xasIgby123cCpKH_J6TR21231asdbDFP7XesasdVEtf_o13212sqa2123x"}
+
+  token :提交注册时url需带上该参数才可校验短信验证码
+
+4.注册：
+url: http://ip:port/app/index.php?act=login&op=regist&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
 method: post
 params:
 	member_mobile 手机号
 	member_passwd 密码
-	parent_code   代理商编码
+	parent_code   代理商编码  非必填
 	verify_code   短信验证码
 return：
    {"code":200,"msg":"注册成功","data":{"member_id":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+   code：10  -短信验证码不正确
+   code：11  -短信验证码超时，重新获取短信验证码
