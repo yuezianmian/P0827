@@ -7,7 +7,10 @@
  **@copyright  Copyright (c) 2007-2013 ShopNC Inc.*/
 
 defined('InShopNC') or exit('Access Invalid!');
-class LoginControl extends Control {
+class loginControl extends Control {
+	public function __construct(){
+		parent::__construct();
+	}
 
 	public function registOp(){
 		$obj_validate = new Validate();

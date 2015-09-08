@@ -146,7 +146,7 @@ class areaModel extends Model {
 
         // 查库
         $data = array();
-        $area_all_array = $this->limit(false)->select();
+        $area_all_array = $this->order("area_sort,area_id")->limit(false)->select();
         foreach ((array) $area_all_array as $a) {
             $data['name'][$a['area_id']] = $a['area_name'];
             $data['parent'][$a['area_id']] = $a['area_parent_id'];

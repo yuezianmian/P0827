@@ -129,8 +129,8 @@ define('FAILED', 0);
 define('NOT_LOGIN', 1);
 //不合法的请求
 define('ILLEGAL_REQUEST', 2);
-//app用户会话时长 单位秒,先设置一个月
-define('APP_SESSION_TIMEOUT', 60*60*24*30);
+//app用户会话时长 单位秒,永久有效
+define('APP_SESSION_TIMEOUT', 60*60*24*30*12);
 //短信验证码超时时间 单位秒
 define('VERIFY_CODE_TIMEOUT', 60*2);
 

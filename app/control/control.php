@@ -11,9 +11,9 @@ class Control{
 	protected $token;   // 会员信息
 	protected function __construct(){
 		//校验请求是否合法
-		if(!$this->checkIsLegalRequest()){
-			echoJson(ILLEGAL_REQUEST, "非法的请求");
-		}
+//		if(!$this->checkIsLegalRequest()){
+//			echoJson(ILLEGAL_REQUEST, "非法的请求");
+//		}
 		//刷新token
 		$this->refreshToken();
 

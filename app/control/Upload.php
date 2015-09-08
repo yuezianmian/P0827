@@ -7,30 +7,33 @@
  **@copyright  Copyright (c) 2007-2013 ShopNC Inc.*/
 
 defined('InShopNC') or exit('Access Invalid!');
-class UploadControl extends BaseMemberControl {
+class uploadControl extends BaseMemberControl {
+	public function __construct(){
+		parent::__construct();
+	}
 
-	public function uploadUserImg(){
+	public function upload_userImgOp(){
 		if(empty($_POST["base64_image_content"])){
 			echoJson(FAILED, "上传的图片编码不能为空");
 		}
 		$param = array();
 		$param["path"] = "user";
 		$param["base64_image_content"] =  $_POST["base64_image_content"];
-		$this->uploadOp($param);
+		$this->_upload($param);
 	}
 
-	public function uploadShopImg(){
+	public function upload_shopImgOp(){
 		if(empty($_POST["base64_image_content"])){
 			echoJson(FAILED, "上传的图片编码不能为空");
 		}
 		$param = array();
 		$param["path"] = "shop";
 		$param["base64_image_content"] =  $_POST["base64_image_content"];
-		$this->uploadOp($param);
+		$this->_upload($param);
 	}
 
 
-	private function uploadOp($param){
+	private function _upload($param){
 		$base64_image_content = $param["base64_image_content"];
 		if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)){
     		$type = $result[2];
@@ -38,7 +41,7 @@ class UploadControl extends BaseMemberControl {
 			$filePath = "/data/upload/img/".$param["path"].DS.$fileName;
 			$image_content = base64_decode(str_replace($result[1], '', $base64_image_content));
 			if (file_put_contents($filePath, $image_content)){
-				echoJson(SUCCESS, "上传成功，路径为$filePath", array('path'=>$filePath));
+				echoJson(SUCCESS, "上传成功，路径为$filePath", array('path'=>$filePath), $this->token);
 			}else{
 				echoJson(FAILED, "上传图片失败");
 			}
