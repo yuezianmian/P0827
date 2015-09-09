@@ -78,3 +78,16 @@ method: get
 return：
    {"code":200,"msg":"获取所有区域信息成功","data":{...}}
    data详细格式见《获取所有区域信息结果json格式.json》
+
+7.提交店面资料
+url: http://ip:port/app/index.php?act=member&op=submit_shop&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+method: post
+params:
+	member_id  会员id 必填
+	shop_name  店铺名称 必填
+	shop_img   店铺图片地址，上传图片返回的url  必填
+	area_name  店铺区域名称 格式：所在市所在区，如"天津市和平区" 必填
+	area_id    区一级的id 必填
+	address    店铺地址 必填
+return：
+   {"code":200,"msg":"提交成功","data":{},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}

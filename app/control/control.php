@@ -75,9 +75,10 @@ class BaseMemberControl extends Control {
 		parent::__construct();
 
 		//会员验证
-		$user = $this->checkLogin();
-
-		$this->member_info = $this->getMemberInfo($user['id']);
+//		$user = $this->checkLogin();
+//		$this->member_info = $this->getMemberInfo($user['id']);
+		//测试使用
+		$this->member_info = $this->getMemberInfo(1);
 
 	}
 

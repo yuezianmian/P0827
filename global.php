@@ -145,3 +145,5 @@ define('MEMBER_TYPE_STORE', 2);
 define('MEMBER_STATE_NOCHECK', 1);
 //会员状态-正常
 define('MEMBER_STATE_NORMAL', 2);
+//会员状态-审核不通过
+define('MEMBER_STATE_NOPASS', 3);
