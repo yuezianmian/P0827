@@ -119,7 +119,7 @@ class loginControl extends Control {
 		$result = $sms->send($_GET["member_mobile"],$message);
 
 		if ($result['code'] == 2) {
-			$token = encrypt(serialize(array('code'=>$verify_code, 'time'=>time()),MD5_KEY));
+			$token = encrypt(serialize(array('code'=>$verify_code, 'time'=>time())),MD5_KEY);
 			echoJson(SUCCESS, "发送短信验证码成功", array(), $token);
 		} else {
 			$error = "send sms error,code:".$result['code'].",msg:".$result['msg'];

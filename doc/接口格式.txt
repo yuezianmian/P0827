@@ -71,6 +71,7 @@ return：
    member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
    parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
    create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
+   ... (等等属性)
 
 6.获取区域信息
 url: http://ip:port/app/index.php?act=area&op=all_area&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
@@ -90,4 +91,4 @@ params:
 	area_id    区一级的id 必填
 	address    店铺地址 必填
 return：
-   {"code":200,"msg":"提交成功","data":{},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+   {"code":200,"msg":"提交成功","data":[],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
