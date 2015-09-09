@@ -15,7 +15,7 @@ class areaControl extends Control {
 	public function all_areaOp(){
 		$model_area = Model('area');
 		$area_arr = $model_area->getAreaArrayForJson();
-		echoJson(SUCCESS, "获取所有区域信息成功", $area_arr, $this->token);
+		echoJson(SUCCESS, "获取所有区域信息成功", $area_arr);
 	}
 
 

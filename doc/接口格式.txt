@@ -71,3 +71,10 @@ return：
    member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
    parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
    create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
+
+6.获取区域信息
+url: http://ip:port/app/index.php?act=area&op=all_area&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
+method: get
+return：
+   {"code":200,"msg":"获取所有区域信息成功","data":{...}}
+   data详细格式见《获取所有区域信息结果json格式.json》

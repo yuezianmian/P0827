@@ -2303,7 +2303,6 @@ function echoJson($code = 200, $msg = '', $data = array(), $token = null){
 	}else{
 		$result = array('code' => $code, 'msg' => $msg, 'data' => $data);
 	}
-//	header("Content-Type:text/html;charset=gb2312");
-	echo json_encode($result);
+	echo json_encode($result, JSON_UNESCAPED_UNICODE);
 	exit;
 }
