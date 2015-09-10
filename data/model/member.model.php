@@ -126,14 +126,12 @@ class memberModel extends Model {
 		    $member_info['member_type']		    = $param['member_type'];
 		    $member_info['parent_code']		    = $param['parent_code'];
 		    $member_info['member_code']		    = $param['member_code'];
+			$member_info['area_id']		        = $param['area_id'];
+			$member_info['area_name']		    = $param['area_name'];
 		    $member_info['create_time']			= TIMESTAMP;
 
 		    $insert_id	= $this->table('member')->insert($member_info);
 		    if (!$insert_id) {
-		        throw new Exception();
-		    }
-		    $insert = $this->addMemberCommon(array('member_id'=>$insert_id));
-		    if (!$insert) {
 		        throw new Exception();
 		    }
 		    $this->commit();

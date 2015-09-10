@@ -16,10 +16,10 @@
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
-          <td colspan="2" class="required"><label class="validation" for="member_name"><?php echo $lang['member_index_name']?>:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="member_mobile">手机号:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" name="member_name" id="member_name" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="" name="member_mobile" id="member_mobile" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
@@ -30,72 +30,37 @@
           <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label class="validation" for="member_email"><?php echo $lang['member_index_email']?>:</label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" id="member_email" name="member_email" class="txt"></td>
-          <td class="vatop tips"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="required"><label for="member_truename"><?php echo $lang['member_index_true_name']?>:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="member_truename">姓名:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" value="" id="member_truename" name="member_truename" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label> <?php echo $lang['member_edit_sex']?>:</label></td>
+            <td colspan="2" class="required"><label class="validation" for="sub_area_id">区域:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><ul>
-              <li>
-                <label>
-                  <input type="radio" checked="checked" value="0" name="member_sex">
-                  <?php echo $lang['member_edit_secret']?></label>
-              </li>
-              <li>
-                <label>
-                  <input type="radio" value="1" name="member_sex">
-                  <?php echo $lang['member_edit_male']?></label>
-              </li>
-              <li>
-                <label>
-                  <input type="radio" value="2" name="member_sex">
-                  <?php echo $lang['member_edit_female']?></label>
-              </li>
-            </ul></td>
-          <td class="vatop tips"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="required"><label for="member_qq">QQ:</label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" id="member_qq" name="member_qq" class="txt"></td>
-          <td class="vatop tips"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="required"><label class="member_ww"><?php echo $lang['member_edit_wangwang']?>:</label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" id="member_ww" name="member_ww" class="txt"></td>
-          <td class="vatop tips"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="required"><label><?php echo $lang['member_edit_pic']?>:</label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform">
-			<span class="type-file-show">
-			<img class="show_image" src="<?php echo ADMIN_TEMPLATES_URL;?>/images/preview.png">
-			<div class="type-file-preview" style="display: none;"><img id="view_img"></div>
-			</span>
-            <span class="type-file-box">
-              <input type='text' name='member_avatar' id='member_avatar' class='type-file-text' />
-              <input type='button' name='button' id='button' value='' class='type-file-button' />
-              <input name="_pic" type="file" class="type-file-file" id="_pic" size="30" hidefocus="true" />
-            </span>
+            <td class="vatop">
+                <input type="hidden" name="area_id" id="area_id" value="" />
+                <input type="hidden" name="area_name" id="area_name" value="" />
+                <select id="province_id" name="province_id" onchange="changeCityOption()">
+                    <option value=''>-请选择-</option>
+                </select>
+                <select id="city_id" name="city_id" onchange="changeAreaOption()">
+                    <option></option>
+                </select>
+                <select id="sub_area_id" name="sub_area_id" onchange="changeAreaInfo()">
+                    <option></option>
+                </select>
             </td>
-          <td class="vatop tips"><?php echo $lang['member_edit_support']?>gif,jpg,jpeg,png</td>
+            <td class="vatop tips"></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="required"><label class="validation" for="member_code">代理商编号:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input type="text" value="<?php echo  $output['member_code'];?>" id="member_code" name="member_code" class="txt"></td>
+            <td class="vatop tips"></td>
         </tr>
       </tbody>
       <tfoot>
@@ -112,51 +77,55 @@
 <script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.Jcrop/jquery.Jcrop.js"></script>
 <link href="<?php echo RESOURCE_SITE_URL;?>/js/jquery.Jcrop/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" id="cssfile2" />
 <script type="text/javascript">
+var area_json = <?php echo  $output['area_json'];?>;
 //裁剪图片后返回接收函数
 function call_back(picname){
 	$('#member_avatar').val(picname);
 	$('#view_img').attr('src','<?php echo UPLOAD_SITE_URL.'/'.ATTACH_AVATAR;?>/'+picname);
 }
+function initProvinceSelect(){
+    for(var i=0; i<area_json[0].length; i++){
+        var optionStr = "<option value='" + area_json[0][i][0] + "'>" + area_json[0][i][1] + "</option>";
+        $("#province_id").append(optionStr);
+    }
+}
+function changeCityOption(){
+    $("#city_id").empty();
+    $("#city_id").append("<option value=''>-请选择-</option>");
+    var province_id = $("#province_id").val();
+    if(province_id != ''){
+        for(var i=0; i<area_json[province_id].length; i++){
+            var optionStr = "<option value='" + area_json[province_id][i][0] + "'>" + area_json[province_id][i][1] + "</option>";
+            $("#city_id").append(optionStr);
+        }
+    }
+    changeAreaOption();
+}
+function changeAreaOption(){
+    $("#sub_area_id").empty();
+    $("#sub_area_id").append("<option value=''>-请选择-</option>");
+    var city_id = $("#city_id").val();
+    if(city_id != ''){
+        for(var i=0; i<area_json[city_id].length; i++){
+            var optionStr = "<option value='" + area_json[city_id][i][0] + "'>" + area_json[city_id][i][1] + "</option>";
+            $("#sub_area_id").append(optionStr);
+        }
+    }
+}
+function changeAreaInfo(){
+    var sub_area_id = $("#sub_area_id").val();
+    if(sub_area_id == ''){
+        $("#area_id").val("");
+        $("#area_name").val("");
+    }else{
+        $("#area_id").val(sub_area_id);
+        var sub_area_name = $("#sub_area_id").find("option:selected").text();
+        var city_name = $("#city_id").find("option:selected").text();
+        $("#area_name").val(city_name+sub_area_name);
+    }
+}
 $(function(){
-	$('input[class="type-file-file"]').change(uploadChange);
-	function uploadChange(){
-		var filepatd=$(this).val();
-		var extStart=filepatd.lastIndexOf(".");
-		var ext=filepatd.substring(extStart,filepatd.lengtd).toUpperCase();		
-		if(ext!=".PNG"&&ext!=".GIF"&&ext!=".JPG"&&ext!=".JPEG"){
-			alert("file type error");
-			$(this).attr('value','');
-			return false;
-		}
-		if ($(this).val() == '') return false;
-		ajaxFileUpload();
-	}	
-	function ajaxFileUpload()
-	{
-		$.ajaxFileUpload
-		(
-			{
-				url:'index.php?act=common&op=pic_upload&form_submit=ok&uploadpath=<?php echo ATTACH_AVATAR;?>',
-				secureuri:false,
-				fileElementId:'_pic',
-				dataType: 'json',
-				success: function (data, status)
-				{
-					if (data.status == 1){
-						ajax_form('cutpic','<?php echo $lang['nc_cut'];?>','index.php?act=common&op=pic_cut&type=member&x=120&y=120&resize=1&ratio=1&url='+data.url,690);
-					}else{
-						alert(data.msg);
-					}
-					$('input[class="type-file-file"]').bind('change',uploadChange);
-				},
-				error: function (data, status, e)
-				{
-					alert('上传失败');
-					$('input[class="type-file-file"]').bind('change',uploadChange);
-				}
-			}
-		)
-	};
+    initProvinceSelect();
 	//按钮先执行验证再提交表单
 	$("#submitBtn").click(function(){
     if($("#user_form").valid()){
@@ -168,16 +137,17 @@ $(function(){
 			error.appendTo(element.parent().parent().prev().find('td:first'));
         },
         rules : {
-			member_name: {
+            member_mobile: {
 				required : true,
-				minlength: 3,
-				maxlength: 20,
+                digits : true,
+                maxlength: 11,
+                minlength: 11,
 				remote   : {
-                    url :'index.php?act=member&op=ajax&branch=check_user_name',
+                    url :'index.php?act=member&op=ajax&branch=check_member_mobile',
                     type:'get',
                     data:{
-                        user_name : function(){
-                            return $('#member_name').val();
+                        member_mobile : function(){
+                            return $('#member_mobile').val();
                         },
                         member_id : ''
                     }
@@ -188,48 +158,55 @@ $(function(){
                 maxlength: 20,
                 minlength: 6
             },
-            member_email   : {
+            member_truename: {
+				required : true,
+                maxlength: 20
+            },
+            sub_area_id: {
+				required : true
+            },
+            member_code: {
                 required : true,
-                email : true,
-				remote   : {
-                    url :'index.php?act=member&op=ajax&branch=check_email',
+                maxlength: 5,
+                minlength: 5,
+                remote   : {
+                    url :'index.php?act=member&op=ajax&branch=check_member_code',
                     type:'get',
                     data:{
-                        user_name : function(){
-                            return $('#member_email').val();
+                        member_code : function(){
+                            return $('#member_code').val();
                         },
-                        member_id : '<?php echo $output['member_array']['member_id'];?>'
+                        member_id : ''
                     }
                 }
-            },
-			member_qq : {
-				digits: true,
-				minlength: 5,
-				maxlength: 11
-			}
+            }
         },
         messages : {
-			member_name: {
-				required : '<?php echo $lang['member_add_name_null']?>',
-				maxlength: '<?php echo $lang['member_add_name_length']?>',
-				minlength: '<?php echo $lang['member_add_name_length']?>',
-				remote   : '<?php echo $lang['member_add_name_exists']?>'
+            member_mobile: {
+				required : '手机号不能为空',
+                digits: '手机号格式不正确',
+                minlength: '手机号格式不正确',
+                maxlength: '手机号格式不正确',
+				remote   : '该手机号已被注册'
 			},
             member_passwd : {
-				required : '<?php echo '密码不能为空'; ?>',
-                maxlength: '<?php echo $lang['member_edit_password_tip']?>',
-                minlength: '<?php echo $lang['member_edit_password_tip']?>'
+				required : '密码不能为空',
+                minlength: '密码不能少于6位',
+                maxlength: '密码不能多于20位'
             },
-            member_email  : {
-                required : '<?php echo $lang['member_edit_email_null']?>',
-                email   : '<?php echo $lang['member_edit_valid_email']?>',
-				remote : '<?php echo $lang['member_edit_email_exists']?>'
+            member_truename  : {
+                required : '姓名不能为空',
+                maxlength : '姓名不能超过20位字符'
             },
-			member_qq : {
-				digits: '<?php echo $lang['member_edit_qq_wrong']?>',
-				minlength: '<?php echo $lang['member_edit_qq_wrong']?>',
-				maxlength: '<?php echo $lang['member_edit_qq_wrong']?>'
-			}
+            sub_area_id : {
+                required: '所在区域必须精确到区或县'
+			},
+            member_code : {
+                required: '所在区域必须精确到区或县',
+                minlength: '密码不能少于6位',
+                maxlength: '密码不能多于20位',
+                remote   : '该代理商编码已被注册'
+            }
         }
     });
 });

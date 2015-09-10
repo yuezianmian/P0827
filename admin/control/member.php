@@ -143,27 +143,24 @@ class memberControl extends SystemControl{
 			 */
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-			    array("input"=>$_POST["member_name"], "require"=>"true", "message"=>$lang['member_add_name_null']),
+			    array("input"=>$_POST["member_mobile"], "require"=>"true", "message"=>'手机号不能为空'),
 			    array("input"=>$_POST["member_passwd"], "require"=>"true", "message"=>'密码不能为空'),
-			    array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email'])
+			    array("input"=>$_POST["member_truename"], "require"=>"true", "message"=>'姓名不能为空'),
+			    array("input"=>$_POST["member_code"], "require"=>"true", "message"=>'代理商编号不能为空')
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
 			}else {
 				$insert_array = array();
-				$insert_array['member_name']	= trim($_POST['member_name']);
+				$insert_array['member_mobile']	= trim($_POST['member_mobile']);
 				$insert_array['member_passwd']	= trim($_POST['member_passwd']);
-				$insert_array['member_email']	= trim($_POST['member_email']);
 				$insert_array['member_truename']= trim($_POST['member_truename']);
-				$insert_array['member_sex'] 	= trim($_POST['member_sex']);
-				$insert_array['member_qq'] 		= trim($_POST['member_qq']);
-				$insert_array['member_ww']		= trim($_POST['member_ww']);
-                //默认允许举报商品
-                $insert_array['inform_allow'] 	= '1';
-				if (!empty($_POST['member_avatar'])){
-					$insert_array['member_avatar'] = trim($_POST['member_avatar']);
-				}
+				$insert_array['member_code'] 	= trim($_POST['member_code']);
+				$insert_array['area_id'] 		= trim($_POST['area_id']);
+				$insert_array['area_name']		= trim($_POST['area_name']);
+				$insert_array['member_state']	= MEMBER_STATE_NORMAL;
+				$insert_array['member_type']	= MEMBER_TYPE_AGENT;
 
 				$result = $model_member->addMember($insert_array);
 				if ($result){
@@ -174,20 +171,23 @@ class memberControl extends SystemControl{
 					),
 					array(
 					'url'=>'index.php?act=member&op=member_add',
-					'msg'=>$lang['member_add_again'],
+					'msg'=>'继续添加代理商',
 					),
 					);
-					$this->log(L('nc_add,member_index_name').'[	'.$_POST['member_name'].']',1);
+					$this->log(L('nc_add,member_index_name').'[	'.$_POST['member_mobile'].']',1);
 					showMessage($lang['member_add_succ'],$url);
 				}else {
 					showMessage($lang['member_add_fail']);
 				}
 			}
 		}
+		$model_area = Model('area');
+		$area_arr = $model_area->getAreaArrayForJson();
 		//generator member code
 		$model_key_generator = Model('key_generator');
 		$member_code = $model_key_generator->generatorNextValue('member_code');
 		Tpl::output('member_code',$member_code);
+		Tpl::output('area_json',json_encode($area_arr));
 		Tpl::showpage('member.add');
 	}
 
@@ -197,11 +197,11 @@ class memberControl extends SystemControl{
 	public function ajaxOp(){
 		switch ($_GET['branch']){
 			/**
-			 * 验证会员是否重复
+			 * 验证会员手机号是否重复
 			 */
-			case 'check_user_name':
+			case 'check_member_mobile':
 				$model_member = Model('member');
-				$condition['member_name']	= $_GET['member_name'];
+				$condition['member_mobile']	= $_GET['member_mobile'];
 				$condition['member_id']	= array('neq',intval($_GET['member_id']));
 				$list = $model_member->getMemberInfo($condition);
 				if (empty($list)){
@@ -211,11 +211,11 @@ class memberControl extends SystemControl{
 				}
 				break;
 				/**
-			 * 验证邮件是否重复
+			 * 验证代理商编码是否重复
 			 */
-			case 'check_email':
+			case 'check_member_code':
 				$model_member = Model('member');
-				$condition['member_email'] = $_GET['member_email'];
+				$condition['member_code'] = $_GET['member_code'];
 				$condition['member_id'] = array('neq',intval($_GET['member_id']));
 				$list = $model_member->getMemberInfo($condition);
 				if (empty($list)){
