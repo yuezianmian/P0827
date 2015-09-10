@@ -69,9 +69,9 @@
             <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p></td>
           <td class="align-center"><?php echo $v['member_points'];?></td>
           <td class="align-center">
-              <?php if($v['member_type'] == 1){ ?>
+              <?php if($v['member_type'] == MEMBER_TYPE_AGENT){ ?>
                   <?php echo "代理商"; ?>
-              <?php }else if($v['member_type'] == 2) { ?>
+              <?php }else if($v['member_type'] == MEMBER_TYPE_STORE) { ?>
                   <?php echo "店铺"; ?>
               <?php } ?>
           </td>
@@ -96,17 +96,19 @@
           </td>
           <td class="align-center"><?php echo $v['member_type'] == 1?$v['area_name']:"--"; ?></td>
           <td class="align-center">
-            <?php if($v['member_state'] == 1){ ?>
-              <?php echo "待审核"; ?>
-            <?php }else if($v['member_state'] == 2) { ?>
+            <?php if($v['member_state'] == MEMBER_STATE_REGISTED){ ?>
+              <?php echo "已注册"; ?>
+            <?php }else if($v['member_state'] == MEMBER_STATE_NOCHECK) { ?>
+                <?php echo "待审核"; ?>
+            <?php }else if($v['member_state'] == MEMBER_STATE_NORMAL) { ?>
                 <?php echo "正常"; ?>
-            <?php }else if($v['member_state'] == 3) { ?>
+            <?php }else if($v['member_state'] == MEMBER_STATE_NOPASS) { ?>
               <?php echo "失效"; ?>
             <?php } ?>
           </td>
           <td class="align-center">
-            <a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>"><?php echo $lang['nc_edit']?></a>
-          <?php if($v['member_state'] == 1){ ?>
+            <a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>">查看</a>
+          <?php if($v['member_state'] == MEMBER_STATE_NOCHECK){ ?>
             | <a href="index.php?act=member&op=pass&member_id=<?php echo $v['member_id']; ?>">通过</a>
             | <a href="index.php?act=member&op=nopass&member_id=<?php echo $v['member_id']; ?>">拒绝</a>
           <?php } ?>

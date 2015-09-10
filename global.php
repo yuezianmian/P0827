@@ -141,6 +141,8 @@ define('MEMBER_TYPE_AGENT', 1);
 define('MEMBER_TYPE_STORE', 2);
 
 /** 会员状态 */
+//会员状态-已注册
+define('MEMBER_STATE_REGISTED', 0);
 //会员状态-待审核
 define('MEMBER_STATE_NOCHECK', 1);
 //会员状态-正常

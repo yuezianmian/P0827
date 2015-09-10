@@ -74,7 +74,7 @@
              <?php echo $output['member_array']['create_time'] ? date('Y-m-d',$output['member_array']['create_time']) : '';?>
             </td>
         </tr>
-        <?php if($output['member_array']['member_type'] == 1){ ?>
+        <?php if($output['member_array']['member_type'] == MEMBER_TYPE_AGENT){ ?>
             <tr>
                 <td colspan="2" class="required"><label>代理商编号:</label></td>
             </tr>
@@ -87,7 +87,7 @@
             <tr class="noborder">
                 <td class="vatop rowform"><?php echo $output['member_array']['area_name'];?></td>
             </tr>
-        <?php }else if($output['member_array']['member_type'] == 2) { ?>
+        <?php }else if($output['member_array']['member_type'] == MEMBER_TYPE_STORE) { ?>
             <tr>
                 <td colspan="2" class="required"><label>所属代理商编号:</label></td>
             </tr>
@@ -158,24 +158,28 @@
         </tr>
         <tr class="noborder">
             <td class="vatop rowform">
-                <?php if($output['member_array']['member_state'] == 1){ ?>
+                <?php if($output['member_array']['member_state'] == MEMBER_STATE_REGISTED){ ?>
+                    <?php echo "已注册"; ?>
+                <?php }else if($output['member_array']['member_state'] == MEMBER_STATE_NOCHECK) { ?>
                     <?php echo "待审核"; ?>
-                <?php }else if($output['member_array']['member_state'] == 2) { ?>
+                <?php }else if($output['member_array']['member_state'] == MEMBER_STATE_NORMAL) { ?>
                     <?php echo "正常"; ?>
-                <?php }else if($output['member_array']['member_state'] == 3) { ?>
+                <?php }else if($output['member_array']['member_state'] == MEMBER_STATE_NOPASS) { ?>
                     <?php echo "失效"; ?>
                 <?php } ?>
             </td>
         </tr>
       </tbody>
-      <tfoot>
-        <tr class="tfoot">
-            <td colspan="15">
-                <a href="index.php?act=member&op=pass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>通过</span></a>
-                <a href="index.php?act=member&op=nopass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>拒绝</span></a>
-            </td>
-        </tr>
-      </tfoot>
+      <?php if($output['member_array']['member_state'] == MEMBER_STATE_NOCHECK){ ?>
+          <tfoot>
+            <tr class="tfoot">
+                <td colspan="15">
+                    <a href="index.php?act=member&op=pass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>通过</span></a>
+                    <a href="index.php?act=member&op=nopass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>拒绝</span></a>
+                </td>
+            </tr>
+          </tfoot>
+      <?php } ?>
     </table>
 </div>
 <script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
