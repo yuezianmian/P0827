@@ -79,7 +79,7 @@
         <?php foreach($output['member_list'] as $k => $v){ ?>
         <tr class="hover member">
           <td class="w24"></td>
-          <td class="w48 picture"><div class="size-44x44"><span class="thumb size-44x44"><i></i><img src="<?php if ($v['member_avatar'] != ''){ echo $v['member_avatar'];}else { echo UPLOAD_SITE_URL.'/'.ATTACH_COMMON.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,44,44);"/></span></div></td>
+          <td class="w48 picture"><div class="size-44x44"><span class="thumb size-44x44"><i></i><img src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,44,44);"/></span></div></td>
           <td><p class="name"><strong><?php echo $v['member_mobile']; ?></strong>(姓名: <?php echo $v['member_truename']; ?>)</p>
             <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p></td>
           <td class="align-center"><?php echo $v['member_points'];?></td>
@@ -90,7 +90,9 @@
             <div class="size-44x44">
               <span class="thumb size-44x44"><i></i>
                <?php if($v['member_type'] == 2){ ?>
-                <img src="<?php  echo $v['shop_img'];?>"  onload="javascript:DrawImage(this,44,44);"/>
+                <img src="<?php  echo SITE_URL.$v['shop_img'];?>"  onload="javascript:DrawImage(this,44,44);"/>
+               <?php }else { ?>
+                   --
                <?php } ?>
               </span>
             </div>

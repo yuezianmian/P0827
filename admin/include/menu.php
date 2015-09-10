@@ -24,7 +24,6 @@ $arr = array(
 				'text' => $lang['nc_console'],
 				'list' => array(
 					array('args'=>'admin,admin,dashboard',			       'text'=>$lang['nc_limit_manage']),
-					array('args'=>'base,setting,dashboard',					'text'=>$lang['nc_web_set']),
 					array('args'=>'member,member,dashboard',				'text'=>$lang['nc_member_manage']),
 					array('args'=>'store,store,dashboard',					'text'=>$lang['nc_store_manage']),
 					array('args'=>'goods,goods,dashboard',					'text'=>$lang['nc_goods_manage']),

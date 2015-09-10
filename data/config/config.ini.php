@@ -2,6 +2,7 @@
 // defined('InShopNC') or exit('Access Invalid!');
 
 $config = array();
+$config['site_url']		= 'http://localhost/p';
 $config['upload_site_url']		= 'http://localhost/p/data/upload';
 $config['resource_site_url']	= 'http://localhost/p/data/resource';
 $config['admin_site_url'] 		= 'http://localhost/p/admin';

@@ -25,15 +25,10 @@ define('URL_MODEL',$config['url_model']);
 define(SUBDOMAIN_SUFFIX, $config['subdomain_suffix']);
 
 define('SHOP_SITE_URL', $config['shop_site_url']);
-define('CMS_SITE_URL', $config['cms_site_url']);
-define('CIRCLE_SITE_URL', $config['circle_site_url']);
-define('MICROSHOP_SITE_URL', $config['microshop_site_url']);
+define('SITE_URL', $config['site_url']);
 define('ADMIN_SITE_URL', $config['admin_site_url']);
-define('MOBILE_SITE_URL', $config['mobile_site_url']);
-define('WAP_SITE_URL', $config['wap_site_url']);
 define('UPLOAD_SITE_URL',$config['upload_site_url']);
 define('RESOURCE_SITE_URL',$config['resource_site_url']);
-define('DELIVERY_SITE_URL',$config['delivery_site_url']);
 
 define('BASE_DATA_PATH',BASE_ROOT_PATH.'/data');
 define('BASE_UPLOAD_PATH',BASE_DATA_PATH.'/upload');
