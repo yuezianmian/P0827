@@ -41,21 +41,6 @@
       </tbody>
     </table>
   </form>
-  <table class="table tb-type2" id="prompt">
-    <tbody>
-      <tr class="space odd">
-        <th colspan="12"><div class="title">
-            <h5><?php echo $lang['nc_prompts'];?></h5>
-            <span class="arrow"></span></div></th>
-      </tr>
-      <tr>
-        <td><ul>
-            <li><?php echo $lang['member_index_help1'];?></li>
-            <li><?php echo $lang['member_index_help2'];?></li>
-          </ul></td>
-      </tr>
-    </tbody>
-  </table>
   <form method="post" id="form_member">
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2 nobdb">

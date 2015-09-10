@@ -31,10 +31,10 @@ class memberControl extends SystemControl{
     			case 'member_truename':
     				$condition['member_truename'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
     				break;
-				case 'member_truename':
+				case 'member_code':
 					$condition['member_code'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
 					break;
-				case 'member_truename':
+				case 'parent_code':
 					$condition['parent_code'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
 					break;
     		}
@@ -184,6 +184,10 @@ class memberControl extends SystemControl{
 				}
 			}
 		}
+		//generator member code
+		$model_key_generator = Model('key_generator');
+		$member_code = $model_key_generator->generatorNextValue('member_code');
+		Tpl::output('member_code',$member_code);
 		Tpl::showpage('member.add');
 	}
 
