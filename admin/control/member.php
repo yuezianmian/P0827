@@ -129,6 +129,19 @@ class memberControl extends SystemControl{
 	}
 
 	/**
+	 * 会员修改
+	 */
+	public function member_showOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		$condition['member_id'] = intval($_GET['member_id']);
+		$member_array = $model_member->getMemberInfo($condition);
+
+		Tpl::output('member_array',$member_array);
+		Tpl::showpage('member.show');
+	}
+
+	/**
 	 * 新增会员
 	 */
 	public function member_addOp(){
@@ -174,7 +187,7 @@ class memberControl extends SystemControl{
 					'msg'=>'继续添加代理商',
 					),
 					);
-					$this->log(L('nc_add,member_index_name').'[	'.$_POST['member_mobile'].']',1);
+					$this->log(L('nc_add,member_index_name').'[MOBILE:'.$_POST['member_mobile'].']',1);
 					showMessage($lang['member_add_succ'],$url);
 				}else {
 					showMessage($lang['member_add_fail']);
@@ -189,6 +202,48 @@ class memberControl extends SystemControl{
 		Tpl::output('member_code',$member_code);
 		Tpl::output('area_json',json_encode($area_arr));
 		Tpl::showpage('member.add');
+	}
+
+	/**
+	 * 会员审核通过
+	 */
+	public function member_passOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		$result = $model_member->editMember(array('member_id'=>intval($_GET['member_id'])),array('member_state'=>2));
+		if ($result){
+			$url = array(
+				array(
+					'url'=>'index.php?act=member&op=member',
+					'msg'=>$lang['member_edit_back_to_list'],
+				),
+			);
+			$this->log('审核会员通过'.'[ID:'.$_GET['member_id'].']',1);
+			showMessage("审核成功",$url);
+		}else {
+			showMessage("审核失败");
+		}
+	}
+
+	/**
+	 * 会员审核不通过
+	 */
+	public function member_nopassOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		$result = $model_member->editMember(array('member_id'=>intval($_GET['member_id'])),array('member_state'=>3));
+		if ($result){
+			$url = array(
+				array(
+					'url'=>'index.php?act=member&op=member',
+					'msg'=>$lang['member_edit_back_to_list'],
+				),
+			);
+			$this->log('审核会员不通过'.'[ID:'.$_GET['member_id'].']',1);
+			showMessage("审核成功",$url);
+		}else {
+			showMessage("审核失败");
+		}
 	}
 
 	/**

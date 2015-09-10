@@ -19,7 +19,7 @@ class memberControl extends BaseMemberControl {
 			'shop_img'=> $_POST['shop_img'],
 			'area_name'=> $_POST['area_name'],
 			'area_id'=> $_POST['area_id'],
-			'address'=> $_POST['address'],
+			'shop_address'=> $_POST['address'],
 			'member_state'=> 1
 		);
 		$model_member = Model('member');

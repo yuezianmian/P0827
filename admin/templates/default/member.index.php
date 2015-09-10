@@ -68,13 +68,19 @@
           <td><p class="name"><strong><?php echo $v['member_mobile']; ?></strong>(姓名: <?php echo $v['member_truename']; ?>)</p>
             <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p></td>
           <td class="align-center"><?php echo $v['member_points'];?></td>
-          <td class="align-center"><?php echo $v['member_type'] == 1?"代理商":"店铺"; ?></td>
+          <td class="align-center">
+              <?php if($v['member_type'] == 1){ ?>
+                  <?php echo "代理商"; ?>
+              <?php }else if($v['member_type'] == 2) { ?>
+                  <?php echo "店铺"; ?>
+              <?php } ?>
+          </td>
           <td class="align-center"><?php echo $v['member_type'] == 1?$v['member_code']:"--"; ?></td>
           <td class="align-center"><?php echo $v['member_type'] == 1?"--":$v['parent_code']; ?></td>
           <td class="w48 picture">
             <div class="size-44x44">
               <span class="thumb size-44x44"><i></i>
-               <?php if($v['member_type'] == 2){ ?>
+               <?php if($v['member_type'] == 2 && $v['shop_img']){ ?>
                 <img src="<?php  echo SITE_URL.$v['shop_img'];?>"  onload="javascript:DrawImage(this,44,44);"/>
                <?php }else { ?>
                    --
