@@ -24,7 +24,7 @@ $arr = array(
 				'text' => $lang['nc_console'],
 				'list' => array(
 					array('args'=>'admin,admin,dashboard',			       'text'=>$lang['nc_limit_manage']),
-					array('args'=>'member,member,dashboard',				'text'=>$lang['nc_member_manage']),
+					array('args'=>'member,member,dashboard',				'text'=>'产品中心地址'),
 				)
 			),
 		),
