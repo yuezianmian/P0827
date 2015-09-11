@@ -202,9 +202,9 @@ $(function(){
                 required: '所在区域必须精确到区或县'
 			},
             member_code : {
-                required: '所在区域必须精确到区或县',
-                minlength: '密码不能少于6位',
-                maxlength: '密码不能多于20位',
+                required: '代理商编码不能为空',
+                minlength: '代理商编码为5位',
+                maxlength: '代理商编码为5位',
                 remote   : '该代理商编码已被注册'
             }
         }

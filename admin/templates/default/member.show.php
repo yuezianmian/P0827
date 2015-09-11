@@ -71,7 +71,7 @@
         </tr>
         <tr class="noborder">
             <td class="vatop rowform">
-             <?php echo $output['member_array']['create_time'] ? date('Y-m-d',$output['member_array']['create_time']) : '';?>
+             <?php echo $output['member_array']['create_time'] ? date('Y-m-d H:i:s',$output['member_array']['create_time']) : '';?>
             </td>
         </tr>
         <?php if($output['member_array']['member_type'] == MEMBER_TYPE_AGENT){ ?>
@@ -174,8 +174,8 @@
           <tfoot>
             <tr class="tfoot">
                 <td colspan="15">
-                    <a href="index.php?act=member&op=pass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>通过</span></a>
-                    <a href="index.php?act=member&op=nopass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>拒绝</span></a>
+                    <a class="btn" href="index.php?act=member&op=pass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>通过</span></a>
+                    <a class="btn" href="index.php?act=member&op=nopass&member_id=<?php echo $output['member_array']['member_id']; ?>"><span>拒绝</span></a>
                 </td>
             </tr>
           </tfoot>

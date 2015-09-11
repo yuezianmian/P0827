@@ -77,48 +77,31 @@ class memberControl extends SystemControl{
 			/**
 			 * 验证
 			 */
-			$obj_validate = new Validate();
-			$obj_validate->validateparam = array(
-			array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email']),
-			);
-			$error = $obj_validate->validate();
-			if ($error != ''){
-				showMessage($error);
+//			$obj_validate = new Validate();
+//			$obj_validate->validateparam = array(
+//			array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email']),
+//			);
+//			$error = $obj_validate->validate();
+//			if ($error != ''){
+//				showMessage($error);
+//			}else {
+			$update_array = array();
+			$update_array['member_id']			= intval($_POST['member_id']);
+
+			$update_array['parent_code'] 		= $_POST['parent_code'];
+			$result = $model_member->editMember(array('member_id'=>intval($_POST['member_id'])),$update_array);
+			if ($result){
+				$url = array(
+				array(
+				'url'=>'index.php?act=member&op=member',
+				'msg'=>$lang['member_edit_back_to_list'],
+				),
+				);
+				$this->log(L('nc_edit,member_index_name').'[ID:'.$_POST['member_id'].']',1);
+				showMessage($lang['member_edit_succ'],$url);
+//				showMessage("指定代理商成功",$url);
 			}else {
-				$update_array = array();
-				$update_array['member_id']			= intval($_POST['member_id']);
-				if (!empty($_POST['member_passwd'])){
-					$update_array['member_passwd'] = md5($_POST['member_passwd']);
-				}
-				$update_array['member_email']		= $_POST['member_email'];
-				$update_array['member_truename']	= $_POST['member_truename'];
-				$update_array['member_sex'] 		= $_POST['member_sex'];
-				$update_array['member_qq'] 			= $_POST['member_qq'];
-				$update_array['member_ww']			= $_POST['member_ww'];
-				$update_array['inform_allow'] 		= $_POST['inform_allow'];
-				$update_array['is_buy'] 			= $_POST['isbuy'];
-				$update_array['is_allowtalk'] 		= $_POST['allowtalk'];
-				$update_array['member_state'] 		= $_POST['memberstate'];
-				if (!empty($_POST['member_avatar'])){
-					$update_array['member_avatar'] = $_POST['member_avatar'];
-				}
-				$result = $model_member->editMember(array('member_id'=>intval($_POST['member_id'])),$update_array);
-				if ($result){
-					$url = array(
-					array(
-					'url'=>'index.php?act=member&op=member',
-					'msg'=>$lang['member_edit_back_to_list'],
-					),
-					array(
-					'url'=>'index.php?act=member&op=member_edit&member_id='.intval($_POST['member_id']),
-					'msg'=>$lang['member_edit_again'],
-					),
-					);
-					$this->log(L('nc_edit,member_index_name').'[ID:'.$_POST['member_id'].']',1);
-					showMessage($lang['member_edit_succ'],$url);
-				}else {
-					showMessage($lang['member_edit_fail']);
-				}
+				showMessage($lang['member_edit_fail']);
 			}
 		}
 		$condition['member_id'] = intval($_GET['member_id']);
@@ -207,7 +190,7 @@ class memberControl extends SystemControl{
 	/**
 	 * 会员审核通过
 	 */
-	public function member_passOp(){
+	public function passOp(){
 		$lang	= Language::getLangContent();
 		$model_member = Model('member');
 		$result = $model_member->editMember(array('member_id'=>intval($_GET['member_id'])),array('member_state'=>2));
@@ -228,7 +211,7 @@ class memberControl extends SystemControl{
 	/**
 	 * 会员审核不通过
 	 */
-	public function member_nopassOp(){
+	public function nopassOp(){
 		$lang	= Language::getLangContent();
 		$model_member = Model('member');
 		$result = $model_member->editMember(array('member_id'=>intval($_GET['member_id'])),array('member_state'=>3));
@@ -265,7 +248,7 @@ class memberControl extends SystemControl{
 					echo 'false';exit;
 				}
 				break;
-				/**
+			/**
 			 * 验证代理商编码是否重复
 			 */
 			case 'check_member_code':
@@ -277,6 +260,19 @@ class memberControl extends SystemControl{
 					echo 'true';exit;
 				}else {
 					echo 'false';exit;
+				}
+				break;
+			/**
+			 * 验证所属代理商编码是否重复
+			 */
+			case 'check_parent_code':
+				$model_member = Model('member');
+				$condition['member_code'] = $_GET['parent_code'];
+				$list = $model_member->getMemberInfo($condition);
+				if (empty($list)){
+					echo 'false';exit;
+				}else {
+					echo 'true';exit;
 				}
 				break;
 		}

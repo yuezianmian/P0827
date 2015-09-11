@@ -65,8 +65,13 @@
         <tr class="hover member">
           <td class="w24"></td>
           <td class="w48 picture"><div class="size-44x44"><span class="thumb size-44x44"><i></i><img src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,44,44);"/></span></div></td>
-          <td><p class="name"><strong><?php echo $v['member_mobile']; ?></strong>(姓名: <?php echo $v['member_truename']; ?>)</p>
-            <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p></td>
+          <td>
+              <p class="name">
+                  <strong><a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>"><?php echo $v['member_mobile']; ?></a></strong>
+                  <a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>">(姓名: <?php echo $v['member_truename']; ?>)</a>
+              </p>
+              <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p>
+          </td>
           <td class="align-center"><?php echo $v['member_points'];?></td>
           <td class="align-center">
               <?php if($v['member_type'] == MEMBER_TYPE_AGENT){ ?>
@@ -107,11 +112,13 @@
             <?php } ?>
           </td>
           <td class="align-center">
-            <a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>">查看</a>
-          <?php if($v['member_state'] == MEMBER_STATE_NOCHECK){ ?>
-            | <a href="index.php?act=member&op=pass&member_id=<?php echo $v['member_id']; ?>">通过</a>
-            | <a href="index.php?act=member&op=nopass&member_id=<?php echo $v['member_id']; ?>">拒绝</a>
-          <?php } ?>
+              <?php if($v['member_type'] == MEMBER_TYPE_STORE && $v['member_state'] != MEMBER_STATE_NOPASS){ ?>
+                <a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>">指定代理商</a>
+              <?php } ?>
+              <?php if($v['member_state'] == MEMBER_STATE_NOCHECK){ ?>
+                | <a href="index.php?act=member&op=pass&member_id=<?php echo $v['member_id']; ?>">通过</a>
+                | <a href="index.php?act=member&op=nopass&member_id=<?php echo $v['member_id']; ?>">拒绝</a>
+              <?php } ?>
           </td>
         </tr>
         <?php } ?>
