@@ -56,8 +56,11 @@
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
           </td>
-          <td class=""><?php echo $v['sc_bail'];?></td>
-          <td class="w84"><span><a href="index.php?act=store_class&op=store_class_edit&sc_id=<?php echo $v['sc_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('<?php echo $lang['del_store_class'];?>'))window.location = 'index.php?act=store_class&op=store_class_del&sc_id=<?php echo $v['sc_id'];?>';"><?php echo $lang['nc_del'];?></a> </span></td>
+          <td class="w84">
+            <span>
+              <a href="index.php?act=product&op=product_edit&product_id=<?php echo $v['product_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('删除后投放的二维码将失效，确认删除吗'))window.location = 'index.php?act=product&op=product_del&product_id=<?php echo $v['product_id'];?>';"><?php echo $lang['nc_del'];?></a>
+            </span>
+          </td>
         </tr>
         <?php } ?>
         <?php }else { ?>
@@ -67,11 +70,11 @@
         <?php } ?>
       </tbody>
       <tfoot>
-        <?php if(!empty($output['class_list']) && is_array($output['class_list'])){ ?>
+        <?php if(!empty($output['product_list']) && is_array($output['product_list'])){ ?>
         <tr id="batchAction" >
           <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
           <td colspan="16" id="dataFuncs"><label for="checkallBottom"><?php echo $lang['nc_select_all']; ?></label>
-            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" onclick="if(confirm('<?php echo $lang['del_store_class'];?>')){$('form:first').submit();}"><span><?php echo $lang['nc_del'];?></span></a>
+            &nbsp;&nbsp;<a href="JavaScript:void(0);" class="btn" onclick="if(confirm('删除后投放的二维码将失效，确认删除吗')){$('form:first').submit();}"><span><?php echo $lang['nc_del'];?></span></a>
             <div class="pagination"> <?php echo $output['page'];?> </div></td>
             </td>
         </tr>
@@ -81,4 +84,4 @@
   </form>
 </div>
 <script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script> 
-<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.store_class.js" charset="utf-8"></script> 
+<!--<script type="text/javascript" src="--><?php //echo RESOURCE_SITE_URL;?><!--/js/jquery.store_class.js" charset="utf-8"></script> -->
