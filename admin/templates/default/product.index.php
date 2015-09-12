@@ -5,7 +5,7 @@
     <div class="item-title">
       <h3>产品管理</h3>
       <ul class="tab-base">
-        <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['manage'];?></span></a></li>
+        <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_manage'];?></span></a></li>
         <li><a href="index.php?act=store_class&op=store_class_add" ><span><?php echo $lang['nc_new'];?></span></a></li>
       </ul>
     </div>
@@ -20,7 +20,8 @@
       </tr>
       <tr>
         <td><ul>
-            <li>删除产品时，请确认该产品生成的二维码没有投放出去；产品若生成二维码且投放出去，则不要删除该产品。</li>
+            <li>删除产品时，请确认该产品生成的二维码没有投放出去；</li>
+            <li>产品若生成二维码且投放出去，则不要删除该产品。</li>
           </ul></td>
       </tr>
     </tbody>
