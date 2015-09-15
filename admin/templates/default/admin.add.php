@@ -33,9 +33,6 @@
           <td class="vatop rowform"><input type="password" id="admin_rpassword" name="admin_rpassword" class="txt"></td>
           <td class="vatop tips"><?php echo $lang['admin_add_password_tip'];?></td>
         </tr>
-        <tr>
-          <td colspan="2" class="required"><label class="validation" for="gadmin_name"><?php echo $lang['gadmin_name'];?>:</label></td>
-        </tr>
 
       </tbody>
       <tfoot>

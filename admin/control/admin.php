@@ -89,42 +89,6 @@ class adminControl extends SystemControl{
 		Tpl::showpage('admin.add');
 	}
 
-	/**
-	 * 设置权限组权限
-	 */
-	public function gadmin_setOp(){
-		$model = Model('gadmin');
-		$gid = intval($_GET['gid']);
-
-		$ginfo = $model->getby_gid($gid);
-		if (empty($ginfo)){
-			showMessage(L('admin_set_admin_not_exists'));
-		}
-		if (chksubmit()){
-			$limit_str = '';
-			if (is_array($_POST['permission'])){
-				$limit_str = implode('|',$_POST['permission']);
-			}
-			$limit_str = encrypt($limit_str,MD5_KEY.md5($_POST['gname']));
-			$data['limits'] = $limit_str;
-			$data['gname']	= $_POST['gname'];
-			$update = $model->where(array('gid'=>$gid))->update($data);
-			if ($update){
-				$this->log(L('nc_edit,limit_gadmin').'['.$_POST['gname'].']',1);
-				showMessage(L('nc_common_save_succ'),'index.php?act=admin&op=gadmin');
-			}else {
-				showMessage(L('nc_common_save_succ'));
-			}
-		}
-
-		//解析已有权限
-		$hlimit = decrypt($ginfo['limits'],MD5_KEY.md5($ginfo['gname']));
-		$ginfo['limits'] = explode('|',$hlimit);
-		Tpl::output('ginfo',$ginfo);
-        Tpl::output('limit',$this->permission());
-		Tpl::output('top_link',$this->sublink($this->links,'gadmin'));
-		Tpl::showpage('gadmin.set');
-	}
 
 	/**
 	 * ajax操作

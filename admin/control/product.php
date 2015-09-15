@@ -43,34 +43,34 @@ class productControl extends SystemControl{
 	 */
 	public function product_addOp(){
 		$lang	= Language::getLangContent();
-		$model_class = Model('product');
+		$model_product = Model('product');
 		if (chksubmit()){
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-			array("input"=>$_POST["sc_name"], "require"=>"true", "message"=>$lang['product_name_no_null']),
+			array("input"=>$_POST["product_name"], "require"=>"true", "message"=>'产品名称不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
 			}else {
 				$insert_array = array();
-				$insert_array['sc_name'] = $_POST['sc_name'];
-				$insert_array['sc_bail'] = intval($_POST['sc_bail']);
-				$insert_array['sc_sort'] = intval($_POST['sc_sort']);
-				$result = $model_class->addProduct($insert_array);
+				$insert_array['product_name'] = $_POST['product_name'];
+				$insert_array['agent_points'] = intval($_POST['agent_points']);
+				$insert_array['shop_points'] = intval($_POST['shop_points']);
+				$result = $model_product->addProduct($insert_array);
 				if ($result){
 					$url = array(
 					array(
 					'url'=>'index.php?act=product&op=product_add',
-					'msg'=>$lang['continue_add_product'],
+					'msg'=>'继续添加产品',
 					),
 					array(
 					'url'=>'index.php?act=product&op=product',
-					'msg'=>$lang['back_product_list'],
+					'msg'=>'返回产品列表',
 					)
 					);
-					$this->log(L('nc_add,product').'['.$_POST['sc_name'].']',1);
+					$this->log('添加产品'.'['.$_POST['product_name'].']',1);
 					showMessage($lang['nc_common_save_succ'],$url,'html','succ',1,5000);
 				}else {
 					showMessage($lang['nc_common_save_fail']);
@@ -86,25 +86,25 @@ class productControl extends SystemControl{
 	public function product_editOp(){
 		$lang	= Language::getLangContent();
 
-		$model_class = Model('product');
+		$model_product = Model('product');
 
 		if (chksubmit()){
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-			array("input"=>$_POST["sc_name"], "require"=>"true", "message"=>$lang['product_name_no_null']),
+			array("input"=>$_POST["product_name"], "require"=>"true", "message"=>'产品名称不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
 			}else {
 				$update_array = array();
-				$update_array['sc_name'] = $_POST['sc_name'];
-				$update_array['sc_bail'] = intval($_POST['sc_bail']);
-				$update_array['sc_sort'] = intval($_POST['sc_sort']);
-				$result = $model_class->editProduct($update_array,array('sc_id'=>intval($_POST['sc_id'])));
+				$update_array['product_name'] = $_POST['product_name'];
+				$update_array['agent_points'] = intval($_POST['agent_points']);
+				$update_array['shop_points'] = intval($_POST['shop_points']);
+				$result = $model_product->editProduct($update_array,array('product_id'=>intval($_POST['product_id'])));
 				if ($result){
-					$this->log(L('nc_edit,product').'['.$_POST['sc_name'].']',1);
+					$this->log('编辑产品'.'['.$_POST['product_name'].']',1);
 					showMessage($lang['nc_common_save_succ'],'index.php?act=product&op=product');
 				}else {
 					showMessage($lang['nc_common_save_fail']);
@@ -112,12 +112,12 @@ class productControl extends SystemControl{
 			}
 		}
 
-		$class_array = $model_class->getProductInfo(array('sc_id'=>intval($_GET['sc_id'])));
-		if (empty($class_array)){
+		$product_info = $model_product->getProductInfo(array('product_id'=>intval($_GET['product_id'])));
+		if (empty($product_info)){
 			showMessage($lang['illegal_parameter']);
 		}
 
-		Tpl::output('class_array',$class_array);
+		Tpl::output('product_info',$product_info);
 		Tpl::showpage('product.edit');
 	}
 
@@ -126,12 +126,12 @@ class productControl extends SystemControl{
 	 */
 	public function product_delOp(){
 		$lang	= Language::getLangContent();
-		$model_class = Model('product');
-		if (intval($_GET['sc_id']) > 0){
-			$array = array(intval($_GET['sc_id']));
-			$result = $model_class->delProduct(array('sc_id'=>intval($_GET['sc_id'])));
+		$model_product = Model('product');
+		if (intval($_GET['product_id']) > 0){
+//			$array = array(intval($_GET['product_id']));
+			$result = $model_product->delProduct(array('product_id'=>intval($_GET['product_id'])));
 			if ($result) {
-			     $this->log(L('nc_del,product').'[ID:'.$_GET['sc_id'].']',1);
+			     $this->log('删除产品'.'[ID:'.$_GET['sc_id'].']',1);
 			     showMessage($lang['nc_common_del_succ'],getReferer());
 			}
 		}
@@ -142,38 +142,21 @@ class productControl extends SystemControl{
 	 * ajax操作
 	 */
 	public function ajaxOp(){
-	    $model_class = Model('product');
-	    $update_array = array();
+		$model_product = Model('product');
 		switch ($_GET['branch']){
 			//分类：验证是否有重复的名称
-			case 'product_name':
+			case 'check_product_name':
 			    $condition = array();
-				$condition['sc_name'] = $_GET['value'];
-				$condition['sc_id'] = array('sc_id'=>array('neq',intval($_GET['sc_id'])));
-				$class_list = $model_class->getProductList($condition);
-				if (empty($class_list)){
-					$update_array['sc_name'] = $_GET['value'];
-					$update = $model_class->editProduct($update_array,array('sc_id'=>intval($_GET['id'])));
-					$return = $update ? 'true' : 'false';
+				$condition['product_name'] = trim($_GET['product_name']);
+				$condition['product_id'] = array('neq',intval($_GET['product_id']));
+				$product_list = $model_product->getProductList($condition);
+				if (empty($product_list)){
+					echo 'true';exit;
 				} else {
-					$return = 'false';
+					echo 'false';exit;
 				}
 				break;
-			//分类： 排序 显示 设置
-			case 'product_sort':
-				$model_class = Model('product');
-				$update_array['sc_sort'] = intval($_GET['value']);
-				$result = $model_class->editProduct($update_array,array('sc_id'=>intval($_GET['id'])));
-				$return = $result ? 'true' : 'false';
-				break;
-			//分类：添加、修改操作中 检测类别名称是否有重复
-			case 'check_class_name':
-				$condition['sc_name'] = $_GET['sc_name'];
-				$condition['sc_id'] = array('sc_id'=>array('neq',intval($_GET['sc_id'])));
-				$class_list = $model_class->getProductList($condition);
-				$return = empty($class_list) ? 'true' : 'false';
-				break;
+
 		}
-		exit($return);
 	}
 }

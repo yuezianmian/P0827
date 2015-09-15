@@ -6,7 +6,7 @@
       <h3>产品管理</h3>
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_manage'];?></span></a></li>
-        <li><a href="index.php?act=store_class&op=store_class_add" ><span><?php echo $lang['nc_new'];?></span></a></li>
+        <li><a href="index.php?act=product&op=product_add" ><span><?php echo $lang['nc_new'];?></span></a></li>
       </ul>
     </div>
   </div>
@@ -33,8 +33,8 @@
         <tr class="thead">
           <th><input type="checkbox" class="checkall" id="checkall_1"></th>
           <th>产品名称</th>
-          <th>代理商获得积分值</th>
-          <th>店面获得积分值</th>
+          <th>代理商获得积分</th>
+          <th>店面获得积分</th>
           <th>创建时间</th>
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
@@ -83,5 +83,5 @@
     </table>
   </form>
 </div>
-<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script> 
+<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script>
 <!--<script type="text/javascript" src="--><?php //echo RESOURCE_SITE_URL;?><!--/js/jquery.store_class.js" charset="utf-8"></script> -->
