@@ -46,7 +46,7 @@ class productModel extends Model {
 	}
 
 	/**
-	 * 更新分类
+	 * 更新产品
 	 * @param unknown $data
 	 * @param unknown $condition
 	 */

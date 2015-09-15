@@ -159,4 +159,43 @@ class productControl extends SystemControl{
 
 		}
 	}
+
+	/**
+	 * 产品中心地址
+	 */
+	public function productcenterOp(){
+		$lang	= Language::getLangContent();
+
+		$model_config = Model('config');
+
+		if (chksubmit()){
+			//验证
+			$obj_validate = new Validate();
+			$obj_validate->validateparam = array(
+				array("input"=>$_POST["product_center_url"], "require"=>"true", "message"=>'产品中心地址不能为空'),
+			);
+			$error = $obj_validate->validate();
+			if ($error != ''){
+				showMessage($error);
+			}else {
+				$update_array = array();
+				$update_array['value'] = trim($_POST['product_center_url']);
+				$result = $model_config->editConfig($update_array,array('type'=>'product_center_url'));
+				if ($result){
+					$this->log('编辑产品中心地址'.'['.$_POST['product_center_url'].']',1);
+					showMessage($lang['nc_common_save_succ'],'index.php?act=product&op=productcenter');
+				}else {
+					showMessage($lang['nc_common_save_fail']);
+				}
+			}
+		}
+
+		$product_center_info = $model_config->getConfigInfo(array('type'=>'product_center_url'));
+		if (empty($product_center_info)){
+			showMessage($lang['illegal_parameter']);
+		}
+
+		Tpl::output('product_center_info',$product_center_info);
+		Tpl::showpage('product_center.edit');
+	}
 }

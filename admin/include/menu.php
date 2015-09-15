@@ -26,6 +26,7 @@ $arr = array(
 					array('args'=>'admin,admin,dashboard',			       'text'=>$lang['nc_limit_manage']),
 					array('args'=>'member,member,dashboard',				'text'=>'会员管理'),
 					array('args'=>'product,product,dashboard',				'text'=>'产品管理'),
+					array('args'=>'product,productcenter,dashboard',	    'text'=>'产品中心地址'),
 				)
 			),
 		),
