@@ -2,10 +2,6 @@
 /**
  * 菜单
  *
- * @copyright  Copyright (c) 2007-2013 ShopNC Inc. (http://www.shopnc.net)
- * @license    http://www.shopnc.net
- * @link       http://www.shopnc.net
- * @since      File available since Release v1.1
  */
 defined('InShopNC') or exit('Access Invalid!');
 /**
@@ -26,7 +22,7 @@ $arr = array(
 					array('args'=>'admin,admin,dashboard',			       'text'=>$lang['nc_limit_manage']),
 					array('args'=>'member,member,dashboard',				'text'=>'会员管理'),
 					array('args'=>'product,product,dashboard',				'text'=>'产品管理'),
-					array('args'=>'product,productcenter,dashboard',	    'text'=>'产品中心地址'),
+					array('args'=>'productcenter,product,dashboard',	    'text'=>'产品中心地址'),
 				)
 			),
 		),

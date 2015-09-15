@@ -20,7 +20,7 @@
             </tr>
             <tr class="noborder">
                 <td class="vatop rowform"><input type="text" value="<?php echo $output['product_center_info']['value'];?>" name="product_center_url" id="product_center_url" class="txt"></td>
-                <td class="vatop tips"></td>
+                <td class="vatop tips">格式:http://www.xx.com/index.php...</td>
             </tr>
             </tbody>
             <tfoot>

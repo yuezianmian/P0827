@@ -21,7 +21,7 @@ return说明：
 
 1.校验手机号：
 url: http://ip:port/app/index.php?act=login&op=check_mobile&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
-method: get
+method: post
 return：
    {"code":200,"msg":"该手机号不存在","data":{"isExist":"0"}}
 
@@ -29,7 +29,7 @@ return：
 
 2.校验代理商编号是否存在：
   url: http://ip:port/app/index.php?act=login&op=check_parentcode&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&parent_code=13421
-  method: get
+  method: post
   return：
      {"code":200,"msg":"存在该代理商","data":{"isExist":"1"}}
 
@@ -37,7 +37,7 @@ return：
 
 3.发送注册短信验证码
   url: http://ip:port/app/index.php?act=login&op=regist_sendcode&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
-  method: get
+  method: post
   return：
      {"code":200,"msg":"发送短信验证码成功","data":{},"token":"xxuI121232a1312xasIgby123cCpKH_J6TR21231asdbDFP7XesasdVEtf_o13212sqa2123x"}
 
@@ -63,19 +63,38 @@ params:
 	member_mobile 手机号
 	member_passwd 密码
 return：
-   {"code":200,"msg":"登录成功","data":{"member_id":1,"member_mobile":"18911112222","member_avatar":"/upload/img/user/11.jpg","member_points":10,"member_state":1,"member_type":2,"member_code":,"parent_code":"13131","create_time":1441618373},"token":"xxI2Wx3x07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88xxE9XqIRWDJ7EfuLAMTm"}
+   {"code":200,"msg":"登录成功","data":{"member_id":"3","member_name":null,"member_truename":null,"member_mobile":"18682255277","member_avatar":null,"member_sex":null,
+                                           "member_birthday":2015-09-15,"member_passwd":"96e79218965eb72c92a549dd5a330112","member_points":"10","member_state":"3","member_type":"2","member_code":null,"parent_code":"55555",
+                                           "create_time":"1440378734","shop_name":"","shop_img":"","area_name":"天津市和平区","area_id":55,"shop_address":"xx街道xx号","alipay_number":null,"bank_number":null,
+                                           "bank_username":null,"bank_name":null,"bank_branch":null},"token":"xxI2Wx3x07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88xxE9XqIRWDJ7EfuLAMTm"}
+   member_id:会员id
+   member_name:暂未使用
+   member_truename：姓名
+   member_mobile：手机号
    member_avatar:头像路径，可为空
+   member_sex：会员性别 0-保密 1-男 2-女
+   member_birthday：会员生日 格式：2015-09-15
    member_points:会员积分，不可为空
    member_state:会员状态，0为注册未提交店面资料 1为待审核 2为正常（审核通过） 3为失效（审核不通过），不可为空
    member_type:会员类型 1为代理商 2为店面，不可为空
    member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
    parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
    create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
-   ... (等等属性)
+   shop_name：店铺名称，会员类型为店面时才有值
+   shop_img：店铺图片，会员类型为店面时才有值
+   shop_address:店铺地址
+   area_name：所属区域名称，格式：天津市和平区
+   area_id：所属区域id，对应区一级的id
+   alipay_number：支付宝账号
+   bank_number：银行账号
+   bank_username:开户姓名
+   bank_username:银行名称
+   bank_branch：开户网点
+（备注：涉及到会员信息的字段均参照此说明）
 
 6.获取区域信息
 url: http://ip:port/app/index.php?act=area&op=all_area&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c
-method: get
+method: post
 return：
    {"code":200,"msg":"获取所有区域信息成功","data":{...}}
    data详细格式见《获取所有区域信息结果json格式.json》
@@ -92,3 +111,28 @@ params:
 	address    店铺地址 必填
 return：
    {"code":200,"msg":"提交成功","data":[],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+8.查询代理商下的店面信息
+url: http://ip:port/app/index.php?act=member&op=shoplist_byagent&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+params:(post)
+	member_state  会员状态 1：查询待审核的店面信息 2：查询已审核通过的店面信息 3：查询未审核通过的店面信息  ''(空字符串)：查询代理商下所有状态的店面信息
+return：
+   {"code":200,"msg":"获取当前代理的下属店面列表成功","data":[{"member_id":"3","member_name":null,"member_truename":null,"member_mobile":"18682255277","member_avatar":null,"member_sex":null,
+        "member_birthday":null,"member_passwd":"96e79218965eb72c92a549dd5a330112","member_points":"10","member_state":"3","member_type":"2","member_code":null,"parent_code":"55555",
+        "create_time":"1440378734","shop_name":"","shop_img":"","area_name":"天津市和平区","area_id":55,"shop_address":"xx街道xx号","alipay_number":null,"bank_number":null,
+        "bank_username":null,"bank_name":null,"bank_branch":null}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+9.审核会员
+url: http://ip:port/app/index.php?act=member&op=check&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+params:(post)
+	member_id  被审核会员id
+	type  'pass'：审核通过   'nopass':审核不通过
+return：
+   {"code":200,"msg":"审核成功",[],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+10.获取产品中心地址
+   url: http://ip:port/app/index.php?act=member&op=submit_shop&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   return：
+      {"code":200,"msg":"获取产品中心地址成功","data":{"product_center_url":"http:\/\/www.baidu.com"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+
