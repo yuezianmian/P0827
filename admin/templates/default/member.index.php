@@ -112,13 +112,15 @@
             <?php } ?>
           </td>
           <td class="align-center">
-              <?php if($v['member_type'] == MEMBER_TYPE_STORE && $v['member_state'] != MEMBER_STATE_NOPASS){ ?>
-                <a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>">指定代理商</a>
+              <a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>">查看</a>
+              <?php if($v['member_type'] == MEMBER_TYPE_STORE && $v['member_state'] != MEMBER_STATE_NOPASS && empty($v['parent_code'])){ ?>
+                  | <a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>">指定代理商</a>
               <?php } ?>
-              <?php if($v['member_state'] == MEMBER_STATE_NOCHECK){ ?>
-                | <a href="index.php?act=member&op=pass&member_id=<?php echo $v['member_id']; ?>">通过</a>
-                | <a href="index.php?act=member&op=nopass&member_id=<?php echo $v['member_id']; ?>">拒绝</a>
-              <?php } ?>
+
+<!--              --><?php //if($v['member_state'] == MEMBER_STATE_NOCHECK){ ?>
+<!--                | <a href="index.php?act=member&op=pass&member_id=--><?php //echo $v['member_id']; ?><!--">通过</a>-->
+<!--                | <a href="index.php?act=member&op=nopass&member_id=--><?php //echo $v['member_id']; ?><!--">拒绝</a>-->
+<!--              --><?php //} ?>
           </td>
         </tr>
         <?php } ?>
