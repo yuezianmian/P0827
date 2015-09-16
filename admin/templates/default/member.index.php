@@ -50,7 +50,7 @@
           <th colspan="2"><?php echo $lang['member_index_name']?></th>
 <!--          <th class="align-center"><span fieldname="logins" nc_type="order_by">--><?php //echo $lang['member_index_login_time']?><!--</span></th>-->
 <!--          <th class="align-center"><span fieldname="last_login" nc_type="order_by">--><?php //echo $lang['member_index_last_login']?><!--</span></th>-->
-          <th class="align-center">积分</th>
+          <th class="align-center">可用积分</th>
           <th class="align-center">会员类型</th>
           <th class="align-center">代理商编号</th>
           <th class="align-center">所属代理商</th>

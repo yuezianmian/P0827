@@ -39,11 +39,11 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="required"><label>积分:</label></td>
+            <td colspan="2" class="required"><label>可用积分:</label></td>
         </tr>
         <tr class="noborder">
             <td class="vatop rowform">
-                积分 <strong class="red"><?php echo $output['member_array']['member_points']; ?></strong>
+                可用积分 <strong class="red"><?php echo $output['member_array']['member_points']; ?></strong>
             </td>
         </tr>
         <tr>

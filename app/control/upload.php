@@ -1,10 +1,7 @@
 <?php
 /**
- * 登录
- *
- * 包括 登录 验证 退出 操作
- *
- **@copyright  Copyright (c) 2007-2013 ShopNC Inc.*/
+ * 上传图片
+ */
 
 defined('InShopNC') or exit('Access Invalid!');
 class uploadControl extends BaseMemberControl {
@@ -27,7 +24,7 @@ class uploadControl extends BaseMemberControl {
 	private function _upload($param){
 		$base64_image_content = $param["base64_image_content"];
 		if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)){
-    		$type = $result[2];
+			$type = $result[2];
 			$fileName = $this->member_info["member_id"]."-".microtime().".".$type;
 			$filePath = "/data/upload/img/".$param["path"].DS.$fileName;
 			$image_content = base64_decode(str_replace($result[1], '', $base64_image_content));
