@@ -16,6 +16,7 @@ class uploadControl extends BaseMemberControl {
 		if(empty($_POST["base64_image_content"])){
 			echoJson(FAILED, "上传的图片编码不能为空");
 		}
+
 		$param = array();
 		$param["path"] = empty($_POST['type']) ? 'default' : $_POST['type'];
 		$param["base64_image_content"] =  $_POST["base64_image_content"];
@@ -36,7 +37,7 @@ class uploadControl extends BaseMemberControl {
 				echoJson(FAILED, "上传图片失败");
 			}
 		}else{
-			echoJson(FAILED, "上传的图片编码不正确");
+			echoJson(FAILED, "上传的图片编码不正确！");
 		}
 	}
 }
