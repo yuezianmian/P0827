@@ -48,7 +48,7 @@ class PhpQRCode{
 	}
 	
 	public function __construct() {
-	    include "qrlib.php";
+	    require_once("qrlib.php");
 	}
 	
     public function init(){

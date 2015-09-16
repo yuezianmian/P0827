@@ -18,12 +18,12 @@ class productControl extends SystemControl{
 	 */
 	public function productOp(){
 		$lang	= Language::getLangContent();
-		$model_class = Model('product');
+		$model_product = Model('product');
 
 		//删除
 		if (chksubmit()){
 			if (!empty($_POST['check_product_id']) && is_array($_POST['check_product_id']) ){
-			    $result = $model_class->delProduct(array('product_id'=>array('in',$_POST['check_product_id'])));
+			    $result = $model_product->delProduct(array('product_id'=>array('in',$_POST['check_product_id'])));
 				if ($result) {
 			        $this->log('删除产品'.'[ID:'.implode(',',$_POST['check_product_id']).']',1);
 				    showMessage("删除成功");
@@ -32,9 +32,9 @@ class productControl extends SystemControl{
 		    showMessage($lang['nc_common_del_fail']);
 		}
 
-		$product_list = $model_class->getProductList(array(),20);
+		$product_list = $model_product->getProductList(array(),20);
 		Tpl::output('product_list',$product_list);
-		Tpl::output('page',$model_class->showpage());
+		Tpl::output('page',$model_product->showpage());
 		Tpl::showpage('product.index');
 	}
 

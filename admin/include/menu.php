@@ -19,10 +19,11 @@ $arr = array(
 				'nav' => 'dashboard',
 				'text' => $lang['nc_console'],
 				'list' => array(
-					array('args'=>'admin,admin,dashboard',			       'text'=>$lang['nc_limit_manage']),
+					array('args'=>'admin,admin,dashboard',			       'text'=>'管理员设置'),
 					array('args'=>'member,member,dashboard',				'text'=>'会员管理'),
 					array('args'=>'product,product,dashboard',				'text'=>'产品管理'),
 					array('args'=>'productcenter,product,dashboard',	    'text'=>'产品中心地址'),
+					array('args'=>'generate_code,generate_code,dashboard',	    'text'=>'生成二维码'),
 				)
 			),
 		),

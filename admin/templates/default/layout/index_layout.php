@@ -251,20 +251,6 @@ function addFavorite(url, title) {
           <div class="loca"><strong><?php echo $lang['nc_loca'];?>:</strong>
             <div id="crumbs" class="crumbs"><span><?php echo $lang['nc_console'];?></span><span class="arrow">&nbsp;</span><span><?php echo $lang['nc_welcome_page'];?></span> </div>
           </div>
-          <div class="toolbar">
-            <ul id="skin" class="skin"><span><?php echo $lang['nc_skin_peeler'];?></span>
-              <li id="skin_0" class="" title="<?php echo $lang['nc_default_style'];?>"></li>
-              <li id="skin_1" class="" title="<?php echo $lang['nc_mac_style'];?>"></li>
-            </ul>
-            <div class="sitemap"><a id="siteMapBtn" href="#rhis" onclick="showBg('dialog','dialog_content');"><span><?php echo $lang['nc_sitemap'];?></span></a></div>
-            <div class="toolmenu"><span class="bar-btn"></span>
-              <ul class="bar-list">
-                <li><a onclick="openItem('clear,cache,setting');" href="javascript:void(0)"><?php echo $lang['nc_update_cache'];?></a></li>
-                <li><a href="<?php echo ADMIN_SITE_URL;?>" id="iframe_refresh"><?php echo $lang['nc_refresh'];?><?php echo $lang['nc_admincp']; ?></a></li>
-                <li><a href="<?php echo ADMIN_SITE_URL;?>" title="<?php echo $lang['nc_admincp']; ?>-<?php echo $output['html_title'];?>" rel="sidebar" onclick="addFavorite('<?php echo ADMIN_SITE_URL;?>', '<?php echo $lang['nc_admincp']; ?>-<?php echo $output['html_title'];?>');return false;"><?php echo $lang['nc_favorite']; ?><?php echo $lang['nc_admincp']; ?></a></li>
-              </ul>
-            </div>
-          </div>
         </div>
         <div > </div></td>
     </tr>
