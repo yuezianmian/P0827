@@ -43,10 +43,10 @@ class pointsModel {
 				$insertarr['pl_points'] = intval(C('points_login'));
 				break;
 			case 'scan_qrcode': //店面扫描商品增加店面积分
-				$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points']."积分";
+					$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points'];
 				break;
 			case 'shop_scan_qrcode': //店面扫描商品增加店面所属代理商积分
-				$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，扫描店面:".$insertarr['shop_name']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points']."积分";
+				$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，扫描店面:".$insertarr['shop_name']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points'];
 				break;
 			case 'pointorder':
 				if (!$insertarr['pl_desc']){
@@ -98,7 +98,7 @@ class pointsModel {
 			}
 			$obj_member->editMember(array('member_id'=>$insertarr['pl_memberid']),$upmember_array);
 			$obj_message = Model('message');
-			$message_content = $message_content ? $message_content :"你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，积分变化 ：".$insertarr['pl_points']."积分";
+			$message_content = $message_content ? $message_content :"你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，积分变化 ：".$insertarr['pl_points'];
 			$obj_message->saveMessage(array('to_member_id'=>$insertarr['pl_memberid'],'message_content'=>$message_content,'message_state'=>1));
 			return true;
 		}else {

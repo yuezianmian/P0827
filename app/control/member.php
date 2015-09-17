@@ -110,8 +110,7 @@ class memberControl extends BaseMemberControl {
 		$return_data['points_log_list'] = $points_log_list;
 		$return_data['total_page'] = $total_page;
 		$return_data['amount'] = $amount;
-		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $return_data, $this->token);
+		echoJson(SUCCESS, '获取货源的积分记录列表成功', $return_data, $this->token);
 	}
-
 
 }

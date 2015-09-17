@@ -18,27 +18,11 @@ class messageModel {
 		$param['table']		= 'message';
 		$param['where']		= $condition_str;
 		$param['order']		= 'message.message_id DESC';
+		$param['limit']     = $condition['limit'];
 		$message_list		= Db::select($param,$page);
 		return $message_list;
 	}
-	/**
-	 * 卖家站内信列表
-	 * @param	array $param	条件数组
-	 * @param	object $page	分页对象调用
-	 */
-	public function listAndStoreMessage($condition,$page='') {
-		//得到条件语句
-		$condition_str = $this->getCondition($condition);
-		$param	= array();
-		$param['table']	= 'message,store';
-		$param['field'] = 'message.*,store.store_name,store.store_id';
-		$param['where']	= $condition_str;
-		$param['join_type'] = 'left join';
-		$param['join_on'] = array('message.from_member_id = store.member_id');
-		$param['order']	= 'message.message_id DESC';
-		$message_list	= Db::select($param,$page);
-		return $message_list;
-	}
+
 	/**
 	 * 站内信总数
 	 */
@@ -49,7 +33,7 @@ class messageModel {
 		$param['table']		= 'message';
 		$param['where']		= $condition_str;
 		$param['field']		= ' count(message_id) as countnum ';
-		$message_list		= Db::select($param,$page);
+		$message_list		= Db::select($param);
 		return $message_list[0]['countnum'];
 	}
 	/**
@@ -58,10 +42,7 @@ class messageModel {
 	public function countNewMessage($member_id){
 		$condition_arr = array();
 		$condition_arr['to_member_id'] = "$member_id";
-		$condition_arr['no_message_state'] = '2';
-		$condition_arr['message_open_common'] = '0';
-		$condition_arr['no_del_member_id'] = "$member_id";
-		$condition_arr['no_read_member_id'] = "$member_id";
+		$condition_arr['message_state'] = '1';
 		$countnum = $this->countMessage($condition_arr);
 		return $countnum;
 	}
@@ -201,56 +182,17 @@ class messageModel {
 		if($condition_array['message_id'] != ''){
 			$condition_sql	.= " and message.message_id = '{$condition_array['message_id']}'";
 		}
-		//父站内信
-		if($condition_array['message_parent_id'] != ''){
-			$condition_sql	.= " and message.message_parent_id = '{$condition_array['message_parent_id']}'";
-		}
-		//站内信类型
-		if($condition_array['message_type'] != ''){
-			$condition_sql	.= " and message.message_type = '{$condition_array['message_type']}'";
-		}
-		//站内信类型
-		if($condition_array['message_type_in'] != ''){
-			$condition_sql	.= " and message.message_type in (".$condition_array['message_type_in'].")";
-		}
-		//站内信不显示的状态
-		if($condition_array['no_message_state'] != ''){
-			$condition_sql	.= " and message.message_state != '{$condition_array['no_message_state']}'";
-		}
 		//是否已读
-		if($condition_array['message_open_common'] != ''){
-			$condition_sql	.= " and message.message_open = '{$condition_array['message_open_common']}'";
+		if($condition_array['message_state'] != ''){
+			$condition_sql	.= " and message.message_state = '{$condition_array['message_state']}'";
 		}
 		//普通信件接收到的会员查询条件为
-		if($condition_array['to_member_id_common'] != ''){
-			$condition_sql	.= " and message.to_member_id='{$condition_array['to_member_id_common']}' ";
-		}
-		//接收到的会员查询条件为如果message_ismore为1时则to_member_id like'%memberid%',如果message_ismore为0时则to_member_id = memberid
 		if($condition_array['to_member_id'] != ''){
-			$condition_sql	.= " and (message.to_member_id ='all' or (message.message_ismore=0 and message.to_member_id='{$condition_array['to_member_id']}') or (message.message_ismore=1 and message.to_member_id like '%,{$condition_array['to_member_id']},%'))";
+			$condition_sql	.= " and message.to_member_id='{$condition_array['to_member_id']}' ";
 		}
 		//发信人
 		if($condition_array['from_member_id'] != '') {
 			$condition_sql	.= " and message.from_member_id='{$condition_array['from_member_id']}' ";
-		}
-		if($condition_array['from_to_member_id'] != '') {
-			$condition_sql	.= " and (message.from_member_id='{$condition_array['from_to_member_id']}' or message.to_member_id='{$condition_array['from_to_member_id']}')";
-		}
-		//未删除
-		if($condition_array['no_del_member_id'] != ''){
-			$condition_sql	.= " and message.del_member_id not like '%,{$condition_array['no_del_member_id']},%' ";
-		}
-		//未读
-		if($condition_array['no_read_member_id'] != ''){
-			$condition_sql	.= " and message.read_member_id not like '%,{$condition_array['no_read_member_id']},%' ";
-		}
-		//站内信编号in
-		if(isset($condition_array['message_id_in'])) {
-			if ($condition_array['message_id_in'] == ''){
-				$condition_sql .=" and message_id in('')";
-			}else {
-				$condition_sql .=" and message_id in({$condition_array['message_id_in']})";
-			}
 		}
 		return $condition_sql;
 	}
