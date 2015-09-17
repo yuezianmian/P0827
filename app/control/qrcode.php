@@ -36,13 +36,19 @@ class qrcodeControl extends BaseMemberControl {
 		$insert_array['member_id']= $this->member_info['member_id'];
 		$insert_array['create_time'] 	= TIMESTAMP;
 
-		$result = $model_qrcode_record->addMember($insert_array);
+		$result = $model_qrcode_record->addQrcodeRecord($insert_array);
 		if(!$result){
 			echoJson(FAILED, "保存二维码扫描记录失败");
 		}
 		//添加积分记录
-
-		echoJson(SUCCESS, "扫描成功，获取".$product_info['agent_points']."积分", array('points'=>$product_info['agent_points']), $this->token);
+		$points_model = Model('points');
+		$points_model->savePointsLog('other',array('pl_memberid'=>$this->member_info['member_id'],'pl_membermobile'=>$this->member_info['member_mobile'],'pl_points'=>$product_info['shop_points'],'pl_desc'=>('扫描产品')),true);
+		if(!empty($this->member_info['parent_code'])){ //存在所属代理商
+			$model_member = Model('member');
+			$parent_member_info = $model_member->getMemberInfo(array('member_code'=>$this->member_info['parent_code']));
+			$points_model->savePointsLog('other',array('pl_memberid'=>$parent_member_info['member_id'],'pl_membermobile'=>$parent_member_info['member_mobile'],'pl_points'=>$product_info['agent_points'],'pl_desc'=>('店面扫描产品')),true);
+		}
+		echoJson(SUCCESS, "扫描成功，获取".$product_info['shop_points']."积分", array('points'=>$product_info['shop_points'],'product_name'=>$product_info['product_name']), $this->token);
 	}
 
 

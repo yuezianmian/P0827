@@ -143,3 +143,15 @@ return：
  	type  'user'：用户图像上传   'shop':店面图片上传 'feedback':反馈图片上传
  return：
    {"code":200,"msg":"上传成功，路径为/data/upload/img/user/11-1342342342234.jpg","data":{"path":"/data/upload/img/user/11-1342342342234.jpg"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+12.扫描二维码
+ url: http://ip:port/app/index.php?act=qrcode&op=scan&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+ params:(post)
+ 	qrcode  二维码内容，即扫描出的二维码的值
+ return：
+   {"code":200,"msg":"扫描成功，获取10积分","data":{"points":10,"product_name":"产品名称1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+   points：获得积分
+   product_name：扫描的产品名称
+   code：10  -当前会员类型非服务店面会员，不可扫描
+   code：11  -该产品不存在
+   code：12  -该二维码已被扫描，不可重复扫描

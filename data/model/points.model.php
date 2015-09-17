@@ -30,17 +30,21 @@ class pointsModel {
 				}
 				$insertarr['pl_points'] = intval(C('points_reg'));
 				break;
+			case 'recomm_regist':
+				if (!$insertarr['pl_desc']){
+					$insertarr['pl_desc'] = '推荐会员';
+				}
+				$insertarr['pl_points'] = intval(C('points_reg'));
+				break;
 			case 'login':
 				if (!$insertarr['pl_desc']){
 					$insertarr['pl_desc'] = '会员登录';
 				}
 				$insertarr['pl_points'] = intval(C('points_login'));
 				break;
-			case 'comments':
-				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = '评论商品';
-				}
-				$insertarr['pl_points'] = intval(C('points_comments'));
+			case 'scan_qrcode': //店面扫描商品增加店面积分
+				break;
+			case 'shop_scan_qrcode': //店面扫描商品增加店面所属代理商积分
 				break;
 			case 'order':
 				if (!$insertarr['pl_desc']){
@@ -59,16 +63,9 @@ class pointsModel {
 				$data['order_pointscount'] = array('exp','order_pointscount+'.$insertarr['pl_points']);
 				$obj_order->editOrderCommon($data,array('order_id'=>$insertarr['order_id']));
 				break;
-			case 'system':
-				break;
 			case 'pointorder':
 				if (!$insertarr['pl_desc']){
 					$insertarr['pl_desc'] = '兑换礼品信息'.$insertarr['point_ordersn'].'消耗积分';
-				}
-				break;
-            case 'app':
-				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = Language::get('points_pointorderdesc_app');
 				}
 				break;
 			case 'other':
@@ -90,7 +87,7 @@ class pointsModel {
 		//新增日志
 		$value_array = array();
 		$value_array['pl_memberid'] = $insertarr['pl_memberid'];
-		$value_array['pl_membername'] = $insertarr['pl_membername'];
+		$value_array['pl_membermobile'] = $insertarr['pl_membermobile'];
 		if ($insertarr['pl_adminid']){
 			$value_array['pl_adminid'] = $insertarr['pl_adminid'];
 		}
@@ -110,6 +107,9 @@ class pointsModel {
 			$obj_member = Model('member');
 			$upmember_array = array();
 			$upmember_array['member_points'] = array('exp','member_points+'.$insertarr['pl_points']);
+			if($insertarr['pl_points'] > 0){
+				$upmember_array['total_points'] = array('exp','total_points+'.$insertarr['pl_points']);
+			}
 			$obj_member->editMember(array('member_id'=>$insertarr['pl_memberid']),$upmember_array);
 			return true;
 		}else {
