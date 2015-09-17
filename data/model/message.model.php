@@ -89,18 +89,11 @@ class messageModel {
 			return false;
 		}
 		$array	= array();
-		$array['message_parent_id'] = $param['message_parent_id']?$param['message_parent_id']:'0';
 		$array['from_member_id']	= $param['from_member_id'] ? $param['from_member_id'] : '0' ;
-		$array['from_member_name']	= $param['from_member_name'] ? $param['from_member_name'] : '' ;
 		$array['to_member_id']	    = $param['member_id'];
-		$array['to_member_name']	= $param['to_member_name']?$param['to_member_name']:'';
-		$array['message_body']		= trim($param['msg_content']);
-		$array['message_time']		= time();
-		$array['message_update_time']= time();
-		$array['message_type']		= $param['message_type']?$param['message_type']:'0';
-		$array['message_ismore']	= $param['message_ismore']?$param['message_ismore']:'0';
-		$array['read_member_id']	= $param['read_member_id']?$param['read_member_id']:'';
-		$array['del_member_id']	= $param['del_member_id']?$param['del_member_id']:'';
+		$array['message_content']	= $param['message_content'];
+		$array['message_state']	= $param['message_state'];
+		$array['create_time']		= time();
 		return Db::insert('message',$array);
 	}
 	/**

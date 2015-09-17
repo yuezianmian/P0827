@@ -43,30 +43,16 @@ class pointsModel {
 				$insertarr['pl_points'] = intval(C('points_login'));
 				break;
 			case 'scan_qrcode': //店面扫描商品增加店面积分
+				$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points']."积分";
 				break;
 			case 'shop_scan_qrcode': //店面扫描商品增加店面所属代理商积分
-				break;
-			case 'order':
-				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = '订单'.$insertarr['order_sn'].'购物消费';
-				}
-				$insertarr['pl_points'] = 0;
-				if ($insertarr['orderprice']){
-					$insertarr['pl_points'] = @intval($insertarr['orderprice']/C('points_orderrate'));
-					if ($insertarr['pl_points'] > intval(C('points_ordermax'))){
-						$insertarr['pl_points'] = intval(C('points_ordermax'));
-					}
-				}
-				//订单添加赠送积分列
-				$obj_order = Model('order');
-				$data = array();
-				$data['order_pointscount'] = array('exp','order_pointscount+'.$insertarr['pl_points']);
-				$obj_order->editOrderCommon($data,array('order_id'=>$insertarr['order_id']));
+				$message_content = "你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，扫描店面:".$insertarr['shop_name']."，产品名称: ".$insertarr['product_name']."，积分变化 ：".$insertarr['pl_points']."积分";
 				break;
 			case 'pointorder':
 				if (!$insertarr['pl_desc']){
 					$insertarr['pl_desc'] = '兑换礼品信息'.$insertarr['point_ordersn'].'消耗积分';
 				}
+
 				break;
 			case 'other':
 				break;
@@ -76,7 +62,7 @@ class pointsModel {
 			//检测是否有相关信息存在，如果没有，入库
 			$condition['pl_memberid'] = $insertarr['pl_memberid'];
 			$condition['pl_stage'] = $stage;
-			$log_array = self::getPointsInfo($condition,$page);
+			$log_array = self::getPointsInfo($condition);
 			if (!empty($log_array)){
 				$save_sign = false;
 			}
@@ -111,6 +97,9 @@ class pointsModel {
 				$upmember_array['total_points'] = array('exp','total_points+'.$insertarr['pl_points']);
 			}
 			$obj_member->editMember(array('member_id'=>$insertarr['pl_memberid']),$upmember_array);
+			$obj_message = Model('message');
+			$message_content = $message_content ? $message_content :"你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，积分变化 ：".$insertarr['pl_points']."积分";
+			$obj_message->saveMessage(array('to_member_id'=>$insertarr['pl_memberid'],'message_content'=>$message_content,'message_state'=>1));
 			return true;
 		}else {
 			return false;

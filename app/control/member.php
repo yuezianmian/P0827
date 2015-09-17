@@ -88,6 +88,21 @@ class memberControl extends BaseMemberControl {
 		}
 	}
 
+	public function point_logOp(){
+		$member_id = $this->member_info['member_id'];
+		$member_state = $_POST["member_state"];
+		if(empty($member_code)){
+			echoJson(FAILED, "当前会员不是代理商", '');
+		}
+		$model_member = Model('member');
+		$condition = array();
+		$condition['parent_code'] = $member_code;
+		if(!is_null($member_state) && $member_state != ''){
+			$condition['member_state'] = $member_state;
+		}
+		$member_array = $model_member->getMemberList($condition);
+		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $member_array, $this->token);
+	}
 
 
 }
