@@ -155,3 +155,22 @@ return：
    code：10  -当前会员类型非服务店面会员，不可扫描
    code：11  -该产品不存在
    code：12  -该二维码已被扫描，不可重复扫描
+
+13.获取当前会员的积分列表
+ url: http://ip:port/app/index.php?act=member&op=point_log&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+ params:(post)
+ 	page_size 每页显示积分记录个数
+ 	page_index 第几页，从1开始
+ return：
+  {"code":200,"msg":"获取当前代理的下属店面列表成功","data":{"member_points":"10","total_points":"10","points_log_list":[{"pl_id":"2","pl_memberid":"1","pl_membermobile":"18682255279","pl_adminid":null,"pl_adminname":null,"pl_points":"10","pl_addtime":"1440388734","pl_desc":"店面扫描产品","pl_stage":"shop_scan_qrcode"}],"total_page":1,"amount":"1"}}
+  member_points:可用积分
+  total_points：总积分
+  消耗积分=总积分-可用积分
+  points_log_list：积分日志列表，其中
+    pl_id：积分日志id
+    pl_memberid:当前会员id
+    pl_points:积分值
+    pl_desc：获取积分途径
+    pl_addtime：积分记录创建时间，（单位秒，从1970年1月1日算起）
+  total_page:积分日志总页数
+  amount:积分日志总记录数

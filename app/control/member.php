@@ -90,18 +90,27 @@ class memberControl extends BaseMemberControl {
 
 	public function point_logOp(){
 		$member_id = $this->member_info['member_id'];
-		$member_state = $_POST["member_state"];
-		if(empty($member_code)){
-			echoJson(FAILED, "当前会员不是代理商", '');
-		}
-		$model_member = Model('member');
-		$condition = array();
-		$condition['parent_code'] = $member_code;
-		if(!is_null($member_state) && $member_state != ''){
-			$condition['member_state'] = $member_state;
-		}
-		$member_array = $model_member->getMemberList($condition);
-		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $member_array, $this->token);
+		$page_size = $_POST['page_size'] ? $_POST['page_size'] : 10;
+		$page_index = $_POST['page_index'] ? $_POST['page_index'] : 1;
+		$start = $page_size * ($page_index - 1);
+		$model_points = Model('points');
+		$condition	= array();
+		$condition['limit'] = $start.','.$page_size;
+		$condition['pl_memberid'] = $member_id;
+		$points_log_list = $model_points->getPointsLogList($condition);
+		//获取总数
+		$condition	= array();
+		$condition['pl_memberid'] = $member_id;
+		$points_log_amount = $model_points->getPointsLogList($condition,'','count(1) as amount');
+		$amount = $points_log_amount[0]['amount'];
+		$total_page = ($amount%$page_size==0)?intval($amount/$page_size):(intval($amount/$page_size)+1);
+		$return_data = array();
+		$return_data['member_points'] = $this->member_info['member_points'];
+		$return_data['total_points'] = $this->member_info['total_points'];
+		$return_data['points_log_list'] = $points_log_list;
+		$return_data['total_page'] = $total_page;
+		$return_data['amount'] = $amount;
+		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $return_data, $this->token);
 	}
 
 
