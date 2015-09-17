@@ -88,7 +88,7 @@ class memberControl extends BaseMemberControl {
 		}
 	}
 
-	public function point_logOp(){
+	public function point_log_listOp(){
 		$member_id = $this->member_info['member_id'];
 		$page_size = $_POST['page_size'] ? $_POST['page_size'] : 10;
 		$page_index = $_POST['page_index'] ? $_POST['page_index'] : 1;

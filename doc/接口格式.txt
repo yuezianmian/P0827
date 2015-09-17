@@ -157,7 +157,7 @@ return：
    code：12  -该二维码已被扫描，不可重复扫描
 
 13.获取当前会员的积分列表
- url: http://ip:port/app/index.php?act=member&op=point_log&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+ url: http://ip:port/app/index.php?act=member&op=point_log_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
  params:(post)
  	page_size 每页显示积分记录个数
  	page_index 第几页，从1开始
@@ -176,16 +176,36 @@ return：
   amount:积分日志总记录数
 
 14.获取当前会员的消息列表
-    url: http://ip:port/app/index.php?act=message&op=message_log&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+    url: http://ip:port/app/index.php?act=message&op=message_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
     params:(post)
     	page_size 每页显示积分记录个数
     	page_index 第几页，从1开始
-    	message_state 1-查询未读消息 2-查询已读 空-查询所有
+    	message_state 1 - 查询未读消息 2 - 查询已读   空字符串- 查询所有
     return：
-     {"code":200,"msg":"获取货源的消息列表成功","data":{"message_list":[{"message_id":"1","to_member_id":"1","from_mmeber_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"1","create_time":"1440388734"}],"total_page":1,"amount":"1"}}
+     {"code":200,"msg":"获取会员的消息列表成功","data":{"message_list":[{"message_id":"1","to_member_id":"1","from_mmeber_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"1","create_time":"1440388734"}],"total_page":1,"amount":"1"}}
 
-     from_mmeber_id：消息发送会员id,0为系统发送
+     from_member_id：消息发送会员id,0为系统发送
      message_content：消息内容
+     message_state: 1-未读  2-已读
      create_time：创建时间，（单位秒，从1970年1月1日算起）
      total_page:总页数
      amount:符合条件的总记录数
+
+15.获取消息的详细信息
+       url: http://ip:port/app/index.php?act=message&op=message_detail&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+       params:(post)
+       	message_id 消息id
+       return：
+        {"code":200,"msg":"获取消息详情成功","data":{"message_id":"1","to_member_id":"1","from_member_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"2","create_time":"1440388734"}}
+
+        from_member_id：消息发送会员id,0为系统发送
+        message_content：消息内容
+        message_state: 1-未读  2-已读
+        create_time：创建时间，（单位秒，从1970年1月1日算起）
+
+16.删除消息
+url: http://ip:port/app/index.php?act=message&op=delete_message&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+       params:(post)
+       	message_id 消息id
+       return：
+        {"code":200,"msg":"删除成功","data":[]}

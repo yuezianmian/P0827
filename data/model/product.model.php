@@ -29,7 +29,7 @@ class productModel extends Model {
 	}
 
 	/**
-	 * 删除类别
+	 * 删除产品
 	 * @param unknown $condition
 	 */
 	public function delProduct($condition = array()) {
@@ -37,7 +37,7 @@ class productModel extends Model {
 	}
 
 	/**
-	 * 增加店铺分类
+	 * 增加产品
 	 * @param unknown $data
 	 * @return boolean
 	 */
