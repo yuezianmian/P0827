@@ -52,7 +52,16 @@ class pointsModel {
 				if (!$insertarr['pl_desc']){
 					$insertarr['pl_desc'] = '兑换礼品信息'.$insertarr['point_ordersn'].'消耗积分';
 				}
-
+				break;
+			case 'extract_cash':
+				if (!$insertarr['pl_desc']){
+					$insertarr['pl_desc'] = '提现';
+				}
+				break;
+			case 'sign':
+				if (!$insertarr['pl_desc']){
+					$insertarr['pl_desc'] = '签到';
+				}
 				break;
 			case 'other':
 				break;
@@ -98,7 +107,7 @@ class pointsModel {
 			}
 			$obj_member->editMember(array('member_id'=>$insertarr['pl_memberid']),$upmember_array);
 			$obj_message = Model('message');
-			$message_content = $message_content ? $message_content :"你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，积分变化 ：".$insertarr['pl_points'];
+			$message_content = $message_content ? $message_content : ("你的积分于". date('Y-m-d H:i:s')." 有变化，描述：".$insertarr['pl_desc']."，积分变化 ：".$insertarr['pl_points']);
 			$obj_message->saveMessage(array('to_member_id'=>$insertarr['pl_memberid'],'message_content'=>$message_content,'message_state'=>1));
 			return true;
 		}else {

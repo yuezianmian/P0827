@@ -86,12 +86,12 @@ class messageModel extends Model{
 	 * @param	array $param	条件数组
 	 */
 	public function saveMessage($param) {
-		if($param['member_id'] == '') {
+		if($param['to_member_id'] == '') {
 			return false;
 		}
 		$array	= array();
 		$array['from_member_id']	= $param['from_member_id'] ? $param['from_member_id'] : '0' ;
-		$array['to_member_id']	    = $param['member_id'];
+		$array['to_member_id']	    = $param['to_member_id'];
 		$array['message_content']	= $param['message_content'];
 		$array['message_state']	= $param['message_state'];
 		$array['create_time']		= time();

@@ -162,7 +162,7 @@ return：
  	page_size 每页显示积分记录个数
  	page_index 第几页，从1开始
  return：
-  {"code":200,"msg":"获取当前代理的下属店面列表成功","data":{"member_points":"10","total_points":"10","points_log_list":[{"pl_id":"2","pl_memberid":"1","pl_membermobile":"18682255279","pl_adminid":null,"pl_adminname":null,"pl_points":"10","pl_addtime":"1440388734","pl_desc":"店面扫描产品","pl_stage":"shop_scan_qrcode"}],"total_page":1,"amount":"1"}}
+  {"code":200,"msg":"获取当前代理的下属店面列表成功","data":{"member_points":"10","total_points":"10","points_log_list":[{"pl_id":"2","pl_memberid":"1","pl_membermobile":"18682255279","pl_adminid":null,"pl_adminname":null,"pl_points":"10","pl_addtime":"1440388734","pl_desc":"店面扫描产品","pl_stage":"shop_scan_qrcode"}],"total_page":1,"amount":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
   member_points:可用积分
   total_points：总积分
   消耗积分=总积分-可用积分
@@ -182,7 +182,7 @@ return：
     	page_index 第几页，从1开始
     	message_state 1 - 查询未读消息 2 - 查询已读   空字符串- 查询所有
     return：
-     {"code":200,"msg":"获取会员的消息列表成功","data":{"message_list":[{"message_id":"1","to_member_id":"1","from_mmeber_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"1","create_time":"1440388734"}],"total_page":1,"amount":"1"}}
+     {"code":200,"msg":"获取会员的消息列表成功","data":{"message_list":[{"message_id":"1","to_member_id":"1","from_mmeber_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"1","create_time":"1440388734"}],"total_page":1,"amount":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
      from_member_id：消息发送会员id,0为系统发送
      message_content：消息内容
@@ -192,11 +192,11 @@ return：
      amount:符合条件的总记录数
 
 15.获取消息的详细信息
-       url: http://ip:port/app/index.php?act=message&op=message_detail&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
-       params:(post)
+   url: http://ip:port/app/index.php?act=message&op=message_detail&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
        	message_id 消息id
-       return：
-        {"code":200,"msg":"获取消息详情成功","data":{"message_id":"1","to_member_id":"1","from_member_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"2","create_time":"1440388734"}}
+   return：
+        {"code":200,"msg":"获取消息详情成功","data":{"message_id":"1","to_member_id":"1","from_member_id":"0","message_content":"你的积分于 2015-09-17 15:00:00 有变化，描述：店面扫描产品，扫描店面:店面1，产品名称:产品1，积分变化 ：10\r\n","message_state":"2","create_time":"1440388734"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
         from_member_id：消息发送会员id,0为系统发送
         message_content：消息内容
@@ -205,7 +205,23 @@ return：
 
 16.删除消息
 url: http://ip:port/app/index.php?act=message&op=delete_message&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
-       params:(post)
+   params:(post)
        	message_id 消息id
-       return：
-        {"code":200,"msg":"删除成功","data":[]}
+   return：
+        {"code":200,"msg":"删除成功","data":[],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+17.申请提现
+url: http://ip:port/app/index.php?act=extract_cash&op=apply_cash&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+       	cash_points  提现积分
+   return：
+        {"code":200,"msg":"提现申请成功","data":{"cash_id":2},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+18.查询会员的提现列表
+url: http://ip:port/app/index.php?act=extract_cash&op=cash_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+       page_size 每页显示积分记录个数
+        page_index 第几页，从1开始
+        cash_state 1 - 申请中 2 - 已提现   空字符串- 查询所有
+   return：
+        {"code":200,"msg":"获取会员的提现列表成功","data":{"extract_cash_list":[{"cash_id":"3","member_id":"1","member_mobile":"18682255279","cash_points":"200","cash_state":"1","create_time":"1442485094","update_time":"0"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
