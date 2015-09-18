@@ -240,3 +240,11 @@ url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign
 
         code：10  -今日已签到，一天只能签到一次
         sign_points 签到获得的积分
+
+11.查询会员的签到记录
+    url: http://ip:port/app/index.php?act=sign&op=sign_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+        month 查询的月份,格式201509(YYYYMM)
+   return：
+        {"code":200,"msg":"获取会员的签到列表成功","data":[{"sign_id":"4","member_id":"1","member_mobile":"18682255279","sign_time":"1442571050"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+        sign_time 签到时间，（单位秒，从1970年1月1日算起）

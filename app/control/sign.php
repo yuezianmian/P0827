@@ -12,7 +12,7 @@ class signControl extends BaseMemberControl {
 
 	public function sign_listOp(){
 		$member_id = $this->member_info['member_id'];
-		$month = $_GET['month'];
+		$month = $_POST['month'];
 		if(empty($month)){
 			echoJson(FAILED, "查询签到记录的月份参数不合法");
 		}
@@ -31,7 +31,7 @@ class signControl extends BaseMemberControl {
 		$condition["day"]	= date('Y-m-d', time());
 		$condition['member_id'] = $member_id;
 		$sign_info = $model_sign->getSignInfo($condition);
-		if(!empty($sign_info)){
+		if(empty($sign_info)){
 			echoJson(10, '今日已签到，一天只能签到一次');
 		}
 		$insert_array = array();
