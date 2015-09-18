@@ -17,7 +17,7 @@ class productModel extends Model {
 	 * @param string $order
 	 */
 	public function getProductList($condition = array(),$field = '*', $pagesize = '', $limit = '', $order = 'product_id asc') {
-		return $this->field($field)->where($condition)->order($order)->page($pagesize)->limit($limit)->select();
+		return $this->field($field)->where($condition)->page($pagesize)->order($order)->limit($limit)->select();
 	}
 
 	/**

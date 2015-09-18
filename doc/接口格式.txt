@@ -191,7 +191,7 @@ return：
      total_page:总页数
      amount:符合条件的总记录数
 
-15.获取消息的详细信息
+15.查看消息的详细信息
    url: http://ip:port/app/index.php?act=message&op=message_detail&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
    params:(post)
        	message_id 消息id
@@ -217,11 +217,26 @@ url: http://ip:port/app/index.php?act=extract_cash&op=apply_cash&timestamp=14416
    return：
         {"code":200,"msg":"提现申请成功","data":{"cash_id":2},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
+        code：10  -提现的积分不能小于200
+        code：11  -提现的积分大于会员可用积分
+
 18.查询会员的提现列表
 url: http://ip:port/app/index.php?act=extract_cash&op=cash_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
    params:(post)
        page_size 每页显示积分记录个数
         page_index 第几页，从1开始
-        cash_state 1 - 申请中 2 - 已提现   空字符串- 查询所有
+        cash_state 1 - 申请中   2 - 已提现   空字符串- 查询所有
    return：
-        {"code":200,"msg":"获取会员的提现列表成功","data":{"extract_cash_list":[{"cash_id":"3","member_id":"1","member_mobile":"18682255279","cash_points":"200","cash_state":"1","create_time":"1442485094","update_time":"0"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+        {"code":200,"msg":"获取会员的提现列表成功","data":{"extract_cash_list":[{"cash_id":"3","member_id":"1","member_mobile":"18682255279","cash_points":"200","cash_state":"1","create_time":"1442485094","update_time":""}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+        cash_points  提现积分
+
+19.会员签到
+url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+
+   return：
+        {"code":200,"msg":"签到成功，获得2积分","data":{"sign_points":2},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+
+        code：10  -今日已签到，一天只能签到一次
+        sign_points 签到获得的积分

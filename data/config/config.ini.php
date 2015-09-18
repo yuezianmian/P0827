@@ -54,4 +54,9 @@ $config['queue']['open'] = false;
 $config['queue']['host'] = '127.0.0.1';
 $config['queue']['port'] = 6379;
 $config['cache_open'] = false;
+
+//签到赠送积分
+$config['points']['sign'] = 2;
+//推荐会员奖励积分
+$config['points']['recommend_user'] = 10;
 return $config;
