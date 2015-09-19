@@ -1,4 +1,4 @@
-接口格式：
+﻿接口格式：
 url: http://ip:port/app/index.php?act=&op=&timestamp=&sign=&token=
 return：json
 {"code":处理结果code,"msg":"处理接口描述","data":json数据,"token":用户会话标识}
@@ -241,7 +241,7 @@ url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign
         code：10  -今日已签到，一天只能签到一次
         sign_points 签到获得的积分
 
-11.查询会员的签到记录
+20.查询会员的签到记录
     url: http://ip:port/app/index.php?act=sign&op=sign_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
    params:(post)
         month 查询的月份,格式201509(YYYYMM)

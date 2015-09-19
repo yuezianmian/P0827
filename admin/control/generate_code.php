@@ -50,7 +50,7 @@ class generate_codeControl extends SystemControl{
 			//生成成功后重新跳转到该页面
 		}
 		$model_product = Model('product');
-		$product_list = $model_product->getProductList(array(),20);
+		$product_list = $model_product->getProductList(array());
 		$default_product_id = $_GET['default_product_id'];
 		Tpl::output('product_list',$product_list);
 		Tpl::output('default_product_id',$default_product_id);
