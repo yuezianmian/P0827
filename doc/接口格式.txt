@@ -52,6 +52,7 @@ params:
 	member_passwd 密码
 	parent_code   代理商编码  非必填
 	verify_code   短信验证码
+	recomm_member_id  推荐会员id,没有推荐人则该值为空
 return：
    {"code":200,"msg":"注册成功","data":{"member_id":"1"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
    code：10  -短信验证码不正确

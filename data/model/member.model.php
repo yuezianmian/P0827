@@ -99,7 +99,9 @@ class memberModel extends Model {
 		$member_info['parent_code'] = $register_info['parent_code'];
 		$member_info['member_type'] = MEMBER_TYPE_STORE;
 		$member_info['member_state'] = MEMBER_STATE_REGISTED;
-
+		if(!empty($register_info['recomm_member_id'])){
+			$member_info['recomm_member_id'] = $register_info['recomm_member_id'];
+		}
 		$insert_id	= $this->addMember($member_info);
 		return $insert_id;
 

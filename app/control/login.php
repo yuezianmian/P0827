@@ -43,6 +43,7 @@ class loginControl extends Control {
 		$register_info['member_mobile'] = $_POST['member_mobile'];
 		$register_info['member_passwd'] = $_POST['member_passwd'];
 		$register_info['parent_code'] = $_POST['parent_code'];
+		$register_info['recomm_member_id'] = $_POST['recomm_member_id'];
 		$insert_id = $model_member->register($register_info);
 		if($insert_id) {
 			$token = encrypt(serialize(array('mobile'=>$_POST['member_mobile'], 'id'=>$insert_id,'type'=>MEMBER_TYPE_STORE)),MD5_KEY);
