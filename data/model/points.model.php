@@ -34,7 +34,13 @@ class pointsModel {
 				if (!$insertarr['pl_desc']){
 					$insertarr['pl_desc'] = '推荐会员';
 				}
-				$insertarr['pl_points'] = intval(C('points_reg'));
+//				$insertarr['pl_points'] = intval(C('points_reg'));
+				break;
+			case 'recommed_regist':
+				if (!$insertarr['pl_desc']){
+					$insertarr['pl_desc'] = '被推荐注册';
+				}
+//				$insertarr['pl_points'] = intval(C('points_reg'));
 				break;
 			case 'login':
 				if (!$insertarr['pl_desc']){

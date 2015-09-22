@@ -74,6 +74,14 @@ class memberControl extends BaseMemberControl {
 		if($_POST["type"] == 'pass'){
 			$result = $model_member->editMember(array('member_id'=>intval($_POST['member_id'])),array('member_state'=>2));
 			if ($result){
+				if($check_member_info['recomm_member_id']){//如果当前会员存在推荐会员，则需要赠送积分
+					$points_model = Model('points');
+					$recommend_user_points = C("points.recommend_user"); //推荐人获得积分值
+					$recommended_user_points = C("points.recommended_user");//被推荐人获得积分值
+					$points_model->savePointsLog('recommed_regist',array('pl_memberid'=>$_POST["member_id"],'pl_membermobile'=>$check_member_info['member_mobile'],'pl_points'=>$recommended_user_points),true);
+					$recomm_member_info = $model_member->getMemberInfo(array('member_id'=>$check_member_info['recomm_member_id']));
+					$points_model->savePointsLog('recomm_regist',array('pl_memberid'=>$recomm_member_info["member_id"],'pl_membermobile'=>$recomm_member_info['member_mobile'],'pl_points'=>$recommend_user_points),true);
+				}
 				echoJson(SUCCESS, '审核成功', array(), $this->token);
 			}else{
 				echoJson(FAILED, '审核失败');
