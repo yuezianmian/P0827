@@ -248,3 +248,40 @@ url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign
    return：
         {"code":200,"msg":"获取会员的签到列表成功","data":[{"sign_id":"4","member_id":"1","member_mobile":"18682255279","sign_time":"1442571050"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
         sign_time 签到时间，（单位秒，从1970年1月1日算起）
+
+21.找回密码-发送短信验证码
+     url: http://ip:port/app/index.php?act=login&op=findpassword_sendcode&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
+     method: post
+     return：
+        {"code":200,"msg":"发送短信验证码成功","data":[],"token":"PEA_3NPO9CKfh1QV5c-U94P1O9-yrjEkBiFPJ-Mvjm_TGqK1Pn8GlO87KmKkrSXRtTLUijKmeiRkwfSJg0uPGI0HT5mLEG5RD3-dfW4MOG1dGxg4Uen_hG3-yL56BQ35AZ-PM7w"}
+
+        code：10  -不存在该手机号的用户
+        token :提交手机号及短信验证码时需传入该token值
+
+22.找回密码-校验手机及验证码
+         url: http://ip:port/app/index.php?act=login&op=findpassowrd_checkmobile&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+        注意：token值为发送短信验证码返回的token
+     method: post
+        member_mobile  手机号
+        verify_code    验证码
+     return：
+       {"code":200,"msg":"手机号校验成功","data":[],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        code：10  -短信验证码不正确
+        code：11  -短信验证码超时，重新获取短信验证码
+        code：12  -发送验证码的手机与提交的手机号不匹配
+        token :提交新密码时需传入该token值
+
+23.找回密码-提交新密码
+         url: http://ip:port/app/index.php?act=login&op=findpassowrd_editpassword&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+        注意：token值为校验手机及验证码（接口22）返回的token
+     method: post
+        member_mobile  手机号
+        member_passwd  新密码
+     return：
+        {"code":200,"msg":"修改成功","data":[]}
+
+        code：10  -请先校验手机号，即token值不正确，无法确认前一校验手机步骤是否通过
+
+
+

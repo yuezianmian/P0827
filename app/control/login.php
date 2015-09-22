@@ -27,7 +27,7 @@ class loginControl extends Control {
 		if(empty($_GET['token'])){
 			echoJson(10,"短信验证码不正确");
 		}
-		$data = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
+		$data = unserialize(decrypt($_GET['token'], MD5_KEY));
 		if (empty($data) || empty($data['code'] || empty($data['time']))){
 			echoJson(10,"短信验证码不正确");
 		}
@@ -128,5 +128,96 @@ class loginControl extends Control {
 		}
 	}
 
+
+	/**
+	 * 找回密码 - 发送验证码
+	 */
+	public function findpassword_sendcodeOp() {
+		$obj_validate = new Validate();
+		$obj_validate->validateparam = array(
+			array("input"=>$_GET["member_mobile"], "require"=>"true", 'validator'=>'mobile',"message"=>'请填写正确手机号码'),
+		);
+		$error = $obj_validate->validate();
+		if ($error != ''){
+			echoJson(FAILED, "请填写正确手机号码");
+		}
+		$model_member = Model('member');
+		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile'=>$_GET['member_mobile']));
+		if(empty($check_member_mobile)) {
+			echoJson(10, "不存在该手机号的用户");
+		}
+
+		$verify_code = rand(100,999).rand(100,999);
+
+		$param = array();
+		$param['verify_code'] = $verify_code;
+		$message = ncReplaceText( C('sms.temp_code'),$param);
+		$sms = new Sms();
+		$result = $sms->send($_GET["member_mobile"],$message);
+
+		if ($result['code'] == 2) {
+			$token = encrypt(serialize(array('code'=>$verify_code,'mobile'=>$_GET["member_mobile"], 'time'=>time())),MD5_KEY);
+			echoJson(SUCCESS, "发送短信验证码成功", array(), $token);
+		} else {
+			$error = "send sms error,code:".$result['code'].",msg:".$result['msg'];
+			Log::record($error,Log::ERR);
+			echoJson(FAILED, "发送短信验证码失败");
+		}
+	}
+
+	public function findpassowrd_checkmobileOp(){
+		$obj_validate = new Validate();
+		$obj_validate->validateparam = array(
+			array("input"=>$_POST["member_mobile"],		"require"=>"true", "message"=>"手机号不能为空"),
+			array("input"=>$_POST["verify_code"],		    "require"=>"true", "message"=>"短信验证码不能为空"),
+			array("input"=>$_GET["token"],		    "require"=>"true", "message"=>"token不能为空"),
+		);
+		$error = $obj_validate->validate();
+		if ($error != ''){
+			echoJson(FAILED, $error);
+		}
+		$data = unserialize(decrypt($_GET['token'], MD5_KEY));
+		if (empty($data) || empty($data['code'] || empty($data['time']))){
+			echoJson(10,"短信验证码不正确");
+		}
+		if(time()-$data['time'] > VERIFY_CODE_TIMEOUT){
+			echoJson(11,"短信验证码超时，重新获取短信验证码");
+		}
+		if($data['code'] != $_POST["verify_code"]){
+			echoJson(10,"短信验证码不正确");
+		}
+		if($data['mobile'] != $_POST["member_mobile"]){
+			echoJson(12,"发送验证码的手机与提交的手机号不匹配");
+		}
+
+		$token = encrypt(serialize(array('mobile'=>$_POST['member_mobile'])),MD5_KEY);
+		echoJson(SUCCESS, "手机号校验成功", array(), $token);
+	}
+
+	public function findpassowrd_editpasswordOp(){
+		$obj_validate = new Validate();
+		$obj_validate->validateparam = array(
+			array("input"=>$_POST["member_mobile"],		"require"=>"true", "message"=>"手机号不能为空"),
+			array("input"=>$_POST["member_passwd"],		    "require"=>"true", "message"=>"密码不能为空"),
+			array("input"=>$_GET["token"],		    "require"=>"true", "message"=>"token不能为空"),
+		);
+		$error = $obj_validate->validate();
+		if ($error != ''){
+			echoJson(FAILED, $error);
+		}
+		$data = unserialize(decrypt($_GET['token'], MD5_KEY));
+		if (empty($data) || empty($data['mobile'] || $data['mobile'] != $_POST["member_mobile"])){
+			echoJson(10,"请先校验手机号");
+		}
+
+		$model_member = Model('member');
+		$result = $model_member->editMember(array('member_mobile'=>$_POST['member_mobile']),array('member_passwd'=>md5($_POST["member_passwd"])));
+		if($result){
+			echoJson(SUCCESS, "修改成功");
+		}else{
+			echoJson(FAILED, "修改失败");
+		}
+
+	}
 
 }
