@@ -23,8 +23,9 @@ $arr = array(
 					array('args'=>'member,member,dashboard',				'text'=>'会员管理'),
 					array('args'=>'product,product,dashboard',				'text'=>'产品管理'),
 					array('args'=>'productcenter,product,dashboard',	    'text'=>'产品中心地址'),
-					array('args'=>'generate_code,generate_code,dashboard',	    'text'=>'生成二维码'),
-					array('args'=>'record_list,qrcode_record,dashboard',	    'text'=>'扫描记录'),
+					array('args'=>'generate_code,generate_code,dashboard',	 'text'=>'生成二维码'),
+					array('args'=>'record_list,qrcode_record,dashboard',	 'text'=>'扫描记录'),
+					array('args'=>'pointslog,points,dashboard',	                 'text'=>'积分明细'),
 				)
 			),
 		),

@@ -32,7 +32,7 @@ class pointsModel {
 				break;
 			case 'recomm_regist':
 				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = '推荐会员';
+					$insertarr['pl_desc'] = '推荐会员注册';
 				}
 //				$insertarr['pl_points'] = intval(C('points_reg'));
 				break;
@@ -56,7 +56,7 @@ class pointsModel {
 				break;
 			case 'pointorder':
 				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = '兑换礼品信息'.$insertarr['point_ordersn'].'消耗积分';
+					$insertarr['pl_desc'] = '兑换礼品';
 				}
 				break;
 			case 'extract_cash':
@@ -184,9 +184,9 @@ class pointsModel {
 		if ($condition_array['pl_stage']) {
 			$condition_sql	.= " and `points_log`.pl_stage = '{$condition_array['pl_stage']}'";
 		}
-		//会员名称
-		if ($condition_array['pl_membername_like']) {
-			$condition_sql	.= " and `points_log`.pl_membername like '%{$condition_array['pl_membername_like']}%'";
+		//会员手机号
+		if ($condition_array['pl_membermobile_like']) {
+			$condition_sql	.= " and `points_log`.pl_membermobile like '%{$condition_array['pl_membermobile_like']}%'";
 		}
 		//管理员名称
 		if ($condition_array['pl_adminname_like']) {

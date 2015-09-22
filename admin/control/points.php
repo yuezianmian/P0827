@@ -9,11 +9,6 @@ class pointsControl extends SystemControl{
 	const EXPORT_SIZE = 5000;
 	public function __construct(){
 		parent::__construct();
-		Language::read('points');
-		//判断系统是否开启积分功能
-		if (C('points_isuse') != 1){
-			showMessage(Language::get('admin_points_unavailable'),'index.php?act=dashboard&op=welcome','','error');
-		}
 	}
 
 	/**
@@ -99,8 +94,7 @@ class pointsControl extends SystemControl{
 	 */
 	public function pointslogOp(){
 		$condition_arr = array();
-		$condition_arr['pl_membername_like'] = trim($_GET['mname']);
-		$condition_arr['pl_adminname_like'] = trim($_GET['aname']);
+		$condition_arr['pl_membermobile_like'] = trim($_GET['mmobile']);
 		if ($_GET['stage']){
 			$condition_arr['pl_stage'] = trim($_GET['stage']);
 		}
