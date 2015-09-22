@@ -25,11 +25,11 @@
           <input type="text" id="etime" name="etime" class="txt date" value="<?php echo $_GET['etime'];?>" ></td>
         <td><select name="stage">
             <option value="" <?php if (!$_GET['stage']){echo 'selected=selected';}?>>操作阶段</option>
-            <option value="regist" <?php if ($_GET['stage'] == 'recomm_regist'){echo 'selected=selected';}?>>推荐会员注册</option>
-            <option value="login" <?php if ($_GET['stage'] == 'recommed_regist'){echo 'selected=selected';}?>>被推荐注册</option>
-            <option value="comments" <?php if ($_GET['stage'] == 'scan_qrcode'){echo 'selected=selected';}?>>扫描产品</option>
-            <option value="order" <?php if ($_GET['stage'] == 'shop_scan_qrcode'){echo 'selected=selected';}?>>店面扫描产品</option>
-            <option value="system" <?php if ($_GET['stage'] == 'extract_cash'){echo 'selected=selected';}?>>提现</option>
+            <option value="recomm_regist" <?php if ($_GET['stage'] == 'recomm_regist'){echo 'selected=selected';}?>>推荐会员注册</option>
+            <option value="recommed_regist" <?php if ($_GET['stage'] == 'recommed_regist'){echo 'selected=selected';}?>>被推荐注册</option>
+            <option value="scan_qrcode" <?php if ($_GET['stage'] == 'scan_qrcode'){echo 'selected=selected';}?>>扫描产品</option>
+            <option value="shop_scan_qrcode" <?php if ($_GET['stage'] == 'shop_scan_qrcode'){echo 'selected=selected';}?>>店面扫描产品</option>
+            <option value="extract_cash" <?php if ($_GET['stage'] == 'extract_cash'){echo 'selected=selected';}?>>提现</option>
             <option value="sign" <?php if ($_GET['stage'] == 'sign'){echo 'selected=selected';}?>>签到</option>
             <option value="pointorder" <?php if ($_GET['stage'] == 'pointorder'){echo 'selected=selected';}?>>兑换礼品</option>
           </select></td>
