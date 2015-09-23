@@ -16,6 +16,9 @@
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2 nobdb">
       <thead>
+        <tr class="space">
+          <th colspan="15" class="nobg"><?php echo $lang['nc_list'];?></th>
+        </tr>
         <tr class="thead">
           <th><input type="checkbox" class="checkall" id="checkall_1"></th>
           <th>排序</th>
@@ -33,7 +36,7 @@
             <span><?php echo $v['banner_order'];?></span>
           </td>
           <td class="">
-            <span><img src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,105,60);"/></span>
+            <span><img src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,156,90);"/></span>
           </td>
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>

@@ -274,15 +274,19 @@ url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign
         token :提交新密码时需传入该token值
 
 23.找回密码-提交新密码
-         url: http://ip:port/app/index.php?act=login&op=findpassowrd_editpassword&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     url: http://ip:port/app/index.php?act=login&op=findpassowrd_editpassword&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
         注意：token值为校验手机及验证码（接口22）返回的token
      method: post
         member_mobile  手机号
         member_passwd  新密码
      return：
-        {"code":200,"msg":"修改成功","data":[]}
+        {"code":200,"msg":"修改成功","data":[],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
         code：10  -请先校验手机号，即token值不正确，无法确认前一校验手机步骤是否通过
 
+24.获取banner列表
+    url: http://ip:port/app/index.php?act=banner&op=banner_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     return：
+       {"code":200,"msg":"获取banner列表成功","data":[{"banner_id":"6","banner_img":"\/data\/upload\/img\/banner\/04963648660155406.png","banner_order":"1","create_time":"1443020866"}],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
-
+        banner_order banner排序，越小的在前显示

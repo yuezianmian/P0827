@@ -26,6 +26,7 @@ $arr = array(
 					array('args'=>'generate_code,generate_code,dashboard',	 'text'=>'生成二维码'),
 					array('args'=>'record_list,qrcode_record,dashboard',	 'text'=>'扫描记录'),
 					array('args'=>'pointslog,points,dashboard',	                 'text'=>'积分明细'),
+					array('args'=>'banner,banner,dashboard',	                 'text'=>'banner管理'),
 				)
 			),
 		),

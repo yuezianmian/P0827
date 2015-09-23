@@ -6,7 +6,7 @@
 
 defined('InShopNC') or exit('Access Invalid!');
 
-class productControl extends SystemControl{
+class bannerControl extends SystemControl{
 	public function __construct(){
 		parent::__construct();
 	}
@@ -62,6 +62,7 @@ class productControl extends SystemControl{
 			$insert_array = array();
 			$insert_array['banner_img'] = '/data/upload/img/banner/'.$upload->file_name;
 			$insert_array['banner_order'] = intval($_POST['banner_order']);
+			$insert_array['create_time'] = time();
 			$result = $model_banner->addBanner($insert_array);
 			if ($result){
 				$url = array(
@@ -95,32 +96,38 @@ class productControl extends SystemControl{
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-			array("input"=>$_POST["banner_name"], "require"=>"true", "message"=>'Banner名称不能为空'),
+				array("input"=>$_POST["banner_order"], "require"=>"true", "message"=>'排序不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
-			}else {
-				$update_array = array();
-				$update_array['banner_name'] = $_POST['banner_name'];
-				$update_array['agent_points'] = intval($_POST['agent_points']);
-				$update_array['shop_points'] = intval($_POST['shop_points']);
-				$result = $model_banner->editBanner($update_array,array('banner_id'=>intval($_POST['banner_id'])));
-				if ($result){
-					$this->log('编辑Banner'.'['.$_POST['banner_name'].']',1);
-					showMessage($lang['nc_common_save_succ'],'index.php?act=banner&op=banner');
-				}else {
-					showMessage($lang['nc_common_save_fail']);
-				}
 			}
+			$update_array = array();
+			if($_FILES['banner_img']['name']!=''){
+				$upload	= new UploadFile();
+				$upload->set('default_dir','img/banner');
+				$result = $upload->upfile('banner_img');
+				if(!$result){
+					showMessage($upload->error);
+				}
+				$update_array['banner_img'] = '/data/upload/img/banner/'.$upload->file_name;
+			}
+			$update_array['banner_order'] = intval($_POST['banner_order']);
+			$result = $model_banner->editBanner($update_array,array('banner_id'=>intval($_POST['banner_id'])));
+			if ($result){
+				$this->log('编辑Banner'.'['.$_POST['banner_id'].']',1);
+				showMessage($lang['nc_common_save_succ'],'index.php?act=banner&op=banner');
+			}else {
+				showMessage($lang['nc_common_save_fail']);
+			}
+
 		}
 
 		$banner_info = $model_banner->getBannerInfo(array('banner_id'=>intval($_GET['banner_id'])));
 		if (empty($banner_info)){
 			showMessage($lang['illegal_parameter']);
 		}
-
-		Tpl::output('banner_info',$banner_info);
+		Tpl::output('banner',$banner_info);
 		Tpl::showpage('banner.edit');
 	}
 

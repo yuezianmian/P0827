@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="fixed-empty"></div>
-  <form id="banner_form" method="post">
+  <form id="banner_form" method="post" enctype="multipart/form-data">
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2">
       <tbody>
@@ -19,7 +19,9 @@
           <td colspan="2" class="required"><label class="validation" for="banner_img">图片:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" name="banner_img" id="banner_img" class="txt"></td>
+          <td class="vatop rowform type-file-box">
+              <input type="file" class="type-file-file" id="banner_img" name="banner_img" size="30" hidefocus="true"  >
+          </td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
@@ -76,6 +78,14 @@ $(document).ready(function(){
         		max:'数字范围为0~255'
         	}
         }
+    });
+});
+$(function(){
+// 模拟活动页面横幅Banner上传input type='file'样式
+    var textButton="<input type='text' name='textfield' id='textfield1' class='type-file-text' /><input type='button' name='button' id='button1' value='' class='type-file-button' />"
+    $(textButton).insertBefore("#banner_img");
+    $("#banner_img").change(function(){
+        $("#textfield1").val($("#banner_img").val());
     });
 });
 </script>
