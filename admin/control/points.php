@@ -110,7 +110,7 @@ class pointsControl extends SystemControl{
 		$page->setStyle('admin');
 		//查询积分日志列表
 		$points_model = Model('points');
-		$list_log = $points_model->getPointsLogList($condition_arr,$page,'*','');
+		$list_log = $points_model->getPointsLogList($condition_arr,$page,'*');
 		//信息输出
 		Tpl::output('show_page',$page->show());
 		Tpl::output('list_log',$list_log);

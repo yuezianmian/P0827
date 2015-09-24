@@ -10,14 +10,23 @@ class extract_cashModel extends Model {
         parent::__construct('extract_cash');
     }
 
+	
 	/**
 	 * 取提现列表
 	 * @param unknown $condition
 	 * @param string $pagesize
 	 * @param string $order
 	 */
-	public function getExtractCashList($condition = array(),$field = '*', $pagesize = '', $limit = '', $order = 'cash_id desc') {
-		return $this->table('extract_cash')->field($field)->where($condition)->order($order)->page($pagesize)->limit($limit)->select();
+	public function getExtractCashList($condition,$page='',$field='*'){
+		$condition_str	= $this->getCondition($condition);
+		$param	= array();
+		$param['table']	= 'extract_cash';
+		$param['where']	= $condition_str;
+		$param['field'] = $field;
+		$param['order'] = $condition['order'] ? $condition['order'] : 'extract_cash.cash_id desc';
+		$param['limit'] = $condition['limit'];
+		$param['group'] = $condition['group'];
+		return Db::select($param,$page);
 	}
 
 	/**
@@ -60,5 +69,32 @@ class extract_cashModel extends Model {
 	 */
 	public function editExtractCash($data = array(),$condition = array()) {
 		return $this->where($condition)->update($data);
+	}
+	
+	/**
+	 * 将条件数组组合为SQL语句的条件部分
+	 *
+	 * @param	array $condition_array
+	 * @return	string
+	 */
+	private function getCondition($condition_array){
+		$condition_sql = '';
+		
+		//会员手机号
+		if ($condition_array['member_mobile_like']) {
+			$condition_sql	.= " and `extract_cash`.member_mobile like '%{$condition_array['member_mobile_like']}%'";
+		}
+		//申请时间
+		if ($condition_array['saddtime']){
+			$condition_sql	.= " and `extract_cash`.create_time >= '{$condition_array['saddtime']}'";
+		}
+		if ($condition_array['eaddtime']){
+			$condition_sql	.= " and `extract_cash`.create_time <= '{$condition_array['eaddtime']}'";
+		}
+		//描述
+		if ($condition_array['cash_state']){
+			$condition_sql	.= " and `extract_cash`.cash_state = '{$condition_array['cash_state']}'";
+		}
+		return $condition_sql;
 	}
 }
