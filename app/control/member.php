@@ -143,4 +143,11 @@ class memberControl extends BaseMemberControl {
 		echoJson(SUCCESS, '获取会员积分排行成功', $return_data, $this->token);
 	}
 
+	/**
+	 * 编辑会员信息
+	 */
+	public function editOp(){
+
+	}
+
 }
