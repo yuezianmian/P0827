@@ -73,8 +73,6 @@ class memberModel extends Model {
         return $update;
     }
 
-
-
     /**
      * 注册
      */
@@ -155,49 +153,8 @@ class memberModel extends Model {
 		}
 	}
 
-    /**
-	 * 检查会员是否允许举报商品
-	 *
-	 */
-	public function isMemberAllowInform($member_id) {
-        $condition = array();
-        $condition['member_id'] = $member_id;
-        $member_info = $this->getMemberInfo($condition,'inform_allow');
-        if(intval($member_info['inform_allow']) === 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-	}
 
-	/**
-	 * 取单条信息
-	 * @param unknown $condition
-	 * @param string $fields
-	 */
-	public function getMemberCommonInfo($condition = array(), $fields = '*') {
-	    return $this->table('member_common')->where($condition)->field($fields)->find();
-	}
 
-	/**
-	 * 插入扩展表信息
-	 * @param unknown $data
-	 * @return Ambigous <mixed, boolean, number, unknown, resource>
-	 */
-	public function addMemberCommon($data) {
-	    return $this->table('member_common')->insert($data);
-	}
-
-	/**
-	 * 编辑会员扩展表
-	 * @param unknown $data
-	 * @param unknown $condition
-	 * @return Ambigous <mixed, boolean, number, unknown, resource>
-	 */
-	public function editMemberCommon($data,$condition) {
-	    return $this->table('member_common')->where($condition)->update($data);
-	}
 
 	/**
 	 * 添加会员积分
@@ -216,65 +173,7 @@ class memberModel extends Model {
 	    QueueClient::push('addPoint',$queue_content);
 	}
 
-	/**
-	 * 添加会员经验值
-	 * @param unknown $member_info
-	 */
-	public function addExppoint($member_info) {
-	    if (empty($member_info)) return;
 
-	    //一天内只有第一次登录赠送经验值
-	    if(trim(@date('Y-m-d',$member_info['member_login_time'])) == trim(date('Y-m-d'))) return;
-	
-	    //加入队列
-	    $queue_content = array();
-	    $queue_content['member_id'] = $member_info['member_id'];
-	    $queue_content['member_name'] = $member_info['member_name'];
-	    QueueClient::push('addExppoint',$queue_content);
-	}
-
-	/**
-	 * 取得会员安全级别
-	 * @param unknown $member_info
-	 */
-	public function getMemberSecurityLevel($member_info = array()) {
-	    $tmp_level = 0;
-	    if ($member_info['member_email_bind'] == '1') {
-	        $tmp_level += 1;
-	    }
-	    if ($member_info['member_mobile_bind'] == '1') {
-	        $tmp_level += 1;
-	    }
-	    if ($member_info['member_paypwd'] != '') {
-	        $tmp_level += 1;
-	    }
-	    return $tmp_level;
-	}
-
-	/**
-	 * 获得会员等级
-	 * @param bool $show_progress 是否计算其当前等级进度
-	 * @param int $exppoints  会员经验值
-	 * @param array $cur_level 会员当前等级
-	 */
-	public function getMemberGradeArr($show_progress = false,$exppoints = 0,$cur_level = ''){
-	    $member_grade = C('member_grade')?unserialize(C('member_grade')):array();
-	    //处理会员等级进度
-	    if ($member_grade && $show_progress){
-	        $is_max = false;
-	        if ($cur_level === ''){
-	            $cur_gradearr = $this->getOneMemberGrade($exppoints, false, $member_grade);
-	            $cur_level = $cur_gradearr['level'];
-	        }
-	        foreach ($member_grade as $k=>$v){
-	            if ($cur_level == $v['level']){
-	                $v['is_cur'] = true;
-	            }
-	            $member_grade[$k] = $v;
-	        }
-	    }
-	    return $member_grade;
-	}
 	/**
 	 * 将条件数组组合为SQL语句的条件部分
 	 *
