@@ -121,4 +121,26 @@ class memberControl extends BaseMemberControl {
 		echoJson(SUCCESS, '获取货源的积分记录列表成功', $return_data, $this->token);
 	}
 
+	/**
+	 * 会员积分排行榜
+	 */
+	public function member_point_rankingOp(){
+		$page_size = $_POST['page_size'] ? $_POST['page_size'] : 5;
+		$page_index = $_POST['page_index'] ? $_POST['page_index'] : 1;
+		$start = $page_size * ($page_index - 1);
+		$model_member = Model('member');
+		$limit = $start.','.$page_size;
+		$condition	= array();
+		$condition['member_state'] = array('neq',MEMBER_STATE_NOPASS);
+		$member_list = $model_member->getMemberList($condition,"member_avatar,member_mobile,total_points",0,"total_points desc",$limit);
+		//获取总数
+		$member_amount = $model_member->getMemberCount($condition);
+		$total_page = ($member_amount%$page_size==0)?intval($member_amount/$page_size):(intval($member_amount/$page_size)+1);
+		$return_data = array();
+		$return_data['member_list'] = $member_list;
+		$return_data['total_page'] = $total_page;
+		$return_data['amount'] = $member_amount;
+		echoJson(SUCCESS, '获取会员积分排行成功', $return_data, $this->token);
+	}
+
 }

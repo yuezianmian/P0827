@@ -290,3 +290,13 @@ url: http://ip:port/app/index.php?act=sign&op=add_sign&timestamp=1441618373&sign
        {"code":200,"msg":"获取banner列表成功","data":[{"banner_id":"6","banner_img":"\/data\/upload\/img\/banner\/04963648660155406.png","banner_order":"1","create_time":"1443020866"}],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
         banner_order banner排序，越小的在前显示
+
+25.获取会员积分排行
+url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+       page_size 每页显示个数
+       page_index 第几页，从1开始
+   return：
+        {"code":200,"msg":"获取会员积分排行成功","data":{"member_list":[{"member_avatar":null,"member_mobile":"18682255279","total_points":"2016"},{"member_avatar":null,"member_mobile":"18682255278","total_points":"40"}],"total_page":1,"amount":"2"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        member_avatar 头像路径
