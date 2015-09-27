@@ -300,3 +300,11 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         {"code":200,"msg":"获取会员积分排行成功","data":{"member_list":[{"member_avatar":null,"member_mobile":"18682255279","total_points":"2016"},{"member_avatar":null,"member_mobile":"18682255278","total_points":"40"}],"total_page":1,"amount":"2"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
         member_avatar 头像路径
+
+26.提交反馈信息
+     url: http://ip:port/app/index.php?act=feedback&op=add_feedback&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     method: post
+        feedback_content  反馈内容
+        feedback_img  反馈图片
+     return：
+        {"code":200,"msg":"提交反馈信息成功","data":{},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}

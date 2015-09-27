@@ -12,34 +12,28 @@ class feedbackControl extends BaseMemberControl {
 
 
 	public function add_feedbackOp(){
-		$cash_points = $_POST['cash_points'];
-		if(empty($cash_points)){
-			echoJson(FAILED, 'cash_points不能为空');
+		$feedback_content = $_POST['feedback_content'];
+		$feedback_img = $_POST['feedback_img'];
+		if(empty($feedback_content)){
+			echoJson(FAILED, '反馈内容不能为空');
 		}
-		if($cash_points < 200){
-			echoJson(10, '提现的积分不能小于200');
-		}
-		if($cash_points > $this->member_info['member_points']){
-			echoJson(11, '提现的积分大于会员可用积分');
+		if(empty($feedback_img)){
+			echoJson(FAILED, '反馈的图片不能为空');
 		}
 		$member_id = $this->member_info['member_id'];
-		$points_model = Model('points');
-		$result = $points_model->savePointsLog('feedback',array('pl_memberid'=>$member_id,'pl_membermobile'=>$this->member_info['member_mobile'],'pl_points'=>-$cash_points),true);
-		if(!$result){
-			echoJson(FAILED, '提现申请失败');
-		}
+		$member_mobile = $this->member_info['member_mobile'];
 		$feedback_model = Model('feedback');
 		$insert_arr	= array();
 		$insert_arr['member_id'] = $member_id;
-		$insert_arr['member_mobile'] = $this->member_info['member_mobile'];
-		$insert_arr['cash_points'] = $cash_points;
-		$insert_arr['cash_state'] = 1;
+		$insert_arr['member_mobile'] = $member_mobile;
+		$insert_arr['feedback_content'] = $feedback_content;
+		$insert_arr['feedback_img'] = $feedback_img;
 		$insert_arr['create_time'] = time();
-		$cash_id = $feedback_model->addExtractCash($insert_arr);
-		if($cash_id){
-			echoJson(SUCCESS, '提现申请成功', array('cash_id'=>$cash_id), $this->token);
+		$feedback_id = $feedback_model->addFeedback($insert_arr);
+		if($feedback_id){
+			echoJson(SUCCESS, '提交反馈信息成功', array('feedback_id'=>$feedback_id), $this->token);
 		}else{
-			echoJson(FAILED, '提现申请失败');
+			echoJson(FAILED, '提交反馈信息失败');
 		}
 	}
 
