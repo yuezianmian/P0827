@@ -46,6 +46,19 @@ class memberControl extends BaseMemberControl {
 		$member_array = $model_member->getMemberList($condition);
 		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $member_array, $this->token);
 	}
+	
+	public function shoplist_withOrderNum_byagentOp(){
+		$member_code = $this->member_info['member_code'];
+		$member_state = $_POST["member_state"];
+		if(empty($member_code)){
+			echoJson(FAILED, "当前会员不是代理商", '');
+		}
+		$model_member = Model('member');
+		$condition = array();
+		$parent_code = $member_code;
+		$member_array = $model_member->getShopListWithOrderAmount($parent_code, date('Ym', time()));
+		echoJson(SUCCESS, '获取当前代理的下属店面列表成功', $member_array, $this->token);
+	}
 
 	/**
 	 * 会员审核通过

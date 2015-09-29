@@ -124,6 +124,13 @@ return：
         "create_time":"1440378734","shop_name":"","shop_img":"","area_name":"天津市和平区","area_id":55,"shop_address":"xx街道xx号","alipay_number":null,"bank_number":null,
         "bank_username":null,"bank_name":null,"bank_branch":null}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
+8.2 查询代理商下的所有已审核的店面信息及当月的单数
+   url: http://ip:port/app/index.php?act=member&op=shoplist_withOrderNum_byagent&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   params:(post)
+   return：
+    {"code":200,"msg":"获取当前代理的下属店面列表成功","data":[{"member_id":"2","member_mobile":"18682255278","member_code":null,"shop_name":"店面1","create_time":"1440378734","monthAmount":"0"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+    monthAmount 该服务店面本月总单数
+
 9.审核会员
 url: http://ip:port/app/index.php?act=member&op=check&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
 params:(post)

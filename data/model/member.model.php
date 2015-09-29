@@ -154,6 +154,24 @@ class memberModel extends Model {
 	}
 
 
+	/**
+	 * 获取代理商下属搜有店面列表及本月单数
+	 * @param string $parent_code
+	 * @param string $month 201509
+	 * @return int
+	 */
+	public function getShopListWithOrderAmount($parent_code, $month) {
+		$sql = "SELECT a.member_id,a.member_mobile,a.member_code,a.shop_name,a.create_time, IFNULL(c.amount,0) monthAmount "
+		        ."FROM sysc_member a "
+				."LEFT JOIN ("
+				."SELECT COUNT(1) amount,b.member_id "
+				."FROM sysc_qrcode_record b "
+				."WHERE FROM_UNIXTIME(b.create_time,'%Y%m') = '$month' "
+				."GROUP BY b.member_id) c ON a.member_id=c.member_id "
+				."WHERE a.parent_code='$parent_code' AND a.member_state=".MEMBER_STATE_NORMAL
+				." ORDER BY a.member_id DESC";
+		return Db::getAll($sql);
+	}
 
 
 	/**
