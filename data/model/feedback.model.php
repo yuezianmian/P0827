@@ -91,10 +91,6 @@ class feedbackModel extends Model {
 		if ($condition_array['eaddtime']){
 			$condition_sql	.= " and `feedback`.create_time <= '{$condition_array['eaddtime']}'";
 		}
-		//描述
-		if ($condition_array['cash_state']){
-			$condition_sql	.= " and `feedback`.cash_state = '{$condition_array['cash_state']}'";
-		}
 		return $condition_sql;
 	}
 }

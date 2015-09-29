@@ -141,7 +141,7 @@ class bannerControl extends SystemControl{
 //			$array = array(intval($_GET['banner_id']));
 			$result = $model_banner->delBanner(array('banner_id'=>intval($_GET['banner_id'])));
 			if ($result) {
-			     $this->log('删除Banner'.'[ID:'.$_GET['sc_id'].']',1);
+			     $this->log('删除Banner'.'[ID:'.$_GET['banner_id'].']',1);
 			     showMessage($lang['nc_common_del_succ'],getReferer());
 			}
 		}

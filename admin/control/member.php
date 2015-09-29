@@ -22,7 +22,6 @@ class memberControl extends SystemControl{
 		$lang	= Language::getLangContent();
 		//会员级别
 		$model_member = Model('member');
-		$member_grade = $model_member->getMemberGradeArr();
 		if ($_GET['search_field_value'] != '') {
     		switch ($_GET['search_field_name']){
     			case 'member_mobile':
