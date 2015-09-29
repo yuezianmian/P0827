@@ -50,6 +50,22 @@ class feedbackControl extends SystemControl{
 	}
 	
 	/**
+	 * 查看
+	 */
+	public function feedback_showOp(){
+		$lang	= Language::getLangContent();
+		$model_feedback = Model('feedback');
+		
+
+		$feedback_info = $model_feedback->getFeedbackInfo(array('feedback_id'=>intval($_GET['feedback_id'])));
+		if (empty($banner_info)){
+			showMessage($lang['illegal_parameter']);
+		}
+		Tpl::output('feedback',$feedback_info);
+		Tpl::showpage('feedback.edit');
+	}
+	
+	/**
 	 * 删除用户反馈
 	 */
 	public function feedback_delOp(){
