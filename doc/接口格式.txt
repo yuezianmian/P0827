@@ -140,7 +140,7 @@ return：
    {"code":200,"msg":"审核成功",[],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
 10.获取产品中心地址
-   url: http://ip:port/app/index.php?act=member&op=submit_shop&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
+   url: http://ip:port/app/index.php?act=product&op=productcenter_url&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
    return：
       {"code":200,"msg":"获取产品中心地址成功","data":{"product_center_url":"http:\/\/www.baidu.com"},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
