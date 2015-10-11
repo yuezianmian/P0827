@@ -32,6 +32,7 @@
             <option value="extract_cash" <?php if ($_GET['stage'] == 'extract_cash'){echo 'selected=selected';}?>>提现</option>
             <option value="sign" <?php if ($_GET['stage'] == 'sign'){echo 'selected=selected';}?>>签到</option>
             <option value="pointorder" <?php if ($_GET['stage'] == 'pointorder'){echo 'selected=selected';}?>>兑换礼品</option>
+            <option value="pointorder" <?php if ($_GET['stage'] == 'win_prize'){echo 'selected=selected';}?>>抽奖</option>
           </select></td>
         <!--        </tr>-->
         <!--        <tr>-->
@@ -84,6 +85,9 @@
                 break;
               case 'pointorder':
                 echo '兑换礼品';
+                break;
+              case 'win_prize':
+                echo '抽奖';
                 break;
             }?></td>
           <td><?php echo $v['pl_desc'];?></td>

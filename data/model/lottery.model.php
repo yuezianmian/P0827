@@ -54,10 +54,9 @@ class lotteryModel extends Model {
 	public function countParticipateCountToday($member_id){
 		$condition	= array();
 		$condition['member_id'] = $member_id;
-		$condition['participant_time'] = array('elt', strtotime(date('Y-m-d')));
-		$condition['participant_time'] = array('egt', strtotime(date('Y-m-d')) + 86400);
-		$cash_list	= $this->table('lottery_participant')->field('count(1) as countnum')->where($condition)->select();
-		return $cash_list[0]['countnum'];
+		$condition['participant_time'] = array('between',array(strtotime(date('Y-m-d')),strtotime(date('Y-m-d')) + 86400));
+		$count	= $this->table('lottery_participant')->where($condition)->count();
+		return $count;
 	}
 	
 	/**

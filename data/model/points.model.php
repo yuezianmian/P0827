@@ -69,6 +69,8 @@ class pointsModel {
 					$insertarr['pl_desc'] = '签到';
 				}
 				break;
+			case 'win_prize': //中奖
+				break;
 			case 'other':
 				break;
 		}

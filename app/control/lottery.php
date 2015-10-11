@@ -19,7 +19,7 @@ class lotteryControl extends BaseMemberControl {
 	public function participateOp(){
 		$result = array();
 		$member_id  = $this->member_info['member_id'];
-		$member_name  = $this->member_info['member_name'];
+		$member_mobile  = $this->member_info['member_mobile'];
 
 		$model_lottery	= Model('lottery');
 		//获取今日参与抽奖次数,一天只能抽奖一次
@@ -47,6 +47,10 @@ class lotteryControl extends BaseMemberControl {
 					$winAwardsId = $awards_list[$i]["awards_id"];
 					$winAwardsName = $awards_list[$i]["awards_name"];
 					$winPrizeName = $awards_list[$i]["prize_name"];
+					$winPrizeType = $awards_list[$i]["prize_type"];
+					if($winPrizeType == 1){ //如果中取的奖项是积分，则获取对应的积分值
+						$winPrizePoints = $awards_list[$i]["prize_points"];
+					}
 				}
 				break;
 			}
@@ -58,27 +62,34 @@ class lotteryControl extends BaseMemberControl {
 			$params['awards_id'] = $winAwardsId;
 			$params['awards_name'] = $winAwardsName;
 			$params['prize_name'] = $winPrizeName;
+			$params['prize_type'] = $winPrizeType;
+			$params['is_get'] = 0;
+			if($winPrizeType == 1){ //如果中取的奖项是积分，则获取对应的积分值
+				$params['prize_points'] = $winPrizePoints;
+				$params['is_get'] = 1;
+				$params['get_time'] = time();
+			}
 		}else{
 			$params['is_win'] = 0;
 		}
 
 		$params['member_id'] = $member_id;
-		$params['member_name'] = $member_name;
-		$params['participant_time'] = date("Y-m-d H:i:s");;
+		$params['member_mobile'] = $member_mobile;
+		$params['participant_time'] = time();
 		$params['activity_id'] = 1;
-		$params['is_get'] = 0;
 
 		$participant_id = $model_lottery->insertParticipant($params);
 
-		if(isset($winAwardsId)){ //如果中奖，则修改奖项对于的已中奖数量
+		if(isset($winAwardsId)){ //如果中奖，则修改奖项对应的已中奖数量
 			$input = array();
 			$input["win_amount"] = array('sign'=>'increase', 'value'=>1);
 			$model_lottery->updateAwards($input,$winAwardsId);
+
+			if($winPrizeType == 1){ //如果中取的奖项是积分,则直接增加用户的积分记录
+				$points_model = Model('points');
+				$points_model->savePointsLog('win_prize',array('pl_memberid'=>$member_id,'pl_membermobile'=>$member_mobile,'pl_points'=>$winPrizePoints,'pl_desc'=>'抽中'.$winAwardsName),true);
+			}
 		}
-
-
-		$points_model = Model('points');
-		$points_model->savePointsLog('other',array('pl_memberid'=>$member_id,'pl_membername'=>$member_name,'pl_points'=>intval(20/10),'pl_desc'=>('抽奖送积分，抽奖号：'.$participant_id)),true);
 
 		if(isset($winAwardsId)){ //中奖
 			$result["is_win"] = 1;
@@ -87,9 +98,7 @@ class lotteryControl extends BaseMemberControl {
 		}else{
 			$result["is_win"] = 0;
 		}
-		$result["code"] = 200;
-//		echo json_encode($result);
-		echoJson(SUCCESS, '获取奖项列表成功', $result, $this->token);
+		echoJson(SUCCESS, '参与成功', $result, $this->token);
 	}
 
 

@@ -341,3 +341,15 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
        prize_amount： 该奖项的奖品总数量
        win_amount： 该奖项的已被中取的奖品总数量
        create_time：奖项创建时间，单位秒
+
+27.2 参与抽奖
+     url: http://ip:port/app/index.php?act=lottery&op=participate&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     method: post
+
+     return：
+        {"code":10,"msg":"今日已参与，不可重复参与","data":[]}
+        {"code":200,"msg":"参与成功","data":{"is_win":1,"awards_name":"二等奖","prize_name":"10元现金"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        code : 10  今日已参与，不可重复参与
+        awards_name:奖项名称
+        prize_name:奖品名称
