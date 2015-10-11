@@ -5,6 +5,7 @@
       <h3>抽奖管理</h3>
       <ul class="tab-base">
         <li><a href="index.php?act=lottery&op=index"><span>管理</span></a></li>
+        <li><a href="index.php?act=lottery&op=add_awards"><span>新增奖项</span></a></li>
         <li><a href="javascript:;" class="current"><span>编辑奖项</span></a></li>
       </ul>
     </div>
@@ -30,16 +31,37 @@
           <td class="vatop rowform">
             <?php echo $output['awards_info']['awards_name'];?>
           </td>
-          <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><span style="color:red;margin-left:0;">*</span><label for="class_sort" class="">奖品名称<?php echo $lang['nc_colon']; ?></label></td>
+          <td colspan="2" class="required"><label class="validation" for="class_sort" class="">奖品名称<?php echo $lang['nc_colon']; ?></label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input id="prize_name" name="prize_name" type="text" class="txt" value="<?php echo $output['awards_info']['prize_name'];?>" /></td>
         </tr>
+        <tr>
+            <td colspan="2" class="required"><label class="validation" for="class_sort" class="">奖品类型<?php echo $lang['nc_colon']; ?></label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform">
+                <?php if($output['awards_info']['prize_type'] == 1){ ?>
+                    <?php echo "积分"; ?>
+                <?php }else if($output['awards_info']['prize_type'] == 2) { ?>
+                    <?php echo "其它"; ?>
+                <?php } ?>
+            </td>
+        </tr>
+        <?php if($output['awards_info']['prize_type'] == 1){ ?>
+            <tr class="noborder">
+                <td colspan="2" class="required"><label class="" for="class_name">积分值<?php echo $lang['nc_colon']; ?></label></td>
+            </tr>
+            <tr class="noborder">
+                <td class="vatop rowform">
+                    <?php echo $output['awards_info']['prize_points'];?>
+                </td>
+            </tr>
+        <?php } ?>
 		<tr>
-          <td colspan="2" class="required"><span style="color:red;margin-left:0;">*</span><label for="class_sort" class="">中奖率<?php echo $lang['nc_colon']; ?></label></td>
+          <td colspan="2" class="required"><label class="validation" for="class_sort" class="">中奖率<?php echo $lang['nc_colon']; ?></label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop">
@@ -47,7 +69,7 @@
 		  </td>
         </tr>
 		<tr>
-          <td colspan="2" class="required"><span style="color:red;margin-left:0;">*</span><label for="class_sort" class="">奖品数量<?php echo $lang['nc_colon']; ?></label></td>
+          <td colspan="2" class="required"><label class="validation" for="class_sort" class="">奖品数量<?php echo $lang['nc_colon']; ?></label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop "><input id="prize_amount" name="prize_amount" type="text" class="txt" value="<?php echo $output['awards_info']['prize_amount'];?>" /></td>
@@ -99,8 +121,8 @@ $(function(){
         },
         messages : {
             prize_name: {
-                required : "奖项名称不能为空",
-                maxlength : "奖项名称长度最多20个字符"
+                required : "奖品名称不能为空",
+                maxlength : "奖品名称长度最多20个字符"
             },
 			win_rate: {
                 required : "中奖率不能为空",

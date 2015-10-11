@@ -14,11 +14,12 @@ class lotteryModel{
 	 * 奖项列表
 	 *
 	 */
-	public function getAwardsList($activity_id){
+	public function getAwardsList($activity_id, $field = '*'){
 		$param	= array();
 		$param['table']	= 'lottery_awards';
 		$param['where']	= " and activity_id=$activity_id ";
 		$param['order']	= 'awards_id';
+ 		$param['field'] = $field;
 		return Db::select($param);
 	}
 	
@@ -75,6 +76,16 @@ class lotteryModel{
     public function getPrize($input,$id){
         return Db::update('lottery_participant',$input," id='$id' ");
     }
+
+	/**
+	 * 添加奖项
+	 *
+	 * @param array $input
+	 * @return bool
+	 */
+	public function insertAwards($input){
+		return Db::insert('lottery_awards',$input);
+	}
 	
 	
 	/**

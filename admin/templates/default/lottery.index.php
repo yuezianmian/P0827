@@ -12,6 +12,7 @@ function floattostr( $val )
       <h3>抽奖管理</h3>
       <ul class="tab-base">
           <li><a href="JavaScript:void(0);" class="current"><span>管理</span></a></li>
+          <li><a href="index.php?act=lottery&op=add_awards"><span>新增奖项</span></a></li>
           <li><a href="index.php?act=lottery&op=win_list"><span>中奖列表</span></a></li>
           <li><a href="index.php?act=lottery&op=participant_list"><span>参与记录</span></a></li>
       </ul>
@@ -22,7 +23,7 @@ function floattostr( $val )
      <tbody>
         <tr class="noborder">
             <td style="font-weight: bold;width: 100px;"><label>活动名称:</label></td>
-            <td colspan="2">砸金蛋</td>
+            <td colspan="2">每日抽奖</td>
         </tr>
         <tr class="noborder">
             <td style="font-weight: bold;width: 100px;"><label>参与总人数:</label></td>

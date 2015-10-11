@@ -26,36 +26,82 @@ class lotteryControl extends SystemControl{
 		Tpl::output('winAmount',$winAmount);
         Tpl::showpage('lottery.index');
 	}
-	
+
+	/**
+	 * 编辑奖项
+	 */
+	public function add_awardsOp(){
+		if (chksubmit()) {
+
+            $params = array();
+            $params['awards_name'] = trim($_POST['awards_name']);
+            $params['prize_name'] = trim($_POST['prize_name']);
+            $params['prize_type'] = $_POST['prize_type'];
+            $params['win_rate'] = floatval($_POST['win_rate']);
+			$params['prize_amount'] = intval($_POST['prize_amount']);
+			$params['create_time'] = time();
+			$params['activity_id'] = 1;
+			if($params['prize_type'] == 1){ //积分类型奖项，需对应的积分值
+				$params['prize_points'] = intval($_POST['prize_points']);
+			}
+
+
+            $model_lottery	= Model('lottery');
+
+            $res = $model_lottery->insertAwards($params, intval($_POST['awards_id']));
+
+
+
+            if ($res) {
+				$url = array(
+					array(
+						'url'=>'index.php?act=lottery&op=add_awards',
+						'msg'=>'继续添加奖项',
+					),
+					array(
+						'url'=>'index.php?act=lottery&op=index',
+						'msg'=>'返回奖项列表',
+					)
+				);
+				$this->log('添加奖项'.'['.$params['awards_name'].']',1);
+				showMessage("新增奖项成功",$url,'html','succ',1,5000);
+            } else {
+                showMessage('新增奖项失败', 'index.php?act=lottery&op=index', '', 'error');
+            }
+
+        }
+        Tpl::showpage('lottery.awards_add');
+	}
+
 	/**
 	 * 编辑奖项
 	 */
 	public function edit_awardsOp(){
 		if (chksubmit()) {
 
-            $params = array();
-            $params['prize_name'] = trim($_POST['prize_name']);
-            $params['win_rate'] = floatval($_POST['win_rate']);
+			$params = array();
+			$params['prize_name'] = trim($_POST['prize_name']);
+			$params['win_rate'] = floatval($_POST['win_rate']);
 			$params['prize_amount'] = intval($_POST['prize_amount']);
-			
-			
-            $model_lottery	= Model('lottery');
-
-            $res = $model_lottery->updateAwards($params, intval($_POST['awards_id']));
 
 
+			$model_lottery	= Model('lottery');
 
-            if ($res) {
-                showMessage('编辑成功', 'index.php?act=lottery&op=index', '', 'succ');
-            } else {
-                showMessage('编辑失败', 'index.php?act=lottery&op=index', '', 'error');
-            }
+			$res = $model_lottery->updateAwards($params, intval($_POST['awards_id']));
 
-        }
-        $model_lottery	= Model('lottery');
+
+
+			if ($res) {
+				showMessage('编辑成功', 'index.php?act=lottery&op=index', '', 'succ');
+			} else {
+				showMessage('编辑失败', 'index.php?act=lottery&op=index', '', 'error');
+			}
+
+		}
+		$model_lottery	= Model('lottery');
 		$awards_info = $model_lottery->getAwardsInfo(intval($_GET['awards_id']));
-        Tpl::output('awards_info',$awards_info[0]);
-        Tpl::showpage('lottery.awards_edit');
+		Tpl::output('awards_info',$awards_info[0]);
+		Tpl::showpage('lottery.awards_edit');
 	}
 
     /**
@@ -123,7 +169,7 @@ class lotteryControl extends SystemControl{
         $result["get_time"] = $params['get_time'];
         echo json_encode($result);
     }
-	
+
 
 
 	/**
