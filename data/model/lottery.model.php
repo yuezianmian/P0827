@@ -8,8 +8,11 @@
  * @copyright  Copyright (c) 2007-2013 ShopNC Inc.
  */
 defined('InShopNC') or exit('Access Invalid!');
-class lotteryModel{
-	
+class lotteryModel extends Model {
+
+	public function __construct(){
+		parent::__construct('lottery_awards');
+	}
 	/**
 	 * 奖项列表
 	 *
@@ -42,6 +45,19 @@ class lotteryModel{
 		$param['activity_id'] = $activity_id;
 		$param['is_win'] = 1;
 		return Db::getCount('lottery_participant', $param);
+	}
+
+	/**
+	 * 查询某会员今日参与抽奖的次数
+	 *
+	 */
+	public function countParticipateCountToday($member_id){
+		$condition	= array();
+		$condition['member_id'] = $member_id;
+		$condition['participant_time'] = array('elt', strtotime(date('Y-m-d')));
+		$condition['participant_time'] = array('egt', strtotime(date('Y-m-d')) + 86400);
+		$cash_list	= $this->table('lottery_participant')->field('count(1) as countnum')->where($condition)->select();
+		return $cash_list[0]['countnum'];
 	}
 	
 	/**
