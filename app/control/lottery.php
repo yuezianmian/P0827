@@ -16,6 +16,19 @@ class lotteryControl extends BaseMemberControl {
 		echoJson(SUCCESS, '获取奖项列表成功', $awards_list, $this->token);
 	}
 
+	public function win_listOp(){
+		$model_lottery = Model('lottery');
+		$condition	= array();
+		$condition["is_win"] = 1;
+		$condition['member_id'] = $this->member_info['member_id'];
+		$win_list = $model_lottery->getParticipantList($condition, '' , 'participant_time,is_get,prize_name');
+		$result = array();
+		$result['win_list'] = $win_list;
+		$result['member_points'] = $this->member_info['member_points'];
+		$result['total_points'] = $this->member_info['total_points'];
+		echoJson(SUCCESS, '获取中奖列表成功', $result, $this->token);
+	}
+
 	public function participateOp(){
 		$result = array();
 		$member_id  = $this->member_info['member_id'];

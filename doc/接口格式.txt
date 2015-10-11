@@ -353,3 +353,15 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         code : 10  今日已参与，不可重复参与
         awards_name:奖项名称
         prize_name:奖品名称
+
+27.3 获取当前会员的所有中奖信息
+      url: http://ip:port/app/index.php?act=lottery&op=win_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+      method: post
+
+      return：
+        {"code":200,"msg":"获取中奖列表成功","data":{"win_list":[{"participant_time":"1444559721","is_get":"0","prize_name":"10元现金"}],"member_points":"1716","total_points":"2316"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+         code : 10  今日已参与，不可重复参与
+         participant_time:中奖时间，单位秒
+         prize_name:奖品名称
+         is_get：是否已领奖 1-是 0-否
