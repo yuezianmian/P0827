@@ -321,3 +321,47 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         feedback_img  反馈图片
      return：
         {"code":200,"msg":"提交反馈信息成功","data":{"feedback_id":2},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+27.1 获取抽奖的奖项列表
+     url: http://ip:port/app/index.php?act=lottery&op=awards_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     method: post
+
+     return：
+        {"code":200,"msg":"获取奖项列表成功",
+            "data":[{"awards_id":"1","awards_name":"一等奖","prize_name":"100元现金大奖","prize_type":"2","prize_points":null,"win_rate":"0.001000","prize_amount":"6","activity_id":"1","win_amount":"0","create_time":"1444534016"},
+                    {"awards_id":"2","awards_name":"二等奖","prize_name":"10元现金","prize_type":"2","prize_points":null,"win_rate":"0.010000","prize_amount":"15","activity_id":"1","win_amount":"0","create_time":"1444534271"}],
+                    "token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+       awards_id: 奖项id
+       awards_name:奖项名称
+       prize_name:奖品名称
+       prize_type:奖品类型 1-积分 2-其它
+       prize_points： 奖品类型为1（即积分）时，对应的积分值
+       win_rate： 中奖率
+       prize_amount： 该奖项的奖品总数量
+       win_amount： 该奖项的已被中取的奖品总数量
+       create_time：奖项创建时间，单位秒
+
+27.2 参与抽奖
+     url: http://ip:port/app/index.php?act=lottery&op=participate&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     method: post
+
+     return：
+        {"code":10,"msg":"今日已参与，不可重复参与","data":[]}
+        {"code":200,"msg":"参与成功","data":{"is_win":1,"awards_name":"二等奖","prize_name":"10元现金"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        code : 10  今日已参与，不可重复参与
+        awards_name:奖项名称
+        prize_name:奖品名称
+
+27.3 获取当前会员的所有中奖信息
+      url: http://ip:port/app/index.php?act=lottery&op=win_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+      method: post
+
+      return：
+        {"code":200,"msg":"获取中奖列表成功","data":{"win_list":[{"participant_time":"1444559721","is_get":"0","prize_name":"10元现金"}],"member_points":"1716","total_points":"2316"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+         code : 10  今日已参与，不可重复参与
+         participant_time:中奖时间，单位秒
+         prize_name:奖品名称
+         is_get：是否已领奖 1-是 0-否

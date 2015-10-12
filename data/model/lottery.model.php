@@ -8,17 +8,21 @@
  * @copyright  Copyright (c) 2007-2013 ShopNC Inc.
  */
 defined('InShopNC') or exit('Access Invalid!');
-class lotteryModel{
-	
+class lotteryModel extends Model {
+
+	public function __construct(){
+		parent::__construct('lottery_awards');
+	}
 	/**
 	 * 奖项列表
 	 *
 	 */
-	public function getAwardsList($activity_id){
+	public function getAwardsList($activity_id, $field = '*'){
 		$param	= array();
 		$param['table']	= 'lottery_awards';
 		$param['where']	= " and activity_id=$activity_id ";
 		$param['order']	= 'awards_id';
+ 		$param['field'] = $field;
 		return Db::select($param);
 	}
 	
@@ -41,6 +45,18 @@ class lotteryModel{
 		$param['activity_id'] = $activity_id;
 		$param['is_win'] = 1;
 		return Db::getCount('lottery_participant', $param);
+	}
+
+	/**
+	 * 查询某会员今日参与抽奖的次数
+	 *
+	 */
+	public function countParticipateCountToday($member_id){
+		$condition	= array();
+		$condition['member_id'] = $member_id;
+		$condition['participant_time'] = array('between',array(strtotime(date('Y-m-d')),strtotime(date('Y-m-d')) + 86400));
+		$count	= $this->table('lottery_participant')->where($condition)->count();
+		return $count;
 	}
 	
 	/**
@@ -75,6 +91,16 @@ class lotteryModel{
     public function getPrize($input,$id){
         return Db::update('lottery_participant',$input," id='$id' ");
     }
+
+	/**
+	 * 添加奖项
+	 *
+	 * @param array $input
+	 * @return bool
+	 */
+	public function insertAwards($input){
+		return Db::insert('lottery_awards',$input);
+	}
 	
 	
 	/**

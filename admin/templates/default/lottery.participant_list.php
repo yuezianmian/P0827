@@ -33,7 +33,7 @@
     <thead>
       <tr class="thead">
         <th>抽奖编号</th>
-        <th>会员名称</th>
+        <th>会员手机号</th>
         <th>是否中奖</th>
         <th>中奖时间</th>
         <th>奖项名称</th>
@@ -45,7 +45,7 @@
       <?php foreach($output['participant_list'] as $k => $v){ ?>
       <tr class="hover">
         <td ><?php echo $v['id']; ?></td>
-        <td ><?php echo $v['member_name']; ?></td>
+        <td ><?php echo $v['member_mobile']; ?></td>
         <td >
               <?php
               switch ($v['is_win']){
