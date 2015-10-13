@@ -161,8 +161,47 @@ class memberControl extends BaseMemberControl {
 	 */
 	public function editOp(){
 		$update_array = array();
-		if($_POST['page_index']){
-			
+		if($_POST['member_truename']){
+			$update_array['member_truename'] = $_POST['member_truename'];
+		}
+		if($_POST['member_mobile_true']){
+			$update_array['member_mobile_true'] = $_POST['member_mobile_true'];
+		}
+		if($_POST['member_avatar']){
+			$update_array['member_avatar'] = $_POST['member_avatar'];
+		}
+		if($_POST['member_sex']){
+			$update_array['member_sex'] = $_POST['member_sex'];
+		}
+		if($_POST['member_birthday']){
+			$update_array['member_birthday'] = $_POST['member_birthday'];
+		}
+		if($_POST['alipay_number']){
+			$update_array['alipay_number'] = $_POST['alipay_number'];
+		}
+		if($_POST['bank_number'] && $_POST['bank_username'] && $_POST['bank_name'] && $_POST['bank_branch']){
+			$update_array['bank_number'] = $_POST['bank_number'];
+			$update_array['bank_username'] = $_POST['bank_username'];
+			$update_array['bank_name'] = $_POST['bank_name'];
+			$update_array['bank_branch'] = $_POST['bank_branch'];
+		}
+		if($_POST['address_area_id'] && $_POST['address_area_name'] && $_POST['address_detail'] && $_POST['address_postcode']){
+			$update_array['address_area_id'] = $_POST['address_area_id'];
+			$update_array['address_area_name'] = $_POST['address_area_name'];
+			$update_array['address_detail'] = $_POST['address_detail'];
+			$update_array['address_postcode'] = $_POST['address_postcode'];
+		}
+		if($_POST['shop_name']){
+			$update_array['shop_name'] = $_POST['shop_name'];
+		}
+		if($_POST['shop_img']){
+			$update_array['shop_img'] = $_POST['shop_img'];
+		}
+		if($_POST['area_name']){
+			$update_array['area_name'] = $_POST['area_name'];
+		}
+		if($_POST['shop_address']){
+			$update_array['shop_address'] = $_POST['shop_address'];
 		}
 			
 		$result = $model_member->editMember(array('member_id'=>$this->member_info['member_id'],$update_array);
