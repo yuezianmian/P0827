@@ -2,10 +2,10 @@
 // defined('InShopNC') or exit('Access Invalid!');
 
 $config = array();
-$config['site_url']		= 'http://byu1812220001.my3w.com';
-$config['upload_site_url']		= 'http://byu1812220001.my3w.com/data/upload';
-$config['resource_site_url']	= 'http://byu1812220001.my3w.com/data/resource';
-$config['admin_site_url'] 		= 'http://byu1812220001.my3w.com/admin';
+$config['site_url']		= 'http://www.sarlboroapp.com';
+$config['upload_site_url']		= 'http://www.sarlboroapp.com/data/upload';
+$config['resource_site_url']	= 'http://www.sarlboroapp.com/data/resource';
+$config['admin_site_url'] 		= 'http://www.sarlboroapp.com/admin';
 $config['version'] 		= '201411158256';
 $config['setup_date'] 	= '2015-06-15 11:08:46';
 $config['gip'] 			= 0;
