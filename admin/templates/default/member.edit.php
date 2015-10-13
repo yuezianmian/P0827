@@ -23,6 +23,12 @@
           <tr class="noborder">
               <td class="vatop rowform"><?php echo $output['member_array']['member_mobile'];?></td>
           </tr>
+          <tr class="noborder">
+              <td colspan="2" class="required"><label>手机号:</label></td>
+          </tr>
+          <tr class="noborder">
+              <td class="vatop rowform"><?php echo $output['member_array']['member_mobile_true'];?></td>
+          </tr>
           <tr>
               <td colspan="2" class="required"><label>姓名:</label></td>
           </tr>
