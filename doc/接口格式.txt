@@ -20,6 +20,10 @@ return说明：
 	data：返回的数据，json格式
 	token：最新用户会话标识，用户登录后每次与服务端交互都会刷新token,app取到该值后下次调用服务端接口需传入最新的token
 
+特别申明：
+1.所有接口的入参中手机号参数名还是 member_mobile，维持不变，减少手机端修改工作
+2.所有接口的出参，member_mobile代表用户名、member_mobile_true代表手机号
+
 1.校验手机号：
 url: http://ip:port/app/index.php?act=login&op=check_mobile&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&member_mobile=18811112222
 method: post
@@ -74,7 +78,8 @@ return：
    member_id:会员id
    member_name:暂未使用
    member_truename：姓名
-   member_mobile：手机号
+   member_mobile：用户名
+   member_mobile_true：手机号
    member_avatar:头像路径，可为空
    member_sex：会员性别 0-保密 1-男 2-女
    member_birthday：会员生日 格式：2015-09-15

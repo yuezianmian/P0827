@@ -17,7 +17,7 @@
     <table class="tb-type1 noborder search">
       <tbody>
       <tr>
-        <th><label>会员手机号</label></th>
+        <th><label>用户名</label></th>
         <td><input type="text" name="search_member_mobile" class="txt" value='<?php echo $_GET['search_member_mobile'];?>'></td>
         <th>反馈时间</th>
         <td><input type="text" id="stime" name="stime" class="txt date" value="<?php echo $_GET['stime'];?>" >

@@ -16,10 +16,10 @@
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
-          <td colspan="2" class="required"><label class="validation" for="member_mobile">手机号:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="member_mobile_true">手机号:</label></td>
         </tr>
         <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" name="member_mobile" id="member_mobile" class="txt"></td>
+          <td class="vatop rowform"><input type="text" value="" name="member_mobile_true" id="member_mobile_true" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
         <tr>
@@ -137,17 +137,17 @@ $(function(){
 			error.appendTo(element.parent().parent().prev().find('td:first'));
         },
         rules : {
-            member_mobile: {
+            member_mobile_true: {
 				required : true,
                 digits : true,
                 maxlength: 11,
                 minlength: 11,
 				remote   : {
-                    url :'index.php?act=member&op=ajax&branch=check_member_mobile',
+                    url :'index.php?act=member&op=ajax&branch=check_member_mobile_true',
                     type:'get',
                     data:{
                         member_mobile : function(){
-                            return $('#member_mobile').val();
+                            return $('#member_mobile_true').val();
                         },
                         member_id : ''
                     }
@@ -182,7 +182,7 @@ $(function(){
             }
         },
         messages : {
-            member_mobile: {
+            member_mobile_true: {
 				required : '手机号不能为空',
                 digits: '手机号格式不正确',
                 minlength: '手机号格式不正确',

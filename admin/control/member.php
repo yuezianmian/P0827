@@ -27,6 +27,9 @@ class memberControl extends SystemControl{
     			case 'member_mobile':
     				$condition['member_mobile'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
     				break;
+				case 'member_mobile_true':
+					$condition['member_mobile_true'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
+					break;
     			case 'member_truename':
     				$condition['member_truename'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
     				break;
@@ -138,7 +141,7 @@ class memberControl extends SystemControl{
 			 */
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-			    array("input"=>$_POST["member_mobile"], "require"=>"true", "message"=>'手机号不能为空'),
+			    array("input"=>$_POST["member_mobile_true"], "require"=>"true", "message"=>'手机号不能为空'),
 			    array("input"=>$_POST["member_passwd"], "require"=>"true", "message"=>'密码不能为空'),
 			    array("input"=>$_POST["member_truename"], "require"=>"true", "message"=>'姓名不能为空'),
 			    array("input"=>$_POST["member_code"], "require"=>"true", "message"=>'代理商编号不能为空')
@@ -148,7 +151,8 @@ class memberControl extends SystemControl{
 				showMessage($error);
 			}else {
 				$insert_array = array();
-				$insert_array['member_mobile']	= trim($_POST['member_mobile']);
+				$insert_array['member_mobile_true']	= trim($_POST['member_mobile_true']);
+				$insert_array['member_mobile']	= trim($_POST['member_mobile_true']); //用户名先默认使用手机号
 				$insert_array['member_passwd']	= trim($_POST['member_passwd']);
 				$insert_array['member_truename']= trim($_POST['member_truename']);
 				$insert_array['member_code'] 	= trim($_POST['member_code']);
@@ -234,11 +238,25 @@ class memberControl extends SystemControl{
 	public function ajaxOp(){
 		switch ($_GET['branch']){
 			/**
-			 * 验证会员手机号是否重复
+			 * 验证会员用户名是否重复
 			 */
 			case 'check_member_mobile':
 				$model_member = Model('member');
 				$condition['member_mobile']	= $_GET['member_mobile'];
+				$condition['member_id']	= array('neq',intval($_GET['member_id']));
+				$list = $model_member->getMemberInfo($condition);
+				if (empty($list)){
+					echo 'true';exit;
+				}else {
+					echo 'false';exit;
+				}
+				break;
+			/**
+			 * 验证会员手机号是否重复
+			 */
+			case 'check_member_mobile_true':
+				$model_member = Model('member');
+				$condition['member_mobile_true']	= $_GET['member_mobile_true'];
 				$condition['member_id']	= array('neq',intval($_GET['member_id']));
 				$list = $model_member->getMemberInfo($condition);
 				if (empty($list)){

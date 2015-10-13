@@ -15,7 +15,7 @@
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
-          <td colspan="2" class="required"><label>手机号:</label></td>
+          <td colspan="2" class="required"><label>用户名:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><?php echo $output['member_array']['member_mobile'];?></td>

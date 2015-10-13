@@ -17,7 +17,7 @@
     <table class="tb-type1 noborder search">
       <tbody>
       <tr>
-        <th><label>会员手机号</label></th>
+        <th><label>用户名</label></th>
         <td><input type="text" name="mmobile" class="txt" value='<?php echo $_GET['mmobile'];?>'></td>
         <th>添加时间</th>
         <td><input type="text" id="stime" name="stime" class="txt date" value="<?php echo $_GET['stime'];?>" >
@@ -49,7 +49,7 @@
   <table class="table tb-type2">
     <thead>
     <tr class="thead">
-      <th>会员手机号</th>
+      <th>用户名</th>
       <th class="align-center">积分值</th>
       <th class="align-center">添加时间</th>
       <th class="align-center">操作阶段</th>

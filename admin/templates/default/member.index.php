@@ -18,7 +18,8 @@
       <tbody>
         <tr>
           <td><select name="search_field_name" >
-              <option <?php if($output['search_field_name'] == 'member_mobile'){ ?>selected='selected'<?php } ?> value="member_mobile">手机号</option>
+              <option <?php if($output['search_field_name'] == 'member_mobile'){ ?>selected='selected'<?php } ?> value="member_mobile">用户名</option>
+              <option <?php if($output['search_field_name'] == 'member_mobile_true'){ ?>selected='selected'<?php } ?> value="member_mobile_true">手机号</option>
               <option <?php if($output['search_field_name'] == 'member_truename'){ ?>selected='selected'<?php } ?> value="member_truename">会员姓名</option>
               <option <?php if($output['search_field_name'] == 'member_code'){ ?>selected='selected'<?php } ?> value="member_code">代理商编号</option>
               <option <?php if($output['search_field_name'] == 'parent_code'){ ?>selected='selected'<?php } ?> value="parent_code">所属代理商编号</option>
@@ -50,6 +51,7 @@
           <th colspan="2"><?php echo $lang['member_index_name']?></th>
 <!--          <th class="align-center"><span fieldname="logins" nc_type="order_by">--><?php //echo $lang['member_index_login_time']?><!--</span></th>-->
 <!--          <th class="align-center"><span fieldname="last_login" nc_type="order_by">--><?php //echo $lang['member_index_last_login']?><!--</span></th>-->
+          <th class="align-center">手机号</th>
           <th class="align-center">可用积分</th>
           <th class="align-center">会员类型</th>
           <th class="align-center">代理商编号</th>
@@ -72,6 +74,7 @@
               </p>
               <p class="smallfont"><?php echo $lang['member_index_reg_time']?>:&nbsp;<?php echo $v['create_time']; ?></p>
           </td>
+            <td class="align-center"><?php echo $v['member_mobile_true'];?></td>
           <td class="align-center"><?php echo $v['member_points'];?></td>
           <td class="align-center">
               <?php if($v['member_type'] == MEMBER_TYPE_AGENT){ ?>

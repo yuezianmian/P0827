@@ -33,7 +33,7 @@
     <thead>
       <tr class="thead">
         <th>抽奖编号</th>
-        <th>会员手机号</th>
+        <th>用户名</th>
         <th>是否中奖</th>
         <th>中奖时间</th>
         <th>奖项名称</th>

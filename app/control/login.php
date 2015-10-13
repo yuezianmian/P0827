@@ -40,7 +40,8 @@ class loginControl extends Control {
 
 		$model_member	= Model('member');
 		$register_info = array();
-		$register_info['member_mobile'] = $_POST['member_mobile'];
+		$register_info['member_mobile'] = $_POST['member_mobile']; //用户名暂时使用手机号
+		$register_info['member_mobile_true'] = $_POST['member_mobile']; //这个才是手机号
 		$register_info['member_passwd'] = $_POST['member_passwd'];
 		$register_info['parent_code'] = $_POST['parent_code'];
 		$register_info['recomm_member_id'] = $_POST['recomm_member_id'];
@@ -55,7 +56,7 @@ class loginControl extends Control {
 
 	public function loginOp(){
 		$array	= array();
-		$array['member_mobile']	= $_POST['member_mobile'];
+		$array['member_mobile_true']	= $_POST['member_mobile']; //手机号
 		$array['member_passwd']	= md5(trim($_POST['member_passwd']));
 		$model_member = Model('member');
 		$member_info = $model_member->getMemberInfo($array);
@@ -72,7 +73,7 @@ class loginControl extends Control {
 			echoJson(FAILED, "手机号为空");
 		}
 		$model_member = Model('member');
-		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile'=>$_GET['member_mobile']));
+		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile_true'=>$_GET['member_mobile']));
 		if(is_array($check_member_mobile) and count($check_member_mobile) > 0) {
 			echoJson(SUCCESS, "该手机号已存在", array('isExist'=>"1"));
 		}else{
@@ -106,7 +107,7 @@ class loginControl extends Control {
 			echoJson(FAILED, "请正确填写手机号码");
 		}
 		$model_member = Model('member');
-		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile'=>$_GET['member_mobile']));
+		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile_true'=>$_GET['member_mobile']));
 		if(is_array($check_member_mobile) and count($check_member_mobile) > 0) {
 			echoJson(FAILED, "该手机号已被使用，请更换其它手机号");
 		}
@@ -143,7 +144,7 @@ class loginControl extends Control {
 			echoJson(FAILED, "请填写正确手机号码");
 		}
 		$model_member = Model('member');
-		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile'=>$_GET['member_mobile']));
+		$check_member_mobile = $model_member->getMemberInfo(array('member_mobile_true'=>$_GET['member_mobile']));
 		if(empty($check_member_mobile)) {
 			echoJson(10, "不存在该手机号的用户");
 		}
@@ -212,7 +213,7 @@ class loginControl extends Control {
 		}
 
 		$model_member = Model('member');
-		$result = $model_member->editMember(array('member_mobile'=>$_POST['member_mobile']),array('member_passwd'=>md5($_POST["member_passwd"])));
+		$result = $model_member->editMember(array('member_mobile_true'=>$_POST['member_mobile']),array('member_passwd'=>md5($_POST["member_passwd"])));
 		if($result){
 			echoJson(SUCCESS, "修改成功");
 		}else{

@@ -14,7 +14,7 @@
       <tbody>
         <tr>
           <td><select name="search_field_name" >
-              <option <?php if($output['search_field_name'] == 'member_mobile'){ ?>selected='selected'<?php } ?> value="member_mobile">手机号</option>
+              <option <?php if($output['search_field_name'] == 'member_mobile'){ ?>selected='selected'<?php } ?> value="member_mobile">用户名</option>
             </select></td>
           <td><input type="text" value="<?php echo $output['search_field_value'];?>" name="search_field_value" class="txt"></td>
 <!--            <td>产品名称</td>-->
@@ -38,7 +38,7 @@
     <table class="table tb-type2 nobdb">
       <thead>
         <tr class="thead">
-          <th class="align-center">会员手机号</th>
+          <th class="align-center">用户名</th>
           <th class="align-center">扫描的产品</th>
           <th class="align-center">二维码编码</th>
           <th class="align-center">扫描时间</th>
