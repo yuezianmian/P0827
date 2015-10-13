@@ -160,7 +160,12 @@ class memberControl extends BaseMemberControl {
 	 * 编辑会员信息
 	 */
 	public function editOp(){
-
+		$update_array = array();
+		if($_POST['page_index']){
+			
+		}
+			
+		$result = $model_member->editMember(array('member_id'=>$this->member_info['member_id'],$update_array);
 
 	}
 

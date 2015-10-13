@@ -6,7 +6,7 @@ return：json
 url说明：
 	act、op参数描述调用的接口,必填
 	timestamp 当前时间秒数（不是毫秒数，从1970年1月1日算起），10位，必填
-	sign 方法签名（防盗链），根据timestamp的值与密匙进行md5加密所得,其值=md5(md5_key+timestamp)，密匙md5_key=96bc2efcc445f0a3a1c23949f458719c，必填
+	sign 方法签名（防盗链），根据timestamp的值与密匙进行md5加密所得,其值=md5(timestamp + md5(md5_key))，密匙md5_key=96bc2efcc445f0a3a1c23949f458719c，必填
 	token 用户会话标识，非必填，需要用户登录才可以进行的操作均需传入此值
 
 return说明：
