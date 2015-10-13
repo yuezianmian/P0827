@@ -203,8 +203,17 @@ class memberControl extends BaseMemberControl {
 		if($_POST['shop_address']){
 			$update_array['shop_address'] = $_POST['shop_address'];
 		}
-			
-		$result = $model_member->editMember(array('member_id'=>$this->member_info['member_id'],$update_array);
+		if(count($update_array) > 0){
+			$model_member = Model('member');
+			$result = $model_member->editMember(array('member_id'=>$this->member_info['member_id']),$update_array);
+			if($result){
+				echoJson(SUCCESS, '更新会员信息成功', array(), $this->token);
+			}else{
+				echoJson(FAILED, '更新会员信息失败');
+			}
+		}
+		echoJson(FAILED, '更新会员信息失败', array(), $this->token);
+
 
 	}
 

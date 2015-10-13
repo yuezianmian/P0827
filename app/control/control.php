@@ -11,9 +11,9 @@ class Control{
 	protected $token;   // 会员信息
 	protected function __construct(){
 		//校验请求是否合法
-		if(!$this->checkIsLegalRequest()){
-			echoJson(ILLEGAL_REQUEST, "非法的请求");
-		}
+//		if(!$this->checkIsLegalRequest()){
+//			echoJson(ILLEGAL_REQUEST, "非法的请求");
+//		}
 		//刷新token
 		$this->refreshToken();
 
@@ -75,13 +75,13 @@ class BaseMemberControl extends Control {
 		parent::__construct();
 
 		//会员验证
-		$user = $this->checkLogin();
-		$this->member_info = $this->getMemberInfo($user['id']);
+//		$user = $this->checkLogin();
+//		$this->member_info = $this->getMemberInfo($user['id']);
 		if($this->member_info['member_state'] == MEMBER_STATE_NOPASS){
 			echoJson(MEMBER_INVALID, "会员状态已失效");
 		}
 		//测试使用
-//		$this->member_info = $this->getMemberInfo(1);
+		$this->member_info = $this->getMemberInfo(1);
 
 	}
 

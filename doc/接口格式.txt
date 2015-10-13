@@ -97,7 +97,7 @@ return：
    alipay_number：支付宝账号
    bank_number：银行账号
    bank_username:开户姓名
-   bank_username:银行名称
+   bank_name:银行名称
    bank_branch：开户网点
    address_area_id： 会员区域id（收货地址区域id）
    address_area_name： 会员区域名称（收货地址区域名称）
@@ -370,3 +370,32 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
          participant_time:中奖时间，单位秒
          prize_name:奖品名称
          is_get：是否已领奖 1-是 0-否
+
+28.更新会员信息
+  url: http://ip:port/app/index.php?act=member&op=edit&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+       member_truename：姓名
+       member_mobile_true：手机号
+       member_avatar:头像路径
+       member_sex：会员性别 0-保密 1-男 2-女
+       member_birthday：会员生日 格式：2015-09-15
+       shop_name：店铺名称，会员类型为店面时才有值
+       shop_img：店铺图片，会员类型为店面时才有值
+       shop_address:店铺地址
+       area_name：店铺所属区域名称，格式：天津市和平区
+       area_id：店铺所属区域id，对应区一级的id
+       alipay_number：支付宝账号
+       bank_number：银行账号
+       bank_username:开户姓名
+       bank_name:银行名称
+       bank_branch：开户网点
+       address_area_id： 会员区域id（收货地址区域id）
+       address_area_name： 会员区域名称（收货地址区域名称）
+       address_detail： 会员详细地址（收货地址详细地址）
+       address_postcode： 会员所属地邮编（收货地址邮编）、
+       以上参数无需全部传入，更新什么数据传入对应的参数即可，另外bank_number、bank_username、bank_name、bank_branch涉及银行信息修改的4个参数需同时传入，
+       同理address_area_id、address_area_name、address_detail、address_postcode涉及地址信息修改也需4个同时传入
+
+  return：
+    {"code":200,"msg":"更新会员信息成功","data":[],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
