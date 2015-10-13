@@ -3,10 +3,10 @@
 <div class="page">
   <div class="fixed-bar">
     <div class="item-title">
-      <h3>banner管理</h3>
+      <h3>系统公告</h3>
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_manage'];?></span></a></li>
-        <li><a href="index.php?act=banner&op=banner_add" ><span><?php echo $lang['nc_new'];?></span></a></li>
+        <li><a href="index.php?act=notice&op=notice_add" ><span><?php echo $lang['nc_new'];?></span></a></li>
       </ul>
     </div>
   </div>
@@ -21,29 +21,33 @@
         </tr>
         <tr class="thead">
           <th><input type="checkbox" class="checkall" id="checkall_1"></th>
-          <th>排序</th>
-          <th>banner图片</th>
+          <th>标题</th>
+          <th>公告图</th>
+          <th>摘要</th>
           <th>创建时间</th>
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
       <tbody>
-        <?php if(!empty($output['banner_list']) && is_array($output['banner_list'])){ ?>
-        <?php foreach($output['banner_list'] as $k => $v){ ?>
+        <?php if(!empty($output['notice_list']) && is_array($output['notice_list'])){ ?>
+        <?php foreach($output['notice_list'] as $k => $v){ ?>
         <tr class="hover edit">
-          <td class="w36"><input type="checkbox" name='check_banner_id[]' value="<?php echo $v['banner_id'];?>" class="checkitem"></td>
+          <td class="w36"><input type="checkbox" name='check_notice_id[]' value="<?php echo $v['notice_id'];?>" class="checkitem"></td>
           <td class="">
-            <span><?php echo $v['banner_order'];?></span>
+            <span><?php echo $v['notice_title'];?></span>
           </td>
           <td class="">
-            <span><img height="160" width="160" src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,156,90);"/></span>
+            <span><img height="300" width="150" src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,100,50);"/></span>
+          </td>
+          <td class="">
+            <span><?php echo $v['notice_abstract'];?></span>
           </td>
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
           </td>
           <td class="w84">
             <span>
-              <a href="index.php?act=banner&op=banner_edit&banner_id=<?php echo $v['banner_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('是否确认删除'))window.location = 'index.php?act=banner&op=banner_del&banner_id=<?php echo $v['banner_id'];?>';"><?php echo $lang['nc_del'];?></a>
+              <a href="index.php?act=notice&op=notice_edit&notice_id=<?php echo $v['notice_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('是否确认删除'))window.location = 'index.php?act=notice&op=notice_del&notice_id=<?php echo $v['notice_id'];?>';"><?php echo $lang['nc_del'];?></a>
             </span>
           </td>
         </tr>
@@ -55,7 +59,7 @@
         <?php } ?>
       </tbody>
       <tfoot>
-        <?php if(!empty($output['banner_list']) && is_array($output['banner_list'])){ ?>
+        <?php if(!empty($output['notice_list']) && is_array($output['notice_list'])){ ?>
         <tr id="batchAction" >
           <td><input type="checkbox" class="checkall" id="checkallBottom"></td>
           <td colspan="16" id="dataFuncs"><label for="checkallBottom"><?php echo $lang['nc_select_all']; ?></label>
@@ -68,4 +72,3 @@
     </table>
   </form>
 </div>
-<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script>

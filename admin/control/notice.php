@@ -1,87 +1,152 @@
 <?php
 /**
- * 会员通知管理
- **@copyright  Copyright (c) 2007-2013 ShopNC Inc.*/
+ * 系统公告管理
+ *
+ */
 
 defined('InShopNC') or exit('Access Invalid!');
+
 class noticeControl extends SystemControl{
 	public function __construct(){
 		parent::__construct();
-		Language::read('notice');
 	}
+
 	/**
-	 * 会员通知
+	 * notice
 	 */
 	public function noticeOp(){
-		//提交
+		$lang	= Language::getLangContent();
+		$model_notice = Model('notice');
+
+		//删除
 		if (chksubmit()){
-			$content = trim($_POST['content1']);//信息内容
-			$send_type = intval($_POST['send_type']);
+			if (!empty($_POST['check_notice_id']) && is_array($_POST['check_notice_id']) ){
+				$result = $model_notice->delNotice(array('notice_id'=>array('in',$_POST['check_notice_id'])));
+				if ($result) {
+					$this->log('删除notice'.'[ID:'.implode(',',$_POST['check_notice_id']).']',1);
+					showMessage("删除成功");
+				}
+			}
+			showMessage($lang['nc_common_del_fail']);
+		}
+
+		$notice_list = $model_notice->getNoticeList(array(),'*',10);
+		Tpl::output('notice_list',$notice_list);
+		Tpl::output('page',$model_notice->showpage());
+		Tpl::showpage('notice.index');
+	}
+
+	/**
+	 * notice添加
+	 */
+	public function notice_addOp(){
+		$lang	= Language::getLangContent();
+		$model_notice = Model('notice');
+		if (chksubmit()){
 			//验证
 			$obj_validate = new Validate();
-			switch ($send_type){
-				//指定会员
-				case 1:
-					$obj_validate->setValidate(array("input"=>$_POST["user_name"], "require"=>"true", "message"=>Language::get('notice_index_member_list_null')));
-					break;
-				//全部会员
-				case 2:
-					break;
-			}
-			$obj_validate->setValidate(array("input"=>$content, "require"=>"true", "message"=>Language::get('notice_index_content_null')));
+			$obj_validate->validateparam = array(
+				array("input"=>$_FILES['notice_img']['name'], "require"=>"true", "message"=>'notice图片不能为空'),
+				array("input"=>$_POST["notice_order"], "require"=>"true", "message"=>'排序不能为空'),
+			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
+			}
+			$upload	= new UploadFile();
+			$upload->set('default_dir','img/notice');
+			$result = $upload->upfile('notice_img');
+			if(!$result){
+				showMessage($upload->error);
+			}
+			$insert_array = array();
+			$insert_array['notice_img'] = '/data/upload/img/notice/'.$upload->file_name;
+			$insert_array['notice_order'] = intval($_POST['notice_order']);
+			$insert_array['create_time'] = time();
+			$result = $model_notice->addNotice($insert_array);
+			if ($result){
+				$url = array(
+					array(
+						'url'=>'index.php?act=notice&op=notice_add',
+						'msg'=>'继续添加Notice',
+					),
+					array(
+						'url'=>'index.php?act=notice&op=notice',
+						'msg'=>'返回Notice列表',
+					)
+				);
+				$this->log('添加Notice'.'['.$result.']',1);
+				showMessage($lang['nc_common_save_succ'],$url,'html','succ',1,5000);
 			}else {
-				//发送会员ID 数组
-				$memberid_list = array();
-				//整理发送列表
-				//指定会员
-				if ($send_type == 1){
-					$model_member = Model('member');
-					$tmp = explode("\n",$_POST['user_name']);
-					if (!empty($tmp)){
-						foreach ($tmp as $k=>$v){
-							$tmp[$k] = trim($v);
-						}
-						//查询会员列表
-						$member_list = $model_member->getMemberList(array('member_name'=>array('in', $tmp)));
-						unset($membername_str);
-						if (!empty($member_list)){
-							foreach ($member_list as $k => $v){
-								$memberid_list[] = $v['member_id'];
-							}
-						}
-						unset($member_list);
-					}
-					unset($tmp);
-				}
-				if (empty($memberid_list) && $send_type != 2){
-					showMessage(Language::get('notice_index_member_error'),'','html','error');
-				}
-				//接收内容
-				$array = array();
-				$array['send_mode'] = 1;
-				$array['user_name'] = $memberid_list;
-				$array['content'] = $content;
-				//添加短消息
-				$model_message = Model('message');
-				$insert_arr = array();
-				$insert_arr['from_member_id'] = 0;
-				if ($send_type == 2){
-					$insert_arr['member_id'] = 'all';
-				} else {
-					$insert_arr['member_id'] = ",".implode(',',$memberid_list).",";
-				}
-				$insert_arr['msg_content'] = $content;
-				$insert_arr['message_type'] = 1;
-				$insert_arr['message_ismore'] = 1;
-				$model_message->saveMessage($insert_arr);
-				//跳转
-				$this->log(L('notice_index_send'),1);
-				showMessage(Language::get('notice_index_send_succ'),'index.php?act=notice&op=notice');
+				showMessage($lang['nc_common_save_fail']);
 			}
 		}
 		Tpl::showpage('notice.add');
 	}
+
+	/**
+	 * 编辑
+	 */
+	public function notice_editOp(){
+		$lang	= Language::getLangContent();
+
+		$model_notice = Model('notice');
+
+		if (chksubmit()){
+			//验证
+			$obj_validate = new Validate();
+			$obj_validate->validateparam = array(
+				array("input"=>$_POST["notice_order"], "require"=>"true", "message"=>'排序不能为空'),
+			);
+			$error = $obj_validate->validate();
+			if ($error != ''){
+				showMessage($error);
+			}
+			$update_array = array();
+			if($_FILES['notice_img']['name']!=''){
+				$upload	= new UploadFile();
+				$upload->set('default_dir','img/notice');
+				$result = $upload->upfile('notice_img');
+				if(!$result){
+					showMessage($upload->error);
+				}
+				$update_array['notice_img'] = '/data/upload/img/notice/'.$upload->file_name;
+			}
+			$update_array['notice_order'] = intval($_POST['notice_order']);
+			$result = $model_notice->editNotice($update_array,array('notice_id'=>intval($_POST['notice_id'])));
+			if ($result){
+				$this->log('编辑Notice'.'['.$_POST['notice_id'].']',1);
+				showMessage($lang['nc_common_save_succ'],'index.php?act=notice&op=notice');
+			}else {
+				showMessage($lang['nc_common_save_fail']);
+			}
+
+		}
+
+		$notice_info = $model_notice->getNoticeInfo(array('notice_id'=>intval($_GET['notice_id'])));
+		if (empty($notice_info)){
+			showMessage($lang['illegal_parameter']);
+		}
+		Tpl::output('notice',$notice_info);
+		Tpl::showpage('notice.edit');
+	}
+
+	/**
+	 * 删除分类
+	 */
+	public function notice_delOp(){
+		$lang	= Language::getLangContent();
+		$model_notice = Model('notice');
+		if (intval($_GET['notice_id']) > 0){
+//			$array = array(intval($_GET['notice_id']));
+			$result = $model_notice->delNotice(array('notice_id'=>intval($_GET['notice_id'])));
+			if ($result) {
+				$this->log('删除Notice'.'[ID:'.$_GET['notice_id'].']',1);
+				showMessage($lang['nc_common_del_succ'],getReferer());
+			}
+		}
+		showMessage($lang['nc_common_del_fail'],'index.php?act=notice&op=notice');
+	}
+
+
 }
