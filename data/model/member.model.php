@@ -78,21 +78,25 @@ class memberModel extends Model {
      */
     public function register($register_info) {
         // 验证用户手机号是否重复
-		$check_member_mobile	= $this->getMemberInfo(array('member_mobile'=>$register_info['member_mobile']));
+		$check_member_mobile	= $this->getMemberInfo(array('member_mobile_true'=>$register_info['member_mobile_true']));
 		if(is_array($check_member_mobile) and count($check_member_mobile) > 0) {
            echoJson(FAILED, "该手机号已存在");
 		}
 
 		// 校验其所属的代理商编号是否存在，如果不存在则值为空
-		$check_parent_code	= $this->getMemberInfo(array('member_code'=>$register_info['parent_code']));
-		if(!is_array($check_parent_code) ||  count($check_parent_code) < 1) {
-			$register_info['parent_code'] = "";
+		if($register_info['parent_code']){
+			$check_parent_code	= $this->getMemberInfo(array('member_code'=>$register_info['parent_code']));
+			if(!is_array($check_parent_code) ||  count($check_parent_code) < 1) {
+				$register_info['parent_code'] = null;
+			}
 		}
+
 
 		// 会员添加
 		$member_info	= array();
 //		$member_info['member_name']		= $register_info['member_name'];
 		$member_info['member_mobile'] = $register_info['member_mobile'];
+		$member_info['member_mobile_true'] = $register_info['member_mobile_true'];
 		$member_info['member_passwd'] = $register_info['member_passwd'];
 		$member_info['parent_code'] = $register_info['parent_code'];
 		$member_info['member_type'] = MEMBER_TYPE_STORE;

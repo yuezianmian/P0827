@@ -15,22 +15,37 @@
         <input type="hidden" name="form_submit" value="ok" />
         <table class="table tb-type2">
             <tbody>
-            <tr class="noborder">
-                <td colspan="2" class="required"><label class="validation" for="notice_img">图片:</label></td>
-            </tr>
-            <tr class="noborder">
-                <td class="vatop rowform type-file-box">
-                    <input type="file" class="type-file-file" id="notice_img" name="notice_img" size="30" hidefocus="true"  >
-                </td>
-                <td class="vatop tips"></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="required"><label class="validation" for="notice_order">排序:</label></td>
-            </tr>
-            <tr class="noborder">
-                <td class="vatop rowform"><input type="text" id="notice_order" name="notice_order" class="txt" value="0"></td>
-                <td class="vatop tips">数字范围为0~255，数字越小越靠前</td>
-            </tr>
+                <tr>
+                    <td colspan="2" class="required"><label class="validation" for="notice_title">标题:</label></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="vatop rowform"><input type="text" id="notice_title" name="notice_title" class="txt"></td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr class="noborder">
+                    <td colspan="2" class="required"><label class="validation" for="notice_img">公告图:</label></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="vatop rowform type-file-box">
+                        <input type="file" class="type-file-file" id="notice_img" name="notice_img" size="30" hidefocus="true"  >
+                    </td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="required"><label class="validation" for="notice_abstract">概要:</label></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="vatop rowform"><input type="text" id="notice_abstract" name="notice_abstract" class="txt"></td>
+                    <td class="vatop tips"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="required"><label class="validation" >内容:</label></td>
+                </tr>
+                <tr class="noborder">
+                    <td class="vatop rowform"><?php showEditor('notice_content');?></td>
+                    <td class="vatop tips"></td>
+                </tr>
+
             </tbody>
             <tfoot>
             <tr class="tfoot">
@@ -57,25 +72,37 @@
             },
 
             rules : {
+                notice_title: {
+                    required: true,
+                    maxlength: 25
+                },
+                notice_abstract: {
+                    required: true,
+                    maxlength: 80
+                },
                 notice_img: {
                     required: true,
                     accept : 'png|jpe?g|gif'
                 },
-                notice_order: {
-                    required : true,
-                    min:0,
-                    max:255
+                notice_content: {
+                    required : true
                 }
             },
             messages : {
-                notice_img: {
-                    required : '图片不能为空',
-                    accept   : '图片限于png,gif,jpeg,jpg格式'
+                notice_title: {
+                    required : '标题不能为空',
+                    maxlength : '标题字符长度不能大于25'
                 },
-                notice_order: {
-                    required : '排序不能为空',
-                    min:'数字范围为0~255',
-                    max:'数字范围为0~255'
+                notice_abstract: {
+                    required : '概要不能为空',
+                    maxlength : '概要字符长度不能大于25'
+                },
+                notice_img: {
+                    required : '公告图不能为空',
+                    accept   : '公告图限于png,gif,jpeg,jpg格式'
+                },
+                notice_content: {
+                    required : '内容不能为空'
                 }
             }
         });

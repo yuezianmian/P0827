@@ -46,8 +46,10 @@ class noticeControl extends SystemControl{
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-				array("input"=>$_FILES['notice_img']['name'], "require"=>"true", "message"=>'notice图片不能为空'),
-				array("input"=>$_POST["notice_order"], "require"=>"true", "message"=>'排序不能为空'),
+				array("input"=>$_FILES['notice_img']['name'], "require"=>"true", "message"=>'公告图不能为空'),
+				array("input"=>$_POST["notice_abstract"], "require"=>"true", "message"=>'概要不能为空'),
+				array("input"=>$_POST["notice_title"], "require"=>"true", "message"=>'标题不能为空'),
+				array("input"=>$_POST["notice_content"], "require"=>"true", "message"=>'内容不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
@@ -61,18 +63,20 @@ class noticeControl extends SystemControl{
 			}
 			$insert_array = array();
 			$insert_array['notice_img'] = '/data/upload/img/notice/'.$upload->file_name;
-			$insert_array['notice_order'] = intval($_POST['notice_order']);
+			$insert_array['notice_title'] = $_POST['notice_title'];
+			$insert_array['notice_abstract'] = $_POST['notice_abstract'];
+			$insert_array['notice_content'] = $_POST['notice_content'];
 			$insert_array['create_time'] = time();
 			$result = $model_notice->addNotice($insert_array);
 			if ($result){
 				$url = array(
 					array(
 						'url'=>'index.php?act=notice&op=notice_add',
-						'msg'=>'继续添加Notice',
+						'msg'=>'继续添加系统公告',
 					),
 					array(
 						'url'=>'index.php?act=notice&op=notice',
-						'msg'=>'返回Notice列表',
+						'msg'=>'返回系统公告列表',
 					)
 				);
 				$this->log('添加Notice'.'['.$result.']',1);
@@ -115,7 +119,7 @@ class noticeControl extends SystemControl{
 			$update_array['notice_order'] = intval($_POST['notice_order']);
 			$result = $model_notice->editNotice($update_array,array('notice_id'=>intval($_POST['notice_id'])));
 			if ($result){
-				$this->log('编辑Notice'.'['.$_POST['notice_id'].']',1);
+				$this->log('编辑系统公告'.'['.$_POST['notice_id'].']',1);
 				showMessage($lang['nc_common_save_succ'],'index.php?act=notice&op=notice');
 			}else {
 				showMessage($lang['nc_common_save_fail']);
