@@ -75,13 +75,13 @@ class BaseMemberControl extends Control {
 		parent::__construct();
 
 		//会员验证
-//		$user = $this->checkLogin();
-//		$this->member_info = $this->getMemberInfo($user['id']);
+		$user = $this->checkLogin();
+		$this->member_info = $this->getMemberInfo($user['id']);
 		if($this->member_info['member_state'] == MEMBER_STATE_NOPASS){
 			echoJson(MEMBER_INVALID, "会员状态已失效");
 		}
 		//测试使用
-		$this->member_info = $this->getMemberInfo(1);
+//		$this->member_info = $this->getMemberInfo(1);
 
 	}
 
@@ -95,7 +95,7 @@ class BaseMemberControl extends Control {
 		}
 		//取得token内容，解密，和系统匹配
 		$user = unserialize(decrypt($_GET['token'], MD5_KEY, APP_SESSION_TIMEOUT));
-		if (empty($user) || !empty($user['mobile'] || !empty($user['id']) || !empty($user['type']))){
+		if (empty($user) || empty($user['mobile'] || empty($user['id']) || empty($user['type']))){
 			echoJson(NOT_LOGIN, "token值不正确");
 		}
 
