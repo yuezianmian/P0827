@@ -20,12 +20,12 @@
           <th colspan="15" class="nobg"><?php echo $lang['nc_list'];?></th>
         </tr>
         <tr class="thead">
-          <th><input type="checkbox" class="checkall" id="checkall_1"></th>
-          <th>标题</th>
-          <th>公告图</th>
-          <th>摘要</th>
-          <th>创建时间</th>
-          <th><?php echo $lang['nc_handle'];?></th>
+          <th class="w36"><input type="checkbox" class="checkall" id="checkall_1"></th>
+          <th width="200px">标题</th>
+          <th width="120px">公告图</th>
+          <th width="655px">摘要</th>
+          <th class="">创建时间</th>
+          <th class=""><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
       <tbody>
@@ -39,13 +39,13 @@
           <td class="">
             <span><img height="300" width="150" src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,100,50);"/></span>
           </td>
-          <td class="">
+          <td>
             <span><?php echo $v['notice_abstract'];?></span>
           </td>
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
           </td>
-          <td class="w84">
+          <td class=" w84">
             <span>
               <a href="index.php?act=notice&op=notice_edit&notice_id=<?php echo $v['notice_id'];?>"><?php echo $lang['nc_edit'];?></a> | <a href="javascript:if(confirm('是否确认删除'))window.location = 'index.php?act=notice&op=notice_del&notice_id=<?php echo $v['notice_id'];?>';"><?php echo $lang['nc_del'];?></a>
             </span>
