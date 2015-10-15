@@ -81,7 +81,7 @@ class BaseMemberControl extends Control {
 			echoJson(MEMBER_INVALID, "会员状态已失效");
 		}
 		//测试使用
-//		$this->member_info = $this->getMemberInfo(1);
+		$this->member_info = $this->getMemberInfo(1);
 
 	}
 
