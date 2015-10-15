@@ -22,9 +22,9 @@
         <tr class="thead">
           <th class="w36"><input type="checkbox" class="checkall" id="checkall_1"></th>
           <th width="200px">标题</th>
-          <th width="120px">公告图</th>
-          <th width="655px">摘要</th>
-          <th class="">创建时间</th>
+          <th width="110px">公告图</th>
+          <th width="630px">摘要</th>
+          <th width="110px">创建时间</th>
           <th class=""><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -37,13 +37,13 @@
             <span><?php echo $v['notice_title'];?></span>
           </td>
           <td class="">
-            <span><img height="300" width="150" src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,100,50);"/></span>
+            <span><img src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,100,50);"/></span>
           </td>
           <td>
             <span><?php echo $v['notice_abstract'];?></span>
           </td>
           <td class="">
-            <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
+            <span><?php echo date('Y-m-d H:i',$v['create_time']);?></span>
           </td>
           <td class=" w84">
             <span>

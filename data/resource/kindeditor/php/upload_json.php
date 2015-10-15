@@ -11,9 +11,9 @@ define('BASE_PATH',str_replace('\\','/',dirname(__FILE__)));
 if (!@include('../../../../global.php')) exit('global.php isn\'t exists!');
 if (!@include(BASE_CORE_PATH.'/shopnc.php')) exit('shopnc.php isn\'t exists!');
 //文件保存目录路径
-$save_path = '../../../upload/shop/editor/';
+$save_path = '../../../upload/editor/';
 //文件保存目录URL
-$save_url = UPLOAD_SITE_URL.'/shop/editor/';
+$save_url = UPLOAD_SITE_URL.'/editor/';
 $save_url = str_replace('resource/kindeditor/php/data/','',$save_url);
 //定义允许上传的文件扩展名
 $ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
@@ -74,8 +74,8 @@ if (empty($_FILES) === false) {
 
 function alert($msg) {
 	header('Content-type: text/html; charset=UTF-8');
-	$json = new Services_JSON();
-	echo $json->encode(array('error' => 1, 'message' => $msg));
+//	$json = new Services_JSON();
+	echo json_encode(array('error' => 1, 'message' => $msg));
 	exit;
 }
 ?>

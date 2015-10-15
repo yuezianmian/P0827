@@ -35,7 +35,9 @@
                     <td colspan="2" class="required"><label class="validation" for="notice_abstract">概要:</label></td>
                 </tr>
                 <tr class="noborder">
-                    <td class="vatop rowform"><input type="text" id="notice_abstract" name="notice_abstract" class="txt"></td>
+                    <td class="vatop rowform">
+                        <textarea style="width: 500px;height: 50px" id="notice_abstract" name="notice_abstract"></textarea>
+                    </td>
                     <td class="vatop tips"></td>
                 </tr>
                 <tr>
@@ -95,7 +97,7 @@
                 },
                 notice_abstract: {
                     required : '概要不能为空',
-                    maxlength : '概要字符长度不能大于25'
+                    maxlength : '概要字符长度不能大于80'
                 },
                 notice_img: {
                     required : '公告图不能为空',
