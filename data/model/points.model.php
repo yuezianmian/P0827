@@ -155,6 +155,18 @@ class pointsModel {
 		return Db::select($param,$page);
 	}
 	/**
+	 * 统计积分
+	 *
+	 */
+	public function countPoints($condition){
+		$condition_str	= $this->getCondition($condition);
+		$param	= array();
+		$param['table']	= 'points_log';
+		$param['where']	= $condition_str;
+		$param['field'] = 'sum(pl_points) points_sum';
+		return Db::select($param)[0]['points_sum'];
+	}
+	/**
 	 * 积分日志详细信息
 	 *
 	 * @param array $condition 条件数组

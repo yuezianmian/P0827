@@ -18,7 +18,14 @@ class qrcode_recordModel extends Model {
 	 */
 	public function getQrcodeRecordList($condition = array(),$field = '*', $pagesize = '', $limit = '', $order = 'record_id desc') {
 		return $this->field($field)->where($condition)->order($order)->page($pagesize)->limit($limit)->select();
+	}
 
+	/**
+	 * 扫描统计
+	 */
+	public function countQrcodeRecord($condition) {
+		$count	= $this->where($condition)->count();
+		return $count;
 	}
 
 	public function getJoinList($condition,$page='',$field = 'qrcode_record.*,member.member_mobile'){

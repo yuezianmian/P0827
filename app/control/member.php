@@ -13,7 +13,7 @@ class memberControl extends BaseMemberControl {
 	}
 
 	public function submit_shopOp(){
-		$member_id = $_POST['member_id'];
+		$member_id = $this->member_info['member_id'];
 		$update_info = array(
 			'shop_name'=> $_POST['shop_name'],
 			'shop_img'=> $_POST['shop_img'],
@@ -222,11 +222,27 @@ class memberControl extends BaseMemberControl {
 		$return = array();
 		$member_id = $this->member_info['member_id'];
 		$model_member = Model('member');
-		$model_extract_cash = Model('extract_cash');
+		$model_qrcode_record = Model('qrcode_record');
 		$condition	= array();
-		$condition['member_state'] = array('neq',MEMBER_STATE_NOPASS);
-		$model_extract_cash->counExtractCash();
+		$condition['create_time'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
+		$qrcodeRecord_month_count = $model_qrcode_record->countQrcodeRecord($condition);
 		$model_points = Model('points');
+		$condition	= array();
+		$condition['pl_addtime'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
+		$condition['pl_points'] = array('gt',0);
+		$month_points_sum = $model_points->countPoints($condition);
+		$return = array();
+		$return['month_points_sum'] = $month_points_sum;
+		$return['qrcodeRecord_month_count'] = $qrcodeRecord_month_count;
+		$return['member_id'] = $member_id;
+		$return['member_mobile_true'] = $this->member_info['member_mobile_true'];;
+		$return['total_points'] = $this->member_info['total_points'];;
+		$return['member_points'] = $this->member_info['member_points'];;
+		$return['member_points'] = $this->member_info['member_points'];;
+		$return['shop_name'] = $this->member_info['shop_name'];
+		$return['member_state'] = $this->member_info['member_state'];
+		$return['member_type'] = $this->member_info['member_type'];
+		echoJson(SUCCESS, '获取app首页相关会员信息成功', $return, $this->token);
 	}
 
 }
