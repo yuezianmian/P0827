@@ -158,8 +158,8 @@ class pointsModel {
 	 * 统计积分
 	 *
 	 */
-	public function countPoints($condition){
-		$condition_str	= $this->getCondition($condition);
+	public function countPoints($condition_str){
+//		$condition_str	= $this->getCondition($condition);
 		$param	= array();
 		$param['table']	= 'points_log';
 		$param['where']	= $condition_str;

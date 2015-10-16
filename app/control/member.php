@@ -227,10 +227,12 @@ class memberControl extends BaseMemberControl {
 		$condition['create_time'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
 		$qrcodeRecord_month_count = $model_qrcode_record->countQrcodeRecord($condition);
 		$model_points = Model('points');
-		$condition	= array();
-		$condition['pl_addtime'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
-		$condition['pl_points'] = array('gt',0);
-		$month_points_sum = $model_points->countPoints($condition);
+//		$condition	= array();
+//		$condition['pl_addtime'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
+//		$condition['pl_points'] = array('gt',0);
+		$condition_str	= " and `points_log`.pl_addtime >= ".strtotime(date('Y-m-01 00:00:00'));
+		$condition_str	.= " and `points_log`.pl_points > 0 ";
+		$month_points_sum = $model_points->countPoints($condition_str);
 		$return = array();
 		$return['month_points_sum'] = $month_points_sum;
 		$return['qrcodeRecord_month_count'] = $qrcodeRecord_month_count;
