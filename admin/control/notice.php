@@ -72,11 +72,11 @@ class noticeControl extends SystemControl{
 				$url = array(
 					array(
 						'url'=>'index.php?act=notice&op=notice_add',
-						'msg'=>'继续添加系统公告',
+						'msg'=>'继续添加',
 					),
 					array(
 						'url'=>'index.php?act=notice&op=notice',
-						'msg'=>'返回系统公告列表',
+						'msg'=>'返回列表',
 					)
 				);
 				$this->log('添加Notice'.'['.$result.']',1);
@@ -100,7 +100,9 @@ class noticeControl extends SystemControl{
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-				array("input"=>$_POST["notice_order"], "require"=>"true", "message"=>'排序不能为空'),
+				array("input"=>$_POST["notice_abstract"], "require"=>"true", "message"=>'概要不能为空'),
+				array("input"=>$_POST["notice_title"], "require"=>"true", "message"=>'标题不能为空'),
+				array("input"=>$_POST["notice_content"], "require"=>"true", "message"=>'内容不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
@@ -116,7 +118,9 @@ class noticeControl extends SystemControl{
 				}
 				$update_array['notice_img'] = '/data/upload/img/notice/'.$upload->file_name;
 			}
-			$update_array['notice_order'] = intval($_POST['notice_order']);
+			$update_array['notice_title'] = $_POST['notice_title'];
+			$update_array['notice_abstract'] = $_POST['notice_abstract'];
+			$update_array['notice_content'] = $_POST['notice_content'];
 			$result = $model_notice->editNotice($update_array,array('notice_id'=>intval($_POST['notice_id'])));
 			if ($result){
 				$this->log('编辑系统公告'.'['.$_POST['notice_id'].']',1);

@@ -75,8 +75,8 @@ class BaseMemberControl extends Control {
 		parent::__construct();
 
 		//会员验证
-		$user = $this->checkLogin();
-		$this->member_info = $this->getMemberInfo($user['id']);
+//		$user = $this->checkLogin();
+//		$this->member_info = $this->getMemberInfo($user['id']);
 		if($this->member_info['member_state'] == MEMBER_STATE_NOPASS){
 			echoJson(MEMBER_INVALID, "会员状态已失效");
 		}

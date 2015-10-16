@@ -399,3 +399,25 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
   return：
     {"code":200,"msg":"更新会员信息成功","data":[],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
+29.1 获取系统公告列表
+  url: http://ip:port/app/index.php?act=notice&op=notice_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+
+  return：
+    {"code":200,"msg":"获取系统公告列表成功","data":[{"notice_id":"2","notice_title":"公告21","notice_img":"\/data\/upload\/img\/notice\/04983073281877513.png","notice_abstract":"公告2公告2公告2公告2公告2公告21"},
+        {"notice_id":"3","notice_title":"公告2","notice_img":"\/data\/upload\/img\/notice\/04983223846726999.png","notice_abstract":"公告2\r\n公告2\r\n公告2"}],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        notice_id :公告id
+        notice_img :公告图
+        notice_abstract：公告概要
+
+29.2 获取系统公告详情
+  url: http://ip:port/app/index.php?act=notice&op=notice_info&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+    notice_id : 公告id
+  return：
+    {"code":200,"msg":"获取系统公告详情成功","data":{"notice_id":"2","notice_title":"公告21","notice_abstract":"公告2公告2公告2公告2公告2公告21","notice_content":"公告2公告2公公告2公告2公告2公212","notice_img":"\/data\/upload\/img\/notice\/04983073281877513.png","create_time":"1444919444"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        notice_id :公告id
+        notice_img :公告图
+        notice_abstract：公告概要
