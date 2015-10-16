@@ -89,7 +89,7 @@ return：
    member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
    parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
    create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
-   shop_name：店铺名称，会员类型为店面时才有值
+   shop_name：店铺名称/公司名称
    shop_img：店铺图片，会员类型为店面时才有值
    shop_address:店铺地址
    area_name：店铺所属区域名称，格式：天津市和平区
@@ -379,7 +379,7 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
        member_avatar:头像路径
        member_sex：会员性别 0-保密 1-男 2-女
        member_birthday：会员生日 格式：2015-09-15
-       shop_name：店铺名称，会员类型为店面时才有值
+       shop_name：店铺名称/公司名称
        shop_img：店铺图片，会员类型为店面时才有值
        shop_address:店铺地址
        area_name：店铺所属区域名称，格式：天津市和平区
