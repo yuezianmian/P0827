@@ -91,6 +91,12 @@
                   <td class="vatop rowform"><?php echo $output['member_array']['member_code'];?></td>
               </tr>
               <tr>
+                  <td colspan="2" class="required"><label>公司名称:</label></td>
+              </tr>
+              <tr class="noborder">
+                  <td class="vatop rowform"><?php echo $output['member_array']['shop_name'];?></td>
+              </tr>
+              <tr>
                   <td colspan="2" class="required"><label>所属区域:</label></td>
               </tr>
               <tr class="noborder">

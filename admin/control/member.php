@@ -141,6 +141,7 @@ class memberControl extends SystemControl{
 			 */
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
+			    array("input"=>$_POST["shop_name"], "require"=>"true", "message"=>'公司名称不能为空'),
 			    array("input"=>$_POST["member_mobile_true"], "require"=>"true", "message"=>'手机号不能为空'),
 			    array("input"=>$_POST["member_passwd"], "require"=>"true", "message"=>'密码不能为空'),
 			    array("input"=>$_POST["member_truename"], "require"=>"true", "message"=>'姓名不能为空'),
@@ -151,6 +152,7 @@ class memberControl extends SystemControl{
 				showMessage($error);
 			}else {
 				$insert_array = array();
+				$insert_array['shop_name']	= trim($_POST['shop_name']);
 				$insert_array['member_mobile_true']	= trim($_POST['member_mobile_true']);
 				$insert_array['member_mobile']	= trim($_POST['member_mobile_true']); //用户名先默认使用手机号
 				$insert_array['member_passwd']	= trim($_POST['member_passwd']);

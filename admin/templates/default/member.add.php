@@ -16,6 +16,13 @@
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
+          <td colspan="2" class="required"><label class="validation" for="shop_name">公司名称:</label></td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform"><input type="text" value="" name="shop_name" id="shop_name" class="txt"></td>
+          <td class="vatop tips"></td>
+        </tr>
+        <tr class="noborder">
           <td colspan="2" class="required"><label class="validation" for="member_mobile_true">手机号:</label></td>
         </tr>
         <tr class="noborder">
@@ -137,6 +144,10 @@ $(function(){
 			error.appendTo(element.parent().parent().prev().find('td:first'));
         },
         rules : {
+            shop_name: {
+                required : true,
+                maxlength: 25
+            },
             member_mobile_true: {
 				required : true,
                 digits : true,
@@ -182,6 +193,10 @@ $(function(){
             }
         },
         messages : {
+            shop_name  : {
+                required : '公司名称不能为空',
+                maxlength : '公司名称不能超过25位字符'
+            },
             member_mobile_true: {
 				required : '手机号不能为空',
                 digits: '手机号格式不正确',

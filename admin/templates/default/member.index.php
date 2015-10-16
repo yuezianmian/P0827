@@ -56,7 +56,7 @@
           <th class="align-center">会员类型</th>
           <th class="align-center">代理商编号</th>
           <th class="align-center">所属代理商</th>
-          <th colspan="2">店铺信息</th>
+          <th colspan="2">店铺信息/公司名称</th>
           <th class="align-center">区域</th>
           <th class="align-center">状态</th>
           <th class="align-center">操作</th>
@@ -90,15 +90,13 @@
               <span class="thumb size-44x44"><i></i>
                <?php if($v['member_type'] == 2 && $v['shop_img']){ ?>
                 <img src="<?php  echo SITE_URL.$v['shop_img'];?>"  onload="javascript:DrawImage(this,44,44);"/>
-               <?php }else { ?>
-                   --
                <?php } ?>
               </span>
             </div>
           </td>
           <td>
-            <?php if($v['member_type'] == 2){ ?>
               <p class="name"><strong><?php echo $v['shop_name']; ?></strong></p>
+            <?php if($v['member_type'] == 2){ ?>
               <p class="smallfont"><?php echo $v['area_name']; ?></p>
             <?php } ?>
           </td>
