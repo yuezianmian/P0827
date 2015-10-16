@@ -213,8 +213,20 @@ class memberControl extends BaseMemberControl {
 			}
 		}
 		echoJson(FAILED, '更新会员信息失败', array(), $this->token);
+	}
 
-
+	/**
+	 * app首页用到的一些会员信息
+	 */
+	public function homepage_infoOp(){
+		$return = array();
+		$member_id = $this->member_info['member_id'];
+		$model_member = Model('member');
+		$model_extract_cash = Model('extract_cash');
+		$condition	= array();
+		$condition['member_state'] = array('neq',MEMBER_STATE_NOPASS);
+		$model_extract_cash->counExtractCash();
+		$model_points = Model('points');
 	}
 
 }
