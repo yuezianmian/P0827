@@ -63,16 +63,16 @@
     //按钮先执行验证再提交表单
     $(function(){
         $("#submitBtn").click(function(){
-            if(isSubmit){
+           /* if(isSubmit){
                 alert("处理中，不可重复提交");
                 return;
-            }
+            }*/
             if($("#generate_form").valid()){
                 $("#generate_form").submit();
                 isSubmit = true;
             }
-            $("#submitBtn").attr('disabled',"true")
-            $("#submitBtn > span").text("处理中...");
+//            $("#submitBtn").attr('disabled',"true")
+//            $("#submitBtn > span").text("处理中...");
         });
     });
     //
@@ -89,7 +89,7 @@
                 code_number : {
                     required : true,
                     digits   : true,
-                    max : 100,
+                    max : 5000,
                     min : 1
                 }
             },
@@ -100,7 +100,7 @@
                 code_number : {
                     required : '二维码数量不能为空',
                     digits : '二维码数量必须为整数',
-                    max : '二维码一次最多生成100个',
+                    max : '二维码一次最多生成5000个',
                     min : '二维码一次最少生成1个'
                 }
             }
