@@ -8,11 +8,11 @@
         </div>
     </div>
     <div class="fixed-empty"></div>
-    <table class="table tb-type2" id="prompt">
+   <!-- <table class="table tb-type2" id="prompt">
         <tbody>
         <tr class="space odd">
             <th colspan="12" class="nobg"><div class="title">
-                    <h5><?php echo $lang['nc_prompts'];?></h5>
+                    <h5><?php /*echo $lang['nc_prompts'];*/?></h5>
                     <span class="arrow"></span></div></th>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 </ul></td>
         </tr>
         </tbody>
-    </table>
+    </table>-->
     <form id="generate_form" method="post">
         <input type="hidden" name="form_submit" value="ok" />
         <table class="table tb-type2">
