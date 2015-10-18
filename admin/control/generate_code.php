@@ -101,7 +101,7 @@ class generate_codeControl extends SystemControl{
 		}
 		$excel_data = $excel_obj->charset($excel_data,CHARSET);
 		$excel_obj->addArray($excel_data);
-		$excel_obj->addWorksheet($excel_obj->charset('二维码',CHARSET));
-		$excel_obj->generateXML($excel_obj->charset('二维码',CHARSET).'-'.date('Y-m-d-H',time()));
+		$excel_obj->addWorksheet($excel_obj->charset('二维码编码',CHARSET));
+		$excel_obj->generateXML($excel_obj->charset('二维码编码',CHARSET).'-'.date('Y-m-d-H',time()));
 	}
 }
