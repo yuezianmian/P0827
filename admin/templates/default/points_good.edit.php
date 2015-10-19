@@ -6,7 +6,7 @@
       <h3>积分商品</h3>
       <ul class="tab-base">
         <li><a href="index.php?act=points_good&op=points_good"><span><?php echo $lang['nc_manage'];?></span></a></li>
-        <li><a href="index.php?act=points_good&op=points_good_add" class="current"><span><?php echo $lang['nc_new'];?></span></a></li>
+        <li><a href="index.php?act=points_good&op=points_good_add"><span><?php echo $lang['nc_new'];?></span></a></li>
           <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_edit'];?></span></a></li>
       </ul>
     </div>
@@ -14,7 +14,7 @@
   <div class="fixed-empty"></div>
   <form id="points_good_form" method="post" enctype="multipart/form-data">
     <input type="hidden" name="form_submit" value="ok" />
-    <input type="hidden" name="notice_id" value="<?php echo $output['points_good']['pg_id'];?>" />
+    <input type="hidden" name="pg_id" value="<?php echo $output['points_good']['pg_id'];?>" />
     <table class="table tb-type2">
       <tbody>
         <tr class="noborder">
