@@ -31,6 +31,7 @@ $arr = array(
 					array('args'=>'feedback,feedback,dashboard',	         'text'=>'反馈记录'),
 					array('args'=>'index,lottery,dashboard',	         'text'=>'抽奖管理'),
 					array('args'=>'notice,notice,dashboard',	         'text'=>'系统公告'),
+					array('args'=>'points_good,points_good,dashboard',	         'text'=>'积分商品'),
 				)
 			),
 		),

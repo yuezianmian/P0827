@@ -17,7 +17,7 @@ class points_goodModel extends Model {
 	 * @param string $pagesize
 	 * @param string $order
 	 */
-	public function getPointsGoodList($condition = array(),$field = '*', $pagesize = '', $limit = '', $order = 'point_orderid desc') {
+	public function getPointsGoodList($condition = array(),$field = '*', $pagesize = '', $limit = '', $order = 'pg_id desc') {
 		return $this->field($field)->where($condition)->page($pagesize)->order($order)->limit($limit)->select();
 	}
 
