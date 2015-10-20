@@ -238,9 +238,9 @@ class memberControl extends BaseMemberControl {
 		$return['qrcodeRecord_month_count'] = $qrcodeRecord_month_count;
 		$return['member_id'] = $member_id;
 		$return['member_mobile_true'] = $this->member_info['member_mobile_true'];;
-		$return['total_points'] = $this->member_info['total_points'];;
-		$return['member_points'] = $this->member_info['member_points'];;
-		$return['member_points'] = $this->member_info['member_points'];;
+		$return['total_points'] = $this->member_info['total_points'];
+		$return['member_points'] = $this->member_info['member_points'];
+		$return['member_points'] = $this->member_info['member_points'];
 		$return['shop_name'] = $this->member_info['shop_name'];
 		$return['member_state'] = $this->member_info['member_state'];
 		$return['member_type'] = $this->member_info['member_type'];
