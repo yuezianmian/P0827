@@ -31,7 +31,7 @@ class signControl extends BaseMemberControl {
 		$condition["day"]	= date('Y-m-d', time());
 		$condition['member_id'] = $member_id;
 		$sign_info = $model_sign->getSignInfo($condition);
-		if(empty($sign_info)){
+		if(!empty($sign_info) && count($sign_info) > 0){
 			echoJson(10, '今日已签到，一天只能签到一次');
 		}
 		$insert_array = array();
