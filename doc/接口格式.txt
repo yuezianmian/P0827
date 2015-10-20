@@ -235,7 +235,7 @@ url: http://ip:port/app/index.php?act=extract_cash&op=apply_cash&timestamp=14416
    return：
         {"code":200,"msg":"提现申请成功","data":{"cash_id":2},"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
 
-        code：10  -提现的积分不能小于200
+        code：10  -提现的积分不能小于500
         code：11  -提现的积分大于会员可用积分
         code：12  -需绑定支付宝账号或银行卡号才可体现
 
