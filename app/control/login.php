@@ -64,7 +64,7 @@ class loginControl extends Control {
 			$token = encrypt(serialize(array('mobile'=>$member_info['member_mobile'], 'id'=>$member_info['member_id'],'type'=>$member_info['member_type'])),MD5_KEY);
 			echoJson(SUCCESS, "登录成功", $member_info, $token);
 		}else{
-			echoJson(FAILED, "登录失败");
+			echoJson(10, "手机号或密码不正确");
 		}
 	}
 

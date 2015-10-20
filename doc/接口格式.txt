@@ -75,6 +75,7 @@ return：
             "shop_address":"xx街道xx号","alipay_number":"12314","bank_number":"62131510121510251","bank_username":"张三","bank_name":"中国建设银行","bank_branch":"中国建设银行天津分行",
             "address_area_id":"55","address_area_name":"天津市和平区","address_detail":"xx街道x111号","address_postcode":"645147","recomm_member_id":"1"},
             "token":"aklIbWjJjFdHgGPkc5c4d1odIe48wupWP4cn_4Z1wBkzCwMzWCjXmLf1e3ehbIgFWRsxnwfwa-tQbOuJqCc1ZELxDDMiOLW4mfNqZn0k5dIfk6la4Y5eORO"}
+   code :10 手机号或密码不正确
    member_id:会员id
    member_name:暂未使用
    member_truename：姓名
