@@ -439,3 +439,4 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         member_type:会员类型 1为代理商 2为店面
         create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
         shop_name：店铺名称/公司名称
+        member_avatar:头像地址
