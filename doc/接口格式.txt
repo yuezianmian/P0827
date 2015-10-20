@@ -453,6 +453,7 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
            total_points：会员获取的总积分
            pg_stock：剩余库存
            create_time:商品创建时间
+
 32.1 获取积分商品列表
   url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
   method: post
