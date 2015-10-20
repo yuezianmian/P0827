@@ -237,6 +237,7 @@ url: http://ip:port/app/index.php?act=extract_cash&op=apply_cash&timestamp=14416
 
         code：10  -提现的积分不能小于200
         code：11  -提现的积分大于会员可用积分
+        code：12  -需绑定支付宝账号或银行卡号才可体现
 
 18.查询会员的提现列表
 url: http://ip:port/app/index.php?act=extract_cash&op=cash_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123

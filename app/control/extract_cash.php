@@ -44,11 +44,14 @@ class extract_cashControl extends BaseMemberControl {
 		if(empty($cash_points)){
 			echoJson(FAILED, 'cash_points不能为空');
 		}
-		if($cash_points < 200){
-			echoJson(10, '提现的积分不能小于200');
+		if($cash_points < 500){
+			echoJson(10, '提现的积分不能小于500');
 		}
 		if($cash_points > $this->member_info['member_points']){
 			echoJson(11, '提现的积分大于会员可用积分');
+		}
+		if(empty($this->member_info['alipay_number']) && empty( $this->member_info['alipay_number'])){
+			echoJson(12, '需绑定支付宝账号或银行卡号才可体现');
 		}
 		$member_id = $this->member_info['member_id'];
 		$points_model = Model('points');
