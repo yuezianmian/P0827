@@ -440,3 +440,27 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
         shop_name：店铺名称/公司名称
         member_avatar:头像地址
+31. 获取积分获取规则信息
+    url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+     method: post
+
+     return：
+       {"code":200,"msg":"获取积分商品成功","data":{"points_good_list":[{"pg_id":"5","pg_name":"商品2","pg_points":"20","pg_stock":"20","create_time":"1445338778"}],"total_page":1,"amount":"1"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+           pg_id :积分商品id
+           pg_name :积分商品名称
+           pg_points：兑换该商品所需积分
+           total_points：会员获取的总积分
+           pg_stock：剩余库存
+           create_time:商品创建时间
+32.1 获取积分商品列表
+  url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+
+  return：
+    {"code":200,"msg":"获取积分规则配置信息成功","data":{"sign_points":2,"recommend_member_points":10,"recommended_member_points":10},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+        sign_points :签到积分
+        recommend_member_points :推荐会员奖励积分
+        recommended_member_points：被推荐会员奖励积分（即通过分享链接注册后该用户获取的积分）
+

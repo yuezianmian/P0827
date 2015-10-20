@@ -1,42 +1,31 @@
 <?php
 /**
- * 消息
+ *
  *
 .*/
 
 defined('InShopNC') or exit('Access Invalid!');
-class messageControl extends BaseMemberControl {
+class points_goodControl extends BaseMemberControl {
 	public function __construct(){
 		parent::__construct();
 	}
 
-	public function message_listOp(){
-		$member_id = $this->member_info['member_id'];
+	public function points_good_listOp(){
 		$page_size = $_POST['page_size'] ? $_POST['page_size'] : 10;
 		$page_index = $_POST['page_index'] ? $_POST['page_index'] : 1;
-		$message_state = $_POST['message_state'];
 		$start = $page_size * ($page_index - 1);
-		$model_message = Model('message');
+		$model_points_good = Model('points_good');
+		$limit =  $start.','.$page_size;
 		$condition	= array();
-		$condition['limit'] = $start.','.$page_size;
-		$condition['to_member_id'] = $member_id;
-		if($message_state){
-			$condition['message_state'] = $message_state;
-		}
-		$message_list = $model_message->listMessage($condition);
-		//获取总数
-		$condition	= array();
-		$condition['to_member_id'] = $member_id;
-		if($message_state){
-			$condition['message_state'] = $message_state;
-		}
-		$message_amount = $model_message->countMessage($condition);
-		$total_page = ($message_amount%$page_size==0)?intval($message_amount/$page_size):(intval($message_amount/$page_size)+1);
+		$condition['pg_state'] = 1; //上架状态
+		$points_good_list = $model_points_good->getPointsGoodList($condition,'pg_id,pg_name,pg_points,pg_stock,create_time','',$limit);
+		$points_good_amount = $model_points_good->countPointsGoodList($condition);
+		$total_page = ($points_good_amount%$page_size==0)?intval($points_good_amount/$page_size):(intval($points_good_amount/$page_size)+1);
 		$return_data = array();
-		$return_data['message_list'] = $message_list;
+		$return_data['points_good_list'] = $points_good_list;
 		$return_data['total_page'] = $total_page;
-		$return_data['amount'] = $message_amount;
-		echoJson(SUCCESS, '获取会员的消息列表成功', $return_data, $this->token);
+		$return_data['amount'] = $points_good_amount;
+		echoJson(SUCCESS, '获取积分商品成功', $return_data, $this->token);
 	}
 
 

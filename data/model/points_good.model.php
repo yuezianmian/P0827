@@ -22,6 +22,16 @@ class points_goodModel extends Model {
 	}
 
 	/**
+	 * 取points_good列表
+	 * @param unknown $condition
+	 * @param string $pagesize
+	 * @param string $order
+	 */
+	public function countPointsGoodList($condition = array()) {
+		return $this->where($condition)->count();
+	}
+
+	/**
 	 * 取得单条信息
 	 * @param unknown $condition
 	 */

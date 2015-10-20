@@ -247,4 +247,15 @@ class memberControl extends BaseMemberControl {
 		echoJson(SUCCESS, '获取app首页相关会员信息成功', $return, $this->token);
 	}
 
+	/**
+	 * 获取积分规则配置信息
+	 */
+	public function getPointsConfigOp(){
+		$return = array();
+		$return['sign_points'] =  C("points.sign");
+		$return['recommend_member_points'] =  C("points.recommend_user");
+		$return['recommended_member_points'] =  C("points.recommended_user");
+		echoJson(SUCCESS, '获取积分规则配置信息成功', $return, $this->token);
+	}
+
 }
