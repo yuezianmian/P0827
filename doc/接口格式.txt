@@ -508,4 +508,40 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
            pg_stock：剩余库存
            create_time:商品创建时间
 
+33.2 获取积分商品详细信息
+  url: http://ip:port/app/index.php?act=points_good&op=points_good_info&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
 
+  return：
+    {"code":200,"msg":"获取积分商品详细信息成功","data":{"pg_id":"1","pg_name":"商品1","pg_points":"10","pg_stock":"10","pg_desc":"积分商品描述信息...","pg_state":"2","create_time":"1445265371"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+           pg_id :积分商品id
+           pg_name :积分商品名称
+           pg_points：兑换该商品所需积分
+           total_points：会员获取的总积分
+           pg_stock：剩余库存
+           pg_desc：积分商品详细信息，富文本
+           create_time:商品创建时间
+
+33.3 提交积分兑换商品订单
+url: http://ip:port/app/index.php?act=points_order&op=add_points_order&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+     pg_id :积分商品id
+     pg_name :积分商品名称
+     pg_number:兑换商品的数量
+     points：兑换商品需扣掉的总积分
+
+  return：
+    {"code":200,"msg":"提交积分兑换订单成功","data":{"points_order_id":2},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+           code: 10 兑换商品所需积分不能为空
+           code: 11 您的积分不足，无法兑换
+           code: 12 兑换的商品id和商品名称不能为空
+           code: 13 兑换商品的数量不能为空
+           points_order_id :订单id
+           pg_name :积分商品名称
+           pg_points：兑换该商品所需积分
+           total_points：会员获取的总积分
+           pg_stock：剩余库存
+           pg_desc：积分商品详细信息，富文本
+           create_time:商品创建时间

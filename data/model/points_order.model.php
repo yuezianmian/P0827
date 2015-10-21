@@ -65,8 +65,9 @@ class points_orderModel extends Model {
 		$order_array['point_buyermobiletrue']	= $data['member_mobile_true'];
 		$order_array['pg_id']	= $data['pg_id'];
 		$order_array['pg_name']	= $data['pg_name'];
+		$order_array['pg_number']	= $data['pg_number'];
+		$order_array['point_allpoint']	= $data['point_allpoint'];
 		$order_array['point_addtime']		= time();
-		$order_array['point_allpoint']		= $data['point_allpoint'];
 		$order_array['point_orderstate']	= 1;
 		return $this->addPointsOrder($order_array);
 	}
