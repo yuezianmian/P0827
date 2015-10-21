@@ -35,7 +35,7 @@
         <th>抽奖编号</th>
         <th>用户名</th>
         <th>是否中奖</th>
-        <th>中奖时间</th>
+        <th>参与时间</th>
         <th>奖项名称</th>
         <th>奖品名称</th>
       </tr>
@@ -58,7 +58,7 @@
               }
               ?>
         </td>
-        <td ><?php echo $v['participant_time']; ?></td>
+        <td ><?php echo date('Y-m-d H:i:s',$v['participant_time']); ?></td>
         <td ><?php echo $v['awards_name']; ?></td>
         <td ><?php echo $v['prize_name']; ?></td>
        <!-- <td >

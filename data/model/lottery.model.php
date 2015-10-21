@@ -132,6 +132,17 @@ class lotteryModel extends Model {
     }
 
 	/**
+	 * 获取奖项信息
+	 *
+	 */
+	public function getParticipantInfo($id){
+		$param	= array();
+		$param['table']	= 'lottery_participant';
+		$param['where']	= " and id=$id ";
+		return Db::select($param);
+	}
+
+	/**
 	 * 构造查询条件
 	 *
 	 * @param array $condition 条件数组

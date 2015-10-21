@@ -5,7 +5,9 @@
       <h3>抽奖管理</h3>
       <ul class="tab-base">
         <li><a href="index.php?act=lottery&op=index"><span>管理</span></a></li>
-        <li><a href="javascript:;"><span>新增奖项</span></a></li>
+        <li><a href="javascript:;" class="current"><span>新增奖项</span></a></li>
+         <li><a href="index.php?act=lottery&op=win_list"><span>中奖列表</span></a></li>
+         <li><a href="index.php?act=lottery&op=participant_list"><span>参与记录</span></a></li>
       </ul>
     </div>
   </div>

@@ -21,11 +21,11 @@ class lotteryControl extends BaseMemberControl {
 		$condition	= array();
 		$condition["is_win"] = 1;
 		$condition['member_id'] = $this->member_info['member_id'];
-		$win_list = $model_lottery->getParticipantList($condition, '' , 'participant_time,is_get,prize_name');
+		$win_list = $model_lottery->getParticipantList($condition, '' , 'id,participant_time,awards_name,is_get,prize_name,prize_desc');
 		$result = array();
 		$result['win_list'] = $win_list;
-		$result['member_points'] = $this->member_info['member_points'];
-		$result['total_points'] = $this->member_info['total_points'];
+//		$result['member_points'] = $this->member_info['member_points'];
+//		$result['total_points'] = $this->member_info['total_points'];
 		echoJson(SUCCESS, '获取中奖列表成功', $result, $this->token);
 	}
 

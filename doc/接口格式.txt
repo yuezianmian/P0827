@@ -366,12 +366,15 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
       method: post
 
       return：
-        {"code":200,"msg":"获取中奖列表成功","data":{"win_list":[{"participant_time":"1444559721","is_get":"0","prize_name":"10元现金"}],"member_points":"1716","total_points":"2316"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+        {"code":200,"msg":"获取中奖列表成功","data":{"win_list":[{"id":"10","participant_time":"1445198698","awards_name":"二等奖","is_get":"0","prize_name":"10元现金","prize_desc":null},
+            ,{"id":"2","participant_time":"1431557593","awards_name":"三等奖","is_get":"1","prize_name":"100积分","prize_desc":"电话卡\r\n卡号：129123912313213"}],"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
-         code : 10  今日已参与，不可重复参与
+         id：中奖信息id
          participant_time:中奖时间，单位秒
+         awards_name :奖项名称
          prize_name:奖品名称
          is_get：是否已领奖 1-是 0-否
+         prize_desc：奖品详细信息 ，未领奖时该值为null
 
 28.更新会员信息
   url: http://ip:port/app/index.php?act=member&op=edit&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88

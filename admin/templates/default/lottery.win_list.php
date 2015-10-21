@@ -39,6 +39,7 @@
         <th>奖品名称</th>
         <th>是否已领奖</th>
         <th>领奖时间</th>
+        <th style="width:400px;">奖品信息</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -48,7 +49,7 @@
       <tr class="hover">
         <td ><?php echo $v['id']; ?></td>
         <td ><?php echo $v['member_mobile']; ?></td>
-        <td ><?php echo $v['participant_time']; ?></td>
+        <td ><?php echo date('Y-m-d H:i:s',$v['participant_time']); ?></td>
         <td ><?php echo $v['awards_name']; ?></td>
         <td ><?php echo $v['prize_name']; ?></td>
         <td >
@@ -63,17 +64,16 @@
             }
             ?>
         </td>
-        <td ><?php echo $v['get_time']; ?></td>
+        <td >
+          <?php if(!empty($v['get_time'])){ ?>
+              <?php echo date('Y-m-d H:i:s',$v['get_time']); ?>
+          <?php } ?>
+        </td>
+        <td ><?php echo $v['prize_desc']; ?></td>
         <td class="w96">
-            <?php
-            switch ($v['is_get']){
-                case '0':
-                    echo '<a data_id="'.$v['id'].'" class="get_prize" href="javascript:void(0)">核销</a>';
-                    break;
-                case '1':
-                    break;
-            }
-            ?>
+          <?php  if ($v['is_get'] == 0) { ?>
+            <a href="index.php?act=lottery&op=get_prize&id=<?php echo $v['id']; ?>">核销</a>
+          <?php } ?>
         </td>
       </tr>
       <?php } ?>
