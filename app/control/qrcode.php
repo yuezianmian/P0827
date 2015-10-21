@@ -32,6 +32,9 @@ class qrcodeControl extends BaseMemberControl {
 		}
 		$insert_array = array();
 		$insert_array['product_id']	= $product_id;
+		$insert_array['product_name'] = $product_info['product_name'];
+		$insert_array['shop_points'] = $product_info['shop_points'];
+		$insert_array['agent_points'] = $product_info['agent_points'];
 		$insert_array['qrcode']	= $qrcode;
 		$insert_array['member_id']= $this->member_info['member_id'];
 		$insert_array['create_time'] 	= TIMESTAMP;

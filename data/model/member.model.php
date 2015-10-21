@@ -167,10 +167,10 @@ class memberModel extends Model {
 	 * @return int
 	 */
 	public function getShopListWithOrderAmount($parent_code, $month) {
-		$sql = "SELECT a.member_id,a.member_mobile,a.member_code,a.shop_name,a.create_time, IFNULL(c.amount,0) monthAmount "
+		$sql = "SELECT a.member_id,a.member_mobile,a.member_code,a.shop_name,a.create_time, IFNULL(c.amount,0) monthAmount,IFNULL(c.agent_total_points,0) agent_total_points "
 		        ."FROM sysc_member a "
 				."LEFT JOIN ("
-				."SELECT COUNT(1) amount,b.member_id "
+				."SELECT COUNT(1) amount,sum(b.agent_points) agent_total_points,b.member_id "
 				."FROM sysc_qrcode_record b "
 				."WHERE FROM_UNIXTIME(b.create_time,'%Y%m') = '$month' "
 				."GROUP BY b.member_id) c ON a.member_id=c.member_id "

@@ -215,6 +215,10 @@ class memberControl extends BaseMemberControl {
 		echoJson(FAILED, '更新会员信息失败', array(), $this->token);
 	}
 
+	public function getMemberInfoOp(){
+		echoJson(SUCCESS, '获取app首页相关会员信息成功', $this->member_info, $this->token);
+	}
+
 	/**
 	 * app首页用到的一些会员信息
 	 */

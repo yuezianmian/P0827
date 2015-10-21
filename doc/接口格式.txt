@@ -139,8 +139,9 @@ return：
    url: http://ip:port/app/index.php?act=member&op=shoplist_withOrderNum_byagent&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
    params:(post)
    return：
-    {"code":200,"msg":"获取当前代理的下属店面列表成功","data":[{"member_id":"2","member_mobile":"18682255278","member_code":null,"shop_name":"店面1","create_time":"1440378734","monthAmount":"0"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
+    {"code":200,"msg":"获取当前代理的下属店面列表成功","data":[{"member_id":"3","member_mobile":"18682255277","member_code":null,"shop_name":"店面1","create_time":"1440378734","monthAmount":"0","agent_total_points":"0"},{"member_id":"2","member_mobile":"18682255278","member_code":null,"shop_name":"店面1","create_time":"1440378734","monthAmount":"0","agent_total_points":"0"}],"token":"uI2Wx33u07xaxIgbyZJ0CtBcCpKH_J6TR3ug_WiZEbDFP7XeBVEtf_oOqzIxuM88sxVtMnDE9XqIRWDJ7EfuLAMTm"}
     monthAmount 该服务店面本月总单数
+    agent_total_points 该服务店面所属代理商本月通过店面扫描二维码获取的总积分数
 
 9.审核会员
 url: http://ip:port/app/index.php?act=member&op=check&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=uI1212321312xIgby123cCpKH_J6TR21231bDFP7XeBVEtf_o1321222123
@@ -441,10 +442,60 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
         shop_name：店铺名称/公司名称
         member_avatar:头像地址
 31. 获取积分获取规则信息
-    url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+    url: http://ip:port/app/index.php?act=member&op=getPointsConfig&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
      method: post
 
      return：
+       {"code":200,"msg":"获取积分规则配置信息成功","data":{"sign_points":2,"recommend_member_points":10,"recommended_member_points":10},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+           sign_points :签到积分
+           recommend_member_points :推荐会员奖励积分
+           recommended_member_points：被推荐会员奖励积分（即通过分享链接注册后该用户获取的积分）
+
+32 获取最新会员信息
+    url: http://ip:port/app/index.php?act=member&op=getMemberInfo&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+    method: post
+
+    return：
+        {"code":200,"msg":"获取app首页相关会员信息成功","data":{"member_id":"1","member_name":null,"member_truename":"宣传册","member_mobile":"18682255279","member_mobile_true":"13482371161","member_avatar":null,
+            "member_sex":null,"member_birthday":"2005-10-19","member_passwd":"e3ceb5881a0a1fdaad01296d7554868d","member_points":"1015","total_points":"2316","member_state":"1","member_type":"1","member_code":"55555",
+            "parent_code":null,"create_time":"1440378734","shop_name":"黄瓜科技","shop_img":"\/data\/home\/byu1812220001\/htdocs\/data\/upload\/img\/shop\/1-1445310747.48.png","area_name":"天津市南开区","area_id":"58",
+            "shop_address":"光华路","alipay_number":"133568","bank_number":"从 v","bank_username":"光大银行","bank_name":"浦东","bank_branch":"62266666666","address_area_id":"55","address_area_name":"天津市和平区","address_detail":"测试地址","address_postcode":"201000","recomm_member_id":null},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+              member_id:会员id
+              member_name:暂未使用
+              member_truename：姓名
+              member_mobile：用户名
+              member_mobile_true：手机号
+              member_avatar:头像路径，可为空
+              member_sex：会员性别 0-保密 1-男 2-女
+              member_birthday：会员生日 格式：2015-09-15
+              member_points:会员积分，不可为空
+              member_state:会员状态，0为注册未提交店面资料 1为待审核 2为正常（审核通过） 3为失效（审核不通过），不可为空
+              member_type:会员类型 1为代理商 2为店面，不可为空
+              member_code:代理商编号，会员类型为代理商时（即member_type=1）才有值，会员类型为店面时该值为空
+              parent_code:该会员所属的代理商编号，会员类型为店面时（即member_type=2）才有值，会员类型为代理商时该值为空
+              create_time:注册时间,（单位秒，从1970年1月1日算起），10位，不可为空
+              shop_name：店铺名称/公司名称
+              shop_img：店铺图片，会员类型为店面时才有值
+              shop_address:店铺地址
+              area_name：店铺所属区域名称，格式：天津市和平区
+              area_id：所属区域id，对应区一级的id
+              alipay_number：支付宝账号
+              bank_number：银行账号
+              bank_username:开户姓名
+              bank_name:银行名称
+              bank_branch：开户网点
+              address_area_id： 会员区域id（收货地址区域id）
+              address_area_name： 会员区域名称（收货地址区域名称）
+              address_detail： 会员详细地址（收货地址详细地址）
+              address_postcode： 会员所属地邮编（收货地址邮编）
+
+33.1 获取积分商品列表
+  url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+  method: post
+
+  return：
        {"code":200,"msg":"获取积分商品成功","data":{"points_good_list":[{"pg_id":"5","pg_name":"商品2","pg_points":"20","pg_stock":"20","create_time":"1445338778"}],"total_page":1,"amount":"1"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
            pg_id :积分商品id
@@ -454,14 +505,4 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
            pg_stock：剩余库存
            create_time:商品创建时间
 
-32.1 获取积分商品列表
-  url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
-  method: post
-
-  return：
-    {"code":200,"msg":"获取积分规则配置信息成功","data":{"sign_points":2,"recommend_member_points":10,"recommended_member_points":10},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
-
-        sign_points :签到积分
-        recommend_member_points :推荐会员奖励积分
-        recommended_member_points：被推荐会员奖励积分（即通过分享链接注册后该用户获取的积分）
 
