@@ -31,11 +31,12 @@ class uploadControl extends BaseMemberControl {
 				mkdir($filePath,0777,true);
 			}
 			$filePath = $filePath.DS.$fileName;
+			$fileUrl = '/data/upload/img/'.$param["path"].DS.$fileName;
 			$base64_image_content = str_replace(' ','+',$base64_image_content);
 			$image_content = base64_decode(str_replace($result[1], '', $base64_image_content));
 //			echo str_replace($result[1], '', $base64_image_content);
 			if (file_put_contents($filePath, $image_content)){
-				echoJson(SUCCESS, "上传成功，路径为$filePath", array('path'=>$filePath), $this->token);
+				echoJson(SUCCESS, "上传成功，路径为$fileUrl", array('path'=>$fileUrl), $this->token);
 			}else{
 				echoJson(FAILED, "上传图片失败");
 			}
