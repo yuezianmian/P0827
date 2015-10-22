@@ -28,7 +28,7 @@ class signControl extends BaseMemberControl {
 		$member_id = $this->member_info['member_id'];
 		$model_sign = Model('sign');
 		$condition	= array();
-		$condition["day"]	= date('Y-m-d', time());
+		$condition["day"]	= date('Ymd', time());
 		$condition['member_id'] = $member_id;
 		$sign_info = $model_sign->getSignInfo($condition);
 		if(!empty($sign_info) && count($sign_info) > 0){
