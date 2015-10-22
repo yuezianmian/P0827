@@ -28,5 +28,13 @@ class points_goodControl extends BaseMemberControl {
 		echoJson(SUCCESS, '获取积分商品成功', $return_data, $this->token);
 	}
 
+	public function points_good_infoOp(){
+		$condition	= array();
+		$condition['pg_id'] = $_POST['pg_id'];
+		$model_points_good = Model('points_good');
+		$points_good_info = $model_points_good->getPointsGoodInfo($condition);
+		echoJson(SUCCESS, '获取积分商品详细信息成功', $points_good_info, $this->token);
+	}
+
 
 }

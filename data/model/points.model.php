@@ -56,7 +56,7 @@ class pointsModel {
 				break;
 			case 'pointorder':
 				if (!$insertarr['pl_desc']){
-					$insertarr['pl_desc'] = '兑换礼品';
+					$insertarr['pl_desc'] = '兑换商品';
 				}
 				break;
 			case 'extract_cash':
