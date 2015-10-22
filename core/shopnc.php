@@ -56,7 +56,7 @@ $_GET['act'] = preg_match('/^[\w]+$/i',$_GET['act']) ? $_GET['act'] : 'index';
 $_GET['op'] = preg_match('/^[\w]+$/i',$_GET['op']) ? $_GET['op'] : 'index';
 
 //对GET POST接收内容进行过滤,$ignore内的下标不被过滤
-$ignore = array('article_content','pgoods_body','doc_content','content','sn_content','g_body','store_description','p_content','groupbuy_intro','remind_content','note_content','ref_url','adv_pic_url','adv_word_url','adv_slide_url','appcode','mail_content');
+$ignore = array('notice_content','pg_desc','doc_content','content','sn_content','g_body','store_description','p_content','groupbuy_intro','remind_content','note_content','ref_url','adv_pic_url','adv_word_url','adv_slide_url','appcode','mail_content');
 if (!class_exists('Security')) require(BASE_CORE_PATH.'/framework/libraries/security.php');
 $_GET = !empty($_GET) ? Security::getAddslashesForInput($_GET,$ignore) : array();
 $_POST = !empty($_POST) ? Security::getAddslashesForInput($_POST,$ignore) : array();
