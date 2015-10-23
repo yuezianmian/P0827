@@ -36,6 +36,16 @@ class points_orderModel extends Model {
 	}
 
 	/**
+	 * 计算满足条件的points_order数目
+	 * @param unknown $condition
+	 * @param string $pagesize
+	 * @param string $order
+	 */
+	public function countPointsOrder($condition = array()) {
+		return $this->where($condition)->count();
+	}
+
+	/**
 	 * 取得单条信息
 	 * @param unknown $condition
 	 */

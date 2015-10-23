@@ -53,6 +53,24 @@ class points_orderControl extends BaseMemberControl {
 		echoJson(SUCCESS, '提交积分兑换订单成功', array('points_order_id'=>$points_order_id), $this->token);
 	}
 
+	public function points_order_listOp(){
+		$page_size = $_POST['page_size'] ? $_POST['page_size'] : 10;
+		$page_index = $_POST['page_index'] ? $_POST['page_index'] : 1;
+		$start = $page_size * ($page_index - 1);
+		$points_order_model = Model('points_order');
+		$limit =  $start.','.$page_size;
+		$condition	= array();
+		$condition['point_buyerid'] = $this->member_info['member_id']; //上架状态
+		$points_order_list = $points_order_model->getPointsOrderList($condition,'point_orderid,point_ordersn,pg_id,pg_name,pg_number,point_allpoint,point_addtime,point_finishedtime,point_orderstate,point_orderdesc','',$limit);
+		$points_order_amount = $points_order_model->countPointsOrder($condition);
+		$total_page = ($points_order_amount%$page_size==0)?intval($points_order_amount/$page_size):(intval($points_order_amount/$page_size)+1);
+		$return_data = array();
+		$return_data['points_order_list'] = $points_order_list;
+		$return_data['total_page'] = $total_page;
+		$return_data['amount'] = $points_order_amount;
+		echoJson(SUCCESS, '获取用户订单成功', $return_data, $this->token);
+	}
+
 
 
 }

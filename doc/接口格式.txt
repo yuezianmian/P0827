@@ -497,7 +497,8 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
 33.1 获取积分商品列表
   url: http://ip:port/app/index.php?act=points_good&op=points_good_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
   method: post
-
+         page_size 每页显示个数
+         page_index 第几页，从1开始
   return：
        {"code":200,"msg":"获取积分商品成功","data":{"points_good_list":[{"pg_id":"5","pg_name":"商品2","pg_img":"\/data\/upload\/img\/points_good\/04989612056354768.png","pg_points":"20","pg_stock":"20","create_time":"1445338778"}],"total_page":1,"amount":"1"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
@@ -548,3 +549,27 @@ url: http://ip:port/app/index.php?act=points_order&op=add_points_order&timestamp
            pg_stock：剩余库存
            pg_desc：积分商品详细信息，富文本
            create_time:商品创建时间
+
+33.4 查询当前用户的兑品订单
+     url: http://ip:port/app/index.php?act=points_order&op=points_order_list&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+       method: post
+         page_size 每页显示个数
+         page_index 第几页，从1开始
+
+       return：
+
+    {"code":200,"msg":"获取用户订单成功","data":{"points_order_list":[{"point_orderid":"2","point_ordersn":"540498779562295001","pg_id":"1","pg_name":"商品1","pg_number":"2","point_allpoint":"20","point_addtime":"1445435562","point_finishedtime":null,"point_orderstate":"1","point_orderdesc":null},
+        {"point_orderid":"1","point_ordersn":"120498779416881001","pg_id":"1","pg_name":"商品1","pg_number":"2","point_allpoint":"20","point_addtime":"1445435416","point_finishedtime":null,"point_orderstate":"1","point_orderdesc":null}],"total_page":1,"amount":"2"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+               points_order_list：订单列表，其中
+                  point_orderid :订单id
+                  point_ordersn :订单编号
+                  pg_id：积分商品id
+                  pg_name：积分商品名称
+                  pg_number：兑换的积分商品数量
+                  point_allpoint：该订单消耗的积分
+                  point_addtime:订单创建时间，即下单时间，秒为单位，10位
+                  point_finishedtime:订单完成时间，即后台派奖时间，秒为单位，10位
+                  point_finishedtime:订单完成时间，即后台派奖时间，秒为单位，10位
+                  point_orderstate:订单状态，1-待完成 2-已完成
+                  point_orderdesc:订单商品详细信息，如购买电话卡则是电话卡的卡号等信息，point_orderstate订单状态为2时才有值
