@@ -499,10 +499,11 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
   method: post
 
   return：
-       {"code":200,"msg":"获取积分商品成功","data":{"points_good_list":[{"pg_id":"5","pg_name":"商品2","pg_points":"20","pg_stock":"20","create_time":"1445338778"}],"total_page":1,"amount":"1"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+       {"code":200,"msg":"获取积分商品成功","data":{"points_good_list":[{"pg_id":"5","pg_name":"商品2","pg_img":"\/data\/upload\/img\/points_good\/04989612056354768.png","pg_points":"20","pg_stock":"20","create_time":"1445338778"}],"total_page":1,"amount":"1"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
            pg_id :积分商品id
            pg_name :积分商品名称
+           pg_img :积分商品图片路径
            pg_points：兑换该商品所需积分
            total_points：会员获取的总积分
            pg_stock：剩余库存
@@ -511,12 +512,14 @@ url: http://ip:port/app/index.php?act=member&op=member_point_ranking&timestamp=1
 33.2 获取积分商品详细信息
   url: http://ip:port/app/index.php?act=points_good&op=points_good_info&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
   method: post
+    pg_id :积分商品id
 
   return：
-    {"code":200,"msg":"获取积分商品详细信息成功","data":{"pg_id":"1","pg_name":"商品1","pg_points":"10","pg_stock":"10","pg_desc":"积分商品描述信息...","pg_state":"2","create_time":"1445265371"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+    {"code":200,"msg":"获取积分商品详细信息成功","data":{"pg_id":"1","pg_name":"商品1","pg_img":"\/data\/upload\/img\/points_good\/04989612056354768.png","pg_points":"10","pg_stock":"10","pg_desc":"积分商品描述信息...","pg_state":"2","create_time":"1445265371"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
 
            pg_id :积分商品id
            pg_name :积分商品名称
+           pg_img :积分商品图片路径
            pg_points：兑换该商品所需积分
            total_points：会员获取的总积分
            pg_stock：剩余库存

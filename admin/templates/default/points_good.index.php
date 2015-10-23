@@ -22,6 +22,7 @@
         <tr class="thead">
           <th class="w36"><input type="checkbox" class="checkall" id="checkall_1"></th>
           <th>商品名称</th>
+          <th>商品图片</th>
           <th>兑换积分值</th>
           <th>库存</th>
           <th>状态</th>
@@ -36,6 +37,9 @@
           <td class="w36"><input type="checkbox" name='check_pg_id[]' value="<?php echo $v['pg_id'];?>" class="checkitem"></td>
           <td class="">
             <span><?php echo $v['pg_name'];?></span>
+          </td>
+          <td class="">
+            <span><img src="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,60,60);"/></span>
           </td>
           <td class="">
             <span><?php echo $v['pg_points'];?></span>

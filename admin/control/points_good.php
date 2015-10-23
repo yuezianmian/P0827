@@ -47,6 +47,7 @@ class points_goodControl extends SystemControl{
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
 				array("input"=>$_POST["pg_name"], "require"=>"true", "message"=>'商品名称不能为空'),
+				array("input"=>$_FILES['pg_img']['name'], "require"=>"true", "message"=>'商品图片不能为空'),
 				array("input"=>$_POST["pg_points"], "require"=>"true", "message"=>'兑换积分不能为空'),
 				array("input"=>$_POST["pg_stock"], "require"=>"true", "message"=>'库存不能为空'),
 				array("input"=>$_POST["pg_state"], "require"=>"true", "message"=>'状态不能为空'),
@@ -56,8 +57,15 @@ class points_goodControl extends SystemControl{
 			if ($error != ''){
 				showMessage($error);
 			}
+			$upload	= new UploadFile();
+			$upload->set('default_dir','img/points_good');
+			$result = $upload->upfile('pg_img');
+			if(!$result){
+				showMessage($upload->error);
+			}
 			$insert_array = array();
 			$insert_array['pg_name'] = $_POST["pg_name"];
+			$insert_array['pg_img'] = '/data/upload/img/points_good/'.$upload->file_name;
 			$insert_array['pg_points'] = $_POST['pg_points'];
 			$insert_array['pg_stock'] = $_POST['pg_stock'];
 			$insert_array['pg_state'] = $_POST['pg_state'];
@@ -107,6 +115,15 @@ class points_goodControl extends SystemControl{
 				showMessage($error);
 			}
 			$update_array = array();
+			if($_FILES['pg_img']['name']!=''){
+				$upload	= new UploadFile();
+				$upload->set('default_dir','img/points_good');
+				$result = $upload->upfile('pg_img');
+				if(!$result){
+					showMessage($upload->error);
+				}
+				$update_array['pg_img'] = '/data/upload/img/points_good/'.$upload->file_name;
+			}
 			$update_array['pg_name'] = $_POST['pg_name'];
 			$update_array['pg_points'] = $_POST['pg_points'];
 			$update_array['pg_stock'] = $_POST['pg_stock'];

@@ -131,7 +131,7 @@ define('NOT_LOGIN', 1);
 define('ILLEGAL_REQUEST', 2);
 //会员状态已失效
 define('MEMBER_INVALID', 3);
-//app用户会话时长 单位秒,永久有效
+//app用户会话时长 单位秒,1年..
 define('APP_SESSION_TIMEOUT', 60*60*24*30*12);
 //短信验证码超时时间 单位秒
 define('VERIFY_CODE_TIMEOUT', 60*10);

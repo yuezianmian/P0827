@@ -18,7 +18,7 @@ class points_goodControl extends BaseMemberControl {
 		$limit =  $start.','.$page_size;
 		$condition	= array();
 		$condition['pg_state'] = 1; //上架状态
-		$points_good_list = $model_points_good->getPointsGoodList($condition,'pg_id,pg_name,pg_points,pg_stock,create_time','',$limit);
+		$points_good_list = $model_points_good->getPointsGoodList($condition,'pg_id,pg_name,pg_img,pg_points,pg_stock,create_time','',$limit);
 		$points_good_amount = $model_points_good->countPointsGoodList($condition);
 		$total_page = ($points_good_amount%$page_size==0)?intval($points_good_amount/$page_size):(intval($points_good_amount/$page_size)+1);
 		$return_data = array();

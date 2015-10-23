@@ -26,6 +26,21 @@
           </td>
           <td class="vatop tips"></td>
         </tr>
+        <tr class="noborder">
+            <td colspan="2" class="required"><label for="pg_img">商品图片:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform">
+						<span class="type-file-show">
+							<img class="show_image" src="<?php echo ADMIN_TEMPLATES_URL;?>/images/preview.png" />
+							<div class="type-file-preview"><img src="<?php echo SITE_URL.$output['points_good']['pg_img'];?>" onload="javascript:DrawImage(this,500,500);"></div>
+						</span>
+						<span class="type-file-box">
+							<input type="file" class="type-file-file" id="pg_img" name="pg_img" size="30" hidefocus="true">
+						</span>
+            </td>
+            <td class="vatop tips">建议上传的商品图片分辨率100*100</td>
+        </tr>
         <tr>
           <td colspan="2" class="required"><label class="validation" for="pg_points">兑换积分:</label></td>
         </tr>
@@ -56,7 +71,7 @@
             <td colspan="2" class="required"><label class="validation" >商品描述:</label></td>
         </tr>
         <tr class="noborder">
-            <td class="vatop rowform"><?php showEditor('pg_desc',$output['points_good']['pg_desc']);?></td>
+            <td class="vatop rowform" colspan="2"><?php showEditor('pg_desc',$output['points_good']['pg_desc']);?></td>
             <td class="vatop tips"></td>
         </tr>
       </tbody>
@@ -89,6 +104,9 @@ $(document).ready(function(){
         		required: true,
                 maxlength: 25
 			},
+            pg_img: {
+                accept : 'png|jpe?g|gif'
+            },
             pg_points: {
         		required: true,
                 digits : true
@@ -109,6 +127,9 @@ $(document).ready(function(){
         		required : '商品名称不能为空',
                 maxlength : '商品名称最大长度不能超过25'
 			},
+            pg_img: {
+                accept   : '商品图片限于png,gif,jpeg,jpg格式'
+            },
             pg_points: {
                 required : '兑换积分值不能为空',
                 digits : '兑换积分值必须为正整数'
@@ -124,6 +145,14 @@ $(document).ready(function(){
                 required : '描述不能为空'
             }
         }
+    });
+});
+$(function(){
+// 模拟input type='file'样式
+    var textButton="<input type='text' name='textfield' id='textfield1' class='type-file-text' /><input type='button' name='button' id='button1' value='' class='type-file-button' />"
+    $(textButton).insertBefore("#pg_img");
+    $("#pg_img").change(function(){
+        $("#textfield1").val($("#pg_img").val());
     });
 });
 </script>
