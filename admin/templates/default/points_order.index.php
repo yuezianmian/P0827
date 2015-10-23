@@ -48,7 +48,7 @@
           <th>下单时间</th>
           <th>订单完成时间</th>
           <th>订单状态</th>
-          <th width="400px">商品详细信息</th>
+          <th width="350px">商品详细信息</th>
           <th class=""><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
