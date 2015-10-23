@@ -45,7 +45,7 @@
           <th>兑换商品</th>
           <th>兑换数量</th>
           <th>订单积分</th>
-          <th>订单生成时间</th>
+          <th>下单时间</th>
           <th>订单完成时间</th>
           <th>订单状态</th>
           <th width="400px">商品详细信息</th>
@@ -72,12 +72,12 @@
             <span><?php echo $v['point_allpoint'];?></span>
           </td>
           <td>
-            <span><?php echo date('Y-m-d H:i',$v['point_addtime']);?></span>
+            <span><?php echo date('Y-m-d H:i:s',$v['point_addtime']);?></span>
           </td>
           <td>
             <span>
             <?php if($v['point_finishedtime']){ ?>
-              <?php echo date('Y-m-d H:i',$v['point_finishedtime']);?>
+              <?php echo date('Y-m-d H:i:s',$v['point_finishedtime']);?>
             <?php } ?>
             </span>
           </td>

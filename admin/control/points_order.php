@@ -54,33 +54,28 @@ class points_orderControl extends SystemControl{
 			//验证
 			$obj_validate = new Validate();
 			$obj_validate->validateparam = array(
-				array("input"=>$_POST["pg_name"], "require"=>"true", "message"=>'商品名称不能为空'),
-				array("input"=>$_POST["pg_points"], "require"=>"true", "message"=>'兑换积分不能为空'),
-				array("input"=>$_POST["pg_stock"], "require"=>"true", "message"=>'库存不能为空'),
-				array("input"=>$_POST["pg_state"], "require"=>"true", "message"=>'状态不能为空'),
-				array("input"=>$_POST["pg_desc"], "require"=>"true", "message"=>'描述不能为空'),
+				array("input"=>$_POST["point_orderdesc"], "require"=>"true", "message"=>'商品详细信息不能为空'),
+				array("input"=>$_POST["point_orderid"], "require"=>"true", "message"=>'订单id不能为空'),
 			);
 			$error = $obj_validate->validate();
 			if ($error != ''){
 				showMessage($error);
 			}
 			$update_array = array();
-			$update_array['pg_name'] = $_POST['pg_name'];
-			$update_array['pg_points'] = $_POST['pg_points'];
-			$update_array['pg_stock'] = $_POST['pg_stock'];
-			$update_array['pg_state'] = $_POST['pg_state'];
-			$update_array['pg_desc'] = $_POST['pg_desc'];
-			$result = $model_points_order->editPointsOrder($update_array,array('pg_id'=>intval($_POST['pg_id'])));
+			$update_array['point_orderdesc'] = $_POST['point_orderdesc'];
+			$update_array['point_orderstate'] = 2;
+			$update_array['point_finishedtime'] = time();
+			$result = $model_points_order->editPointsOrder($update_array,array('point_orderid'=>intval($_POST['point_orderid'])));
 			if ($result){
 				$this->log('编辑积分商品'.'['.$_POST['pg_id'].']',1);
-				showMessage($lang['nc_common_save_succ'],'index.php?act=points_order&op=points_order');
+				showMessage('核销成功','index.php?act=points_order&op=points_order');
 			}else {
-				showMessage($lang['nc_common_save_fail']);
+				showMessage('核销失败');
 			}
 
 		}
 
-		$points_order_info = $model_points_order->getPointsOrderInfo(array('pg_id'=>intval($_GET['pg_id'])));
+		$points_order_info = $model_points_order->getPointsOrderInfo(array('point_orderid'=>intval($_GET['point_orderid'])));
 		if (empty($points_order_info)){
 			showMessage($lang['illegal_parameter']);
 		}

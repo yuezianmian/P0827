@@ -39,8 +39,7 @@
             </tr>
             <tr class="noborder">
                 <td class="vatop rowform">
-                    <?php echo date('Y-m-d H:i:s',$v['participant_time']); ?>
-                    <?php echo $output['win']['participant_time'];?>
+                    <?php echo date('Y-m-d H:i:s',$output['win']['participant_time']); ?>
                 </td>
             </tr>
             <tr class="noborder">
