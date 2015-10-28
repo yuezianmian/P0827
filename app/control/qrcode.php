@@ -10,9 +10,9 @@ class qrcodeControl extends BaseMemberControl {
 	}
 
 	public function scanOp(){
-		if($this->member_info['member_type'] != MEMBER_TYPE_STORE){
+		/*if($this->member_info['member_type'] != MEMBER_TYPE_STORE){
 			echoJson(10, "非服务店面会员，不可扫描二维码");
-		}
+		}*/
 		$qrvalue = $_POST['qrcode'];
 		if(empty($qrvalue)){
 			echoJson(FAILED, "二维码内容不能为空");
@@ -45,12 +45,19 @@ class qrcodeControl extends BaseMemberControl {
 		}
 		//添加积分记录
 		$points_model = Model('points');
-		$points_model->savePointsLog('scan_qrcode',array('pl_memberid'=>$this->member_info['member_id'],'pl_membermobile'=>$this->member_info['member_mobile'],'pl_points'=>$product_info['shop_points'],'pl_desc'=>('扫描产品'),'product_name'=>$product_info['product_name']),true);
-		if(!empty($this->member_info['parent_code'])){ //存在所属代理商
-			$model_member = Model('member');
-			$parent_member_info = $model_member->getMemberInfo(array('member_code'=>$this->member_info['parent_code']));
-			$points_model->savePointsLog('shop_scan_qrcode',array('pl_memberid'=>$parent_member_info['member_id'],'pl_membermobile'=>$parent_member_info['member_mobile'],'pl_points'=>$product_info['agent_points'],'pl_desc'=>('店面扫描产品'),'product_name'=>$product_info['product_name'],'shop_name'=>$this->member_info['shop_name']),true);
+		if($this->member_info['member_type'] == MEMBER_TYPE_AGENT){ //代理商自己扫描
+			$points_model->savePointsLog('scan_qrcode',array('pl_memberid'=>$this->member_info['member_id'],'pl_membermobile'=>$this->member_info['member_mobile'],'pl_points'=>$product_info['agent_scan_points'],'pl_desc'=>('扫描产品'),'product_name'=>$product_info['product_name']),true);
+		}else if($this->member_info['member_type'] == MEMBER_TYPE_STORE){
+			$points_model->savePointsLog('scan_qrcode',array('pl_memberid'=>$this->member_info['member_id'],'pl_membermobile'=>$this->member_info['member_mobile'],'pl_points'=>$product_info['shop_points'],'pl_desc'=>('扫描产品'),'product_name'=>$product_info['product_name']),true);
+			if(!empty($this->member_info['parent_code'])){ //存在所属代理商
+				$model_member = Model('member');
+				$parent_member_info = $model_member->getMemberInfo(array('member_code'=>$this->member_info['parent_code']));
+				$points_model->savePointsLog('shop_scan_qrcode',array('pl_memberid'=>$parent_member_info['member_id'],'pl_membermobile'=>$parent_member_info['member_mobile'],'pl_points'=>$product_info['agent_points'],'pl_desc'=>('店面扫描产品'),'product_name'=>$product_info['product_name'],'shop_name'=>$this->member_info['shop_name']),true);
+			}
 		}
+
+
+
 		echoJson(SUCCESS, "扫描成功，获取".$product_info['shop_points']."积分", array('points'=>$product_info['shop_points'],'product_name'=>$product_info['product_name']), $this->token);
 	}
 

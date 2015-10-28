@@ -32,11 +32,18 @@
           <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label class="validation" for="shop_points">店面商获得积分:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="shop_points">店面获得积分:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" value="<?php echo $output['product_info']['shop_points'];?>" name="shop_points" id="shop_points" class="txt"></td>
           <td class="vatop tips"></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="required"><label class="validation" for="agent_scan_points">代理商扫描获得积分:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input type="text" value="<?php echo $output['product_info']['agent_scan_points'];?>" name="agent_scan_points" id="agent_scan_points" class="txt"></td>
+            <td class="vatop tips"></td>
         </tr>
       </tbody>
       <tfoot>
@@ -84,6 +91,10 @@ $(document).ready(function(){
             shop_points : {
                 required : true,
                 digits   : true
+            },
+            agent_scan_points : {
+                required : true,
+                digits   : true
             }
         },
         messages : {
@@ -99,6 +110,10 @@ $(document).ready(function(){
             shop_points  : {
                 required : '店面获得积分不能为空',
                 digits   : '店面获得积分必须为整数'
+            },
+            agent_scan_points  : {
+                required : '代理商扫描获得积分不能为空',
+                digits   : '代理商扫描获得积分必须为整数'
             }
         }
     });
