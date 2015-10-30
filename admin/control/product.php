@@ -58,6 +58,7 @@ class productControl extends SystemControl{
 				$insert_array['product_name'] = $_POST['product_name'];
 				$insert_array['agent_points'] = intval($_POST['agent_points']);
 				$insert_array['shop_points'] = intval($_POST['shop_points']);
+				$insert_array['agent_scan_points'] = intval($_POST['agent_scan_points']);
 				$result = $model_product->addProduct($insert_array);
 				if ($result){
 					$url = array(
@@ -102,6 +103,7 @@ class productControl extends SystemControl{
 				$update_array['product_name'] = $_POST['product_name'];
 				$update_array['agent_points'] = intval($_POST['agent_points']);
 				$update_array['shop_points'] = intval($_POST['shop_points']);
+				$update_array['agent_scan_points'] = intval($_POST['agent_scan_points']);
 				$result = $model_product->editProduct($update_array,array('product_id'=>intval($_POST['product_id'])));
 				if ($result){
 					$this->log('编辑产品'.'['.$_POST['product_name'].']',1);

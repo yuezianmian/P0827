@@ -35,6 +35,7 @@
           <th>产品名称</th>
           <th>代理商获得积分</th>
           <th>店面获得积分</th>
+          <th>代理商扫描获得积分</th>
           <th>创建时间</th>
           <th><?php echo $lang['nc_handle'];?></th>
         </tr>
@@ -52,6 +53,9 @@
           </td>
           <td class="">
             <span><?php echo $v['shop_points'];?></span>
+          </td>
+          <td class="">
+            <span><?php echo $v['agent_scan_points'];?></span>
           </td>
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
