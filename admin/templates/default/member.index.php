@@ -7,6 +7,7 @@
       <ul class="tab-base">
         <li><a href="JavaScript:void(0);" class="current"><span><?php echo $lang['nc_manage']?></span></a></li>
         <li><a href="index.php?act=member&op=member_add" ><span>新增代理</span></a></li>
+        <li><a href="index.php?act=member&op=member_add_shop" ><span>新增店面</span></a></li>
       </ul>
     </div>
   </div>

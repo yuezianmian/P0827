@@ -6,8 +6,8 @@
       <h3><?php echo $lang['member_index_manage']?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=member&op=member" ><span><?php echo $lang['nc_manage']?></span></a></li>
-        <li><a href="JavaScript:void(0);" class="current"><span>新增代理</span></a></li>
-          <li><a href="index.php?act=member&op=member_add_shop" ><span>新增店面</span></a></li>
+        <li><a href="index.php?act=member&op=member_add" ><span>新增代理</span></a></li>
+        <li><a href="JavaScript:void(0);" class="current"><span>新增店面</span></a></li>
       </ul>
     </div>
   </div>
@@ -16,13 +16,7 @@
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2">
       <tbody>
-        <tr class="noborder">
-          <td colspan="2" class="required"><label class="validation" for="shop_name">公司名称:</label></td>
-        </tr>
-        <tr class="noborder">
-          <td class="vatop rowform"><input type="text" value="" name="shop_name" id="shop_name" class="txt"></td>
-          <td class="vatop tips"></td>
-        </tr>
+
         <tr class="noborder">
           <td colspan="2" class="required"><label class="validation" for="member_mobile_true">手机号:</label></td>
         </tr>
@@ -31,7 +25,7 @@
           <td class="vatop tips"></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label class="validation" for="member_passwd"><?php echo $lang['member_edit_password']?>:</label></td>
+          <td colspan="2" class="required"><label class="validation" for="member_passwd">密码:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" id="member_passwd" name="member_passwd" class="txt"></td>
@@ -44,8 +38,24 @@
           <td class="vatop rowform"><input type="text" value="" id="member_truename" name="member_truename" class="txt"></td>
           <td class="vatop tips"></td>
         </tr>
+        <tr class="noborder">
+            <td colspan="2" class="required"><label class="validation" for="shop_name">店铺名称:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input type="text" value="" name="shop_name" id="shop_name" class="txt"></td>
+            <td class="vatop tips"></td>
+        </tr>
+        <tr class="noborder">
+            <td colspan="2" class="required"><label class="validation" for="shop_img">店铺照片:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform type-file-box">
+                <input type="file" class="type-file-file" id="shop_img" name="shop_img" size="30" hidefocus="true"  >
+            </td>
+            <td class="vatop tips"></td>
+        </tr>
         <tr>
-            <td colspan="2" class="required"><label class="validation" for="sub_area_id">区域:</label></td>
+            <td colspan="2" class="required"><label class="validation" for="sub_area_id">店铺区域:</label></td>
         </tr>
         <tr class="noborder">
             <td class="vatop">
@@ -63,11 +73,18 @@
             </td>
             <td class="vatop tips"></td>
         </tr>
-        <tr>
-            <td colspan="2" class="required"><label class="validation" for="member_code">代理商编号:</label></td>
+        <tr class="noborder">
+            <td colspan="2" class="required"><label class="validation" for="shop_address">店铺地址:</label></td>
         </tr>
         <tr class="noborder">
-            <td class="vatop rowform"><input type="text" value="<?php echo  $output['member_code'];?>" id="member_code" name="member_code" class="txt"></td>
+            <td class="vatop rowform"><input type="text" value="" name="shop_address" id="shop_address" class="txt"></td>
+            <td class="vatop tips"></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="required"><label class="validation" for="parent_code">所属代理商编号:</label></td>
+        </tr>
+        <tr class="noborder">
+            <td class="vatop rowform"><input type="text"  id="parent_code" name="parent_code" class="txt"></td>
             <td class="vatop tips"></td>
         </tr>
       </tbody>
@@ -149,6 +166,14 @@ $(function(){
                 required : true,
                 maxlength: 25
             },
+            shop_img: {
+                required: true,
+                accept : 'png|jpe?g|gif'
+            },
+            shop_address: {
+                required : true,
+                maxlength: 80
+            },
             member_mobile_true: {
 				required : true,
                 digits : true,
@@ -177,12 +202,12 @@ $(function(){
             sub_area_id: {
 				required : true
             },
-            member_code: {
+            parent_code: {
                 required : true,
                 maxlength: 5,
                 minlength: 5,
                 remote   : {
-                    url :'index.php?act=member&op=ajax&branch=check_member_code',
+                    url :'index.php?act=member&op=ajax&branch=check_parent_code',
                     type:'get',
                     data:{
                         member_code : function(){
@@ -195,8 +220,16 @@ $(function(){
         },
         messages : {
             shop_name  : {
-                required : '公司名称不能为空',
+                required : '店铺名称不能为空',
                 maxlength : '公司名称不能超过25位字符'
+            },
+            shop_img: {
+                required : '图片不能为空',
+                accept   : '图片限于png,gif,jpeg,jpg格式'
+            },
+            shop_address: {
+                required : '地址不能为空',
+                maxlength: '地址长度不能超过80位'
             },
             member_mobile_true: {
 				required : '手机号不能为空',
@@ -215,15 +248,23 @@ $(function(){
                 maxlength : '姓名不能超过20位字符'
             },
             sub_area_id : {
-                required: '所在区域必须精确到区或县'
+                required: '店铺区域必须精确到区或县'
 			},
-            member_code : {
-                required: '代理商编码不能为空',
-                minlength: '代理商编码为5位',
-                maxlength: '代理商编码为5位',
-                remote   : '该代理商编码已被注册'
+            parent_code : {
+                required: '所属代理商编码不能为空',
+                minlength: '所属代理商编码为5位',
+                maxlength: '所属代理商编码为5位',
+                remote   : '所属该代理商编码不存在'
             }
         }
+    });
+});
+$(function(){
+// 模拟活动页面横幅Banner上传input type='file'样式
+    var textButton="<input type='text' name='textfield' id='textfield1' class='type-file-text' /><input type='button' name='button' id='button1' value='' class='type-file-button' />"
+    $(textButton).insertBefore("#shop_img");
+    $("#shop_img").change(function(){
+        $("#textfield1").val($("#shop_img").val());
     });
 });
 </script>

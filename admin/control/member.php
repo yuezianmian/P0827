@@ -127,7 +127,7 @@ class memberControl extends SystemControl{
 	}
 
 	/**
-	 * 新增会员
+	 * 新增代理
 	 */
 	public function member_addOp(){
 		$lang	= Language::getLangContent();
@@ -190,6 +190,78 @@ class memberControl extends SystemControl{
 		Tpl::output('member_code',$member_code);
 		Tpl::output('area_json',json_encode($area_arr));
 		Tpl::showpage('member.add');
+	}
+
+	/**
+	 * 新增店面
+	 */
+	public function member_add_shopOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		/**
+		 * 保存
+		 */
+		if (chksubmit()){
+			/**
+			 * 验证
+			 */
+			$obj_validate = new Validate();
+			$obj_validate->validateparam = array(
+				array("input"=>$_POST["shop_name"], "require"=>"true", "message"=>'店铺名称不能为空'),
+				array("input"=>$_FILES['shop_img']['name'], "require"=>"true", "message"=>'店铺图片不能为空'),
+				array("input"=>$_POST["member_mobile_true"], "require"=>"true", "message"=>'手机号不能为空'),
+				array("input"=>$_POST["member_passwd"], "require"=>"true", "message"=>'密码不能为空'),
+				array("input"=>$_POST["member_truename"], "require"=>"true", "message"=>'姓名不能为空'),
+				array("input"=>$_POST["parent_code"], "require"=>"true", "message"=>'所属代理商编号不能为空')
+			);
+			$error = $obj_validate->validate();
+			if ($error != ''){
+				showMessage($error);
+			}else {
+				$upload	= new UploadFile();
+				$upload->set('default_dir','img/shop');
+				$result = $upload->upfile('shop_img');
+				if(!$result){
+					showMessage($upload->error);
+				}
+				$insert_array = array();
+				$insert_array['shop_name']	= trim($_POST['shop_name']);
+				$insert_array['shop_img']	= '/data/upload/img/shop/'.$upload->file_name;
+				$insert_array['shop_address']	= trim($_POST['shop_address']);
+				$insert_array['member_mobile_true']	= trim($_POST['member_mobile_true']);
+				$insert_array['member_mobile']	= trim($_POST['member_mobile_true']); //用户名先默认使用手机号
+				$insert_array['member_passwd']	= trim($_POST['member_passwd']);
+				$insert_array['member_truename']= trim($_POST['member_truename']);
+				$insert_array['parent_code'] 	= trim($_POST['parent_code']);
+				$insert_array['area_id'] 		= trim($_POST['area_id']);
+				$insert_array['area_name']		= trim($_POST['area_name']);
+				$insert_array['member_state']	= MEMBER_STATE_NORMAL;
+				$insert_array['member_type']	= MEMBER_TYPE_STORE;
+
+				$result = $model_member->addMember($insert_array);
+				if ($result){
+					$url = array(
+						array(
+							'url'=>'index.php?act=member&op=member',
+							'msg'=>$lang['member_add_back_to_list'],
+						),
+						array(
+							'url'=>'index.php?act=member&op=member_add_shop',
+							'msg'=>'继续添加店面',
+						),
+					);
+					$this->log(L('nc_add,member_index_name').'[MOBILE:'.$_POST['member_mobile'].']',1);
+					showMessage($lang['member_add_succ'],$url);
+				}else {
+					showMessage($lang['member_add_fail']);
+				}
+			}
+		}
+		$model_area = Model('area');
+		$area_arr = $model_area->getAreaArrayForJson();
+
+		Tpl::output('area_json',json_encode($area_arr));
+		Tpl::showpage('member.add_shop');
 	}
 
 	/**

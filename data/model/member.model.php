@@ -125,6 +125,8 @@ class memberModel extends Model {
 		    $member_info['member_id']			= $param['member_id'];
 		    $member_info['member_name']			= $param['member_name'];
 		    $member_info['shop_name']			= $param['shop_name'];
+		    $member_info['shop_img']			= $param['shop_img'];
+		    $member_info['shop_address']			= $param['shop_address'];
 		    $member_info['member_passwd']		= md5(trim($param['member_passwd']));
 		    $member_info['member_mobile']		= $param['member_mobile'];
 		    $member_info['member_mobile_true']	= $param['member_mobile_true'];

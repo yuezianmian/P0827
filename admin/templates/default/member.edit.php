@@ -6,7 +6,8 @@
       <h3><?php echo $lang['member_index_manage']?></h3>
       <ul class="tab-base">
         <li><a href="index.php?act=member&op=member" ><span><?php echo $lang['nc_manage']?></span></a></li>
-        <li><a href="index.php?act=member&op=member_add" ><span><?php echo $lang['nc_new']?></span></a></li>
+        <li><a href="index.php?act=member&op=member_add" ><span>新增代理商</span></a></li>
+          <li><a href="index.php?act=member&op=member_add_shop" ><span>新增店面</span></a></li>
         <li><a href="JavaScript:void(0);" class="current"><span>指定代理商</span></a></li>
       </ul>
     </div>
