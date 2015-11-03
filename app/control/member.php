@@ -235,7 +235,7 @@ class memberControl extends BaseMemberControl {
 //		$condition['pl_addtime'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
 //		$condition['pl_points'] = array('gt',0);
 		$condition_str	= " and `points_log`.pl_memberid = ".$member_id;
-		$condition_str	= " and `points_log`.pl_addtime >= ".strtotime(date('Y-m-01 00:00:00'));
+		$condition_str	.= " and `points_log`.pl_addtime >= ".strtotime(date('Y-m-01 00:00:00'));
 		$condition_str	.= " and `points_log`.pl_points > 0 ";
 		$month_points_sum = $model_points->countPoints($condition_str);
 		$return = array();
