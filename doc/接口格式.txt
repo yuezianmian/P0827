@@ -542,6 +542,8 @@ url: http://ip:port/app/index.php?act=points_order&op=add_points_order&timestamp
            code: 11 您的积分不足，无法兑换
            code: 12 兑换的商品id和商品名称不能为空
            code: 13 兑换商品的数量不能为空
+           code: 14 请先完善您的姓名信息
+           code: 15 请先完善您的收件地址信息
            points_order_id :订单id
            pg_name :积分商品名称
            pg_points：兑换该商品所需积分
