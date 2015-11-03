@@ -25,6 +25,12 @@ class points_orderControl extends BaseMemberControl {
 		if(empty($_POST['pg_number'])){
 			echoJson(13, '兑换商品的数量不能为空');
 		}
+		if(empty($this->member_info['member_truename'])){
+			echoJson(14, '请先完善您的姓名信息');
+		}
+		if(empty($this->member_info['address_area_id']) || empty($this->member_info['address_area_name']) || empty($this->member_info['address_detail']) || empty($this->member_info['address_postcode'])){
+			echoJson(15, '请先完善您的收货地址信息');
+		}
 		$member_id = $this->member_info['member_id'];
 		$member_mobile = $this->member_info['member_mobile'];
 		$member_mobile_true = $this->member_info['member_mobile_true'];
