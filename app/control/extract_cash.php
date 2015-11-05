@@ -26,7 +26,7 @@ class extract_cashControl extends BaseMemberControl {
 		$extract_cash_list = $model_extract_cash->getExtractCashList($condition,'*','', $limit);
 		//获取总数
 		$condition	= array();
-		$condition['to_member_id'] = $member_id;
+		$condition['member_id'] = $member_id;
 		if($cash_state){
 			$condition['cash_state'] = $cash_state;
 		}
