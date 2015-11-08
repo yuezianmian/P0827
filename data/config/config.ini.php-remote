@@ -31,7 +31,7 @@ $config['cache']['type'] 			= 'file';
 //$config['redis']['slave']      	    = array();
 //$config['fullindexer']['open']      = false;
 //$config['fullindexer']['appname']   = 'shopnc';
-$config['debug'] 			= false;
+$config['debug'] 			= true;
 $config['default_store_id'] = '1';
 $config['url_model'] = false;
 $config['subdomain_suffix'] = '';
@@ -46,7 +46,7 @@ $config['sms']['password'] = '';
 $config['sms']['sessionKey'] = '';
 $config['sms']['wxurl'] = 'http://121.199.16.178/webservice/sms.php?method=Submit';
 $config['sms']['wxaccount'] = 'cf_shzywh';
-$config['sms']['wxpassword'] = 'cfshzywh';
+$config['sms']['wxpassword'] = 'shzywh@123';
 //$config['sms']['temp_code'] = '您的校验码是：{$verify_code}。请不要把验证码泄露给其他人。';
 $config['sms']['temp_code'] = '您的验证码是：【{$verify_code}】。请不要把验证码泄露给其他人。';
 
@@ -59,4 +59,6 @@ $config['cache_open'] = false;
 $config['points']['sign'] = 2;
 //推荐会员奖励积分
 $config['points']['recommend_user'] = 10;
+//被推荐会员奖励积分
+$config['points']['recommended_user'] = 10;
 return $config;
