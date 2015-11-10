@@ -59,6 +59,7 @@ class productControl extends SystemControl{
 				$insert_array['agent_points'] = intval($_POST['agent_points']);
 				$insert_array['shop_points'] = intval($_POST['shop_points']);
 				$insert_array['agent_scan_points'] = intval($_POST['agent_scan_points']);
+				$insert_array['create_time'] = time();
 				$result = $model_product->addProduct($insert_array);
 				if ($result){
 					$url = array(
