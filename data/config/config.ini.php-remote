@@ -59,4 +59,6 @@ $config['cache_open'] = false;
 $config['points']['sign'] = 2;
 //推荐会员奖励积分
 $config['points']['recommend_user'] = 10;
+//被推荐会员奖励积分
+$config['points']['recommended_user'] = 10;
 return $config;
