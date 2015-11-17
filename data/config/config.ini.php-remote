@@ -45,8 +45,8 @@ $config['sms']['serialNumber'] = '';
 $config['sms']['password'] = '';
 $config['sms']['sessionKey'] = '';
 $config['sms']['wxurl'] = 'http://121.199.16.178/webservice/sms.php?method=Submit';
-$config['sms']['wxaccount'] = 'cf_shzywh';
-$config['sms']['wxpassword'] = 'shzywh@123';
+$config['sms']['wxaccount'] = 'cf_sbl';
+$config['sms']['wxpassword'] = 'sbl@123';
 //$config['sms']['temp_code'] = '您的校验码是：{$verify_code}。请不要把验证码泄露给其他人。';
 $config['sms']['temp_code'] = '您的验证码是：【{$verify_code}】。请不要把验证码泄露给其他人。';
 
