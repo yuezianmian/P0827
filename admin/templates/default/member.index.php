@@ -67,7 +67,13 @@
         <?php foreach($output['member_list'] as $k => $v){ ?>
         <tr class="hover member">
           <td class="w24"></td>
-          <td class="w48 picture"><div class="size-44x44"><span class="thumb size-44x44"><i></i><img src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,44,44);"/></span></div></td>
+          <td class="w48 picture">
+              <div class="size-44x44">
+                  <span class="thumb size-44x44"><i></i>
+                      <img style="width: 44px;height: 44px;" src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait')?>'"/>
+                  </span>
+              </div>
+          </td>
           <td>
               <p class="name">
                   <strong><a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>"><?php echo $v['member_mobile']; ?></a></strong>
@@ -90,7 +96,7 @@
             <div class="size-44x44">
               <span class="thumb size-44x44"><i></i>
                <?php if($v['member_type'] == 2 && $v['shop_img']){ ?>
-                <img src="<?php  echo SITE_URL.$v['shop_img'];?>"  onload="javascript:DrawImage(this,44,44);"/>
+                <img style="width: 44px;height: 44px;" src="<?php  echo SITE_URL.$v['shop_img'];?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
                <?php } ?>
               </span>
             </div>

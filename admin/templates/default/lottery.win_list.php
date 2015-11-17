@@ -32,14 +32,16 @@
   <table class="table tb-type2 nobdb">
     <thead>
       <tr class="thead">
-        <th>抽奖编号</th>
-        <th>用户名</th>
+        <th>编号</th>
+        <th>手机号</th>
         <th>中奖时间</th>
         <th>奖项名称</th>
         <th>奖品名称</th>
+        <th>区域</th>
+        <th>详细地址</th>
         <th>是否已领奖</th>
         <th>领奖时间</th>
-        <th style="width:400px;">奖品信息</th>
+        <th style="width:250px;">奖品信息</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -48,10 +50,12 @@
       <?php foreach($output['win_list'] as $k => $v){ ?>
       <tr class="hover">
         <td ><?php echo $v['id']; ?></td>
-        <td ><?php echo $v['member_mobile']; ?></td>
-        <td ><?php echo date('Y-m-d H:i:s',$v['participant_time']); ?></td>
+        <td ><?php echo $v['member_mobile_true']; ?></td>
+        <td ><?php echo date('Y-m-d H:i',$v['participant_time']); ?></td>
         <td ><?php echo $v['awards_name']; ?></td>
         <td ><?php echo $v['prize_name']; ?></td>
+        <td ><?php echo $v['address_area_name']; ?></td>
+        <td ><?php echo $v['address_detail']; ?></td>
         <td >
             <?php
             switch ($v['is_get']){
@@ -66,11 +70,11 @@
         </td>
         <td >
           <?php if(!empty($v['get_time'])){ ?>
-              <?php echo date('Y-m-d H:i:s',$v['get_time']); ?>
+              <?php echo date('Y-m-d H:i',$v['get_time']); ?>
           <?php } ?>
         </td>
         <td ><?php echo $v['prize_desc']; ?></td>
-        <td class="w96">
+        <td class="w72">
           <?php  if ($v['is_get'] == 0) { ?>
             <a href="index.php?act=lottery&op=get_prize&id=<?php echo $v['id']; ?>">核销</a>
           <?php } ?>

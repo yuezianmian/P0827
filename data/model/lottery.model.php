@@ -25,7 +25,7 @@ class lotteryModel extends Model {
  		$param['field'] = $field;
 		return Db::select($param);
 	}
-	
+
 	/**
 	 * 查看参与人数
 	 *
@@ -132,6 +132,23 @@ class lotteryModel extends Model {
     }
 
 	/**
+	 * 奖项列表
+	 *
+	 */
+	public function getParticipantListWithAddress($condition,$page=''){
+		$condition_str	= $this->getParticipantCondition($condition);
+		$param	= array();
+		$param['table']	= 'lottery_participant,member';
+		$param['field'] = 'lottery_participant.*,member.address_area_name,member.address_detail,member.member_mobile_true';
+		$param['join_type']	= 'inner join';
+		$param['where']	= $condition_str;
+		$param['join_on']	= array('lottery_participant.member_id=member.member_id');
+		$param['order']	= 'awards_id';
+
+		return Db::select($param,$page);
+	}
+
+	/**
 	 * 获取奖项信息
 	 *
 	 */
@@ -169,13 +186,13 @@ class lotteryModel extends Model {
     private function getParticipantCondition($condition){
         $conditionStr	= '';
         if($condition['member_id'] != ''){
-            $conditionStr	.= " and member_id='{$condition['member_id']}' ";
+            $conditionStr	.= " and lottery_participant.member_id='{$condition['member_id']}' ";
         }
         if($condition['is_win'] != ''){
-            $conditionStr	.= " and is_win='{$condition['is_win']}' ";
+            $conditionStr	.= " and lottery_participant.is_win='{$condition['is_win']}' ";
         }
         if($condition['is_get'] != ''){
-            $conditionStr	.= " and is_get='{$condition['is_get']}' ";
+            $conditionStr	.= " and lottery_participant.is_get='{$condition['is_get']}' ";
         }
 
         return $conditionStr;

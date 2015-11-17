@@ -117,7 +117,7 @@ class lotteryControl extends SystemControl{
         $page->setStyle('admin');
         //查询积分日志列表
         $lottery_model = Model('lottery');
-        $win_list = $lottery_model->getParticipantList($condition_arr,$page,'*','');
+        $win_list = $lottery_model->getParticipantListWithAddress($condition_arr,$page,'*','');
 
         Tpl::output('show_page',$page->show());
         if($_GET['is_get'] != ""){
