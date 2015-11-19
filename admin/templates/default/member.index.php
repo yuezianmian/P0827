@@ -70,7 +70,9 @@
           <td class="w48 picture">
               <div class="size-44x44">
                   <span class="thumb size-44x44"><i></i>
-                      <img style="width: 44px;height: 44px;" src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait')?>'"/>
+                      <a href="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>" data-lightbox="box-userimg-<?php echo $v['member_id'];?>">
+                         <img style="width: 44px;height: 44px;" src="<?php if ($v['member_avatar'] != ''){ echo SITE_URL.$v['member_avatar'];}else { echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait');}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS.C('default_user_portrait')?>'"/>
+                      </a>
                   </span>
               </div>
           </td>
@@ -96,7 +98,9 @@
             <div class="size-44x44">
               <span class="thumb size-44x44"><i></i>
                <?php if($v['member_type'] == 2 && $v['shop_img']){ ?>
-                <img style="width: 44px;height: 44px;" src="<?php  echo SITE_URL.$v['shop_img'];?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+                  <a href="<?php if ($v['shop_img'] != ''){ echo SITE_URL.$v['shop_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>?<?php echo microtime();?>" data-lightbox="box-shopimg-<?php echo $v['member_id'];?>;?>">
+                    <img style="width: 44px;height: 44px;" src="<?php  echo SITE_URL.$v['shop_img'];?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+                  </a>
                <?php } ?>
               </span>
             </div>
@@ -149,6 +153,8 @@
     </table>
   </form>
 </div>
+<link href="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/css/lightbox.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/js/lightbox.min.js"></script>
 <script>
 $(function(){
     $('#ncsubmit').click(function(){

@@ -39,7 +39,11 @@
             <span><?php echo $v['pg_name'];?></span>
           </td>
           <td class="">
-            <span><img src="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,60,60);"/></span>
+            <span>
+              <a href="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>?<?php echo microtime();?>" data-lightbox="box-<?php echo $v['pg_id'];?>;?>">
+                <img style="width: 50px;height: 50px;" src="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+              </a>
+            </span>
           </td>
           <td class="">
             <span><?php echo $v['pg_points'];?></span>
@@ -86,3 +90,5 @@
     </table>
   </form>
 </div>
+<link href="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/css/lightbox.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/js/lightbox.min.js"></script>

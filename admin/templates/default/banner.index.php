@@ -36,7 +36,11 @@
             <span><?php echo $v['banner_order'];?></span>
           </td>
           <td class="">
-            <span><img height="160" width="160" src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,156,90);"/></span>
+            <span>
+              <a href="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>?<?php echo microtime();?>" data-lightbox="box-<?php echo $v['banner_id'];?>;?>">
+                <img style="width: 100px;height: 55px;" src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+              </a>
+            </span>
           </td>
           <td class="">
             <span><?php echo date('Y-m-d H:i:s',$v['create_time']);?></span>
@@ -68,4 +72,5 @@
     </table>
   </form>
 </div>
-<script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery.edit.js" charset="utf-8"></script>
+<link href="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/css/lightbox.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/js/lightbox.min.js"></script>
