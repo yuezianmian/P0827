@@ -534,6 +534,9 @@ url: http://ip:port/app/index.php?act=points_order&op=add_points_order&timestamp
      pg_name :积分商品名称
      pg_number:兑换商品的数量
      points：兑换商品需扣掉的总积分
+     address:地址
+     receiver_name：收件人姓名
+     receiver_mobile：收件人电话
 
   return：
     {"code":200,"msg":"提交积分兑换订单成功","data":{"points_order_id":2},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}

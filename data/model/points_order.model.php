@@ -79,6 +79,9 @@ class points_orderModel extends Model {
 		$order_array['point_allpoint']	= $data['point_allpoint'];
 		$order_array['point_addtime']		= time();
 		$order_array['point_orderstate']	= 1;
+		$order_array['address']	= $data['address'];
+		$order_array['receiver_name']	= $data['receiver_name'];
+		$order_array['receiver_mobile']	= $data['receiver_mobile'];
 		return $this->addPointsOrder($order_array);
 	}
 	/**

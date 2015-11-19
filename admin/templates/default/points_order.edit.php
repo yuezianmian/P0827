@@ -64,6 +64,30 @@
                 </td>
             </tr>
             <tr class="noborder">
+                <td colspan="2" class="required"><label class="" >收货人<?php echo $lang['nc_colon']; ?></label></td>
+            </tr>
+            <tr class="noborder">
+                <td class="vatop rowform">
+                    <?php echo $output['points_order']['receiver_name'];?>
+                </td>
+            </tr>
+            <tr class="noborder">
+                <td colspan="2" class="required"><label class="" >收货电话<?php echo $lang['nc_colon']; ?></label></td>
+            </tr>
+            <tr class="noborder">
+                <td class="vatop rowform">
+                    <?php echo $output['points_order']['receiver_mobile'];?>
+                </td>
+            </tr>
+            <tr class="noborder">
+                <td colspan="2" class="required"><label class="" >收货地址<?php echo $lang['nc_colon']; ?></label></td>
+            </tr>
+            <tr class="noborder">
+                <td class="vatop rowform">
+                    <?php echo $output['points_order']['address'];?>
+                </td>
+            </tr>
+            <tr class="noborder">
                 <td colspan="2" class="required"><label class="" >订单状态<?php echo $lang['nc_colon']; ?></label></td>
             </tr>
             <tr class="noborder">

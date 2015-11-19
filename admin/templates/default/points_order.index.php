@@ -41,14 +41,17 @@
         </tr>
         <tr class="thead">
           <th>订单编号</th>
-          <th>会员手机号</th>
-          <th>兑换商品</th>
-          <th>兑换数量</th>
-          <th>订单积分</th>
-          <th>下单时间</th>
-          <th>订单完成时间</th>
-          <th>订单状态</th>
-          <th width="350px">商品详细信息</th>
+<!--          <th>手机号</th>-->
+          <th width="140px">商品</th>
+          <th>数量</th>
+          <th>积分</th>
+          <th width="76px">下单时间</th>
+          <th>收货人</th>
+          <th>收货手机号</th>
+          <th width="200px">收货地址</th>
+          <th width="76px">完成时间</th>
+          <th width="40px">状态</th>
+          <th width="150px">商品详细信息</th>
           <th class=""><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -59,9 +62,9 @@
           <td class="">
             <span><?php echo $v['point_ordersn'];?></span>
           </td>
-          <td class="">
-            <span><?php echo $v['point_buyermobiletrue'];?></span>
-          </td>
+         <!-- <td class="">
+            <span><?php /*echo $v['point_buyermobiletrue'];*/?></span>
+          </td>-->
           <td>
             <span><?php echo $v['pg_name'];?></span>
           </td>
@@ -72,12 +75,21 @@
             <span><?php echo $v['point_allpoint'];?></span>
           </td>
           <td>
-            <span><?php echo date('Y-m-d H:i:s',$v['point_addtime']);?></span>
+            <span><?php echo date('Y-m-d H:i',$v['point_addtime']);?></span>
+          </td>
+          <td>
+            <span><?php echo $v['receiver_name'];?></span>
+          </td>
+          <td>
+            <span><?php echo $v['receiver_mobile'];?></span>
+          </td>
+          <td>
+            <span><?php echo $v['address'];?></span>
           </td>
           <td>
             <span>
             <?php if($v['point_finishedtime']){ ?>
-              <?php echo date('Y-m-d H:i:s',$v['point_finishedtime']);?>
+              <?php echo date('Y-m-d H:i',$v['point_finishedtime']);?>
             <?php } ?>
             </span>
           </td>

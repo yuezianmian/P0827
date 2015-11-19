@@ -25,12 +25,12 @@ class points_orderControl extends BaseMemberControl {
 		if(empty($_POST['pg_number'])){
 			echoJson(13, '兑换商品的数量不能为空');
 		}
-		if(empty($this->member_info['member_truename'])){
-			echoJson(14, '请先完善您的姓名信息');
-		}
-		if(empty($this->member_info['address_area_id']) || empty($this->member_info['address_area_name']) || empty($this->member_info['address_detail']) || empty($this->member_info['address_postcode'])){
-			echoJson(15, '请先完善您的收货地址信息');
-		}
+//		if(empty($this->member_info['member_truename'])){
+//			echoJson(14, '请先完善您的姓名信息');
+//		}
+//		if(empty($this->member_info['address_area_id']) || empty($this->member_info['address_area_name']) || empty($this->member_info['address_detail']) || empty($this->member_info['address_postcode'])){
+//			echoJson(15, '请先完善您的收货地址信息');
+//		}
 		$member_id = $this->member_info['member_id'];
 		$member_mobile = $this->member_info['member_mobile'];
 		$member_mobile_true = $this->member_info['member_mobile_true'];
@@ -43,6 +43,9 @@ class points_orderControl extends BaseMemberControl {
 		$insert_arr['pg_number'] = $_POST['pg_number'];
 		$insert_arr['pg_id'] = $_POST['pg_id'];
 		$insert_arr['pg_name'] = $_POST['pg_name'];
+		$insert_arr['address'] = $_POST['address'];
+		$insert_arr['receiver_name'] = $_POST['receiver_name'];
+		$insert_arr['receiver_mobile'] = $_POST['receiver_mobile'];
 		$points_order_id = $points_order_model->createPointsOrder($insert_arr);
 		if(!$points_order_id){
 			echoJson(FAILED, '提交积分兑换订单失败');
