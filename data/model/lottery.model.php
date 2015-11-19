@@ -143,7 +143,7 @@ class lotteryModel extends Model {
 		$param['join_type']	= 'inner join';
 		$param['where']	= $condition_str;
 		$param['join_on']	= array('lottery_participant.member_id=member.member_id');
-		$param['order']	= 'awards_id';
+		$param['order'] = 'lottery_participant.id desc';
 
 		return Db::select($param,$page);
 	}

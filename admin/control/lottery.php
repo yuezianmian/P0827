@@ -179,6 +179,60 @@ class lotteryControl extends SystemControl{
 		Tpl::showpage('lottery.win_edit');
     }
 
+	/**
+	 * 导出中奖列表
+	 */
+	public function export_win_listOp(){
+		$condition_arr = array();
+		$condition_arr['is_win'] = 1;
+		$condition_arr['is_get'] = trim($_GET['is_get']);
+		//查询
+		$lottery_model = Model('lottery');
+		$win_list = $lottery_model->getParticipantListWithAddress($condition_arr);
+		$this->createExcel($win_list);
+	}
 
+	/**
+	 * 生成excel
+	 *
+	 * @param array $data
+	 */
+	private function createExcel($data = array()){
+		Language::read('export');
+		import('libraries.excel');
+		$excel_obj = new Excel();
+		$excel_data = array();
+		//设置样式
+		$excel_obj->setStyle(array('id'=>'s_title','Font'=>array('FontName'=>'宋体','Size'=>'12','Bold'=>'1')));
+		//header
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'编号');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'手机号');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'中奖时间');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'奖项名称');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'奖品名称');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'区域');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'详细地址');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'是否已领奖');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'领奖时间');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'奖品信息');
+		foreach ((array)$data as $k=>$v){
+			$tmp = array();
+			$tmp[] = array('data'=>$v['id']);
+			$tmp[] = array('data'=>$v['member_mobile_true']);
+			$tmp[] = array('data'=>date('Y-m-d H:i',$v['participant_time']));
+			$tmp[] = array('data'=>$v['awards_name']);
+			$tmp[] = array('data'=>$v['prize_name']);
+			$tmp[] = array('data'=>$v['address_area_name']);
+			$tmp[] = array('data'=>$v['address_detail']);
+			$tmp[] = array('data'=>($v['is_get']==1?'已领奖' : '未领奖'));
+			$tmp[] = array('data'=>($v['is_get']==1? date('Y-m-d H:i:s',$v['get_time']) : ''));
+			$tmp[] = array('data'=>$v['prize_desc']);
+			$excel_data[] = $tmp;
+		}
+		$excel_data = $excel_obj->charset($excel_data,CHARSET);
+		$excel_obj->addArray($excel_data);
+		$excel_obj->addWorksheet($excel_obj->charset('中奖列表',CHARSET));
+		$excel_obj->generateXML($excel_obj->charset('中奖列表',CHARSET).$_GET['curpage'].'-'.date('Y-m-d-H',time()));
+	}
 
 }

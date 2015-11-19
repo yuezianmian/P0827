@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="fixed-empty"></div>
-    <form method="get" name="formSearch">
+    <form method="get" name="formSearch" id="formSearch">
         <input type="hidden" name="act" value="lottery">
         <input type="hidden" name="op" value="win_list">
         <table class="tb-type1 noborder search">
@@ -24,11 +24,12 @@
                         <option value="0" <?php if ($output['is_get'] == '0'){echo 'selected=selected';}?>>未领奖</option>
                     </select>
                 </td>
-                <td><a href="javascript:document.formSearch.submit();" class="btn-search " title="<?php echo $lang['nc_query']; ?>">&nbsp;</a></td>
+                <td><a  id="ncsubmit" href="javascript:void(0);" class="btn-search " title="<?php echo $lang['nc_query']; ?>">&nbsp;</a></td>
             </tr>
             </tbody>
         </table>
     </form>
+    <div style="text-align:right;"><a class="btns" href="javascript:void(0);" id="ncexport"><span><?php echo $lang['nc_export'];?>Excel</span></a></div>
   <table class="table tb-type2 nobdb">
     <thead>
       <tr class="thead">
@@ -99,6 +100,14 @@
 <script type="application/javascript">
     $(".get_prize").click(function() {
         getPrize($(this));
+    });
+    $('#ncexport').click(function(){
+        $('input[name="op"]').val('export_win_list');
+        $('#formSearch').submit();
+    });
+    $('#ncsubmit').click(function(){
+        $('input[name="op"]').val('win_list');
+        $('#formSearch').submit();
     });
     function getPrize(obj){
         var participant_id = obj.attr("data_id");
