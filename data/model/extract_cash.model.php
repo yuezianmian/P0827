@@ -30,6 +30,25 @@ class extract_cashModel extends Model {
 	}
 
 	/**
+	 * 取提现列表
+	 * @param unknown $condition
+	 * @param string $pagesize
+	 * @param string $order
+	 */
+	public function getExtractCashListWithMemberInfo($condition,$page=''){
+		$condition_str	= $this->getCondition($condition);
+		$param	= array();
+		$param['table']	= 'extract_cash,member';
+		$param['field'] = 'extract_cash.*,member.alipay_number,member.bank_number,member.bank_username,member.bank_name,member.bank_branch,member.member_mobile_true';
+		$param['where']	= $condition_str;
+		$param['join_type']	= 'inner join';
+		$param['join_on']	= array('extract_cash.member_id=member.member_id');
+		$param['order'] = $condition['order'] ? $condition['order'] : 'extract_cash.cash_id desc';
+		$param['group'] = $condition['group'];
+		return Db::select($param,$page);
+	}
+
+	/**
 	 * 提现总数
 	 */
 	public function counExtractCash($condition) {

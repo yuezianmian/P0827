@@ -19,6 +19,7 @@ $arr = array(
 				'nav' => 'dashboard',
 				'text' => $lang['nc_console'],
 				'list' => array(
+					array('args'=>'welcome,dashboard,dashboard',			       'text'=>'欢迎页'),
 					array('args'=>'admin,admin,dashboard',			       'text'=>'管理员设置'),
 					array('args'=>'member,member,dashboard',				'text'=>'会员管理'),
 					array('args'=>'product,product,dashboard',				'text'=>'产品管理'),

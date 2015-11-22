@@ -179,8 +179,8 @@ $(function(){
             },
             member_code: {
                 required : true,
-                maxlength: 5,
-                minlength: 5,
+                maxlength: 4,
+                minlength: 4,
                 remote   : {
                     url :'index.php?act=member&op=ajax&branch=check_member_code',
                     type:'get',
@@ -219,8 +219,8 @@ $(function(){
 			},
             member_code : {
                 required: '代理商编码不能为空',
-                minlength: '代理商编码为5位',
-                maxlength: '代理商编码为5位',
+                minlength: '代理商编码为4位',
+                maxlength: '代理商编码为4位',
                 remote   : '该代理商编码已被注册'
             }
         }

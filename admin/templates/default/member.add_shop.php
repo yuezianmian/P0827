@@ -204,8 +204,8 @@ $(function(){
             },
             parent_code: {
                 required : true,
-                maxlength: 5,
-                minlength: 5,
+                maxlength: 4,
+                minlength: 4,
                 remote   : {
                     url :'index.php?act=member&op=ajax&branch=check_parent_code',
                     type:'get',
@@ -252,8 +252,8 @@ $(function(){
 			},
             parent_code : {
                 required: '所属代理商编码不能为空',
-                minlength: '所属代理商编码为5位',
-                maxlength: '所属代理商编码为5位',
+                minlength: '所属代理商编码为4位',
+                maxlength: '所属代理商编码为4位',
                 remote   : '所属该代理商编码不存在'
             }
         }

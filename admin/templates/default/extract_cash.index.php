@@ -34,11 +34,17 @@
       </tbody>
     </table>
   </form>
+  <div style="text-align:right;"><a class="btns" href="javascript:void(0);" id="ncexport"><span><?php echo $lang['nc_export'];?>Excel</span></a></div>
   <!--  <div style="text-align:right;"><a class="btns" href="javascript:void(0);" id="ncexport"><span>--><?php //echo $lang['nc_export'];?><!--Excel</span></a></div>-->
   <table class="table tb-type2">
     <thead>
     <tr class="thead">
-      <th>会员用户名</th>
+      <th>手机号</th>
+      <th>支付宝</th>
+      <th>银行卡号</th>
+      <th>开户姓名</th>
+      <th>银行名称</th>
+      <th>开户网点</th>
       <th class="align-center">提现积分</th>
       <th class="align-center">申请时间</th>
       <th class="align-center">状态</th>
@@ -49,9 +55,14 @@
     <?php if(!empty($output['extract_cash_list']) && is_array($output['extract_cash_list'])){ ?>
       <?php foreach($output['extract_cash_list'] as $k => $v){?>
         <tr class="hover">
-          <td><?php echo $v['member_mobile'];?></td>
+          <td><?php echo $v['member_mobile_true'];?></td>
+          <td><?php echo $v['alipay_number'];?></td>
+          <td><?php echo $v['bank_number'];?></td>
+          <td><?php echo $v['bank_username'];?></td>
+          <td><?php echo $v['bank_name'];?></td>
+          <td><?php echo $v['bank_branch'];?></td>
           <td class="align-center"><?php echo $v['cash_points'];?></td>
-          <td class="nowrap align-center"><?php echo @date('Y-m-d H:i:s',$v['create_time']);?></td>
+          <td class="nowrap align-center"><?php echo @date('Y-m-d H:i',$v['create_time']);?></td>
           <td class="align-center"><?php
             switch ($v['cash_state']){
               case '1':
@@ -97,6 +108,10 @@
 //    });
     $('#ncsubmit').click(function(){
       $('input[name="op"]').val('extract_cash');$('#formSearch').submit();
+    });
+    $('#ncexport').click(function(){
+      $('input[name="op"]').val('export_cash_list');
+      $('#formSearch').submit();
     });
   });
 </script>
