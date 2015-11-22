@@ -37,8 +37,8 @@
           </td>
           <td class="">
             <span>
-              <a href="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>?<?php echo microtime();?>" data-lightbox="box-<?php echo $v['banner_id'];?>;?>">
-                <img style="width: 100px;height: 55px;" src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+              <a href="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>" data-lightbox="box-<?php echo $v['banner_id'];?>;?>">
+                <img style="width: 100px;height: 55px;" src="<?php if ($v['banner_img'] != ''){ echo SITE_URL.$v['banner_img'];}?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
               </a>
             </span>
           </td>

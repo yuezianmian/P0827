@@ -40,8 +40,8 @@
           </td>
           <td class="">
             <span>
-              <a href="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>?<?php echo microtime();?>" data-lightbox="box-<?php echo $v['pg_id'];?>;?>">
-                <img style="width: 50px;height: 50px;" src="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}?>?<?php echo microtime();?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+              <a href="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>" data-lightbox="box-<?php echo $v['pg_id'];?>;?>">
+                <img style="width: 50px;height: 50px;" src="<?php if ($v['pg_img'] != ''){ echo SITE_URL.$v['pg_img'];}?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
               </a>
             </span>
           </td>

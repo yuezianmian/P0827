@@ -50,7 +50,9 @@
           <td><?php echo $v['member_mobile'];?></td>
           <td  width="705px"><?php echo $v['feedback_content'];?></td>
 		  <td >
-           <img src="<?php if ($v['feedback_img'] != ''){ echo SITE_URL.$v['feedback_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,50,50);"/>
+            <a href="<?php if ($v['feedback_img'] != ''){ echo SITE_URL.$v['feedback_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>" data-lightbox="feedback-<?php echo $v['feedback_id'];?>;?>">
+              <img style="width: 50px;height: 50px;" src="<?php if ($v['feedback_img'] != ''){ echo SITE_URL.$v['feedback_img'];}?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+            </a>
 		  </td>
 		  <td><?php echo date('Y-m-d H:i:s', $v['create_time']);?></td>
 		  <td class="w96 align-center">
@@ -84,6 +86,8 @@
 <script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/jquery.ui.js"></script>
 <script type="text/javascript" src="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/i18n/zh-CN.js" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo RESOURCE_SITE_URL;?>/js/jquery-ui/themes/ui-lightness/jquery.ui.css"  />
+<link href="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/css/lightbox.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/js/lightbox.min.js"></script>
 <script language="javascript">
   $(function(){
     $('#stime').datepicker({dateFormat: 'yy-mm-dd'});
