@@ -4,7 +4,7 @@
 .*/
 
 defined('InShopNC') or exit('Access Invalid!');
-class banner1Control extends BaseMemberControl {
+class banner1Control extends Control {
 	public function __construct(){
 		parent::__construct();
 	}
