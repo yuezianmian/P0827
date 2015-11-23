@@ -578,3 +578,11 @@ url: http://ip:port/app/index.php?act=points_order&op=add_points_order&timestamp
                   point_finishedtime:订单完成时间，即后台派奖时间，秒为单位，10位
                   point_orderstate:订单状态，1-待完成 2-已完成
                   point_orderdesc:订单商品详细信息，如购买电话卡则是电话卡的卡号等信息，point_orderstate订单状态为2时才有值
+34.1 查询banner1 图片接口
+          url: http://ip:port/app/index.php?act=banner1&op=banner1_info&timestamp=1441618373&sign=ef7f119e1e3eecb3936a344bc3cbba1c&token=FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88
+            method: post
+
+            return：
+             {"code":200,"msg":"获取banner1信息成功","data":{"banner1_id":"1","banner1_img":"\/data\/upload\/img\/banner1\/05016044286220025.png","create_time":"1446559731"},"token":"FTRz4PPr2wEp1LwsaMOv4LazKzNknOHB4MXWwjVDSmx5OCtKgBxPCEk3eyyNSGy9LGmKO88"}
+
+             banner1_img：图片地址
