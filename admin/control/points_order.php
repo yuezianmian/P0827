@@ -83,6 +83,76 @@ class points_orderControl extends SystemControl{
 		Tpl::showpage('points_order.edit');
 	}
 
+	/**
+	 * 导出列表
+	 */
+	public function export_points_orderOp(){
+		$model_points_order = Model('points_order');
+		$condition_arr = array();
+		if ($_GET['search_field_value'] != '') {
+			switch ($_GET['search_field_name']){
+				case 'point_ordersn':
+					$condition['point_ordersn'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
+					break;
+				case 'member_mobile_true':
+					$condition['point_buyermobiletrue'] = array('like', '%' . trim($_GET['search_field_value']) . '%');
+					break;
+			}
+		}
+		if($_GET['search_state']){
+			$condition['point_orderstate'] = intval($_GET['search_state']);
+		}
+		$points_order_list = $model_points_order->getPointsOrderList($condition,'*');
+
+
+		$this->createExcel($points_order_list);
+	}
+
+	/**
+	 * 生成excel
+	 *
+	 * @param array $data
+	 */
+	private function createExcel($data = array()){
+		Language::read('export');
+		import('libraries.excel');
+		$excel_obj = new Excel();
+		$excel_data = array();
+		//设置样式
+		$excel_obj->setStyle(array('id'=>'s_title','Font'=>array('FontName'=>'宋体','Size'=>'12','Bold'=>'1')));
+		//header
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'订单编号');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'商品名称');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'兑换数量');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'积分');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'下单时间');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'收货人');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'收货手机号');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'收货地址');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'完成时间');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'状态');
+		$excel_data[0][] = array('styleid'=>'s_title','data'=>'商品详细信息');
+		foreach ((array)$data as $k=>$v){
+			$tmp = array();
+			$tmp[] = array('data'=>$v['point_ordersn']);
+			$tmp[] = array('data'=>$v['pg_name']);
+			$tmp[] = array('data'=>$v['pg_number']);
+			$tmp[] = array('data'=>$v['point_allpoint']);
+			$tmp[] = array('data'=>date('Y-m-d H:i',$v['point_addtime']));
+			$tmp[] = array('data'=>$v['receiver_name']);
+			$tmp[] = array('data'=>$v['receiver_mobile']);
+			$tmp[] = array('data'=>$v['address']);
+			$tmp[] = array('data'=>date('Y-m-d H:i',$v['point_finishedtime']));
+			$tmp[] = array('data'=>($v['point_orderstate']==1?'待完成' : '已完成'));
+			$tmp[] = array('data'=>$v['point_orderdesc']);
+			$excel_data[] = $tmp;
+		}
+		$excel_data = $excel_obj->charset($excel_data,CHARSET);
+		$excel_obj->addArray($excel_data);
+		$excel_obj->addWorksheet($excel_obj->charset('积分兑换订单列表',CHARSET));
+		$excel_obj->generateXML($excel_obj->charset('积分兑换订单列表',CHARSET).'-'.date('Y-m-d-H',time()));
+	}
+
 
 
 

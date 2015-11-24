@@ -32,13 +32,11 @@
       </tbody>
     </table>
   </form>
+    <div style="text-align:right;"><a class="btns" href="javascript:void(0);" id="ncexport"><span><?php echo $lang['nc_export'];?>Excel</span></a></div>
   <form method='post'>
     <input type="hidden" name="form_submit" value="ok" />
     <table class="table tb-type2 nobdb">
       <thead>
-        <tr class="space">
-          <th colspan="15" class="nobg"><?php echo $lang['nc_list'];?></th>
-        </tr>
         <tr class="thead">
           <th>订单编号</th>
 <!--          <th>手机号</th>-->
@@ -137,5 +135,9 @@
     $('#ncsubmit').click(function(){
       $('input[name="op"]').val('points_order');$('#formSearch').submit();
     });
+      $('#ncexport').click(function(){
+          $('input[name="op"]').val('export_points_order');
+          $('#formSearch').submit();
+      });
   });
 </script>

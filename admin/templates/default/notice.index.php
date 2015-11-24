@@ -37,7 +37,11 @@
             <span><?php echo $v['notice_title'];?></span>
           </td>
           <td class="">
-            <span><img src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>?<?php echo microtime();?>"  onload="javascript:DrawImage(this,100,50);"/></span>
+            <span>
+               <a href="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}else { echo UPLOAD_SITE_URL.DS.img.DS.'default.jpg';}?>" data-lightbox="box-<?php echo $v['notice_id'];?>;?>">
+                 <img style="width: 100px;height: 50px;" src="<?php if ($v['notice_img'] != ''){ echo SITE_URL.$v['notice_img'];}?>"  onerror="this.error=null;this.src='<?php echo UPLOAD_SITE_URL.DS.img.DS?>default.jpg'"/>
+               </a>
+            </span>
           </td>
           <td>
             <span><?php echo $v['notice_abstract'];?></span>
@@ -72,3 +76,5 @@
     </table>
   </form>
 </div>
+<link href="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/css/lightbox.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php echo ADMIN_TEMPLATES_URL;?>/lightbox/js/lightbox.min.js"></script>
