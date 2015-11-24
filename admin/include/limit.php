@@ -18,6 +18,7 @@ $_limit =  array(
 	    array('name'=>'提现记录', 'op'=>null, 'act'=>'extract_cash'),
 	    array('name'=>'反馈记录', 'op'=>null, 'act'=>'feedback'),
 	    array('name'=>'系统公告', 'op'=>null, 'act'=>'notice'),
+	    array('name'=>'抽奖管理', 'op'=>null, 'act'=>'lottery'),
 	    array('name'=>'积分商品', 'op'=>null, 'act'=>'points_good'),
 	    array('name'=>'积分兑换订单', 'op'=>null, 'act'=>'points_order'),
 		)),
