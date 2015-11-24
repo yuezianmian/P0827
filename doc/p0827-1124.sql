@@ -21,14 +21,14 @@ CREATE TABLE IF NOT EXISTS `sysc_admin` (
   `admin_gid` smallint(6) DEFAULT '0' COMMENT '权限组ID',
   PRIMARY KEY (`admin_id`),
   KEY `member_id` (`admin_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
--- 正在导出表  bdm175223116_db.sysc_admin 的数据：3 rows
+-- 正在导出表  bdm175223116_db.sysc_admin 的数据：4 rows
 /*!40000 ALTER TABLE `sysc_admin` DISABLE KEYS */;
 INSERT INTO `sysc_admin` (`admin_id`, `admin_name`, `admin_password`, `admin_login_time`, `admin_login_num`, `admin_is_super`, `admin_gid`) VALUES
-	(1, 'admin', '96e79218965eb72c92a549dd5a330112', 1445435327, 172, 1, 0),
-	(14, 'apple', '96e79218965eb72c92a549dd5a330112', 0, 0, 0, 0),
-	(15, '1233', '96e79218965eb72c92a549dd5a330112', 0, 0, 0, 0);
+	(1, 'admin', '96e79218965eb72c92a549dd5a330112', 1448377525, 286, 1, 0),
+	(18, 'wangwu', '96e79218965eb72c92a549dd5a330112', 1448377723, 1, 0, 7),
+	(17, 'zhangsan', '96e79218965eb72c92a549dd5a330112', 1448369132, 3, 0, 6);
 /*!40000 ALTER TABLE `sysc_admin` ENABLE KEYS */;
 
 
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `sysc_admin_log` (
   `ip` char(15) NOT NULL COMMENT 'IP',
   `url` varchar(50) NOT NULL DEFAULT '' COMMENT 'act&op',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=87 DEFAULT CHARSET=utf8 COMMENT='管理员操作日志';
+) ENGINE=MyISAM AUTO_INCREMENT=209 DEFAULT CHARSET=utf8 COMMENT='管理员操作日志';
 
--- 正在导出表  bdm175223116_db.sysc_admin_log 的数据：86 rows
+-- 正在导出表  bdm175223116_db.sysc_admin_log 的数据：197 rows
 /*!40000 ALTER TABLE `sysc_admin_log` DISABLE KEYS */;
 INSERT INTO `sysc_admin_log` (`id`, `content`, `createtime`, `admin_name`, `admin_id`, `ip`, `url`) VALUES
 	(1, '添加会员[	]', 1441876730, 'admin', 1, '127.0.0.1', 'member&member_add'),
@@ -132,7 +132,129 @@ INSERT INTO `sysc_admin_log` (`id`, `content`, `createtime`, `admin_name`, `admi
 	(83, '添加积分商品[5]', 1445338778, 'admin', 1, '59.37.13.242', 'points_good&points_good_add'),
 	(84, '删除points_good[ID:4]', 1445338787, 'admin', 1, '59.37.13.242', 'points_good&points_good'),
 	(85, '编辑会员[ID:12]', 1445393122, 'admin', 1, '60.29.154.66', 'member&member_edit'),
-	(86, '编辑积分商品[1]', 1445435348, 'admin', 1, '', 'points_good&points_good_edit');
+	(86, '编辑积分商品[1]', 1445435348, 'admin', 1, '', 'points_good&points_good_edit'),
+	(87, '编辑系统公告[2]', 1445481379, 'admin', 1, '', 'notice&notice_edit'),
+	(88, '编辑系统公告[2]', 1445481416, 'admin', 1, '127.0.0.1', 'notice&notice_edit'),
+	(89, '编辑系统公告[2]', 1445481519, 'admin', 1, '', 'notice&notice_edit'),
+	(90, '编辑系统公告[2]', 1445481929, 'admin', 1, '', 'notice&notice_edit'),
+	(91, '编辑系统公告[2]', 1445482529, 'admin', 1, '', 'notice&notice_edit'),
+	(92, '编辑系统公告[2]', 1445483156, 'admin', 1, '', 'notice&notice_edit'),
+	(93, '编辑系统公告[2]', 1445483156, 'admin', 1, '', 'notice&notice_edit'),
+	(94, '编辑系统公告[2]', 1445483248, 'admin', 1, '', 'notice&notice_edit'),
+	(95, '编辑系统公告[2]', 1445483301, 'admin', 1, '', 'notice&notice_edit'),
+	(96, '编辑系统公告[3]', 1445483308, 'admin', 1, '', 'notice&notice_edit'),
+	(97, '编辑积分商品[5]', 1445483977, 'admin', 1, '59.37.13.242', 'points_good&points_good_edit'),
+	(98, '编辑积分商品[1]', 1445483995, 'admin', 1, '59.37.13.242', 'points_good&points_good_edit'),
+	(99, '编辑系统公告[3]', 1445484033, 'admin', 1, '59.37.13.242', 'notice&notice_edit'),
+	(100, '编辑系统公告[2]', 1445484308, 'admin', 1, '59.37.13.242', 'notice&notice_edit'),
+	(101, '编辑系统公告[3]', 1445484333, 'admin', 1, '59.37.13.242', 'notice&notice_edit'),
+	(102, '编辑会员[ID:24]', 1445492964, 'admin', 1, '111.164.58.142', 'member&member_edit'),
+	(103, '添加Banner[10]', 1445559731, 'admin', 1, '60.29.154.66', 'banner&banner_add'),
+	(104, '添加Banner[11]', 1445559737, 'admin', 1, '60.29.154.66', 'banner&banner_add'),
+	(105, '添加Banner[12]', 1445559742, 'admin', 1, '60.29.154.66', 'banner&banner_add'),
+	(106, '删除Banner[ID:8]', 1445559750, 'admin', 1, '60.29.154.66', 'banner&banner_del'),
+	(107, '删除Banner[ID:1]', 1445560989, 'admin', 1, '60.29.154.66', 'feedback&feedback_del'),
+	(108, '删除Banner[ID:6]', 1445560993, 'admin', 1, '60.29.154.66', 'feedback&feedback_del'),
+	(109, '删除Banner[ID:3]', 1445561005, 'admin', 1, '60.29.154.66', 'feedback&feedback_del'),
+	(110, '编辑积分商品[]', 1445566683, 'admin', 1, '', 'points_order&points_order_edit'),
+	(111, '编辑积分商品[]', 1445567623, 'admin', 1, '59.37.13.242', 'points_order&points_order_edit'),
+	(112, '编辑系统公告[2]', 1445567085, 'admin', 1, '', 'notice&notice_edit'),
+	(113, '添加积分商品[6]', 1445581925, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(114, '添加积分商品[7]', 1445585649, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(115, '添加积分商品[8]', 1445586203, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(116, '添加积分商品[9]', 1445586694, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(117, '编辑积分商品[9]', 1445586800, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(118, '编辑积分商品[8]', 1445586807, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(119, '编辑积分商品[7]', 1445586813, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(120, '编辑积分商品[6]', 1445586822, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(121, '添加积分商品[10]', 1445588468, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(122, '添加积分商品[11]', 1445588694, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(123, '添加积分商品[12]', 1445588820, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(124, '添加积分商品[13]', 1445588978, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(125, '添加积分商品[14]', 1445589144, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(126, '添加积分商品[15]', 1445589258, 'admin', 1, '60.29.154.66', 'points_good&points_good_add'),
+	(127, '删除PointsGood[ID:1]', 1445589323, 'admin', 1, '60.29.154.66', 'points_good&points_good_del'),
+	(128, '删除PointsGood[ID:5]', 1445589328, 'admin', 1, '60.29.154.66', 'points_good&points_good_del'),
+	(129, '审核会员通过[ID:12]', 1445604244, 'admin', 1, '58.250.105.42', 'member&pass'),
+	(130, '添加积分商品[16]', 1445617125, 'admin', 1, '', 'points_good&points_good_add'),
+	(131, '编辑积分商品[16]', 1445617205, 'admin', 1, '', 'points_good&points_good_edit'),
+	(132, '编辑积分商品[16]', 1445618680, 'admin', 1, '113.116.136.199', 'points_good&points_good_edit'),
+	(133, '编辑积分商品[6]', 1445645905, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(134, '编辑积分商品[7]', 1445645938, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(135, '编辑积分商品[6]', 1445645951, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(136, '编辑积分商品[8]', 1445645972, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(137, '编辑积分商品[9]', 1445645996, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(138, '编辑积分商品[10]', 1445646027, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(139, '编辑积分商品[11]', 1445646060, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(140, '编辑积分商品[12]', 1445646082, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(141, '编辑积分商品[13]', 1445646116, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(142, '编辑积分商品[14]', 1445646137, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(143, '编辑积分商品[15]', 1445646171, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(144, '删除PointsGood[ID:16]', 1445646176, 'admin', 1, '60.29.154.66', 'points_good&points_good_del'),
+	(145, '编辑会员[ID:14]', 1445649935, 'admin', 1, '60.29.154.66', 'member&member_edit'),
+	(146, '审核会员通过[ID:26]', 1445649946, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(147, '审核会员通过[ID:14]', 1445649981, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(148, '编辑积分商品[15]', 1445653368, 'admin', 1, '60.29.154.66', 'points_good&points_good_edit'),
+	(149, '删除Notice[ID:2]', 1445827196, 'admin', 1, '60.29.154.66', 'notice&notice_del'),
+	(150, '删除Notice[ID:3]', 1445827202, 'admin', 1, '60.29.154.66', 'notice&notice_del'),
+	(151, '删除Notice[ID:4]', 1445827208, 'admin', 1, '60.29.154.66', 'notice&notice_del'),
+	(152, '添加Notice[5]', 1445827652, 'admin', 1, '60.29.154.66', 'notice&notice_add'),
+	(153, '编辑系统公告[5]', 1445829975, 'admin', 1, '60.29.154.66', 'notice&notice_edit'),
+	(154, '编辑产品中心地址[http://shengbaolu.jd.com/]', 1445830358, 'admin', 1, '60.29.154.66', 'product&productcenter'),
+	(155, '编辑产品中心地址[http://shengbaolu.jd.com/]', 1445830493, 'admin', 1, '60.29.154.66', 'product&productcenter'),
+	(156, '编辑产品中心地址[http://shengbaolu.jd.com/]', 1445830505, 'admin', 1, '60.29.154.66', 'product&productcenter'),
+	(157, '审核会员通过[ID:25]', 1445832020, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(158, '添加管理员[aichengqi1]', 1445832078, 'admin', 1, '60.29.154.66', 'admin&admin_add'),
+	(159, '添加Notice[6]', 1445840698, 'admin', 1, '60.29.154.66', 'notice&notice_add'),
+	(160, '编辑会员[ID:27]', 1445840739, 'admin', 1, '60.29.154.66', 'member&member_edit'),
+	(161, '审核会员通过[ID:27]', 1445840746, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(162, '审核会员通过[ID:24]', 1445997450, 'admin', 1, '221.198.223.166', 'member&pass'),
+	(163, '审核会员通过[ID:24]', 1446000055, 'admin', 1, '221.198.223.166', 'member&pass'),
+	(164, '编辑产品中心地址[http://r.m.baidu.com/596tlqe]', 1446008217, 'admin', 1, '221.198.223.166', 'product&productcenter'),
+	(165, '编辑产品[产品1]', 1446024715, 'admin', 1, '59.37.13.242', 'product&product_edit'),
+	(166, '编辑产品[产品2]', 1446024725, 'admin', 1, '59.37.13.242', 'product&product_edit'),
+	(167, '编辑产品[SN10-404L]', 1446024733, 'admin', 1, '59.37.13.242', 'product&product_edit'),
+	(168, '核销提现申请[ID:6]', 1446079498, 'admin', 1, '60.29.154.66', 'extract_cash&cashed'),
+	(169, '核销提现申请[ID:5]', 1446079503, 'admin', 1, '60.29.154.66', 'extract_cash&cashed'),
+	(170, '添加产品[测试10000分]', 1446079743, 'admin', 1, '60.29.154.66', 'product&product_add'),
+	(171, '编辑产品[测试10000分]', 1446080412, 'admin', 1, '60.29.154.66', 'product&product_edit'),
+	(172, '添加Notice[7]', 1446099727, 'admin', 1, '60.29.154.66', 'notice&notice_add'),
+	(173, '添加Notice[8]', 1446100445, 'admin', 1, '60.29.154.66', 'notice&notice_add'),
+	(174, '添加会员[MOBILE:]', 1446222383, 'admin', 1, '', 'member&member_add_shop'),
+	(175, '审核会员通过[ID:12]', 1446391309, 'admin', 1, '58.250.110.144', 'member&pass'),
+	(176, '删除feedback[ID:26,25,24,23,22]', 1446435994, 'admin', 1, '60.29.154.66', 'feedback&feedback'),
+	(177, '核销提现申请[ID:4]', 1446442737, 'admin', 1, '60.29.154.66', 'extract_cash&cashed'),
+	(178, '添加会员[MOBILE:]', 1446470701, 'admin', 1, '113.104.208.93', 'member&member_add_shop'),
+	(179, '添加产品[测试1]', 1446520292, 'admin', 1, '60.29.154.66', 'product&product_add'),
+	(180, '核销提现申请[ID:7]', 1446799267, 'admin', 1, '60.29.154.66', 'extract_cash&cashed'),
+	(181, '审核会员通过[ID:12]', 1447158613, 'admin', 1, '58.250.109.122', 'member&pass'),
+	(182, '审核会员通过[ID:30]', 1447222878, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(183, '审核会员通过[ID:32]', 1447555958, 'admin', 1, '58.250.110.248', 'member&pass'),
+	(184, '审核会员通过[ID:1]', 1447764991, 'admin', 1, '58.250.109.237', 'member&pass'),
+	(185, '核销提现申请[ID:8]', 1447987306, 'admin', 1, '60.29.154.66', 'extract_cash&cashed'),
+	(186, '编辑Banner1[1]', 1448260428, 'admin', 1, '', 'banner1&banner1_edit'),
+	(187, '编辑Banner1[1]', 1448262138, 'admin', 1, '59.37.13.242', 'banner1&banner1_edit'),
+	(188, '审核会员通过[ID:12]', 1448285445, 'admin', 1, '58.251.52.144', 'member&pass'),
+	(189, '编辑Banner1[1]', 1448329718, 'admin', 1, '60.29.154.66', 'banner1&banner1_edit'),
+	(190, '编辑Banner1[1]', 1448329787, 'admin', 1, '60.29.154.66', 'banner1&banner1_edit'),
+	(191, '编辑Banner1[1]', 1448329797, 'admin', 1, '60.29.154.66', 'banner1&banner1_edit'),
+	(192, '编辑Banner1[1]', 1448329834, 'admin', 1, '60.29.154.66', 'banner1&banner1_edit'),
+	(193, '审核会员通过[ID:33]', 1448331873, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(194, '编辑Banner1[1]', 1448337175, 'admin', 1, '117.11.188.255', 'banner1&banner1_edit'),
+	(195, '编辑Banner1[1]', 1448337312, 'admin', 1, '117.11.188.255', 'banner1&banner1_edit'),
+	(196, '审核会员通过[ID:9]', 1448345013, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(197, '审核会员通过[ID:22]', 1448345022, 'admin', 1, '60.29.154.66', 'member&pass'),
+	(198, '添加权限组[管理员]', 1448368122, 'admin', 1, '', 'admin&gadmin_add'),
+	(199, '编辑Banner1[1]', 1448368986, 'admin', 1, '58.251.53.164', 'banner1&banner1_edit'),
+	(200, '权限组[ID4]', 1448368767, 'admin', 1, '', 'admin&gadmin_del'),
+	(201, '添加权限组[管理员]', 1448368775, 'admin', 1, '', 'admin&gadmin_add'),
+	(202, '权限组[ID5]', 1448368896, 'admin', 1, '', 'admin&gadmin_del'),
+	(203, '添加权限组[二维码专员]', 1448368916, 'admin', 1, '', 'admin&gadmin_add'),
+	(204, '添加管理员[zhangsan]', 1448368941, 'admin', 1, '', 'admin&admin_add'),
+	(205, '编辑权限组[二维码专员]', 1448369088, 'admin', 1, '', 'admin&gadmin_set'),
+	(206, '编辑权限组[二维码专员]', 1448369111, 'admin', 1, '', 'admin&gadmin_set'),
+	(207, '添加权限组[活动管理专员]', 1448377667, 'admin', 1, '113.104.205.196', 'admin&gadmin_add'),
+	(208, '添加管理员[wangwu]', 1448377706, 'admin', 1, '113.104.205.196', 'admin&admin_add');
 /*!40000 ALTER TABLE `sysc_admin_log` ENABLE KEYS */;
 
 
@@ -3458,13 +3580,30 @@ CREATE TABLE IF NOT EXISTS `sysc_banner` (
   `banner_order` int(3) NOT NULL DEFAULT '0',
   `create_time` varchar(10) NOT NULL,
   PRIMARY KEY (`banner_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=gbk;
 
--- 正在导出表  bdm175223116_db.sysc_banner 的数据：1 rows
+-- 正在导出表  bdm175223116_db.sysc_banner 的数据：3 rows
 /*!40000 ALTER TABLE `sysc_banner` DISABLE KEYS */;
 INSERT INTO `sysc_banner` (`banner_id`, `banner_img`, `banner_order`, `create_time`) VALUES
-	(8, '/data/upload/img/banner/04964050422597866.jpg', 1, '1443061042');
+	(10, '/data/upload/img/banner/04989037319708856.jpg', 0, '1445559731'),
+	(11, '/data/upload/img/banner/04989037378764251.jpg', 0, '1445559737'),
+	(12, '/data/upload/img/banner/04989037428772798.jpg', 0, '1445559742');
 /*!40000 ALTER TABLE `sysc_banner` ENABLE KEYS */;
+
+
+-- 导出  表 bdm175223116_db.sysc_banner1 结构
+CREATE TABLE IF NOT EXISTS `sysc_banner1` (
+  `banner1_id` int(11) NOT NULL AUTO_INCREMENT,
+  `banner1_img` varchar(80) NOT NULL,
+  `create_time` varchar(10) NOT NULL,
+  PRIMARY KEY (`banner1_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=gbk;
+
+-- 正在导出表  bdm175223116_db.sysc_banner1 的数据：1 rows
+/*!40000 ALTER TABLE `sysc_banner1` DISABLE KEYS */;
+INSERT INTO `sysc_banner1` (`banner1_id`, `banner1_img`, `create_time`) VALUES
+	(1, '/data/upload/img/banner1/05017129867803009.png', '1446559731');
+/*!40000 ALTER TABLE `sysc_banner1` ENABLE KEYS */;
 
 
 -- 导出  表 bdm175223116_db.sysc_config 结构
@@ -3478,7 +3617,7 @@ CREATE TABLE IF NOT EXISTS `sysc_config` (
 -- 正在导出表  bdm175223116_db.sysc_config 的数据：1 rows
 /*!40000 ALTER TABLE `sysc_config` DISABLE KEYS */;
 INSERT INTO `sysc_config` (`id`, `type`, `value`) VALUES
-	(1, 'product_center_url', 'http://www.baidu.com');
+	(1, 'product_center_url', 'http://r.m.baidu.com/596tlqe');
 /*!40000 ALTER TABLE `sysc_config` ENABLE KEYS */;
 
 
@@ -3509,17 +3648,22 @@ CREATE TABLE IF NOT EXISTS `sysc_extract_cash` (
   `create_time` int(10) NOT NULL,
   `update_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`cash_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=gbk COMMENT='提现记录表';
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=gbk COMMENT='提现记录表';
 
--- 正在导出表  bdm175223116_db.sysc_extract_cash 的数据：6 rows
+-- 正在导出表  bdm175223116_db.sysc_extract_cash 的数据：11 rows
 /*!40000 ALTER TABLE `sysc_extract_cash` DISABLE KEYS */;
 INSERT INTO `sysc_extract_cash` (`cash_id`, `member_id`, `member_mobile`, `cash_points`, `cash_state`, `create_time`, `update_time`) VALUES
 	(1, 1, '18682255279', 200, 1, 1442484723, NULL),
 	(2, 1, '18682255279', 200, 1, 1442484968, NULL),
 	(3, 1, '18682255279', 200, 2, 1443485094, 1443100216),
-	(4, 1, '18682255279', 201, 1, 1445193410, NULL),
-	(5, 1, '18682255279', 300, 1, 1445242343, NULL),
-	(6, 1, '18682255279', 200, 1, 1445307233, NULL);
+	(4, 1, '18682255279', 201, 2, 1445193410, 1446442737),
+	(5, 1, '18682255279', 300, 2, 1445242343, 1446079503),
+	(6, 1, '18682255279', 200, 2, 1445307233, 1446079498),
+	(7, 14, '15222623325', 1000, 2, 1446443316, 1446799267),
+	(8, 14, '15222623325', 1000, 2, 1446798742, 1447987306),
+	(9, 1, '18682255279', 500, 1, 1447772980, NULL),
+	(10, 14, '15222623325', 1000, 1, 1448328678, NULL),
+	(11, 1, '18682255279', 500, 1, 1448338254, NULL);
 /*!40000 ALTER TABLE `sysc_extract_cash` ENABLE KEYS */;
 
 
@@ -3532,17 +3676,54 @@ CREATE TABLE IF NOT EXISTS `sysc_feedback` (
   `member_mobile` varchar(50) NOT NULL,
   `create_time` varchar(10) NOT NULL,
   PRIMARY KEY (`feedback_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=gbk;
 
--- 正在导出表  bdm175223116_db.sysc_feedback 的数据：5 rows
+-- 正在导出表  bdm175223116_db.sysc_feedback 的数据：26 rows
 /*!40000 ALTER TABLE `sysc_feedback` DISABLE KEYS */;
 INSERT INTO `sysc_feedback` (`feedback_id`, `feedback_content`, `feedback_img`, `member_id`, `member_mobile`, `create_time`) VALUES
-	(1, '反馈内容xxxx', '/data/upload/img/banner/04964050422597866.jpg', 1, '18682255279', '1443334642'),
-	(3, '反馈内容xxxx', '/data/upload/img/banner/04964050422597866.jpg', 1, '18682255279', '1443334642'),
-	(6, '我的', '/data/home/byu1812220001/htdocs/data/upload/img/feedback/12-1445136788.0833.jpg', 12, '18124095354', '1445136788'),
+	(10, '什么沙门氏菌绝对经典', 'data:image/png;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAA', 20, '18602674110', '1445653278'),
+	(11, '测试版。', 'data:image/png;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAgESAA', 27, '18622189295', '1445841072'),
 	(7, '测试', 'data:image/png;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAA', 1, '18682255279', '1445195401'),
-	(8, '请在此处填写反馈信息', 'data:image/png;base64,(null)', 2, '18682255278', '1445320873');
+	(8, '请在此处填写反馈信息', 'data:image/png;base64,(null)', 2, '18682255278', '1445320873'),
+	(9, '颜色变了、', 'data:image/png;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBYRXhpZgAATU0AKgAAAAgAAgESAA', 20, '18602674110', '1445560938'),
+	(12, '个很好', '/data/upload/img/feedback/1-1445851561.0552.png', 1, '18682255279', '1445851561'),
+	(13, '223456', '/data/upload/img/feedback/24-1445997708.3796.png', 24, '13920422213', '1445997708'),
+	(14, '123456', '/data/upload/img/feedback/24-1446005466.3413.jpg', 24, '13920422213', '1446005466'),
+	(15, '123456', '/data/upload/img/feedback/24-1446005470.0611.jpg', 24, '13920422213', '1446005470'),
+	(16, '123456', '/data/upload/img/feedback/24-1446108688.2227.png', 24, '13920422213', '1446108688'),
+	(17, '1wweddssaadf', '/data/upload/img/feedback/12-1446127261.0646.jpg', 12, '18124095354', '1446127261'),
+	(18, '我就是反馈内容', '/data/upload/img/feedback/12-1446364177.3503.jpg', 12, '18124095354', '1446364177'),
+	(19, '嗯嗯呢', '/data/upload/img/feedback/12-1446364957.6345.jpg', 12, '18124095354', '1446364957'),
+	(20, '嗯嗯呢', '/data/upload/img/feedback/12-1446364995.7673.jpg', 12, '18124095354', '1446364995'),
+	(21, '嗯嗯呢', '/data/upload/img/feedback/12-1446365040.2913.jpg', 12, '18124095354', '1446365040'),
+	(30, '反馈信息额', '/data/upload/img/feedback/1-1447159969.8803.jpg', 1, '18682255279', '1447159974'),
+	(29, '我的反馈信息', '/data/upload/img/feedback/12-1446693691.0253.jpg', 12, '18124095354', '1446693691'),
+	(28, '睡觉睡觉就是弟弟IDIDID', '/data/upload/img/feedback/20-1446437225.7318.png', 20, '18602674110', '1446437225'),
+	(27, '睡觉睡觉就是弟弟IDIDID', '/data/upload/img/feedback/20-1446437221.0792.png', 20, '18602674110', '1446437221'),
+	(31, '我的反馈', '/data/upload/img/feedback/1-1447161006.2349.jpg', 1, '18682255279', '1447161006'),
+	(32, '我的反馈', '/data/upload/img/feedback/1-1447161273.1116.jpg', 1, '18682255279', '1447161273'),
+	(33, '不回家', '/data/upload/img/feedback/1-1447176174.049.png', 1, '18682255279', '1447176174'),
+	(34, '22222222', '/data/upload/img/feedback/14-1447399199.6478.jpg', 14, '15222623325', '1447399199'),
+	(35, '啊啊啊啊啊啊啊', '/data/upload/img/feedback/14-1447746752.8485.jpg', 14, '15222623325', '1447746752'),
+	(36, '1', '/data/upload/img/feedback/14-1447987382.6064.jpg', 14, '15222623325', '1447987382'),
+	(37, '1', '/data/upload/img/feedback/14-1447988280.5564.jpg', 14, '15222623325', '1447988280');
 /*!40000 ALTER TABLE `sysc_feedback` ENABLE KEYS */;
+
+
+-- 导出  表 bdm175223116_db.sysc_gadmin 结构
+CREATE TABLE IF NOT EXISTS `sysc_gadmin` (
+  `gid` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `gname` varchar(50) DEFAULT NULL COMMENT '组名',
+  `limits` text COMMENT '权限内容',
+  PRIMARY KEY (`gid`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='权限组';
+
+-- 正在导出表  bdm175223116_db.sysc_gadmin 的数据：0 rows
+/*!40000 ALTER TABLE `sysc_gadmin` DISABLE KEYS */;
+INSERT INTO `sysc_gadmin` (`gid`, `gname`, `limits`) VALUES
+	(7, '活动管理专员', '8RA69BQpR4Z39A1BUOOA4fYLkVmTQa6TAgHEndKEilG33d0VsNN8ddoBM0aOkwflV1MNUhZnHUfGGEL'),
+	(6, '二维码专员', 'xIFVG8-rJvF2oy52cR7ua9e-mO2vVSc1veU_qnNX1dLKekLNIzTVbIl');
+/*!40000 ALTER TABLE `sysc_gadmin` ENABLE KEYS */;
 
 
 -- 导出  表 bdm175223116_db.sysc_key_generator 结构
@@ -3556,7 +3737,7 @@ CREATE TABLE IF NOT EXISTS `sysc_key_generator` (
 -- 正在导出表  bdm175223116_db.sysc_key_generator 的数据：1 rows
 /*!40000 ALTER TABLE `sysc_key_generator` DISABLE KEYS */;
 INSERT INTO `sysc_key_generator` (`id`, `generator_type`, `value`) VALUES
-	(1, 'member_code', 10046);
+	(1, 'member_code', 1004);
 /*!40000 ALTER TABLE `sysc_key_generator` ENABLE KEYS */;
 
 
@@ -3608,8 +3789,8 @@ CREATE TABLE IF NOT EXISTS `sysc_lottery_awards` (
 /*!40000 ALTER TABLE `sysc_lottery_awards` DISABLE KEYS */;
 INSERT INTO `sysc_lottery_awards` (`awards_id`, `awards_name`, `prize_name`, `prize_type`, `prize_points`, `win_rate`, `prize_amount`, `activity_id`, `win_amount`, `create_time`) VALUES
 	(1, '一等奖', '100元现金大奖', 2, NULL, 0.001000, 6, 1, 0, 1444534016),
-	(2, '二等奖', '10元现金', 2, NULL, 0.990000, 15, 1, 3, 1444534271),
-	(3, '三等奖', '100积分', 1, 100, 0.050000, 100, 1, 3, 1444534775);
+	(2, '二等奖', '10元现金', 2, NULL, 0.010000, 15, 1, 15, 1444534271),
+	(3, '三等奖', '100积分', 1, 100, 0.989000, 100, 1, 22, 1444534775);
 /*!40000 ALTER TABLE `sysc_lottery_awards` ENABLE KEYS */;
 
 
@@ -3630,16 +3811,70 @@ CREATE TABLE IF NOT EXISTS `sysc_lottery_participant` (
   `get_time` int(10) DEFAULT NULL COMMENT '领奖时间',
   `prize_desc` varchar(400) DEFAULT NULL COMMENT '奖品详细信息',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='参与及中奖纪录';
+) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COMMENT='参与及中奖纪录';
 
--- 正在导出表  bdm175223116_db.sysc_lottery_participant 的数据：5 rows
+-- 正在导出表  bdm175223116_db.sysc_lottery_participant 的数据：59 rows
 /*!40000 ALTER TABLE `sysc_lottery_participant` DISABLE KEYS */;
 INSERT INTO `sysc_lottery_participant` (`id`, `member_id`, `member_mobile`, `is_win`, `participant_time`, `awards_id`, `awards_name`, `prize_name`, `prize_type`, `prize_points`, `activity_id`, `is_get`, `get_time`, `prize_desc`) VALUES
 	(1, 1, '18682255279', 0, 1424557558, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
 	(2, 1, '18682255279', 1, 1431557593, 3, '三等奖', '100积分', 1, 100, 1, 1, 1444557593, '电话卡\r\n卡号：129123912313213'),
 	(10, 1, '18682255279', 1, 1445198698, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
 	(11, 9, '13482371161', 1, 1445333666, 2, '二等奖', '10元现金', 2, NULL, 1, 1, 1445415028, '电话卡\r\n卡号：129123912313213'),
-	(9, 1, '18682255279', 1, 1444559721, 2, '二等奖', '10元现金', 2, NULL, 1, 1, 1444557593, '电话卡\r\n卡号：129123912313213');
+	(9, 1, '18682255279', 1, 1444559721, 2, '二等奖', '10元现金', 2, NULL, 1, 1, 1444557593, '电话卡\r\n卡号：129123912313213'),
+	(12, 17, '15238033727', 1, 1445457331, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(13, 22, '13642115522', 1, 1445493072, 2, '二等奖', '10元现金', 2, NULL, 1, 1, 1445566383, '京东卡\r\n卡号1213123123'),
+	(14, 17, '15238033727', 1, 1445578841, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(15, 20, '18602674110', 1, 1445653098, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(16, 20, '18602674110', 1, 1445826500, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(17, 27, '18622189295', 1, 1445840839, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(18, 22, '13642115522', 1, 1445849999, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(19, 1, '18682255279', 1, 1445851060, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(20, 17, '15238033727', 1, 1445872048, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(21, 24, '13920422213', 1, 1445997542, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(22, 17, '15238033727', 1, 1446003983, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(23, 12, '18124095354', 1, 1446043962, 2, '二等奖', '10元现金', 2, NULL, 1, 0, NULL, NULL),
+	(24, 20, '18602674110', 0, 1446079020, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(25, 24, '13920422213', 0, 1446108597, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(26, 12, '18124095354', 0, 1446121109, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(27, 12, '18124095354', 0, 1446269236, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(28, 12, '18124095354', 0, 1446342486, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(29, 1, '18682255279', 0, 1446368684, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(30, 14, '15222623325', 0, 1446435465, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(31, 20, '18602674110', 0, 1446437430, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(32, 1, '18682255279', 0, 1446446755, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(33, 12, '18124095354', 0, 1446477379, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(34, 24, '13920422213', 0, 1446531574, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(35, 12, '18124095354', 0, 1446552405, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(36, 12, '18124095354', 0, 1446567703, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(37, 1, '18682255279', 0, 1446567957, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(38, 14, '15222623325', 0, 1446599991, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(39, 17, '15238033727', 0, 1446684280, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(40, 12, '18124095354', 0, 1446695481, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(41, 1, '18682255279', 0, 1446695747, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(42, 24, '13920422213', 0, 1446902193, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(43, 17, '15238033727', 0, 1446943413, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(44, 1, '18682255279', 0, 1447125175, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(45, 1, '18682255279', 0, 1447176148, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(46, 1, '18682255279', 0, 1447313668, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, NULL),
+	(47, 32, '18476321530', 1, 1447556513, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447556513, NULL),
+	(48, 24, '13920422213', 1, 1447664847, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447664847, NULL),
+	(49, 32, '18476321530', 1, 1447679386, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447679386, NULL),
+	(50, 12, '18124095354', 1, 1447679561, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447679561, NULL),
+	(51, 14, '15222623325', 1, 1447746614, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447746614, NULL),
+	(52, 32, '18476321530', 1, 1447763127, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447763127, NULL),
+	(53, 12, '18124095354', 1, 1447763306, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447763306, NULL),
+	(54, 1, '18682255279', 1, 1447765946, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447765946, NULL),
+	(55, 1, '18682255279', 1, 1447776963, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447776963, NULL),
+	(56, 14, '15222623325', 1, 1447827714, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447827714, NULL),
+	(57, 12, '18124095354', 1, 1447937778, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447937778, NULL),
+	(58, 12, '18124095354', 1, 1447979433, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447979433, NULL),
+	(59, 14, '15222623325', 1, 1447987039, 3, '三等奖', '100积分', 1, 100, 1, 1, 1447987039, NULL),
+	(60, 1, '18682255279', 1, 1448285361, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448285361, NULL),
+	(61, 0, '', 1, 1448286532, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448286532, NULL),
+	(62, 14, '15222623325', 1, 1448328362, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448328362, NULL),
+	(63, 33, '15122827799', 1, 1448331921, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448331921, NULL),
+	(64, 1, '18682255279', 1, 1448337997, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448337997, NULL),
+	(65, 24, '13920422213', 1, 1448338069, 3, '三等奖', '100积分', 1, 100, 1, 1, 1448338069, NULL);
 /*!40000 ALTER TABLE `sysc_lottery_participant` ENABLE KEYS */;
 
 
@@ -3677,28 +3912,33 @@ CREATE TABLE IF NOT EXISTS `sysc_member` (
   `address_postcode` varchar(10) DEFAULT NULL COMMENT '用户邮编',
   `recomm_member_id` int(11) DEFAULT NULL COMMENT '来源用户（推荐用户）',
   PRIMARY KEY (`member_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='会员表';
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='会员表';
 
--- 正在导出表  bdm175223116_db.sysc_member 的数据：17 rows
+-- 正在导出表  bdm175223116_db.sysc_member 的数据：22 rows
 /*!40000 ALTER TABLE `sysc_member` DISABLE KEYS */;
 INSERT INTO `sysc_member` (`member_id`, `member_name`, `member_truename`, `member_mobile`, `member_mobile_true`, `member_avatar`, `member_sex`, `member_birthday`, `member_passwd`, `member_points`, `total_points`, `member_state`, `member_type`, `member_code`, `parent_code`, `create_time`, `shop_name`, `shop_img`, `area_name`, `area_id`, `shop_address`, `alipay_number`, `bank_number`, `bank_username`, `bank_name`, `bank_branch`, `address_area_id`, `address_area_name`, `address_detail`, `address_postcode`, `recomm_member_id`) VALUES
-	(1, NULL, '宣传册', '18682255279', '13482371161', NULL, NULL, '2005-10-19', 'e3ceb5881a0a1fdaad01296d7554868d', 975, 2316, 1, 1, '55555', NULL, '1440378734', '黄瓜科技', '/data/home/byu1812220001/htdocs/data/upload/img/shop/1-1445310747.48.png', '天津市南开区', 58, '光华路', '133568', '从 v', '光大银行', '浦东', '62266666666', 55, '天津市和平区', '测试地址', '201000', NULL),
+	(1, NULL, '我的逆袭22', '18682255279', '13920422213', '/data/upload/img/user/1-1447381566.2631.png', 1, '2000-11-13', '96e79218965eb72c92a549dd5a330112', 2151, 12782, 2, 1, '55555', NULL, '1440378734', '123', '/data/upload/img/shop/1-1447384415.9953.jpg', '天津市河北', 59, '2234566', '1258855136', '33333333', 'Diff', 'Error', 'Ttttt', 55, '天津市和平区', 'ghj', '222222', NULL),
 	(2, NULL, '黄瓜', '18682255278', '18682255278', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 40, 40, 2, 2, NULL, '55555', '1440378734', '店面1', '/data/upload/img/default_user_portrait.gif', '天津市和平区', 55, 'xx街道xx号', '12314', '62131510121510251', '张三', '中国建设银行', '中国建设银行天津分行', 55, '天津市和平区', 'xx街道x111号', '645147', 1),
 	(3, NULL, NULL, '18682255277', '18682255277', NULL, NULL, '2015-09-15', '96e79218965eb72c92a549dd5a330112', 10, 0, 2, 2, NULL, '55555', '1440378734', '店面1', '/data/upload/img/default_user_portrait.gif', '天津市和平区', 55, 'xx街道xx号', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(6, NULL, NULL, '18611111113', '18611111113', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 0, 0, 2, 1, '10018', NULL, '1441877010', NULL, NULL, '北京市东城区', 37, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(7, NULL, NULL, '13511111111', '13511111111', NULL, NULL, NULL, '1bbd886460827015e5d605ed44252251', 0, 0, 2, 1, '10023', NULL, '1444722530', NULL, NULL, '北京市东城区', 37, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(8, NULL, NULL, '13511111112', '13511111112', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 0, 0, 2, 1, '10024', NULL, '1444722621', NULL, NULL, '天津市和平区', 55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(9, NULL, NULL, '13482371161', '13482371161', NULL, NULL, NULL, 'fcea920f7412b5da7be0cf42b8c93759', 0, 0, 0, 2, NULL, '', '1444750735', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(12, NULL, NULL, '18124095354', '18124095354', NULL, NULL, NULL, 'd6e3fffe6de05a71c8709bf789173d9f', 0, 0, 1, 2, NULL, '60011', '1444830101', 'shop', '/data/home/byu1812220001/htdocs/data/upload/img/feedback/12-1445055407.1913.jpg', 'shop', 0, 'shop', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(9, NULL, '小武', '13482371161', '13482371161', '/data/upload/img/shop/9-1445498771.4929.png', 1, '1997-10-22', 'fcea920f7412b5da7be0cf42b8c93759', 16, 16, 2, 2, NULL, '', '1444750735', '小五之家', '/data/upload/img/shop/9-1445513622.8666.png', '上海市浦东新区', 155, '上海', '123456', '66666666666000000', '小武', '法国', '光大', 55, '天津市和平区', '测试改革和红红火火方法', '201900', NULL),
+	(12, NULL, '小明', '18124095354', '18124095354', '/data/upload/img/user/12-1447937750.1988.jpg', 0, '2015-10-23', 'e10adc3949ba59abbe56e057f20f883e', 112, 702, 2, 2, NULL, '60011', '1444830101', '我的店面', '/data/upload/img/shop/12-1447985183.2391.jpg', '北京市平谷', 52, '我的地址', '1235899', '1225886693', '我呢', '说你', '去KTV呢', 46, '北京市房山', '新的地址', '580000', NULL),
 	(13, NULL, NULL, '13511111113', '13511111113', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 0, 0, 2, 1, '10026', NULL, '1444987823', '代理商公司2', NULL, '北京市东城区', 37, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(14, NULL, NULL, '15222623325', '15222623325', NULL, NULL, NULL, '25d55ad283aa400af464c76d713c07ad', 0, 0, 0, 2, NULL, NULL, '1445307489', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(14, NULL, '艾程琪', '15222623325', '15222623325', NULL, 1, '2015-04-20', '25d55ad283aa400af464c76d713c07ad', 19710, 24480, 2, 2, NULL, '60011', '1445307489', '圣保路123', '/data/upload/img/shop/14-1445649878.6151.jpg', '天津-天津市-蓟县', 72, '盘山路', '451535099', '62220203002043835366', '艾程琪', '中国工商银行', '蓟县支行', 37, '天津市东城', '啊啊啊啊啊啊啊', '111111', NULL),
 	(15, NULL, NULL, '13820745188', '13820745188', NULL, NULL, NULL, '6400970de06d24a36aa57e50f76ee8d2', 0, 0, 0, 2, NULL, NULL, '1445308841', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(22, NULL, NULL, '13642115522', '13642115522', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 6, 6, 2, 1, '60022', NULL, '1445320658', '毕伯宽吉林', NULL, '北京市东城区', 37, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(17, NULL, NULL, '15238033727', '15238033727', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 2, 2, NULL, '', '1445311587', '测试', '/data/home/byu1812220001/htdocs/data/upload/img/shop/17-1445311624.1578.png', '天津市和平区', 55, '测试地址', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(22, NULL, '黄瓜', '13642115522', '13642115522', '/data/upload/img/shop/22-1445850120.2001.png', NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 30, 30, 2, 1, '60022', NULL, '1445320658', '黄瓜科技', '/data/upload/img/shop/22-1445851842.406.png', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(21, NULL, NULL, '18630967714', '18630967714', NULL, NULL, NULL, '71389c1de5c1cc15931982b52da30c5b', 0, 0, 0, 2, NULL, '', '1445320450', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(19, NULL, NULL, '13389079800', '13389079800', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 0, 2, NULL, '', '1445318506', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(20, NULL, NULL, '18602674110', '18602674110', NULL, NULL, NULL, 'a8166f987cef583bb04cda51a339b41b', 0, 0, 2, 1, '60011', NULL, '1445319426', '何建新', NULL, '天津市和平区', 55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(23, NULL, NULL, '13642022360', '13642022360', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 2, 2, NULL, '60011', '1445322092', '李松单独行动', '/data/home/byu1812220001/htdocs/data/upload/img/shop/23-1445322195.3384.jpg', '浙江-杭州市-东城区', 37, '西湖中', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(20, NULL, NULL, '18602674110', '18602674110', '/data/upload/img/shop/20-1445559605.2021.png', 1, NULL, 'a8166f987cef583bb04cda51a339b41b', 2556, 16436, 2, 1, '60011', NULL, '1445319426', '何建新', NULL, '天津市和平区', 55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(24, NULL, '黄瓜', '13920422213', '13920422213', '/data/upload/img/user/24-1448293401.3771.png', 1, '2004-11-07', 'e10adc3949ba59abbe56e057f20f883e', 254, 254, 2, 2, NULL, '60022', '1445492819', '黄瓜科技', '/data/upload/img/shop/24-1445999481.6493.png', '天津市和平区', 55, '123456', '123456', '123456', '123456', '123456', '123456', 58, '天津市南开区', '123', '300000', NULL),
+	(26, NULL, NULL, '18502613485', '18502613485', NULL, NULL, NULL, '25f9e794323b453885f5181f1b624d0b', 4, 4, 2, 2, NULL, '', '1445559980', '正泰汽修', '/data/upload/img/shop/26-1445560131.324.png', '天津市蓟县', 72, '天津市蓟县盘山路', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(31, NULL, NULL, '18522172622', '18522172622', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 0, 2, NULL, NULL, '1447384117', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(28, NULL, NULL, '18611111111', '18611111111', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 0, 0, 2, 2, NULL, '55555', '1446222383', '张三的店铺', '/data/upload/img/shop/04995663837248415.png', '北京市西城区', 38, '北京西城区1号路1号', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(29, NULL, NULL, '13111111111', '13111111111', NULL, NULL, NULL, '96e79218965eb72c92a549dd5a330112', 0, 0, 2, 2, NULL, '55555', '1446470701', '123', '/data/upload/img/shop/04998147016433194.png', '北京市东城区', 37, '1223213123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(33, NULL, NULL, '15122827799', '15122827799', NULL, NULL, NULL, 'e10adc3949ba59abbe56e057f20f883e', 102, 102, 2, 2, NULL, '', '1448331791', 'zzzz', '/data/upload/img/shop/33-1448331827.5794.png', '天津市蓟县', 72, '盘山路98号', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(32, NULL, NULL, '18476321530', '18476321530', NULL, NULL, NULL, 'd6e3fffe6de05a71c8709bf789173d9f', 324, 324, 2, 2, NULL, NULL, '1447555137', '新的店铺名称额', '/data/upload/img/shop/32-1447555664.1504.jpg', '北京市海淀', 44, '这就是地址', '123456', '123455633', '我的名字', '开户银行', '分之银行', 45, '北京市门头沟', '我的地址呢', '500800', NULL);
 /*!40000 ALTER TABLE `sysc_member` ENABLE KEYS */;
 
 
@@ -3711,9 +3951,9 @@ CREATE TABLE IF NOT EXISTS `sysc_message` (
   `message_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1-未读 2-已读',
   `create_time` varchar(11) NOT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=gbk COMMENT='消息表';
+) ENGINE=MyISAM AUTO_INCREMENT=171 DEFAULT CHARSET=gbk COMMENT='消息表';
 
--- 正在导出表  bdm175223116_db.sysc_message 的数据：20 rows
+-- 正在导出表  bdm175223116_db.sysc_message 的数据：168 rows
 /*!40000 ALTER TABLE `sysc_message` DISABLE KEYS */;
 INSERT INTO `sysc_message` (`message_id`, `to_member_id`, `from_member_id`, `message_content`, `message_state`, `create_time`) VALUES
 	(3, 1, 0, '你的积分于2015-09-17 18:16:08 有变化，描述：提现，积分变化 ：-200', 1, '1442484968'),
@@ -3735,7 +3975,155 @@ INSERT INTO `sysc_message` (`message_id`, `to_member_id`, `from_member_id`, `mes
 	(19, 22, 0, '你的积分于2015-10-20 22:22:47 有变化，描述：签到，积分变化 ：2', 1, '1445350967'),
 	(20, 22, 0, '你的积分于2015-10-20 22:22:50 有变化，描述：签到，积分变化 ：2', 1, '1445350970'),
 	(21, 1, 0, '你的积分于2015-10-21 21:50:17 有变化，描述：兑换商品，积分变化 ：-20', 1, '1445435417'),
-	(22, 1, 0, '你的积分于2015-10-21 21:52:42 有变化，描述：兑换商品，积分变化 ：-20', 1, '1445435562');
+	(22, 1, 0, '你的积分于2015-10-21 21:52:42 有变化，描述：兑换商品，积分变化 ：-20', 1, '1445435562'),
+	(23, 9, 0, '你的积分于2015-10-22 02:40:34 有变化，描述：签到，积分变化 ：2', 1, '1445452834'),
+	(24, 9, 0, '你的积分于2015-10-22 02:51:38 有变化，描述：签到，积分变化 ：2', 1, '1445453498'),
+	(25, 9, 0, '你的积分于2015-10-22 02:51:42 有变化，描述：签到，积分变化 ：2', 1, '1445453502'),
+	(26, 9, 0, '你的积分于2015-10-22 02:51:44 有变化，描述：签到，积分变化 ：2', 1, '1445453504'),
+	(27, 9, 0, '你的积分于2015-10-22 02:51:51 有变化，描述：签到，积分变化 ：2', 1, '1445453511'),
+	(28, 9, 0, '你的积分于2015-10-22 10:04:42 有变化，描述：签到，积分变化 ：2', 1, '1445479482'),
+	(29, 9, 0, '你的积分于2015-10-22 10:04:47 有变化，描述：签到，积分变化 ：2', 1, '1445479487'),
+	(30, 1, 0, '你的积分于2015-10-22 10:14:56 有变化，描述：签到，积分变化 ：2', 1, '1445480096'),
+	(31, 1, 0, '你的积分于2015-10-22 10:16:18 有变化，描述：签到，积分变化 ：2', 1, '1445480178'),
+	(32, 1, 0, '你的积分于2015-10-22 10:25:43 有变化，描述：签到，积分变化 ：2', 1, '1445480743'),
+	(33, 22, 0, '你的积分于2015-10-22 13:50:59 有变化，描述：签到，积分变化 ：2', 1, '1445493059'),
+	(34, 20, 0, '你的积分于2015-10-23 08:18:40 有变化，描述：签到，积分变化 ：2', 1, '1445559520'),
+	(35, 17, 0, '你的积分于2015-10-23 13:40:47 有变化，描述：签到，积分变化 ：2', 1, '1445578847'),
+	(36, 12, 0, '你的积分于2015-10-23 21:18:39 有变化，描述：签到，积分变化 ：2', 1, '1445606319'),
+	(37, 14, 0, '你的积分于2015-10-24 09:27:32 有变化，描述：签到，积分变化 ：2', 1, '1445650052'),
+	(38, 20, 0, '你的积分于2015-10-24 10:05:31 有变化，描述：签到，积分变化 ：2', 1, '1445652331'),
+	(39, 26, 0, '你的积分于2015-10-24 10:10:19 有变化，描述：签到，积分变化 ：2', 1, '1445652619'),
+	(40, 12, 0, '你的积分于2015-10-25 14:40:56 有变化，描述：签到，积分变化 ：2', 1, '1445755256'),
+	(41, 9, 0, '你的积分于2015-10-25 21:23:46 有变化，描述：签到，积分变化 ：2', 1, '1445779426'),
+	(42, 14, 0, '你的积分于2015-10-26 10:27:51 有变化，描述：签到，积分变化 ：2', 1, '1445826471'),
+	(43, 20, 0, '你的积分于2015-10-26 10:28:09 有变化，描述：签到，积分变化 ：2', 1, '1445826489'),
+	(44, 14, 0, '你的积分于2015-10-26 10:31:37 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1445826697'),
+	(45, 20, 0, '你的积分于2015-10-26 10:31:37 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 产品1，积分变化 ：10', 1, '1445826697'),
+	(46, 14, 0, '你的积分于2015-10-26 10:32:19 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1445826739'),
+	(47, 20, 0, '你的积分于2015-10-26 10:32:19 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 产品1，积分变化 ：10', 1, '1445826739'),
+	(48, 27, 0, '你的积分于2015-10-26 14:27:12 有变化，描述：签到，积分变化 ：2', 1, '1445840832'),
+	(49, 27, 0, '你的积分于2015-10-26 14:28:03 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1445840883'),
+	(50, 20, 0, '你的积分于2015-10-26 14:28:03 有变化，描述：店面扫描产品，扫描店面:测试，产品名称: 产品2，积分变化 ：20', 1, '1445840883'),
+	(51, 22, 0, '你的积分于2015-10-26 16:59:41 有变化，描述：签到，积分变化 ：2', 1, '1445849981'),
+	(52, 12, 0, '你的积分于2015-10-26 22:36:20 有变化，描述：签到，积分变化 ：2', 1, '1445870180'),
+	(53, 12, 0, '你的积分于2015-10-27 22:32:25 有变化，描述：签到，积分变化 ：2', 1, '1445956345'),
+	(54, 24, 0, '你的积分于2015-10-28 09:58:44 有变化，描述：签到，积分变化 ：2', 1, '1445997524'),
+	(55, 17, 0, '你的积分于2015-10-28 11:59:54 有变化，描述：签到，积分变化 ：2', 1, '1446004794'),
+	(56, 20, 0, '你的积分于2015-10-29 08:31:29 有变化，描述：签到，积分变化 ：2', 1, '1446078689'),
+	(57, 20, 0, '你的积分于2015-10-29 08:32:11 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078731'),
+	(58, 20, 0, '你的积分于2015-10-29 08:32:35 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078755'),
+	(59, 20, 0, '你的积分于2015-10-29 08:33:12 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078792'),
+	(60, 20, 0, '你的积分于2015-10-29 08:33:40 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078820'),
+	(61, 20, 0, '你的积分于2015-10-29 08:33:46 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078826'),
+	(62, 20, 0, '你的积分于2015-10-29 08:34:02 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1446078842'),
+	(63, 24, 0, '你的积分于2015-10-29 16:48:37 有变化，描述：签到，积分变化 ：2', 1, '1446108517'),
+	(64, 24, 0, '你的积分于2015-10-29 16:54:06 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1446108846'),
+	(65, 22, 0, '你的积分于2015-10-29 16:54:06 有变化，描述：店面扫描产品，扫描店面:黄瓜科技，产品名称: 产品1，积分变化 ：10', 1, '1446108846'),
+	(66, 24, 0, '你的积分于2015-10-29 16:56:02 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1446108962'),
+	(67, 22, 0, '你的积分于2015-10-29 16:56:02 有变化，描述：店面扫描产品，扫描店面:黄瓜科技，产品名称: 产品1，积分变化 ：10', 1, '1446108962'),
+	(68, 12, 0, '你的积分于2015-10-29 21:58:00 有变化，描述：签到，积分变化 ：2', 1, '1446127080'),
+	(69, 1, 0, '你的积分于2015-10-29 22:06:30 有变化，描述：签到，积分变化 ：2', 1, '1446127590'),
+	(70, 12, 0, '你的积分于2015-10-31 13:27:32 有变化，描述：签到，积分变化 ：2', 1, '1446269252'),
+	(71, 12, 0, '你的积分于2015-11-01 09:43:28 有变化，描述：签到，积分变化 ：2', 1, '1446342208'),
+	(72, 1, 0, '你的积分于2015-11-01 11:32:50 有变化，描述：签到，积分变化 ：2', 1, '1446348770'),
+	(73, 14, 0, '你的积分于2015-11-02 11:37:28 有变化，描述：签到，积分变化 ：2', 1, '1446435448'),
+	(74, 14, 0, '你的积分于2015-11-02 11:50:51 有变化，描述：扫描产品，产品名称: 测试10000分，积分变化 ：8000', 1, '1446436251'),
+	(75, 20, 0, '你的积分于2015-11-02 11:50:51 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 测试10000分，积分变化 ：2000', 1, '1446436251'),
+	(76, 14, 0, '你的积分于2015-11-02 11:56:03 有变化，描述：扫描产品，产品名称: 测试10000分，积分变化 ：8000', 1, '1446436563'),
+	(77, 20, 0, '你的积分于2015-11-02 11:56:03 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 测试10000分，积分变化 ：2000', 1, '1446436563'),
+	(78, 20, 0, '你的积分于2015-11-02 12:03:01 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1446436981'),
+	(79, 20, 0, '你的积分于2015-11-02 12:03:10 有变化，描述：扫描产品，产品名称: 测试10000分，积分变化 ：10000', 1, '1446436990'),
+	(80, 20, 0, '你的积分于2015-11-02 12:03:28 有变化，描述：兑换商品，积分变化 ：-12990', 1, '1446437008'),
+	(81, 20, 0, '你的积分于2015-11-02 12:03:41 有变化，描述：兑换商品，积分变化 ：-890', 1, '1446437021'),
+	(82, 20, 0, '你的积分于2015-11-02 12:04:24 有变化，描述：签到，积分变化 ：2', 1, '1446437064'),
+	(83, 14, 0, '你的积分于2015-11-02 13:48:36 有变化，描述：提现，积分变化 ：-1000', 1, '1446443316'),
+	(84, 1, 0, '你的积分于2015-11-02 14:45:41 有变化，描述：签到，积分变化 ：2', 1, '1446446741'),
+	(85, 20, 0, '你的积分于2015-11-03 11:04:31 有变化，描述：签到，积分变化 ：2', 1, '1446519871'),
+	(86, 24, 0, '你的积分于2015-11-03 13:16:58 有变化，描述：签到，积分变化 ：2', 1, '1446527818'),
+	(87, 1, 0, '你的积分于2015-11-03 14:41:14 有变化，描述：签到，积分变化 ：2', 1, '1446532874'),
+	(88, 20, 0, '你的积分于2015-11-04 08:14:09 有变化，描述：签到，积分变化 ：2', 1, '1446596049'),
+	(89, 14, 0, '你的积分于2015-11-04 09:19:44 有变化，描述：签到，积分变化 ：2', 1, '1446599984'),
+	(90, 26, 0, '你的积分于2015-11-04 16:18:00 有变化，描述：签到，积分变化 ：2', 1, '1446625080'),
+	(91, 12, 0, '你的积分于2015-11-04 23:35:45 有变化，描述：签到，积分变化 ：2', 1, '1446651345'),
+	(92, 12, 0, '你的积分于2015-11-05 11:50:35 有变化，描述：签到，积分变化 ：2', 1, '1446695435'),
+	(93, 14, 0, '你的积分于2015-11-06 16:32:22 有变化，描述：提现，积分变化 ：-1000', 1, '1446798742'),
+	(94, 14, 0, '你的积分于2015-11-06 16:34:46 有变化，描述：签到，积分变化 ：2', 1, '1446798886'),
+	(95, 25, 0, '你的积分于2015-11-06 17:06:18 有变化，描述：签到，积分变化 ：2', 1, '1446800778'),
+	(96, 14, 0, '你的积分于2015-11-07 09:15:34 有变化，描述：签到，积分变化 ：2', 1, '1446858934'),
+	(97, 24, 0, '你的积分于2015-11-07 21:16:24 有变化，描述：签到，积分变化 ：2', 1, '1446902184'),
+	(98, 17, 0, '你的积分于2015-11-08 08:43:29 有变化，描述：签到，积分变化 ：2', 1, '1446943409'),
+	(99, 1, 0, '你的积分于2015-11-10 11:04:48 有变化，描述：签到，积分变化 ：2', 1, '1447124688'),
+	(100, 1, 0, '你的积分于2015-11-10 11:13:47 有变化，描述：兑换商品，积分变化 ：-890', 1, '1447125227'),
+	(101, 1, 0, '你的积分于2015-11-10 12:15:12 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1447128912'),
+	(102, 1, 0, '你的积分于2015-11-10 12:17:23 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1447129043'),
+	(103, 1, 0, '你的积分于2015-11-11 14:22:44 有变化，描述：签到，积分变化 ：2', 1, '1447222964'),
+	(104, 1, 0, '你的积分于2015-11-12 15:34:19 有变化，描述：签到，积分变化 ：2', 1, '1447313659'),
+	(105, 14, 0, '你的积分于2015-11-13 15:15:06 有变化，描述：签到，积分变化 ：2', 1, '1447398906'),
+	(106, 32, 0, '你的积分于2015-11-15 10:56:20 有变化，描述：签到，积分变化 ：2', 1, '1447556180'),
+	(107, 32, 0, '你的积分于2015-11-15 11:01:53 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447556513'),
+	(108, 25, 0, '你的积分于2015-11-15 16:51:11 有变化，描述：签到，积分变化 ：2', 1, '1447577471'),
+	(109, 24, 0, '你的积分于2015-11-16 17:07:27 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447664847'),
+	(110, 32, 0, '你的积分于2015-11-16 21:09:46 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447679386'),
+	(111, 32, 0, '你的积分于2015-11-16 21:10:36 有变化，描述：签到，积分变化 ：2', 1, '1447679436'),
+	(112, 12, 0, '你的积分于2015-11-16 21:12:41 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447679561'),
+	(113, 14, 0, '你的积分于2015-11-17 15:50:09 有变化，描述：签到，积分变化 ：2', 1, '1447746609'),
+	(114, 14, 0, '你的积分于2015-11-17 15:50:14 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447746614'),
+	(115, 14, 0, '你的积分于2015-11-17 15:53:34 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447746814'),
+	(116, 24, 0, '你的积分于2015-11-17 16:13:19 有变化，描述：签到，积分变化 ：2', 1, '1447747999'),
+	(117, 32, 0, '你的积分于2015-11-17 20:11:33 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1447762293'),
+	(118, 32, 0, '你的积分于2015-11-17 20:25:27 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447763127'),
+	(119, 12, 0, '你的积分于2015-11-17 20:28:26 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447763306'),
+	(120, 1, 0, '你的积分于2015-11-17 21:10:23 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447765823'),
+	(121, 1, 0, '你的积分于2015-11-17 21:12:26 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447765946'),
+	(122, 1, 0, '你的积分于2015-11-17 23:03:03 有变化，描述：签到，积分变化 ：2', 1, '1447772583'),
+	(123, 1, 0, '你的积分于2015-11-17 23:09:40 有变化，描述：提现，积分变化 ：-500', 1, '1447772980'),
+	(124, 1, 0, '你的积分于2015-11-17 23:52:10 有变化，描述：扫描产品，产品名称: 测试10000分，积分变化 ：10000', 1, '1447775530'),
+	(125, 1, 0, '你的积分于2015-11-17 23:54:06 有变化，描述：兑换商品，积分变化 ：-4950', 1, '1447775646'),
+	(126, 1, 0, '你的积分于2015-11-18 00:16:03 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447776963'),
+	(127, 1, 0, '你的积分于2015-11-18 00:16:32 有变化，描述：兑换商品，积分变化 ：-1090', 1, '1447776992'),
+	(128, 14, 0, '你的积分于2015-11-18 14:21:54 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447827714'),
+	(129, 14, 0, '你的积分于2015-11-18 14:22:43 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447827763'),
+	(130, 14, 0, '你的积分于2015-11-18 14:24:48 有变化，描述：扫描产品，产品名称: 测试10000分，积分变化 ：8000', 1, '1447827888'),
+	(131, 20, 0, '你的积分于2015-11-18 14:24:48 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 测试10000分，积分变化 ：2000', 1, '1447827888'),
+	(132, 12, 0, '你的积分于2015-11-19 20:56:12 有变化，描述：签到，积分变化 ：2', 1, '1447937772'),
+	(133, 12, 0, '你的积分于2015-11-19 20:56:18 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447937778'),
+	(134, 12, 0, '你的积分于2015-11-19 20:57:58 有变化，描述：扫描产品，产品名称: 产品2，积分变化 ：30', 1, '1447937878'),
+	(135, 20, 0, '你的积分于2015-11-19 20:57:58 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: 产品2，积分变化 ：20', 1, '1447937878'),
+	(136, 1, 0, '你的积分于2015-11-19 21:31:31 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447939891'),
+	(137, 12, 0, '你的积分于2015-11-19 21:38:41 有变化，描述：扫描产品，产品名称: SN10-404L，积分变化 ：50', 1, '1447940321'),
+	(138, 20, 0, '你的积分于2015-11-19 21:38:41 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: SN10-404L，积分变化 ：30', 1, '1447940321'),
+	(139, 12, 0, '你的积分于2015-11-19 21:40:01 有变化，描述：扫描产品，产品名称: SN10-404L，积分变化 ：50', 1, '1447940401'),
+	(140, 20, 0, '你的积分于2015-11-19 21:40:01 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: SN10-404L，积分变化 ：30', 1, '1447940401'),
+	(141, 12, 0, '你的积分于2015-11-19 21:40:39 有变化，描述：扫描产品，产品名称: SN10-404L，积分变化 ：50', 1, '1447940439'),
+	(142, 20, 0, '你的积分于2015-11-19 21:40:39 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: SN10-404L，积分变化 ：30', 1, '1447940439'),
+	(143, 12, 0, '你的积分于2015-11-19 21:41:48 有变化，描述：扫描产品，产品名称: SN10-404L，积分变化 ：50', 1, '1447940508'),
+	(144, 20, 0, '你的积分于2015-11-19 21:41:48 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: SN10-404L，积分变化 ：30', 1, '1447940508'),
+	(145, 12, 0, '你的积分于2015-11-19 21:42:27 有变化，描述：扫描产品，产品名称: SN10-404L，积分变化 ：50', 1, '1447940547'),
+	(146, 20, 0, '你的积分于2015-11-19 21:42:27 有变化，描述：店面扫描产品，扫描店面:新的店面，产品名称: SN10-404L，积分变化 ：30', 1, '1447940547'),
+	(147, 12, 0, '你的积分于2015-11-19 21:45:15 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447940715'),
+	(148, 1, 0, '你的积分于2015-11-19 21:46:14 有变化，描述：兑换商品，积分变化 ：-590', 1, '1447940774'),
+	(149, 12, 0, '你的积分于2015-11-20 08:30:08 有变化，描述：签到，积分变化 ：2', 1, '1447979408'),
+	(150, 12, 0, '你的积分于2015-11-20 08:30:33 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447979433'),
+	(151, 14, 0, '你的积分于2015-11-20 10:36:57 有变化，描述：扫描产品，产品名称: 产品1，积分变化 ：20', 1, '1447987017'),
+	(152, 20, 0, '你的积分于2015-11-20 10:36:57 有变化，描述：店面扫描产品，扫描店面:圣保路123，产品名称: 产品1，积分变化 ：10', 1, '1447987017'),
+	(153, 14, 0, '你的积分于2015-11-20 10:37:13 有变化，描述：签到，积分变化 ：2', 1, '1447987033'),
+	(154, 14, 0, '你的积分于2015-11-20 10:37:19 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1447987039'),
+	(155, 1, 0, '你的积分于2015-11-22 21:16:39 有变化，描述：签到，积分变化 ：2', 1, '1448198199'),
+	(156, 24, 0, '你的积分于2015-11-23 15:14:29 有变化，描述：签到，积分变化 ：2', 1, '1448262869'),
+	(157, 1, 0, '你的积分于2015-11-23 21:29:15 有变化，描述：签到，积分变化 ：2', 1, '1448285355'),
+	(158, 1, 0, '你的积分于2015-11-23 21:29:21 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1448285361'),
+	(159, 20, 0, '你的积分于2015-11-24 09:13:52 有变化，描述：签到，积分变化 ：2', 1, '1448327632'),
+	(160, 14, 0, '你的积分于2015-11-24 09:25:53 有变化，描述：签到，积分变化 ：2', 1, '1448328353'),
+	(161, 14, 0, '你的积分于2015-11-24 09:26:02 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1448328362'),
+	(162, 14, 0, '你的积分于2015-11-24 09:29:12 有变化，描述：兑换商品，积分变化 ：-590', 1, '1448328552'),
+	(163, 1, 0, '你的积分于2015-11-24 09:31:07 有变化，描述：兑换商品，积分变化 ：-590', 1, '1448328667'),
+	(164, 14, 0, '你的积分于2015-11-24 09:31:18 有变化，描述：提现，积分变化 ：-1000', 1, '1448328678'),
+	(165, 33, 0, '你的积分于2015-11-24 10:25:05 有变化，描述：签到，积分变化 ：2', 1, '1448331905'),
+	(166, 33, 0, '你的积分于2015-11-24 10:25:21 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1448331921'),
+	(167, 1, 0, '你的积分于2015-11-24 12:06:37 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1448337997'),
+	(168, 24, 0, '你的积分于2015-11-24 12:07:49 有变化，描述：抽中三等奖，积分变化 ：100', 1, '1448338069'),
+	(169, 24, 0, '你的积分于2015-11-24 12:10:53 有变化，描述：签到，积分变化 ：2', 1, '1448338253'),
+	(170, 1, 0, '你的积分于2015-11-24 12:10:54 有变化，描述：提现，积分变化 ：-500', 1, '1448338254');
 /*!40000 ALTER TABLE `sysc_message` ENABLE KEYS */;
 
 
@@ -3748,14 +4136,15 @@ CREATE TABLE IF NOT EXISTS `sysc_notice` (
   `notice_img` varchar(80) NOT NULL,
   `create_time` varchar(10) NOT NULL,
   PRIMARY KEY (`notice_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=gbk COMMENT='通知';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=gbk COMMENT='通知';
 
--- 正在导出表  bdm175223116_db.sysc_notice 的数据：3 rows
+-- 正在导出表  bdm175223116_db.sysc_notice 的数据：4 rows
 /*!40000 ALTER TABLE `sysc_notice` DISABLE KEYS */;
 INSERT INTO `sysc_notice` (`notice_id`, `notice_title`, `notice_abstract`, `notice_content`, `notice_img`, `create_time`) VALUES
-	(3, '公告2', '公告2\r\n公告2\r\n公告2', '&lt;pre&gt;公告2\r\n公告2\r\n&lt;p&gt;\r\n	公告2\r\n&lt;/p&gt;\r\n\r\n&lt;p&gt;\r\n	\r\n&lt;pre&gt;公告2\r\n公告2\r\n公告2&lt;/pre&gt;\r\n&lt;pre&gt;公告2\r\n公告2\r\n公告2&lt;/pre&gt;\r\n	&lt;p&gt;\r\n	&lt;/p&gt;\r\n&lt;/p&gt;\r\n&lt;/pre&gt;', '/data/upload/img/notice/04983223846726999.png', '1444978384'),
-	(2, '公告21', '公告2公告2公告2公告2公告2公告21', '公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告2公告212&lt;img src=&quot;/p/data/upload/editor/20151016092253_73973.png&quot; alt=&quot;&quot; /&gt;', '/data/upload/img/notice/04983073281877513.png', '1444919444'),
-	(4, '10月份放假通知', '10月份放假通知', '国家规定 10月1日至10月7日放假', '/data/upload/img/notice/04986676112073504.jpg', '1445323611');
+	(5, '我在梅江会展中心汽车养护用品展销会等您！', '2016年中国（天津）汽车润滑油、冷却液、油脂、养护品及配件展销会将在天津市梅江会展中心举办。', '<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	&nbsp; &nbsp; &nbsp; 2016年中国（天津）汽车润滑油、冷却液、油脂、养护品及配件展销会<span style="color:inherit;">将在天津市梅江会展中心举办。</span><span style="color:inherit;">　</span> \r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　圣保路润滑油受邀参加此次展销会，届时将展出圣保路润滑油公司旗下所有系列产品。同时，在本次展销会中，我们的销售经理将与来自全国各地的商客们一起探讨润滑油品牌的选择注意事项和选择要点、市场操作方案，解决目前润滑油经销商所遇到的突出问题并提供解决方案供参考。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	<img src="/data/upload/editor/20151026104704_98736.jpg" alt="" /> \r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　2016年4月22日——24日，我们在中国（天津）汽车润滑油、冷却液、油脂、养护品及配件展销会等您！！\r\n</p>', '/data/upload/img/notice/04991716527222332.jpg', '1445827652'),
+	(6, '圣保路学堂：防冻液使用常见问题分析', '防冻液的正式名称是汽车发动机冷却液。', '<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	&nbsp; &nbsp; &nbsp; &nbsp;防冻液的正式名称是汽车发动机冷却液。汽车制造厂一般全年使用防冻液，但驾驶员只在冬季雪花纷飞时才使用，天气转暖后立即放净换水，其实这种做法是错误的。据测试，合格的防冻液最佳性能期为一年，出租车等使用频率较高的车辆每年更换一次防冻液，其他车辆可每两年更换一次。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	　　防冻液在使用中常见的问题：若车辆原来用水或者劣质防冻液，在换用优质名牌防冻液后，会出现“奇怪”的现象，如防冻液的颜色变成铁锈色、橡胶管路接头渗漏、水箱渗漏等。这时不必紧张，更不能说防冻液质量有问题，请仔细分析产生这些异常现象的原因，并找出解决的办法。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	　　1、部分车在使用优质防冻液后，防冻液变成铁锈色，同时产生絮状物。这是由于优质防冻液中加入一定量的防锈除锈剂，加上乙二醇本身的渗透功能，将原来冷却系统中锈垢清除出来而产生上述现象。若锈垢较重，使用几天后，将旧液放净，加入新液即可。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	　　2、低温下“开锅”：少数车辆，原来就极易“开锅”，加入防冻液，未能起到明显抑制作用，这是由于车的冷却系统水垢太重，水温达70-90℃即开锅，而水的沸点为100℃，防冻液沸点为106-110℃。如存在严重的水垢，防冻液时无法解决“开锅”问题的。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	　　3、个别车辆使用防冻液前不渗漏，使用圣保路优质防冻液后反而出现渗漏问题，这是由于防冻液中将原来的锈垢清除后，暴露出原来锈垢遮盖的沙眼、漏洞，不是防冻液腐蚀冷却系统导致的渗漏。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:14px;background-color:#FFFFFF;">\r\n	　　4、橡胶管接头渗漏：原来用水的车辆，橡胶管接头膨胀，冬季换用防冻液后，由于乙二醇的作用，将橡胶管回缩至原来的正常位置，此时，请紧一下接头卡箍就不会渗漏了。\r\n</p>', '/data/upload/img/notice/04991846985489809.jpg', '1445840698'),
+	(7, '圣保路学堂：冬季汽车保养常识', '圣保路学堂：冬季汽车保养常识', '<p>\r\n	　　第一点：轮胎\r\n</p>\r\n<p>\r\n	　　北方冬天气温非常低，使得轮胎的橡胶容易变硬，进而变脆，容易漏气、扎胎。\r\n</p>\r\n<p>\r\n	　　如果轮胎有了外伤还在路上行驶，尤其是高速，时间长了，伤口就逐渐扩大而导致爆胎。\r\n</p>\r\n<p>\r\n	　　注意：遇到轮胎磨损严重，一定要及时更换轮胎，同时更换新气门嘴。其次要注意轮胎的气压。\r\n</p>\r\n<p>\r\n	　　温馨小提示：车主一定要注意自己爱车的胎压变化，和其他季节不同，冬季轮胎气压低加上热胀冷缩的原因，容易造成胎面两边变形。\r\n</p>\r\n<p>\r\n	　　第二点：底盘\r\n</p>\r\n<p>\r\n	　　冬天气温很低时，标号不合适的齿轮油会凝固，有可能损坏齿轮或油封。除了检查齿轮油的标号是否适合当地气温外。\r\n</p>\r\n<p>\r\n	　　温馨小提示：冬天早晨启动后先低速行车一会儿，不失为一种爱车的好习惯。\r\n</p>\r\n<p>\r\n	　　第三点：防冻液\r\n</p>\r\n<p>\r\n	　　检查是否缺液、有无变质，如果需要，及时补充或更换。\r\n</p>\r\n<p>\r\n	　　原因：防冻液看似小事，但对车的影响甚大，轻则堵塞管路，重则腐蚀损害缸体。所以慎选慎用防冻液。\r\n</p>\r\n<p>\r\n	　　选用防冻液需注意：一是不要混用，二是不要用假冒伪劣产品。另外，正常情况下，防冻液应两年换一次，更换之前最好用清水把冷却系统冲洗干净。\r\n</p>\r\n<p>\r\n	　　第四点：冷却系统\r\n</p>\r\n<p>\r\n	　　需检查水箱、水泵和皮带、水管、补水罐等各部件是否工作正常，如有损坏或故障，最好及时修复或更换。不然可能为了一根小水管，浪费了一桶防冻液。\r\n</p>\r\n<p>\r\n	　　注意：有的车主夏天水温偏高，修理人员就把节温器拆除，虽然可以解决夏天的问题，到冬天就反过来了，总之，这不是彻底解决问题的好办法，谨慎使用。\r\n</p>\r\n<p>\r\n	　　第五点：预热\r\n</p>\r\n<p>\r\n	　　冬季行车应先预热再行驶。\r\n</p>\r\n<p>\r\n	　　原因：如果爱车启动后不经预热就高速行驶，容易导致缸套、轴颈、齿轮、轮胎等零部件早期磨损。\r\n</p>\r\n<p>\r\n	　　注意：汽车启动后大油门快速升温会增加油耗，损害发动机。因为发动机在冷启动时的磨损量是整个磨损量的一半，行车前预热可以减少这种磨损，延长发动机的寿命。\r\n</p>\r\n<p>\r\n	　　注意：变速箱也需要预热。冷机状态下，应避免多次启动，否则会加剧运动部件的磨损，降低机件甚至发动机的整体工作寿命。\r\n</p>\r\n<p>\r\n	　　第六点：刹车油\r\n</p>\r\n<p>\r\n	　　刹车油使用中会吸收空气中的水分，使用时间过长后，油中含水量越来越多。\r\n</p>\r\n<p>\r\n	　　注意：严寒时有可能冻结，这种情况不太多见，但一发生，后果严重。请参考厂家的要求，定期维护。\r\n</p>\r\n<p>\r\n	　　第七点：蓄电池\r\n</p>\r\n<p>\r\n	　　蓄电池也是冬季维护的重点，如果它不能正常供电，发动机和车上的电路系统就会跟着出问题。蓄电池的保养主要是定期检查电解液的液面高度，检查电压、电流，确保电解液达到规定液面高度，如果需要，应补充蓄电池电解液。\r\n</p>\r\n<p>\r\n	　　注意：但私人车主没有专业人员指导下，不要独自尝试“了解”蓄电池，因为蓄电池这个黑匣子里面是硫酸。\r\n</p>\r\n<p>\r\n	　　第八点：机油与发动机\r\n</p>\r\n<p>\r\n	　　北方冬季气温特别低，冬季是特别让私家车主头疼的季节，如果不注意发动机的保养，发动机的功效会有所降低。\r\n</p>\r\n<p>\r\n	　　注意：\r\n</p>\r\n<p>\r\n	　　第一、需要检查标号是否低温，有无缺少或变质。\r\n</p>\r\n<p>\r\n	　　第二、冬季冷车机油过稠，会影响启动，还加大机件磨损。同时热车机油过稀会降低润滑和密封性能。\r\n</p>\r\n<p>\r\n	　　第三、选择一款好的机油可以最大限度养护发动机，每个品牌都有相对应的油品，选择一款好机油不仅仅是心理感觉良好，使用好的机油优化发动机的同时还可以帮助节省燃油。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>', '/data/upload/img/notice/04994437271351385.jpg', '1446099727'),
+	(8, '圣保路学堂：柴油机润滑系统几种常见故障和分析方法', '柴油机润滑系在发动机工作时连续不断地把足够的洁净润滑油输送到全部传动件的摩擦表面之间形成油膜，', '<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	&nbsp; &nbsp; &nbsp; 柴油机润滑系在发动机工作时连续不断地把足够的洁净润滑油输送到全部传动件的摩擦表面之间形成油膜，实现液体摩擦、减少摩擦阻力、降低功率消耗、减轻机件磨损，以提高发动机工作的可靠性和耐久性。根据各传动件工作条件的不同，可选择压力润滑、飞溅润滑及润滑脂润滑等形式。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　润滑系统出现故障会使摩擦副之间得不到良好的润滑而使摩擦热量增多、摩擦磨损加剧，甚至发生抱瓦、烧瓦等严重机械事故。以下是润滑系常见故障及其原因。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　一、机油压力不正常\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　润滑油压直接影响润滑部位的油量供给，也影响油膜的承载能力。柴油机主油道的机油压力一般应在0.20～0.40MPa之间，当低于0.05MPa时将难以保证各零部件的有效润滑。油压不正常主要表现为油压过高和过低。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　1、油压过高的原因\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、油道堵塞，可能造成有些部位无润滑油供给；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、机油粘度过大，流通不畅，流量不足；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、细滤器脏，旁通油量过小；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、调压阀的压力调整不当或堵塞、卡死。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　2、油压过低的原因\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、机油粘度低，润滑部位的泄漏量大；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、各润滑件的配合间隙过大，机油的泄漏量增加，如曲轴主轴承间隙每增加0.01mm机油压力大致降低约0.01MPa；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、调压阀调整不适当；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、细滤器滤芯的密封圈失效，机油旁通量增大；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑤、机油冷却器发生故障，机油渗入水中；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑥、油底壳中油量少，机油泵吸入空气；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑦、管路泄漏。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　二、机油温度不正常\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　柴油机正常的机油温度应该是90～110℃，油温过高使机油粘度降低、油压下降，无法形成良好油膜；油温过低则使机油粘度增大、流动性差、摩擦阻力增加，使发动机的功率损失加大。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　1、油温过高的原因\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、机油量不够；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、冷却效果不良，冷却水量或风扇风量不足或冷却器中水管内壁水垢增多、水流受阻，且因水垢是热的不良导体，使机油热量不易传给冷却水；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、溢流阀压力低，机油从溢流阀溢出过多，通过冷却器的机油量减少；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、各润滑部位的配合间隙不当，不能形成合理的油膜，摩擦产生的热量增多；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑤、柴油机长期超负荷运行。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　2、油温过低的原因\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、机油量不够；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、冷却效果不良，冷却水量或风扇风量不足或冷却器中水管内壁水垢增多、水流受阻，且因水垢是热的不良导体，使机油热量不易传给冷却水；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、溢流阀压力低，机油从溢流阀溢出过多，通过冷却器的机油量减少；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、各润滑部位的配合间隙不当，不能形成合理的油膜，摩擦产生的热量增多；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑤、柴油机长期超负荷运行。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　2、油温过低的原因\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、冷却系统温度过低；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、溢流阀压力高，从油泵出来的油全部经冷却器冷却；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、柴油机长时间低负荷运行。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　三、机油消耗量大\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　发动机功率下降，油底壳机油平面下降较快，排气冒蓝烟，一般是由于油封或衬垫的渗漏或汽缸壁磨损过度烧机油而引起的。具体原因：\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、活塞与缸壁间隙过大；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、活塞环特别是油环弹性差；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、缸套、活塞环过度磨损，活塞环被粘住、对口，或扭曲环装反；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、活塞环与环槽边隙和侧隙过大，或活塞上油环回油孔被积炭阻塞；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑤、增压柴油机涡轮增压器弹力密封装置失效；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑥、气门杆与导管配合间隙过大或油封失效。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　四、油水混合\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　冷却水进入机油内，则机油变质、呈乳白色、粘度降低甚至失效，造成润滑效果不良；同时机油也会进入冷却水中与水垢及其它杂质混合，在水箱上部形成粘稠状混合物。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　油水混合的原因：①机油冷却器内部管子破裂或冷却器芯子两端的密封圈失效，使机油、水在冷却器内混合；②缸套外壁水道胶圈老化变质失去密封作用，缸套周围的冷却水进入油底壳；③缸床垫上的水封圈或油封圈失效；④缸体或缸盖有裂纹，水漏入油底壳。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　五、机油变质过快\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　一般柴油机运转500h应更换机油一次，但有时没用多长时间就出现机油变稀、杂质增多现象，无法继续使用。\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　机油变质主要原因：\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　①、机油牌号不对、质量达不到要求，一般增压和标定转速大于2000r/min的柴油机应选用CC级以上的机油；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　②、柴油机技术状况不好，窜气、窜油、配合间隙过大或油温过高；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　③、柴油机经常在低温、低负荷、低速下运转，活塞变形量不够，燃烧不完全，有柴油沿缸壁进入油底壳使机油稀释变质；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　④、废气进入油底壳凝结成水分和酸性物质，使机油变质；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑤、机油滤芯脏，未经滤清的脏机油进入润滑部位，加速零件的磨损；\r\n</p>\r\n<p style="color:#3E3E3E;font-family:微软雅黑;font-size:16px;background-color:#FFFFFF;">\r\n	　　⑥、滤芯密封圈破裂而发生内漏，一部分机油未经滤芯而直接通过滤清器而造成机油变质。\r\n</p>', '/data/upload/img/notice/04994444459003637.jpg', '1446100445');
 /*!40000 ALTER TABLE `sysc_notice` ENABLE KEYS */;
 
 
@@ -3763,19 +4152,28 @@ INSERT INTO `sysc_notice` (`notice_id`, `notice_title`, `notice_abstract`, `noti
 CREATE TABLE IF NOT EXISTS `sysc_points_good` (
   `pg_id` int(11) NOT NULL AUTO_INCREMENT,
   `pg_name` varchar(100) NOT NULL,
+  `pg_img` varchar(80) NOT NULL,
   `pg_points` int(8) NOT NULL COMMENT '兑换积分值',
   `pg_stock` int(10) NOT NULL COMMENT '库存',
   `pg_desc` text NOT NULL,
   `pg_state` int(2) NOT NULL COMMENT '状态 1：上架 2：下架',
   `create_time` int(10) NOT NULL,
   PRIMARY KEY (`pg_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=gbk;
 
--- 正在导出表  bdm175223116_db.sysc_points_good 的数据：2 rows
+-- 正在导出表  bdm175223116_db.sysc_points_good 的数据：10 rows
 /*!40000 ALTER TABLE `sysc_points_good` DISABLE KEYS */;
-INSERT INTO `sysc_points_good` (`pg_id`, `pg_name`, `pg_points`, `pg_stock`, `pg_desc`, `pg_state`, `create_time`) VALUES
-	(1, '商品1', 10, 6, '&lt;p&gt;\r\n	积分商品21\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span&gt;积分商品21&lt;/span&gt; \r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span&gt;积分商品2&lt;/span&gt; \r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span&gt;积分商品2&lt;/span&gt;&lt;span&gt;积分商品2&lt;/span&gt; \r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span&gt;积分商品2&lt;img src=&quot;/p/data/upload/editor/20151019163608_90161.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;span style=&quot;line-height:1.5;&quot;&gt;分商品2&lt;/span&gt;&lt;img src=&quot;/p/data/upload/editor/20151019163550_93883.png&quot; alt=&quot;&quot; /&gt;&lt;span style=&quot;line-height:1.5;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;line-height:1.5;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;line-height:1.5;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;line-height:1.5;&quot;&gt;&lt;/span&gt; \r\n&lt;/p&gt;', 1, 1445265371),
-	(5, '商品2', 20, 20, '&lt;p&gt;\r\n	商品2商品2商品2商品2\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	商品2商品2商品2\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;br /&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	商品2商品2\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	商品2\r\n&lt;/p&gt;', 1, 1445338778);
+INSERT INTO `sysc_points_good` (`pg_id`, `pg_name`, `pg_img`, `pg_points`, `pg_stock`, `pg_desc`, `pg_state`, `create_time`) VALUES
+	(6, '爱国者 13000毫安 移动电源/充电宝', '/data/upload/img/points_good/04989899053027211.jpg', 590, 2, '爱国者 13000毫安 移动电源/充电宝', 1, 1445581925),
+	(7, '金士顿（Kingston） 64GB 金属U盘', '/data/upload/img/points_good/04989899380889156.jpg', 1390, 10, '金士顿（Kingston） 64GB 金属U盘', 1, 1445585649),
+	(8, '狂热者h2 无线耳机', '/data/upload/img/points_good/04989899721313064.jpg', 890, 98, '狂热者h2 无线耳机', 1, 1445586203),
+	(9, '极路由（HiWiFi） 极壹S智能无线路由器', '/data/upload/img/points_good/04989899965720514.png', 1090, 9, '<h1 style="font-size:16px;font-family:arial, \'microsoft yahei\';color:#666666;background-color:#FFFFFF;">\r\n	极路由（HiWiFi） 极壹S智能无线路由器<br />\r\n</h1>', 1, 1445586694),
+	(10, '爱斯基摩人 加厚毛毯被  180*200cm', '/data/upload/img/points_good/04989900273344819.jpg', 990, 15, '爱斯基摩人 加厚毛毯被 &nbsp;180*200cm', 1, 1445588468),
+	(11, '小米（MI）7.9英寸平板 WIFI 64GB', '/data/upload/img/points_good/04989900607545367.jpg', 12990, 9, '小米（MI）7.9英寸平板 WIFI 64GB', 1, 1445588694),
+	(12, 'Apple iPad mini  16G', '/data/upload/img/points_good/04989900827507179.jpg', 19180, 10, 'Apple iPad mini &nbsp;16G', 1, 1445588820),
+	(13, '美的 F60-15WB5(Y) 60升 电热水器', '/data/upload/img/points_good/04989901161493184.jpg', 12980, 10, '美的 F60-15WB5(Y) 60升 电热水器', 1, 1445588978),
+	(14, 'Apple iPhone 6  16GB', '/data/upload/img/points_good/04989901378838077.jpg', 50000, 10, 'Apple iPhone 6 &nbsp;16GB', 1, 1445589144),
+	(15, '华硕（ASUS）X450J 14英寸笔记本电脑', '/data/upload/img/points_good/04989901710786968.jpg', 43000, 10, '<p>\r\n	华硕（ASUS）X450J 14英寸笔记本电脑\r\n</p>\r\n<p>\r\n	<img src="/data/upload/editor/20151024102239_70759.jpg" alt="" />\r\n</p>', 1, 1445589258);
 /*!40000 ALTER TABLE `sysc_points_good` ENABLE KEYS */;
 
 
@@ -3791,9 +4189,9 @@ CREATE TABLE IF NOT EXISTS `sysc_points_log` (
   `pl_desc` varchar(100) NOT NULL COMMENT '操作描述',
   `pl_stage` varchar(50) NOT NULL COMMENT '操作阶段',
   PRIMARY KEY (`pl_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
+) ENGINE=MyISAM AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COMMENT='会员积分日志表';
 
--- 正在导出表  bdm175223116_db.sysc_points_log 的数据：20 rows
+-- 正在导出表  bdm175223116_db.sysc_points_log 的数据：168 rows
 /*!40000 ALTER TABLE `sysc_points_log` DISABLE KEYS */;
 INSERT INTO `sysc_points_log` (`pl_id`, `pl_memberid`, `pl_membermobile`, `pl_adminid`, `pl_adminname`, `pl_points`, `pl_addtime`, `pl_desc`, `pl_stage`) VALUES
 	(1, 2, '18682255278', NULL, NULL, 20, 1440388734, '扫描产品', 'scan_qrcode'),
@@ -3815,7 +4213,155 @@ INSERT INTO `sysc_points_log` (`pl_id`, `pl_memberid`, `pl_membermobile`, `pl_ad
 	(20, 22, '13642115522', NULL, NULL, 2, 1445350967, '签到', 'sign'),
 	(21, 22, '13642115522', NULL, NULL, 2, 1445350970, '签到', 'sign'),
 	(22, 1, '18682255279', NULL, NULL, -20, 1445435416, '兑换商品', 'pointorder'),
-	(23, 1, '18682255279', NULL, NULL, -20, 1445435562, '兑换商品', 'pointorder');
+	(23, 1, '18682255279', NULL, NULL, -20, 1445435562, '兑换商品', 'pointorder'),
+	(24, 9, '13482371161', NULL, NULL, 2, 1445452834, '签到', 'sign'),
+	(25, 9, '13482371161', NULL, NULL, 2, 1445453497, '签到', 'sign'),
+	(26, 9, '13482371161', NULL, NULL, 2, 1445453502, '签到', 'sign'),
+	(27, 9, '13482371161', NULL, NULL, 2, 1445453504, '签到', 'sign'),
+	(28, 9, '13482371161', NULL, NULL, 2, 1445453511, '签到', 'sign'),
+	(29, 9, '13482371161', NULL, NULL, 2, 1445479482, '签到', 'sign'),
+	(30, 9, '13482371161', NULL, NULL, 2, 1445479487, '签到', 'sign'),
+	(31, 1, '18682255279', NULL, NULL, 2, 1445480095, '签到', 'sign'),
+	(32, 1, '18682255279', NULL, NULL, 2, 1445480177, '签到', 'sign'),
+	(33, 1, '18682255279', NULL, NULL, 2, 1445480742, '签到', 'sign'),
+	(34, 22, '13642115522', NULL, NULL, 2, 1445493059, '签到', 'sign'),
+	(35, 20, '18602674110', NULL, NULL, 2, 1445559520, '签到', 'sign'),
+	(36, 17, '15238033727', NULL, NULL, 2, 1445578847, '签到', 'sign'),
+	(37, 12, '18124095354', NULL, NULL, 2, 1445606319, '签到', 'sign'),
+	(38, 14, '15222623325', NULL, NULL, 2, 1445650052, '签到', 'sign'),
+	(39, 20, '18602674110', NULL, NULL, 2, 1445652331, '签到', 'sign'),
+	(40, 26, '18502613485', NULL, NULL, 2, 1445652619, '签到', 'sign'),
+	(41, 12, '18124095354', NULL, NULL, 2, 1445755256, '签到', 'sign'),
+	(42, 9, '13482371161', NULL, NULL, 2, 1445779426, '签到', 'sign'),
+	(43, 14, '15222623325', NULL, NULL, 2, 1445826471, '签到', 'sign'),
+	(44, 20, '18602674110', NULL, NULL, 2, 1445826489, '签到', 'sign'),
+	(45, 14, '15222623325', NULL, NULL, 20, 1445826697, '扫描产品', 'scan_qrcode'),
+	(46, 20, '18602674110', NULL, NULL, 10, 1445826697, '店面扫描产品', 'shop_scan_qrcode'),
+	(47, 14, '15222623325', NULL, NULL, 20, 1445826739, '扫描产品', 'scan_qrcode'),
+	(48, 20, '18602674110', NULL, NULL, 10, 1445826739, '店面扫描产品', 'shop_scan_qrcode'),
+	(49, 27, '18622189295', NULL, NULL, 2, 1445840832, '签到', 'sign'),
+	(50, 27, '18622189295', NULL, NULL, 30, 1445840883, '扫描产品', 'scan_qrcode'),
+	(51, 20, '18602674110', NULL, NULL, 20, 1445840883, '店面扫描产品', 'shop_scan_qrcode'),
+	(52, 22, '13642115522', NULL, NULL, 2, 1445849981, '签到', 'sign'),
+	(53, 12, '18124095354', NULL, NULL, 2, 1445870180, '签到', 'sign'),
+	(54, 12, '18124095354', NULL, NULL, 2, 1445956345, '签到', 'sign'),
+	(55, 24, '13920422213', NULL, NULL, 2, 1445997524, '签到', 'sign'),
+	(56, 17, '15238033727', NULL, NULL, 2, 1446004794, '签到', 'sign'),
+	(57, 20, '18602674110', NULL, NULL, 2, 1446078689, '签到', 'sign'),
+	(58, 20, '18602674110', NULL, NULL, 30, 1446078731, '扫描产品', 'scan_qrcode'),
+	(59, 20, '18602674110', NULL, NULL, 30, 1446078755, '扫描产品', 'scan_qrcode'),
+	(60, 20, '18602674110', NULL, NULL, 30, 1446078792, '扫描产品', 'scan_qrcode'),
+	(61, 20, '18602674110', NULL, NULL, 30, 1446078820, '扫描产品', 'scan_qrcode'),
+	(62, 20, '18602674110', NULL, NULL, 30, 1446078826, '扫描产品', 'scan_qrcode'),
+	(63, 20, '18602674110', NULL, NULL, 30, 1446078842, '扫描产品', 'scan_qrcode'),
+	(64, 24, '13920422213', NULL, NULL, 2, 1446108517, '签到', 'sign'),
+	(65, 24, '13920422213', NULL, NULL, 20, 1446108846, '扫描产品', 'scan_qrcode'),
+	(66, 22, '13642115522', NULL, NULL, 10, 1446108846, '店面扫描产品', 'shop_scan_qrcode'),
+	(67, 24, '13920422213', NULL, NULL, 20, 1446108962, '扫描产品', 'scan_qrcode'),
+	(68, 22, '13642115522', NULL, NULL, 10, 1446108962, '店面扫描产品', 'shop_scan_qrcode'),
+	(69, 12, '18124095354', NULL, NULL, 2, 1446127080, '签到', 'sign'),
+	(70, 1, '18682255279', NULL, NULL, 2, 1446127590, '签到', 'sign'),
+	(71, 12, '18124095354', NULL, NULL, 2, 1446269252, '签到', 'sign'),
+	(72, 12, '18124095354', NULL, NULL, 2, 1446342208, '签到', 'sign'),
+	(73, 1, '18682255279', NULL, NULL, 2, 1446348770, '签到', 'sign'),
+	(74, 14, '15222623325', NULL, NULL, 2, 1446435448, '签到', 'sign'),
+	(75, 14, '15222623325', NULL, NULL, 8000, 1446436251, '扫描产品', 'scan_qrcode'),
+	(76, 20, '18602674110', NULL, NULL, 2000, 1446436251, '店面扫描产品', 'shop_scan_qrcode'),
+	(77, 14, '15222623325', NULL, NULL, 8000, 1446436563, '扫描产品', 'scan_qrcode'),
+	(78, 20, '18602674110', NULL, NULL, 2000, 1446436563, '店面扫描产品', 'shop_scan_qrcode'),
+	(79, 20, '18602674110', NULL, NULL, 20, 1446436981, '扫描产品', 'scan_qrcode'),
+	(80, 20, '18602674110', NULL, NULL, 10000, 1446436990, '扫描产品', 'scan_qrcode'),
+	(81, 20, '18602674110', NULL, NULL, -12990, 1446437008, '兑换商品', 'pointorder'),
+	(82, 20, '18602674110', NULL, NULL, -890, 1446437021, '兑换商品', 'pointorder'),
+	(83, 20, '18602674110', NULL, NULL, 2, 1446437064, '签到', 'sign'),
+	(84, 14, '15222623325', NULL, NULL, -1000, 1446443316, '提现', 'extract_cash'),
+	(85, 1, '18682255279', NULL, NULL, 2, 1446446741, '签到', 'sign'),
+	(86, 20, '18602674110', NULL, NULL, 2, 1446519871, '签到', 'sign'),
+	(87, 24, '13920422213', NULL, NULL, 2, 1446527818, '签到', 'sign'),
+	(88, 1, '18682255279', NULL, NULL, 2, 1446532874, '签到', 'sign'),
+	(89, 20, '18602674110', NULL, NULL, 2, 1446596049, '签到', 'sign'),
+	(90, 14, '15222623325', NULL, NULL, 2, 1446599984, '签到', 'sign'),
+	(91, 26, '18502613485', NULL, NULL, 2, 1446625080, '签到', 'sign'),
+	(92, 12, '18124095354', NULL, NULL, 2, 1446651345, '签到', 'sign'),
+	(93, 12, '18124095354', NULL, NULL, 2, 1446695435, '签到', 'sign'),
+	(94, 14, '15222623325', NULL, NULL, -1000, 1446798742, '提现', 'extract_cash'),
+	(95, 14, '15222623325', NULL, NULL, 2, 1446798886, '签到', 'sign'),
+	(96, 25, '15022661971', NULL, NULL, 2, 1446800778, '签到', 'sign'),
+	(97, 14, '15222623325', NULL, NULL, 2, 1446858934, '签到', 'sign'),
+	(98, 24, '13920422213', NULL, NULL, 2, 1446902184, '签到', 'sign'),
+	(99, 17, '15238033727', NULL, NULL, 2, 1446943409, '签到', 'sign'),
+	(100, 1, '18682255279', NULL, NULL, 2, 1447124688, '签到', 'sign'),
+	(101, 1, '18682255279', NULL, NULL, -890, 1447125227, '兑换商品', 'pointorder'),
+	(102, 1, '18682255279', NULL, NULL, 20, 1447128912, '扫描产品', 'scan_qrcode'),
+	(103, 1, '18682255279', NULL, NULL, 20, 1447129043, '扫描产品', 'scan_qrcode'),
+	(104, 1, '18682255279', NULL, NULL, 2, 1447222964, '签到', 'sign'),
+	(105, 1, '18682255279', NULL, NULL, 2, 1447313659, '签到', 'sign'),
+	(106, 14, '15222623325', NULL, NULL, 2, 1447398906, '签到', 'sign'),
+	(107, 32, '18476321530', NULL, NULL, 2, 1447556180, '签到', 'sign'),
+	(108, 32, '18476321530', NULL, NULL, 100, 1447556513, '抽中三等奖', 'win_prize'),
+	(109, 25, '15022661971', NULL, NULL, 2, 1447577471, '签到', 'sign'),
+	(110, 24, '13920422213', NULL, NULL, 100, 1447664847, '抽中三等奖', 'win_prize'),
+	(111, 32, '18476321530', NULL, NULL, 100, 1447679386, '抽中三等奖', 'win_prize'),
+	(112, 32, '18476321530', NULL, NULL, 2, 1447679436, '签到', 'sign'),
+	(113, 12, '18124095354', NULL, NULL, 100, 1447679561, '抽中三等奖', 'win_prize'),
+	(114, 14, '15222623325', NULL, NULL, 2, 1447746609, '签到', 'sign'),
+	(115, 14, '15222623325', NULL, NULL, 100, 1447746614, '抽中三等奖', 'win_prize'),
+	(116, 14, '15222623325', NULL, NULL, -590, 1447746814, '兑换商品', 'pointorder'),
+	(117, 24, '13920422213', NULL, NULL, 2, 1447747999, '签到', 'sign'),
+	(118, 32, '18476321530', NULL, NULL, 20, 1447762293, '扫描产品', 'scan_qrcode'),
+	(119, 32, '18476321530', NULL, NULL, 100, 1447763127, '抽中三等奖', 'win_prize'),
+	(120, 12, '18124095354', NULL, NULL, 100, 1447763306, '抽中三等奖', 'win_prize'),
+	(121, 1, '18682255279', NULL, NULL, -590, 1447765823, '兑换商品', 'pointorder'),
+	(122, 1, '18682255279', NULL, NULL, 100, 1447765946, '抽中三等奖', 'win_prize'),
+	(123, 1, '18682255279', NULL, NULL, 2, 1447772583, '签到', 'sign'),
+	(124, 1, '18682255279', NULL, NULL, -500, 1447772980, '提现', 'extract_cash'),
+	(125, 1, '18682255279', NULL, NULL, 10000, 1447775530, '扫描产品', 'scan_qrcode'),
+	(126, 1, '18682255279', NULL, NULL, -4950, 1447775646, '兑换商品', 'pointorder'),
+	(127, 1, '18682255279', NULL, NULL, 100, 1447776963, '抽中三等奖', 'win_prize'),
+	(128, 1, '18682255279', NULL, NULL, -1090, 1447776992, '兑换商品', 'pointorder'),
+	(129, 14, '15222623325', NULL, NULL, 100, 1447827714, '抽中三等奖', 'win_prize'),
+	(130, 14, '15222623325', NULL, NULL, -590, 1447827763, '兑换商品', 'pointorder'),
+	(131, 14, '15222623325', NULL, NULL, 8000, 1447827888, '扫描产品', 'scan_qrcode'),
+	(132, 20, '18602674110', NULL, NULL, 2000, 1447827888, '店面扫描产品', 'shop_scan_qrcode'),
+	(133, 12, '18124095354', NULL, NULL, 2, 1447937772, '签到', 'sign'),
+	(134, 12, '18124095354', NULL, NULL, 100, 1447937778, '抽中三等奖', 'win_prize'),
+	(135, 12, '18124095354', NULL, NULL, 30, 1447937878, '扫描产品', 'scan_qrcode'),
+	(136, 20, '18602674110', NULL, NULL, 20, 1447937878, '店面扫描产品', 'shop_scan_qrcode'),
+	(137, 1, '18682255279', NULL, NULL, -590, 1447939891, '兑换商品', 'pointorder'),
+	(138, 12, '18124095354', NULL, NULL, 50, 1447940321, '扫描产品', 'scan_qrcode'),
+	(139, 20, '18602674110', NULL, NULL, 30, 1447940321, '店面扫描产品', 'shop_scan_qrcode'),
+	(140, 12, '18124095354', NULL, NULL, 50, 1447940401, '扫描产品', 'scan_qrcode'),
+	(141, 20, '18602674110', NULL, NULL, 30, 1447940401, '店面扫描产品', 'shop_scan_qrcode'),
+	(142, 12, '18124095354', NULL, NULL, 50, 1447940439, '扫描产品', 'scan_qrcode'),
+	(143, 20, '18602674110', NULL, NULL, 30, 1447940439, '店面扫描产品', 'shop_scan_qrcode'),
+	(144, 12, '18124095354', NULL, NULL, 50, 1447940508, '扫描产品', 'scan_qrcode'),
+	(145, 20, '18602674110', NULL, NULL, 30, 1447940508, '店面扫描产品', 'shop_scan_qrcode'),
+	(146, 12, '18124095354', NULL, NULL, 50, 1447940547, '扫描产品', 'scan_qrcode'),
+	(147, 20, '18602674110', NULL, NULL, 30, 1447940547, '店面扫描产品', 'shop_scan_qrcode'),
+	(148, 12, '18124095354', NULL, NULL, -590, 1447940715, '兑换商品', 'pointorder'),
+	(149, 1, '18682255279', NULL, NULL, -590, 1447940774, '兑换商品', 'pointorder'),
+	(150, 12, '18124095354', NULL, NULL, 2, 1447979408, '签到', 'sign'),
+	(151, 12, '18124095354', NULL, NULL, 100, 1447979433, '抽中三等奖', 'win_prize'),
+	(152, 14, '15222623325', NULL, NULL, 20, 1447987017, '扫描产品', 'scan_qrcode'),
+	(153, 20, '18602674110', NULL, NULL, 10, 1447987017, '店面扫描产品', 'shop_scan_qrcode'),
+	(154, 14, '15222623325', NULL, NULL, 2, 1447987033, '签到', 'sign'),
+	(155, 14, '15222623325', NULL, NULL, 100, 1447987039, '抽中三等奖', 'win_prize'),
+	(156, 1, '18682255279', NULL, NULL, 2, 1448198199, '签到', 'sign'),
+	(157, 24, '13920422213', NULL, NULL, 2, 1448262869, '签到', 'sign'),
+	(158, 1, '18682255279', NULL, NULL, 2, 1448285355, '签到', 'sign'),
+	(159, 1, '18682255279', NULL, NULL, 100, 1448285361, '抽中三等奖', 'win_prize'),
+	(160, 20, '18602674110', NULL, NULL, 2, 1448327632, '签到', 'sign'),
+	(161, 14, '15222623325', NULL, NULL, 2, 1448328353, '签到', 'sign'),
+	(162, 14, '15222623325', NULL, NULL, 100, 1448328362, '抽中三等奖', 'win_prize'),
+	(163, 14, '15222623325', NULL, NULL, -590, 1448328552, '兑换商品', 'pointorder'),
+	(164, 1, '18682255279', NULL, NULL, -590, 1448328667, '兑换商品', 'pointorder'),
+	(165, 14, '15222623325', NULL, NULL, -1000, 1448328678, '提现', 'extract_cash'),
+	(166, 33, '15122827799', NULL, NULL, 2, 1448331905, '签到', 'sign'),
+	(167, 33, '15122827799', NULL, NULL, 100, 1448331921, '抽中三等奖', 'win_prize'),
+	(168, 1, '18682255279', NULL, NULL, 100, 1448337997, '抽中三等奖', 'win_prize'),
+	(169, 24, '13920422213', NULL, NULL, 100, 1448338069, '抽中三等奖', 'win_prize'),
+	(170, 24, '13920422213', NULL, NULL, 2, 1448338253, '签到', 'sign'),
+	(171, 1, '18682255279', NULL, NULL, -500, 1448338254, '提现', 'extract_cash');
 /*!40000 ALTER TABLE `sysc_points_log` ENABLE KEYS */;
 
 
@@ -3824,7 +4370,7 @@ CREATE TABLE IF NOT EXISTS `sysc_points_order` (
   `point_orderid` int(11) NOT NULL AUTO_INCREMENT COMMENT '兑换订单id',
   `point_ordersn` varchar(20) NOT NULL COMMENT '兑换订单编号',
   `point_buyerid` int(11) NOT NULL COMMENT '兑换会员id',
-  `point_buyermobile` varchar(50) NOT NULL COMMENT '兑换会员姓名',
+  `point_buyermobile` varchar(50) NOT NULL COMMENT '兑换会员用户名',
   `point_buyermobiletrue` varchar(100) NOT NULL COMMENT '兑换会员手机号',
   `pg_id` int(11) NOT NULL COMMENT '兑换商品id',
   `pg_name` varchar(100) NOT NULL COMMENT '兑换商品名称',
@@ -3834,14 +4380,30 @@ CREATE TABLE IF NOT EXISTS `sysc_points_order` (
   `point_finishedtime` int(11) DEFAULT NULL COMMENT '订单完成时间',
   `point_orderstate` int(2) NOT NULL DEFAULT '1' COMMENT '订单状态：1(默认):待完成; 2：已完成',
   `point_orderdesc` varchar(400) DEFAULT NULL COMMENT '订单商品描述信息，如商品为电话卡，则该信息详细描述电话卡号等',
+  `address` varchar(400) DEFAULT NULL,
+  `receiver_name` varchar(400) DEFAULT NULL,
+  `receiver_mobile` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`point_orderid`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='兑换订单表';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='point_orderstate,point_orderdesc';
 
--- 正在导出表  bdm175223116_db.sysc_points_order 的数据：2 rows
+-- 正在导出表  bdm175223116_db.sysc_points_order 的数据：15 rows
 /*!40000 ALTER TABLE `sysc_points_order` DISABLE KEYS */;
-INSERT INTO `sysc_points_order` (`point_orderid`, `point_ordersn`, `point_buyerid`, `point_buyermobile`, `point_buyermobiletrue`, `pg_id`, `pg_name`, `pg_number`, `point_allpoint`, `point_addtime`, `point_finishedtime`, `point_orderstate`, `point_orderdesc`) VALUES
-	(1, '120498779416881001', 1, '18682255279', '13482371161', 1, '商品1', 2, 20, 1445435416, NULL, 1, NULL),
-	(2, '540498779562295001', 1, '18682255279', '13482371161', 1, '商品1', 2, 20, 1445435562, NULL, 1, NULL);
+INSERT INTO `sysc_points_order` (`point_orderid`, `point_ordersn`, `point_buyerid`, `point_buyermobile`, `point_buyermobiletrue`, `pg_id`, `pg_name`, `pg_number`, `point_allpoint`, `point_addtime`, `point_finishedtime`, `point_orderstate`, `point_orderdesc`, `address`, `receiver_name`, `receiver_mobile`) VALUES
+	(1, '120498779416881001', 1, '18682255279', '13482371161', 1, '商品1', 2, 20, 1445435416, 1445567623, 2, '京东卡  卡号11u0293213123', NULL, NULL, NULL),
+	(2, '540498779562295001', 1, '18682255279', '13482371161', 1, '商品1', 2, 20, 1445435562, 1445566683, 2, '京东卡\r\n卡号：1217923123', NULL, NULL, NULL),
+	(3, '660499781008976020', 20, '18602674110', '18602674110', 11, '小米（MI）7.9英寸平板 WIFI 64GB', 1, 12990, 1446437008, NULL, 1, NULL, NULL, NULL, NULL),
+	(4, '500499781021141020', 20, '18602674110', '18602674110', 8, '狂热者h2 无线耳机', 1, 890, 1446437021, NULL, 1, NULL, NULL, NULL, NULL),
+	(5, '510500469227476001', 1, '18682255279', '18682255279', 8, '狂热者h2 无线耳机', 1, 890, 1447125227, NULL, 1, NULL, NULL, NULL, NULL),
+	(6, '470501090814837014', 14, '15222623325', '15222623325', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447746814, NULL, 1, NULL, NULL, NULL, NULL),
+	(7, '510501109823769001', 1, '18682255279', '13920422213', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447765823, NULL, 1, NULL, NULL, NULL, NULL),
+	(8, '520501119646198001', 1, '18682255279', '13920422213', 10, '爱斯基摩人 加厚毛毯被  180*200cm', 5, 4950, 1447775646, NULL, 1, NULL, NULL, NULL, NULL),
+	(9, '820501120992920001', 1, '18682255279', '13920422213', 9, '极路由（HiWiFi） 极壹S智能无线路由器', 1, 1090, 1447776992, NULL, 1, NULL, NULL, NULL, NULL),
+	(10, '640501171763632014', 14, '15222623325', '15222623325', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447827763, NULL, 1, NULL, '北京市朝阳区中山大道11号302', '张三', '15222623325'),
+	(11, '590501283891415001', 1, '18682255279', '13920422213', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447939891, NULL, 1, NULL, '', '', ''),
+	(12, '420501284715810012', 12, '18124095354', '18124095354', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447940715, NULL, 1, NULL, '广东省深圳市福田区下沙接到萨河昂德的77栋大楼', '老王', '18124095354'),
+	(13, '930501284774643001', 1, '18682255279', '13920422213', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1447940774, NULL, 1, NULL, '浦东测试地址1', '我的逆袭2', '13920422213'),
+	(14, '150501672552288014', 14, '15222623325', '15222623325', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1448328552, NULL, 1, NULL, '天津蓟县', '艾程琪', '15222623325'),
+	(15, '280501672667014001', 1, '18682255279', '13920422213', 6, '爱国者 13000毫安 移动电源/充电宝', 1, 590, 1448328667, NULL, 1, NULL, '符合环境', '我的逆袭22', '13920422213');
 /*!40000 ALTER TABLE `sysc_points_order` ENABLE KEYS */;
 
 
@@ -3851,16 +4413,19 @@ CREATE TABLE IF NOT EXISTS `sysc_product` (
   `product_name` varchar(100) NOT NULL,
   `shop_points` int(8) NOT NULL,
   `agent_points` int(8) NOT NULL,
+  `agent_scan_points` int(8) NOT NULL COMMENT '代理商自己扫描获得的积分',
   `create_time` int(10) NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=gbk;
 
--- 正在导出表  bdm175223116_db.sysc_product 的数据：3 rows
+-- 正在导出表  bdm175223116_db.sysc_product 的数据：5 rows
 /*!40000 ALTER TABLE `sysc_product` DISABLE KEYS */;
-INSERT INTO `sysc_product` (`product_id`, `product_name`, `shop_points`, `agent_points`, `create_time`) VALUES
-	(7, 'SN10-404L', 50, 30, 0),
-	(6, '产品2', 30, 20, 0),
-	(4, '产品1', 20, 10, 0);
+INSERT INTO `sysc_product` (`product_id`, `product_name`, `shop_points`, `agent_points`, `agent_scan_points`, `create_time`) VALUES
+	(7, 'SN10-404L', 50, 30, 50, 1445435562),
+	(6, '产品2', 30, 20, 30, 1445435562),
+	(4, '产品1', 20, 10, 20, 1445435562),
+	(8, '测试10000分', 8000, 2000, 10000, 1445435562),
+	(9, '测试1', 300, 500, 800, 1445435562);
 /*!40000 ALTER TABLE `sysc_product` ENABLE KEYS */;
 
 
@@ -3875,14 +4440,41 @@ CREATE TABLE IF NOT EXISTS `sysc_qrcode_record` (
   `agent_points` int(8) NOT NULL,
   `create_time` int(10) NOT NULL,
   PRIMARY KEY (`record_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=gbk COMMENT='二维码记录';
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=gbk COMMENT='二维码记录';
 
--- 正在导出表  bdm175223116_db.sysc_qrcode_record 的数据：3 rows
+-- 正在导出表  bdm175223116_db.sysc_qrcode_record 的数据：30 rows
 /*!40000 ALTER TABLE `sysc_qrcode_record` DISABLE KEYS */;
 INSERT INTO `sysc_qrcode_record` (`record_id`, `member_id`, `product_id`, `product_name`, `qrcode`, `shop_points`, `agent_points`, `create_time`) VALUES
 	(1, 2, 4, '产品1', '1asdasda142csa4adsfaf23', 20, 10, 1444378734),
 	(2, 2, 4, '产品1', '1asdasda142csa4adsfaf24', 20, 10, 1444378734),
-	(3, 2, 4, '产品1', '1asdasda142csa4adsfaf24', 20, 10, 1444378734);
+	(3, 2, 4, '产品1', '1asdasda142csa4adsfaf24', 20, 10, 1444378734),
+	(4, 14, 4, '产品1', '115955145256245f742146f5.43547954', 20, 10, 1445826697),
+	(5, 14, 4, '产品1', '126215704456245f741f1469.53501794', 20, 10, 1445826739),
+	(6, 27, 6, '产品2', '9527040675624624d3d47e4.59282451', 30, 20, 1445840883),
+	(7, 20, 6, '产品2', '19669592905624624d32c835.64866127', 30, 20, 1446078731),
+	(8, 20, 6, '产品2', '12695762585624624d30d432.69221709', 30, 20, 1446078755),
+	(9, 20, 6, '产品2', '11642009865624624d34fac3.77673678', 30, 20, 1446078792),
+	(10, 20, 6, '产品2', '8749328075624624d372d45.73946491', 30, 20, 1446078820),
+	(11, 20, 6, '产品2', '5491529595624624d392150.91309047', 30, 20, 1446078826),
+	(12, 20, 6, '产品2', '4260230745624624d3b1553.16040932', 30, 20, 1446078842),
+	(13, 24, 4, '产品1', '11590736345631de88ae2262.84660770', 20, 10, 1446108846),
+	(14, 24, 4, '产品1', '18148370855631de88ae2940.00420034', 20, 10, 1446108962),
+	(15, 14, 8, '测试10000分', '4182175055636dd552fb0e7.64392994', 8000, 2000, 1446436251),
+	(16, 14, 8, '测试10000分', '14130000075636dd552fb7f7.37399358', 8000, 2000, 1446436563),
+	(17, 20, 4, '产品1', '141649959656245f74164a49.91825867', 20, 10, 1446436981),
+	(18, 20, 8, '测试10000分', '10952996945636dd552fbde1.16398237', 8000, 2000, 1446436990),
+	(19, 1, 4, '产品1', '10367094056416f268fc9e9.54282260', 20, 10, 1447128912),
+	(20, 1, 4, '产品1', '6419332156416f268fd144.35884001', 20, 10, 1447129043),
+	(21, 32, 4, '产品1', '1743451067564b0c4dab7778.50076057', 20, 10, 1447762293),
+	(22, 1, 8, '测试10000分', '610473005564b4cd1483069.94050066', 8000, 2000, 1447775530),
+	(23, 14, 8, '测试10000分', '1771315294564c198396f182.12489079', 8000, 2000, 1447827888),
+	(24, 12, 6, '产品2', '75725834564b4d0e6db7b7.41936165', 30, 20, 1447937878),
+	(25, 12, 7, 'SN10-404L', '2007914269564dd081aa30d2.72728945', 50, 30, 1447940321),
+	(26, 12, 7, 'SN10-404L', '176754037564dd081aa5735.68891504', 50, 30, 1447940401),
+	(27, 12, 7, 'SN10-404L', '1816467853564dd081aa51e1.32425903', 50, 30, 1447940439),
+	(28, 12, 7, 'SN10-404L', '1705421842564dd081aa4c95.53459694', 50, 30, 1447940508),
+	(29, 12, 7, 'SN10-404L', '1138860597564dd081aa4749.89677398', 50, 30, 1447940547),
+	(30, 14, 4, '产品1', '1440185967564e86d7d005b6.28527815', 20, 10, 1447987017);
 /*!40000 ALTER TABLE `sysc_qrcode_record` ENABLE KEYS */;
 
 
@@ -3893,15 +4485,74 @@ CREATE TABLE IF NOT EXISTS `sysc_sign` (
   `member_mobile` varchar(50) NOT NULL COMMENT '用户名',
   `sign_time` varchar(10) NOT NULL,
   PRIMARY KEY (`sign_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=gbk COMMENT='签到';
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=gbk COMMENT='签到';
 
--- 正在导出表  bdm175223116_db.sysc_sign 的数据：4 rows
+-- 正在导出表  bdm175223116_db.sysc_sign 的数据：63 rows
 /*!40000 ALTER TABLE `sysc_sign` DISABLE KEYS */;
 INSERT INTO `sysc_sign` (`sign_id`, `member_id`, `member_mobile`, `sign_time`) VALUES
-	(4, 1, '18682255279', '1442571050'),
-	(5, 22, '13642115522', '1445350964'),
-	(6, 22, '13642115522', '1445350967'),
-	(7, 22, '13642115522', '1445350970');
+	(17, 1, '18682255279', '1445480742'),
+	(18, 22, '13642115522', '1445493059'),
+	(7, 22, '13642115522', '1445350970'),
+	(26, 9, '13482371161', '1445779426'),
+	(25, 12, '18124095354', '1445755256'),
+	(24, 26, '18502613485', '1445652619'),
+	(23, 20, '18602674110', '1445652331'),
+	(22, 14, '15222623325', '1445650052'),
+	(21, 12, '18124095354', '1445606319'),
+	(14, 9, '13482371161', '1445479487'),
+	(20, 17, '15238033727', '1445578847'),
+	(19, 20, '18602674110', '1445559520'),
+	(27, 14, '15222623325', '1445826471'),
+	(28, 20, '18602674110', '1445826489'),
+	(29, 27, '18622189295', '1445840832'),
+	(30, 22, '13642115522', '1445849981'),
+	(31, 12, '18124095354', '1445870180'),
+	(32, 12, '18124095354', '1445956345'),
+	(33, 24, '13920422213', '1445997524'),
+	(34, 17, '15238033727', '1446004794'),
+	(35, 20, '18602674110', '1446078689'),
+	(36, 24, '13920422213', '1446108517'),
+	(37, 12, '18124095354', '1446127080'),
+	(38, 1, '18682255279', '1446127590'),
+	(39, 12, '18124095354', '1446269252'),
+	(40, 12, '18124095354', '1446342208'),
+	(41, 1, '18682255279', '1446348770'),
+	(42, 14, '15222623325', '1446435448'),
+	(43, 20, '18602674110', '1446437064'),
+	(44, 1, '18682255279', '1446446741'),
+	(45, 20, '18602674110', '1446519871'),
+	(46, 24, '13920422213', '1446527818'),
+	(47, 1, '18682255279', '1446532874'),
+	(48, 20, '18602674110', '1446596049'),
+	(49, 14, '15222623325', '1446599984'),
+	(50, 26, '18502613485', '1446625080'),
+	(51, 12, '18124095354', '1446651345'),
+	(52, 12, '18124095354', '1446695435'),
+	(53, 14, '15222623325', '1446798886'),
+	(54, 25, '15022661971', '1446800778'),
+	(55, 14, '15222623325', '1446858934'),
+	(56, 24, '13920422213', '1446902184'),
+	(57, 17, '15238033727', '1446943409'),
+	(58, 1, '18682255279', '1447124688'),
+	(59, 1, '18682255279', '1447222964'),
+	(60, 1, '18682255279', '1447313659'),
+	(61, 14, '15222623325', '1447398906'),
+	(62, 32, '18476321530', '1447556180'),
+	(63, 25, '15022661971', '1447577471'),
+	(64, 32, '18476321530', '1447679436'),
+	(65, 14, '15222623325', '1447746609'),
+	(66, 24, '13920422213', '1447747999'),
+	(67, 1, '18682255279', '1447772583'),
+	(68, 12, '18124095354', '1447937772'),
+	(69, 12, '18124095354', '1447979408'),
+	(70, 14, '15222623325', '1447987033'),
+	(71, 1, '18682255279', '1448198199'),
+	(72, 24, '13920422213', '1448262869'),
+	(73, 1, '18682255279', '1448285355'),
+	(74, 20, '18602674110', '1448327632'),
+	(75, 14, '15222623325', '1448328353'),
+	(76, 33, '15122827799', '1448331905'),
+	(77, 24, '13920422213', '1448338253');
 /*!40000 ALTER TABLE `sysc_sign` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
