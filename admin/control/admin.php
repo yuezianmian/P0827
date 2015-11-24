@@ -11,7 +11,9 @@ defined('InShopNC') or exit('Access Invalid!');
 class adminControl extends SystemControl{
 	private $links = array(
 		array('url'=>'act=admin&op=admin','lang'=>'limit_admin'),
-		array('url'=>'act=admin&op=admin_add','lang'=>'admin_add_limit_admin')
+		array('url'=>'act=admin&op=admin_add','lang'=>'admin_add_limit_admin'),
+		array('url'=>'act=admin&op=gadmin','lang'=>'limit_gadmin'),
+		array('url'=>'act=admin&op=gadmin_add','lang'=>'admin_add_limit_gadmin'),
 	);
 	public function __construct(){
 		parent::__construct();
@@ -41,7 +43,7 @@ class adminControl extends SystemControl{
 				showMessage(L('nc_common_del_succ'));
 			}
 		}
-		$admin_list = $model->table('admin')->order('admin_id asc')->page(10)->select();
+		$admin_list = $model->table('admin,gadmin')->join('left join')->on('gadmin.gid=admin.admin_gid')->page(10)->select();
 
 		Tpl::output('admin_list',$admin_list);
 		Tpl::output('page',$model->showpage());
@@ -85,10 +87,50 @@ class adminControl extends SystemControl{
 			}
 		}
 
+		//得到权限组
+		$gadmin = Model('gadmin')->field('gname,gid')->select();
+		Tpl::output('gadmin',$gadmin);
 		Tpl::output('top_link',$this->sublink($this->links,'admin_add'));
+		Tpl::output('limit',$this->permission());
 		Tpl::showpage('admin.add');
 	}
 
+	/**
+	 * 设置权限组权限
+	 */
+	public function gadmin_setOp(){
+		$model = Model('gadmin');
+		$gid = intval($_GET['gid']);
+
+		$ginfo = $model->getby_gid($gid);
+		if (empty($ginfo)){
+			showMessage(L('admin_set_admin_not_exists'));
+		}
+		if (chksubmit()){
+			$limit_str = '';
+			if (is_array($_POST['permission'])){
+				$limit_str = implode('|',$_POST['permission']);
+			}
+			$limit_str = encrypt($limit_str,MD5_KEY.md5($_POST['gname']));
+			$data['limits'] = $limit_str;
+			$data['gname']	= $_POST['gname'];
+			$update = $model->where(array('gid'=>$gid))->update($data);
+			if ($update){
+				$this->log(L('nc_edit,limit_gadmin').'['.$_POST['gname'].']',1);
+				showMessage(L('nc_common_save_succ'),'index.php?act=admin&op=gadmin');
+			}else {
+				showMessage(L('nc_common_save_succ'));
+			}
+		}
+
+		//解析已有权限
+		$hlimit = decrypt($ginfo['limits'],MD5_KEY.md5($ginfo['gname']));
+		$ginfo['limits'] = explode('|',$hlimit);
+		Tpl::output('ginfo',$ginfo);
+		Tpl::output('limit',$this->permission());
+		Tpl::output('top_link',$this->sublink($this->links,'gadmin'));
+		Tpl::showpage('gadmin.set');
+	}
 
 	/**
 	 * ajax操作
@@ -138,7 +180,7 @@ class adminControl extends SystemControl{
 			$admin_model = Model('admin');
 			$result = $admin_model->updateAdmin($data);
 			if ($result){
-//				$this->log(L('nc_edit,limit_admin').'[ID:'.intval($_GET['admin_id']).']',1);
+				$this->log(L('nc_edit,limit_admin').'[ID:'.intval($_GET['admin_id']).']',1);
 				showMessage(Language::get('admin_edit_success'),'index.php?act=admin&op=admin');
 			}else{
 				showMessage(Language::get('admin_edit_fail'),'index.php?act=admin&op=admin');
@@ -153,9 +195,122 @@ class adminControl extends SystemControl{
 			Tpl::output('admininfo',$admininfo);
 			Tpl::output('top_link',$this->sublink($this->links,'admin'));
 
+			//得到权限组
+			$gadmin = Model('gadmin')->field('gname,gid')->select();
+			Tpl::output('gadmin',$gadmin);
 			Tpl::showpage('admin.edit');
 		}
 	}
 
+	/**
+	 * 取得所有权限项
+	 *
+	 * @return array
+	 */
+	private function permission() {
+		Language::read('common');
+		$lang = Language::getLangContent();
+		$limit = require(BASE_PATH.'/include/limit.php');
+		if (is_array($limit)){
+			foreach ($limit as $k=>$v) {
+				if (is_array($v['child'])){
+					$tmp = array();
+					foreach ($v['child'] as $key => $value) {
+						$act = (!empty($value['act'])) ? $value['act'] : $v['act'];
+						if (strpos($act,'|') == false){//act参数不带|
+							$limit[$k]['child'][$key]['op'] = rtrim($act.'.'.str_replace('|','|'.$act.'.',$value['op']),'.');
+						}else{//act参数带|
+							$tmp_str = '';
+							if (empty($value['op'])){
+								$limit[$k]['child'][$key]['op'] = $act;
+							}elseif (strpos($value['op'],'|') == false){//op参数不带|
+								foreach (explode('|',$act) as $v1) {
+									$tmp_str .= "$v1.{$value['op']}|";
+								}
+								$limit[$k]['child'][$key]['op'] = rtrim($tmp_str,'|');
+							}elseif (strpos($value['op'],'|') != false && strpos($act,'|') != false){//op,act都带|，交差权限
+								foreach (explode('|',$act) as $v1) {
+									foreach (explode('|',$value['op']) as $v2) {
+										$tmp_str .= "$v1.$v2|";
+									}
+								}
+								$limit[$k]['child'][$key]['op'] = rtrim($tmp_str,'|');
+							}
+						}
+					}
+				}
+			}
+			return $limit;
+		}else{
+			return array();
+		}
+	}
 
+	/**
+	 * 权限组
+	 */
+	public function gadminOp(){
+		$model = Model('gadmin');
+		if (chksubmit()){
+			if (@in_array(1,$_POST['del_id'])){
+				showMessage(L('admin_index_not_allow_del'));
+			}
+
+			if (!empty($_POST['del_id'])){
+				if (is_array($_POST['del_id'])){
+					foreach ($_POST['del_id'] as $k => $v){
+						$model->where(array('gid'=>intval($v)))->delete();
+					}
+				}
+				$this->log(L('nc_delete,limit_gadmin').'[ID:'.implode(',',$_POST['del_id']).']',1);
+				showMessage(L('nc_common_del_succ'));
+			}else {
+				showMessage(L('nc_common_del_fail'));
+			}
+		}
+		$list = $model->page(10)->select();
+
+		Tpl::output('list',$list);
+		Tpl::output('page',$model->showpage());
+
+		Tpl::output('top_link',$this->sublink($this->links,'gadmin'));
+		Tpl::showpage('gadmin.index');
+	}
+
+	/**
+	 * 添加权限组
+	 */
+	public function gadmin_addOp(){
+		if (chksubmit()){
+			$limit_str = '';
+			$model = Model('gadmin');
+			if (is_array($_POST['permission'])){
+				$limit_str = implode('|',$_POST['permission']);
+			}
+			$data['limits'] = encrypt($limit_str,MD5_KEY.md5($_POST['gname']));
+			$data['gname'] = $_POST['gname'];
+			if ($model->insert($data)){
+				$this->log(L('nc_add,limit_gadmin').'['.$_POST['gname'].']',1);
+				showMessage(L('nc_common_save_succ'),'index.php?act=admin&op=gadmin');
+			}else {
+				showMessage(L('nc_common_save_fail'));
+			}
+		}
+		Tpl::output('top_link',$this->sublink($this->links,'gadmin_add'));
+		Tpl::output('limit',$this->permission());
+		Tpl::showpage('gadmin.add');
+	}
+
+	/**
+	 * 组删除
+	 */
+	public function gadmin_delOp(){
+		if (is_numeric($_GET['gid'])){
+			Model('gadmin')->where(array('gid'=>intval($_GET['gid'])))->delete();
+			$this->log(L('nc_delete,limit_gadmin').'[ID'.intval($_GET['gid']).']',1);
+			redirect();
+		}else {
+			showMessage(L('nc_common_op_fail'));
+		}
+	}
 }

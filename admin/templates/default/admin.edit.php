@@ -27,12 +27,25 @@
            <td class="vatop tips"><?php echo $lang['admin_edit_pwd_tip1'];?></td>
         </tr>
         <tr>
-          <td colspan="2" class="required"><label for="new_pw2"><?php echo $lang['admin_edit_admin_pw2']; ?>:</label></td>
+          <td colspan="2" class="required"><labe for="new_pw2"><?php echo $lang['admin_edit_admin_pw2']; ?>:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input id="new_pw2" name="new_pw2" class="txt" type="password"></td>
           <td class="vatop tips"></td>
         </tr>
+        <tr>
+          <td colspan="2" class="required"><label class="validation" for="gadmin_name"><?php echo $lang['gadmin_name'];?>:</label></td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform">
+          <select name="gid">
+          <?php foreach((array)$output['gadmin'] as $v){?>
+          <option <?php if ($v['gid'] == $output['admininfo']['admin_gid']) echo 'selected';?> value="<?php echo $v['gid'];?>"><?php echo $v['gname'];?></option>
+          <?php }?>
+          </select>
+          </td>
+          <td class="vatop tips"><?php echo $lang['admin_add_gid_tip'];?></td>
+        </tr>        
       </tbody>
       <tfoot>
         <tr class="tfoot">
@@ -64,6 +77,9 @@ $(document).ready(function(){
 				minlength: 6,
 				maxlength: 20,
 				equalTo: '#new_pw'
+            },
+            gid : {
+                required : true
             }
         },
         messages : {
@@ -75,6 +91,9 @@ $(document).ready(function(){
 				minlength: '<?php echo $lang['admin_add_password_max'];?>',
 				maxlength: '<?php echo $lang['admin_add_password_max'];?>',
 				equalTo:   '<?php echo $lang['admin_edit_repeat_error'];?>'
+            },
+            gid : {
+                required : '<?php echo $lang['admin_add_gid_null'];?>',
             }
         }
 	});

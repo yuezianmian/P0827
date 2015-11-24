@@ -20,6 +20,7 @@
           <th><?php echo $lang['admin_index_username'];?></th>
           <th class="align-center"><?php echo $lang['admin_index_last_login'];?></th>
           <th class="align-center"><?php echo $lang['admin_index_login_times'];?></th>
+          <th class="align-center"><?php echo $lang['gadmin_name'];?></th>
           <th class="align-center"><?php echo $lang['nc_handle'];?></th>
         </tr>
       </thead>
@@ -35,6 +36,7 @@
           <td><?php echo $v['admin_name'];?></td>
           <td class="align-center"><?php echo $v['admin_login_time'] ? date('Y-m-d H:i:s',$v['admin_login_time']) : $lang['admin_index_login_null']; ?></td>
           <td class="align-center"><?php echo $v['admin_login_num']; ?></td>
+          <td class="align-center"><?php echo $v['gname']; ?></td>
           <td class="w150 align-center"><?php if($v['admin_is_super']){?>
             <?php echo $lang['admin_index_sys_admin_no'];?>
             <?php }else{?>

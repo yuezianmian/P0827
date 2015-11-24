@@ -17,23 +17,35 @@
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="text" id="admin_name" name="admin_name" class="txt"></td>
-          <td class="vatop tips"><?php echo $lang['admin_add_username_tip'];?></td>
+          <td class="vatop tips"></td>
         </tr>
         <tr>
           <td colspan="2" class="required"><label class="validation" for="admin_password"><?php echo $lang['admin_index_password'];?>:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="password" id="admin_password" name="admin_password" class="txt"></td>
-          <td class="vatop tips"><?php echo $lang['admin_add_password_tip'];?></td>
+          <td class="vatop tips"></td>
         </tr>
         <tr>
           <td colspan="2" class="required"><label class="validation" for="admin_password"><?php echo $lang['admin_rpassword'];?>:</label></td>
         </tr>
         <tr class="noborder">
           <td class="vatop rowform"><input type="password" id="admin_rpassword" name="admin_rpassword" class="txt"></td>
-          <td class="vatop tips"><?php echo $lang['admin_add_password_tip'];?></td>
+          <td class="vatop tips"></td>
         </tr>
-
+        <tr>
+          <td colspan="2" class="required"><label class="validation" for="gadmin_name"><?php echo $lang['gadmin_name'];?>:</label></td>
+        </tr>
+        <tr class="noborder">
+          <td class="vatop rowform">
+          <select name="gid">
+          <?php foreach((array)$output['gadmin'] as $v){?>
+          <option value="<?php echo $v['gid'];?>"><?php echo $v['gname'];?></option>
+          <?php }?>
+          </select>
+          </td>
+          <td class="vatop tips"></td>
+        </tr>
       </tbody>
       <tfoot>
         <tr class="tfoot">
@@ -80,7 +92,10 @@ $(document).ready(function(){
             admin_rpassword : {
                 required : true,
                 equalTo  : '#admin_password'
-            }
+            },
+            gid : {
+                required : true
+            }        
         },
         messages : {
             admin_name : {
@@ -97,6 +112,9 @@ $(document).ready(function(){
             admin_rpassword : {
                 required : '<?php echo $lang['admin_add_password_null'];?>',
                 equalTo  : '<?php echo $lang['admin_edit_repeat_error'];?>'
+            },
+            gid : {
+                required : '<?php echo $lang['admin_add_gid_null'];?>',
             }
         }
 	});
