@@ -369,4 +369,21 @@ class memberControl extends SystemControl{
 		}
 	}
 
+	/**
+	 * 删除
+	 */
+	public function member_delOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		if (intval($_GET['member_id']) > 0){
+//			$array = array(intval($_GET['banner_id']));
+			$result = $model_member->delMember(array('member_id'=>intval($_GET['member_id'])));
+			if ($result) {
+				$this->log('删除member'.'[ID:'.$_GET['member_id'].']',1);
+				showMessage($lang['nc_common_del_succ'],getReferer());
+			}
+		}
+		showMessage($lang['nc_common_del_fail'],'index.php?act=member&op=member');
+	}
+
 }

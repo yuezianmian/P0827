@@ -73,6 +73,14 @@ class memberModel extends Model {
         return $update;
     }
 
+	/**
+	 * 删除member
+	 * @param unknown $condition
+	 */
+	public function delMember($condition = array()) {
+		return $this->where($condition)->delete();
+	}
+
     /**
      * 注册
      */
