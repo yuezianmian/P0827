@@ -67,7 +67,7 @@ class memberControl extends SystemControl{
 	}
 
 	/**
-	 * 会员修改
+	 * 指定代理商
 	 */
 	public function member_editOp(){
 		$lang	= Language::getLangContent();
@@ -99,9 +99,9 @@ class memberControl extends SystemControl{
 				'msg'=>$lang['member_edit_back_to_list'],
 				),
 				);
-				$this->log(L('nc_edit,member_index_name').'[ID:'.$_POST['member_id'].']',1);
-				showMessage($lang['member_edit_succ'],$url);
-//				showMessage("指定代理商成功",$url);
+				$this->log('指定代理商'.'[ID:'.$_POST['member_id'].']',1);
+//				showMessage($lang['member_edit_succ'],$url);
+				showMessage("指定代理商成功",$url);
 			}else {
 				showMessage($lang['member_edit_fail']);
 			}
@@ -115,6 +115,55 @@ class memberControl extends SystemControl{
 
 	/**
 	 * 会员修改
+	 */
+	public function member_edit_newOp(){
+		$lang	= Language::getLangContent();
+		$model_member = Model('member');
+		/**
+		 * 保存
+		 */
+		if (chksubmit()){
+			/**
+			 * 验证
+			 */
+//			$obj_validate = new Validate();
+//			$obj_validate->validateparam = array(
+//			array("input"=>$_POST["member_email"], "require"=>"true", 'validator'=>'Email', "message"=>$lang['member_edit_valid_email']),
+//			);
+//			$error = $obj_validate->validate();
+//			if ($error != ''){
+//				showMessage($error);
+//			}else {
+			$update_array = array();
+			$update_array['member_id']			= intval($_POST['member_id']);
+
+			$update_array['member_truename'] 		= $_POST['member_truename'];
+			$update_array['member_points'] 		= intval($_POST['member_points']);
+			$update_array['member_birthday'] 		= $_POST['member_birthday'];
+			$update_array['member_sex'] 		= intval($_POST['member_sex']);
+			$result = $model_member->editMember(array('member_id'=>intval($_POST['member_id'])),$update_array);
+			if ($result){
+				$url = array(
+					array(
+						'url'=>'index.php?act=member&op=member',
+						'msg'=>$lang['member_edit_back_to_list'],
+					),
+				);
+				$this->log(L('nc_edit,member_index_name').'[ID:'.$_POST['member_id'].']',1);
+				showMessage($lang['member_edit_succ'],$url);
+			}else {
+				showMessage($lang['member_edit_fail']);
+			}
+		}
+		$condition['member_id'] = intval($_GET['member_id']);
+		$member_array = $model_member->getMemberInfo($condition);
+
+		Tpl::output('member_array',$member_array);
+		Tpl::showpage('member.edit_new');
+	}
+
+	/**
+	 * 会员查看
 	 */
 	public function member_showOp(){
 		$lang	= Language::getLangContent();

@@ -125,6 +125,7 @@
           </td>
           <td class="align-center">
               <a href="index.php?act=member&op=member_show&member_id=<?php echo $v['member_id']; ?>">查看</a>
+                  | <a href="index.php?act=member&op=member_edit_new&member_id=<?php echo $v['member_id']; ?>">编辑</a>
               <?php if($v['member_type'] == MEMBER_TYPE_STORE && $v['member_state'] == MEMBER_STATE_NOCHECK && empty($v['parent_code'])){ ?>
                   | <a href="index.php?act=member&op=member_edit&member_id=<?php echo $v['member_id']; ?>">指定代理商</a>
               <?php } ?>
