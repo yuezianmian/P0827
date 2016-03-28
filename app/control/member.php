@@ -229,6 +229,7 @@ class memberControl extends BaseMemberControl {
 		$model_qrcode_record = Model('qrcode_record');
 		$condition	= array();
 		$condition['create_time'] = array('egt',strtotime(date('Y-m-01 00:00:00')));
+		$condition['member_id'] = $member_id;
 		$qrcodeRecord_month_count = $model_qrcode_record->countQrcodeRecord($condition);
 		$model_points = Model('points');
 //		$condition	= array();
