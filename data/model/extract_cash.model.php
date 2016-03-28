@@ -103,7 +103,7 @@ class extract_cashModel extends Model {
 		if ($condition_array['member_mobile_like']) {
 			$condition_sql	.= " and `extract_cash`.member_mobile like '%{$condition_array['member_mobile_like']}%'";
 		}
-		if ($condition_array['saddtime']){
+		if ($condition_array['member_id']){
 			$condition_sql	.= " and `extract_cash`.member_id = '{$condition_array['member_id']}'";
 		}
 		//申请时间
